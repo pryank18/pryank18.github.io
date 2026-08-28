@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes</title>
+<style>
+  :root {
+    --bg: #f5f4f0;
+    --panel: #ffffff;
+    --panel-2: #faf9f6;
+    --border: #e3e1db;
+    --text: #2a2825;
+    --text-dim: #8a8579;
+    --text-faint: #b7b2a6;
+    --accent: #d97757;
+    --accent-dim: #f0d9cf;
+    --accent-contrast: #ffffff;
+    --danger: #c0553f;
+    --danger-soft: #fbeae5;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.14);
+    --radius: 10px;
+    color-scheme: light;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  :root[data-theme="dark"] {
+    --bg: #1d1b18;
+    --panel: #262320;
+    --panel-2: #2c2925;
+    --border: #3c3833;
+    --text: #efece5;
+    --text-dim: #a39d90;
+    --text-faint: #6f6a60;
+    --accent: #e08a67;
+    --accent-dim: #4a372c;
+    --accent-contrast: #1d1b18;
+    --danger: #e2836a;
+    --danger-soft: #3a2620;
+    --shadow: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-lg: 0 12px 34px rgba(0,0,0,0.5);
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+  }
+  body { transition: background-color .25s ease, color .25s ease; }
+  button, input, textarea { font-family: inherit; }
+  button { cursor: pointer; }
+  #app {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ---------- Sidebar ---------- */
+  #sidebar {
+    width: 300px;
+    min-width: 240px;
+    max-width: 420px;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transition: background-color .25s ease, border-color .25s ease;
+  }
+  #sidebar-header {
+    padding: 18px 16px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  #sidebar-header .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  #sidebar-header h1 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #theme-toggle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--panel-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: transform .2s ease, background-color .2s ease;
+  }
+  #theme-toggle:hover { transform: rotate(18deg) scale(1.08); }
+  #theme-toggle:active { transform: scale(0.9); }
+
+  #search-wrap { position: relative; margin-bottom: 10px; }
+  #search {
+    width: 100%;
+    padding: 8px 10px 8px 28px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  #search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+  #search-wrap::before {
+    content: "🔍";
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    opacity: .6;
+    pointer-events: none;
+  }
+  #new-note-btn {
+    width: 100%;
+    padding: 9px 10px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: var(--accent-contrast);
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    box-shadow: var(--shadow);
+    transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+  }
+  #new-note-btn:hover { opacity: .93; transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+  #new-note-btn:active { transform: translateY(0) scale(.97); }
+  #new-note-btn.pop { animation: pop .28s ease; }
+  @keyframes pop {
+    0% { transform: scale(1); }
+    40% { transform: scale(.93); }
+    100% { transform: scale(1); }
+  }
+
+  #note-list-wrap { flex: 1; overflow-y: auto; padding: 10px 8px 8px; }
+  .list-heading {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding: 8px 8px 4px;
+  }
+  .note-item {
+    position: relative;
+    padding: 10px 10px 10px 14px;
+    border-radius: 9px;
+    cursor: pointer;
+    margin-bottom: 3px;
+    border: 1px solid transparent;
+    animation: fadeIn .18s ease;
+    transition: background-color .12s ease, border-color .12s ease, transform .1s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: translateY(0); } }
+  .note-item::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 8px;
+    bottom: 8px;
+    width: 4px;
+    border-radius: 3px;
+    background: var(--note-color, var(--border));
+  }
+  .note-item:hover { background: var(--panel-2); }
+  .note-item:active { transform: scale(.99); }
+  .note-item.active {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+  }
+  .note-item .row1 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 3px;
+  }
+  .note-item .emoji { font-size: 13.5px; line-height: 1; }
+  .note-item .title {
+    font-size: 13.5px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
+  }
+  .note-item .pin-star { font-size: 11px; opacity: .8; }
+  .note-item .preview {
+    font-size: 12px;
+    color: var(--text-dim);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .note-item .meta {
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .note-item .meta .attach-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+  }
+  #empty-list {
+    padding: 30px 14px;
+    color: var(--text-dim);
+    font-size: 13px;
+    text-align: center;
+  }
+
+  /* ---------- Editor ---------- */
+  #editor-pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    position: relative;
+  }
+  #editor-colorbar {
+    height: 6px;
+    background: var(--note-color, transparent);
+    transition: background-color .2s ease;
+  }
+  #editor-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 24px;
+    border-bottom: 1px solid var(--border);
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  #editor-toolbar .left, #editor-toolbar .right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #save-status {
+    font-size: 12px;
+    color: var(--text-faint);
+    margin-right: 4px;
+    white-space: nowrap;
+  }
+  .icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    transition: background-color .12s ease, transform .1s ease, border-color .12s ease;
+  }
+  .icon-btn:hover { background: var(--panel-2); transform: translateY(-1px); }
+  .icon-btn:active { transform: translateY(0) scale(.94); }
+  .icon-btn.on { border-color: var(--accent); background: var(--accent-dim); }
+  .text-btn {
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    font-size: 12.5px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color .12s ease, transform .1s ease;
+  }
+  .text-btn:hover { background: var(--panel-2); transform: translateY(-1px); }
+  #delete-btn { color: var(--danger); }
+  #delete-btn:hover { background: var(--danger-soft); border-color: var(--danger); }
+
+  /* popovers */
+  .popover-anchor { position: relative; }
+  .popover {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: var(--shadow-lg);
+    padding: 10px;
+    z-index: 40;
+    animation: popIn .12s ease;
+  }
+  @keyframes popIn { from { opacity: 0; transform: translateY(-4px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  .emoji-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+    width: 216px;
+  }
+  .emoji-grid button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    border-radius: 7px;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .1s ease, transform .1s ease;
+  }
+  .emoji-grid button:hover { background: var(--panel-2); transform: scale(1.12); }
+  .color-row { display: flex; gap: 6px; }
+  .color-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 11px;
+    transition: transform .1s ease, border-color .1s ease;
+  }
+  .color-dot:hover { transform: scale(1.12); }
+  .color-dot.selected { border-color: var(--text); }
+  .menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: var(--shadow-lg);
+    padding: 6px;
+    z-index: 40;
+    min-width: 190px;
+    animation: popIn .12s ease;
+  }
+  .menu button {
+    width: 100%;
+    text-align: left;
+    padding: 8px 10px;
+    border: none;
+    background: transparent;
+    border-radius: 7px;
+    font-size: 13px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color .1s ease;
+  }
+  .menu button:hover { background: var(--panel-2); }
+
+  #editor-body {
+    flex: 1;
+    padding: 10px 32px 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: background-color .15s ease;
+  }
+  #editor-body.dragging { background: var(--accent-dim); }
+  #editor-body.dragging::after {
+    content: "Drop to attach";
+    position: absolute;
+    inset: 12px;
+    border: 2px dashed var(--accent);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    pointer-events: none;
+    background: color-mix(in srgb, var(--accent-dim) 60%, transparent);
+  }
+  #note-title-wrap { display: flex; align-items: center; gap: 8px; }
+  #title-emoji-btn { font-size: 24px; line-height: 1; border: none; background: transparent; border-radius: 8px; padding: 2px 4px; transition: transform .12s ease, background-color .12s ease; }
+  #title-emoji-btn:hover { background: var(--panel-2); transform: scale(1.08); }
+  #note-title {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    padding: 12px 0 4px;
+    font-family: inherit;
+    flex: 1;
+    min-width: 0;
+  }
+  #note-title::placeholder { color: var(--text-faint); }
+  #note-body {
+    flex: 1;
+    min-height: 120px;
+    border: none;
+    outline: none;
+    resize: none;
+    background: transparent;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text);
+    font-family: inherit;
+    padding-top: 6px;
+  }
+  #note-body::placeholder { color: var(--text-faint); }
+
+  #word-count {
+    font-size: 11px;
+    color: var(--text-faint);
+    padding-top: 6px;
+  }
+
+  /* attachments */
+  #attachments {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+  }
+  #attachments.hidden { display: none; }
+  #attachments-heading {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 10px;
+  }
+  .attach-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .attach-thumb {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease;
+    background: var(--panel-2);
+  }
+  .attach-thumb:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .attach-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .attach-remove {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(0,0,0,.55);
+    color: #fff;
+    border: none;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    opacity: 0;
+    transition: opacity .12s ease, transform .12s ease;
+  }
+  .attach-thumb:hover .attach-remove, .attach-chip:hover .attach-remove { opacity: 1; }
+  .attach-remove:hover { transform: scale(1.12); background: var(--danger); }
+  .attach-chip {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 26px 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--panel-2);
+    font-size: 12.5px;
+    max-width: 220px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .attach-chip:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .attach-chip .fname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+  .attach-chip .fsize { color: var(--text-faint); font-size: 11px; }
+  .attach-chip .attach-remove { position: absolute; top: 6px; right: 6px; width: 18px; height: 18px; }
+
+  /* placeholder */
+  #placeholder-state {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-size: 14px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  #placeholder-state .big-emoji { font-size: 46px; opacity: .8; animation: float 3.2s ease-in-out infinite; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  #placeholder-state button {
+    padding: 9px 18px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent);
+    color: var(--accent-contrast);
+    font-size: 13px;
+    font-weight: 700;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  #placeholder-state button:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+
+  /* lightbox */
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    animation: fadeIn .15s ease;
+  }
+  #lightbox.hidden { display: none; }
+  #lightbox img { max-width: 88vw; max-height: 82vh; border-radius: 10px; box-shadow: var(--shadow-lg); }
+  #lightbox-close, #lightbox-download {
+    position: absolute;
+    top: 18px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,.15);
+    color: #fff;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .12s ease, transform .1s ease;
+  }
+  #lightbox-close:hover, #lightbox-download:hover { background: rgba(255,255,255,.3); transform: scale(1.08); }
+  #lightbox-close { right: 18px; }
+  #lightbox-download { right: 64px; text-decoration: none; }
+
+  /* toasts */
+  #toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 200;
+  }
+  .toast {
+    background: var(--text);
+    color: var(--bg);
+    padding: 10px 14px;
+    border-radius: 9px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow-lg);
+    animation: slideIn .18s ease;
+  }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
+  .toast.leaving { animation: slideOut .18s ease forwards; }
+  @keyframes slideOut { to { opacity: 0; transform: translateX(16px); } }
+  .toast button {
+    border: none;
+    background: transparent;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 12.5px;
+  }
+
+  ::-webkit-scrollbar { width: 9px; height: 9px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <div id="sidebar">
+    <div id="sidebar-header">
+      <div class="row">
+        <h1>📓 Notes</h1>
+        <button id="theme-toggle" title="Toggle theme">🌙</button>
+      </div>
+      <div id="search-wrap">
+        <input id="search" type="text" placeholder="Search notes...">
+      </div>
+      <button id="new-note-btn">+ New note</button>
+    </div>
+    <div id="note-list-wrap">
+      <div id="note-list"></div>
+    </div>
+  </div>
+  <div id="editor-pane">
+    <div id="placeholder-state">
+      <div class="big-emoji">📝</div>
+      <div>Select a note, or create a new one.</div>
+      <button id="placeholder-new-btn">+ New note</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="file-input" multiple hidden>
+
+<div id="lightbox" class="hidden">
+  <a id="lightbox-download" download title="Download"><span>⬇</span></a>
+  <button id="lightbox-close" title="Close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<div id="toast-container"></div>
+
+<script>
+(function () {
+  const STORAGE_KEY = 'notes-app-data-v2';
+  const THEME_KEY = 'notes-app-theme';
+  const MAX_FILE_BYTES = 5 * 1024 * 1024; // 5MB per attachment
+
+  const COLORS = [
+    { key: 'red',    value: '#f0776b' },
+    { key: 'orange', value: '#f2a154' },
+    { key: 'yellow', value: '#e8c247' },
+    { key: 'green',  value: '#6fbf73' },
+    { key: 'teal',   value: '#4bb7ab' },
+    { key: 'blue',   value: '#5a9ce6' },
+    { key: 'purple', value: '#9b83e0' },
+    { key: 'pink',   value: '#e07fb0' }
+  ];
+
+  const EMOJIS = ['📝','📌','⭐','💡','✅','🎯','📚','💰','🎉','🏠','✈️','🍽️','🎵','❤️','🧠','🛒','📅','🔥','🌱','🎬','💻','🏆'];
+
+  let notes = [];
+  let activeId = null;
+  let searchQuery = '';
+  let openPopover = null; // 'emoji' | 'color' | 'menu' | null
+  let pendingDelete = null; // { note, timer }
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      notes = raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      notes = [];
+    }
+  }
+
+  function save() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+      return true;
+    } catch (e) {
+      toast("Couldn't save — storage is full", { danger: true });
+      return false;
+    }
+  }
+
+  function uid() {
+    return 'n_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+  }
+
+  function formatDate(ts) {
+    const d = new Date(ts);
+    const now = new Date();
+    const sameDay = d.toDateString() === now.toDateString();
+    if (sameDay) return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return d.toLocaleDateString([], { month: 'short', day: 'numeric' });
+  }
+
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  function fileIcon(type, name) {
+    const ext = (name || '').split('.').pop().toLowerCase();
+    if (type.startsWith('audio/')) return '🎵';
+    if (type.startsWith('video/')) return '🎬';
+    if (type === 'application/pdf' || ext === 'pdf') return '📄';
+    if (['doc','docx'].includes(ext)) return '📝';
+    if (['xls','xlsx','csv'].includes(ext)) return '📊';
+    if (['ppt','pptx'].includes(ext)) return '📊';
+    if (['zip','rar','7z','tar','gz'].includes(ext)) return '🗜️';
+    return '📎';
+  }
+
+  function firstLine(text) {
+    const t = (text || '').trim();
+    const idx = t.indexOf('\n');
+    return idx === -1 ? t : t.slice(0, idx);
+  }
+
+  function bodyPreview(text, titleLine) {
+    const t = (text || '').trim();
+    const rest = t.slice(titleLine.length).trim();
+    return rest || 'No additional text';
+  }
+
+  function escapeHtml(s) {
+    const div = document.createElement('div');
+    div.textContent = s;
+    return div.innerHTML;
+  }
+
+  function sortedNotes() {
+    return [...notes].sort((a, b) => {
+      if (!!a.pinned !== !!b.pinned) return a.pinned ? -1 : 1;
+      return b.updatedAt - a.updatedAt;
+    });
+  }
+
+  function filteredNotes() {
+    const q = searchQuery.trim().toLowerCase();
+    const list = sortedNotes();
+    if (!q) return list;
+    return list.filter(n =>
+      (n.title || '').toLowerCase().includes(q) ||
+      (n.body || '').toLowerCase().includes(q)
+    );
+  }
+
+  /* ---------------- toasts ---------------- */
+  const toastContainer = document.getElementById('toast-container');
+  function toast(message, opts) {
+    opts = opts || {};
+    const el = document.createElement('div');
+    el.className = 'toast';
+    const msg = document.createElement('span');
+    msg.textContent = message;
+    el.appendChild(msg);
+    if (opts.actionLabel && opts.onAction) {
+      const btn = document.createElement('button');
+      btn.textContent = opts.actionLabel;
+      btn.addEventListener('click', () => {
+        opts.onAction();
+        dismiss();
+      });
+      el.appendChild(btn);
+    }
+    toastContainer.appendChild(el);
+    function dismiss() {
+      el.classList.add('leaving');
+      setTimeout(() => el.remove(), 180);
+    }
+    const timer = setTimeout(dismiss, opts.duration || 3200);
+    return { dismiss: () => { clearTimeout(timer); dismiss(); } };
+  }
+
+  /* ---------------- theme ---------------- */
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  function applyTheme(t) {
+    if (t === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeToggleBtn.textContent = '☀️';
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      themeToggleBtn.textContent = '🌙';
+    }
+  }
+  function initTheme() {
+    let t = null;
+    try { t = localStorage.getItem(THEME_KEY); } catch (e) {}
+    if (!t) t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    applyTheme(t);
+  }
+  themeToggleBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+  });
+
+  /* ---------------- rendering: list ---------------- */
+  const listEl = document.getElementById('note-list');
+  const editorPane = document.getElementById('editor-pane');
+  const searchEl = document.getElementById('search');
+  const newNoteBtn = document.getElementById('new-note-btn');
+
+  function noteColorValue(key) {
+    const c = COLORS.find(c => c.key === key);
+    return c ? c.value : null;
+  }
+
+  function renderList() {
+    const list = filteredNotes();
+    listEl.innerHTML = '';
+    if (list.length === 0) {
+      const empty = document.createElement('div');
+      empty.id = 'empty-list';
+      empty.textContent = searchQuery ? 'No notes match your search.' : 'No notes yet — create your first one!';
+      listEl.appendChild(empty);
+      return;
+    }
+    let renderedPinnedHeading = false;
+    let renderedOthersHeading = false;
+    list.forEach(note => {
+      if (note.pinned && !renderedPinnedHeading) {
+        const h = document.createElement('div');
+        h.className = 'list-heading';
+        h.textContent = '📌 Pinned';
+        listEl.appendChild(h);
+        renderedPinnedHeading = true;
+      }
+      if (!note.pinned && !renderedOthersHeading && renderedPinnedHeading) {
+        const h = document.createElement('div');
+        h.className = 'list-heading';
+        h.textContent = 'Notes';
+        listEl.appendChild(h);
+        renderedOthersHeading = true;
+      }
+      const item = document.createElement('div');
+      item.className = 'note-item' + (note.id === activeId ? ' active' : '');
+      const colorVal = noteColorValue(note.color);
+      if (colorVal) item.style.setProperty('--note-color', colorVal);
+      const title = note.title || 'Untitled note';
+      const preview = bodyPreview(note.body, note.title ? '' : firstLine(note.body));
+      const attachCount = (note.attachments || []).length;
+      item.innerHTML =
+        '<div class="row1">' +
+          (note.emoji ? '<span class="emoji">' + note.emoji + '</span>' : '') +
+          '<span class="title">' + escapeHtml(title) + '</span>' +
+        '</div>' +
+        '<div class="preview">' + escapeHtml(preview) + '</div>' +
+        '<div class="meta">' +
+          '<span>' + formatDate(note.updatedAt) + '</span>' +
+          (attachCount ? '<span class="attach-badge">📎 ' + attachCount + '</span>' : '') +
+        '</div>';
+      item.addEventListener('click', () => selectNote(note.id));
+      listEl.appendChild(item);
+    });
+  }
+
+  /* ---------------- rendering: editor ---------------- */
+  function closePopovers() {
+    document.querySelectorAll('.popover, .menu').forEach(el => el.remove());
+    openPopover = null;
+  }
+
+  function renderEditor() {
+    closePopovers();
+    const note = notes.find(n => n.id === activeId);
+    if (!note) {
+      editorPane.innerHTML =
+        '<div id="placeholder-state">' +
+          '<div class="big-emoji">📝</div>' +
+          '<div>Select a note, or create a new one.</div>' +
+          '<button id="placeholder-new-btn">+ New note</button>' +
+        '</div>';
+      document.getElementById('placeholder-new-btn').addEventListener('click', createNote);
+      return;
+    }
+
+    const colorVal = noteColorValue(note.color);
+
+    editorPane.innerHTML =
+      '<div id="editor-colorbar"></div>' +
+      '<div id="editor-toolbar">' +
+        '<div class="left">' +
+          '<span id="save-status">Saved ' + formatDate(note.updatedAt) + '</span>' +
+        '</div>' +
+        '<div class="right">' +
+          '<div class="popover-anchor" id="color-anchor"><button class="icon-btn" id="color-btn" title="Color">🎨</button></div>' +
+          '<button class="icon-btn' + (note.pinned ? ' on' : '') + '" id="pin-btn" title="Pin">📌</button>' +
+          '<button class="icon-btn" id="attach-btn" title="Attach file">📎</button>' +
+          '<div class="popover-anchor" id="menu-anchor"><button class="text-btn" id="export-btn">Export ▾</button></div>' +
+          '<button class="text-btn" id="delete-btn">🗑 Delete</button>' +
+        '</div>' +
+      '</div>' +
+      '<div id="editor-body">' +
+        '<div id="note-title-wrap">' +
+          '<button id="title-emoji-btn" title="Choose emoji">' + (note.emoji || '🙂') + '</button>' +
+          '<input id="note-title" type="text" placeholder="Title" value="">' +
+        '</div>' +
+        '<textarea id="note-body" placeholder="Start writing... (or drop a file/image here)"></textarea>' +
+        '<div id="word-count"></div>' +
+        '<div id="attachments">' +
+          '<div id="attachments-heading">Attachments</div>' +
+          '<div class="attach-grid" id="attach-grid"></div>' +
+        '</div>' +
+      '</div>';
+
+    if (colorVal) editorPane.querySelector('#editor-colorbar').style.setProperty('--note-color', colorVal);
+
+    const titleEl = document.getElementById('note-title');
+    const bodyEl = document.getElementById('note-body');
+    titleEl.value = note.title || '';
+    bodyEl.value = note.body || '';
+    updateWordCount();
+    renderAttachments();
+
+    let saveTimer = null;
+    function persistChanges() {
+      note.title = titleEl.value;
+      note.body = bodyEl.value;
+      note.updatedAt = Date.now();
+      save();
+      renderList();
+      const status = document.getElementById('save-status');
+      if (status) status.textContent = 'Saved ' + formatDate(note.updatedAt);
+    }
+    function scheduleSave() {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(persistChanges, 300);
+    }
+    function updateWordCount() {
+      const words = (bodyEl.value.trim().match(/\S+/g) || []).length;
+      document.getElementById('word-count').textContent =
+        words + (words === 1 ? ' word' : ' words') + ' · ' + bodyEl.value.length + ' characters';
+    }
+
+    titleEl.addEventListener('input', scheduleSave);
+    bodyEl.addEventListener('input', () => { scheduleSave(); updateWordCount(); });
+
+    document.getElementById('delete-btn').addEventListener('click', () => deleteNote(note.id));
+    document.getElementById('pin-btn').addEventListener('click', () => {
+      note.pinned = !note.pinned;
+      note.updatedAt = Date.now();
+      save();
+      renderList();
+      renderEditor();
+      toast(note.pinned ? 'Note pinned' : 'Note unpinned');
+    });
+
+    document.getElementById('title-emoji-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      openEmojiPopover(document.getElementById('title-emoji-btn'), note);
+    });
+    document.getElementById('color-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      openColorPopover(document.getElementById('color-anchor'), note);
+    });
+    document.getElementById('export-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      openExportMenu(document.getElementById('menu-anchor'), note);
+    });
+    document.getElementById('attach-btn').addEventListener('click', () => {
+      fileInput.dataset.noteId = note.id;
+      fileInput.click();
+    });
+
+    const bodyContainer = document.getElementById('editor-body');
+    bodyContainer.addEventListener('dragover', (e) => { e.preventDefault(); bodyContainer.classList.add('dragging'); });
+    bodyContainer.addEventListener('dragleave', () => bodyContainer.classList.remove('dragging'));
+    bodyContainer.addEventListener('drop', (e) => {
+      e.preventDefault();
+      bodyContainer.classList.remove('dragging');
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+        attachFiles(note, e.dataTransfer.files);
+      }
+    });
+  }
+
+  function renderAttachments() {
+    const note = notes.find(n => n.id === activeId);
+    const grid = document.getElementById('attach-grid');
+    const wrap = document.getElementById('attachments');
+    if (!note || !grid) return;
+    const atts = note.attachments || [];
+    if (atts.length === 0) { wrap.classList.add('hidden'); grid.innerHTML = ''; return; }
+    wrap.classList.remove('hidden');
+    grid.innerHTML = '';
+    atts.forEach(att => {
+      if (att.isImage) {
+        const thumb = document.createElement('div');
+        thumb.className = 'attach-thumb';
+        const img = document.createElement('img');
+        img.src = att.dataUrl;
+        img.alt = att.name;
+        thumb.appendChild(img);
+        thumb.addEventListener('click', () => openLightbox(att));
+        const rm = document.createElement('button');
+        rm.className = 'attach-remove';
+        rm.textContent = '✕';
+        rm.title = 'Remove';
+        rm.addEventListener('click', (e) => { e.stopPropagation(); removeAttachment(note, att.id); });
+        thumb.appendChild(rm);
+        grid.appendChild(thumb);
+      } else {
+        const chip = document.createElement('a');
+        chip.className = 'attach-chip';
+        chip.href = att.dataUrl;
+        chip.download = att.name;
+        chip.innerHTML =
+          '<span style="font-size:18px">' + fileIcon(att.type, att.name) + '</span>' +
+          '<span>' +
+            '<div class="fname">' + escapeHtml(att.name) + '</div>' +
+            '<div class="fsize">' + formatSize(att.size) + '</div>' +
+          '</span>';
+        const rm = document.createElement('button');
+        rm.className = 'attach-remove';
+        rm.textContent = '✕';
+        rm.title = 'Remove';
+        rm.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); removeAttachment(note, att.id); });
+        chip.appendChild(rm);
+        grid.appendChild(chip);
+      }
+    });
+  }
+
+  function removeAttachment(note, attId) {
+    note.attachments = (note.attachments || []).filter(a => a.id !== attId);
+    note.updatedAt = Date.now();
+    save();
+    renderList();
+    renderAttachments();
+    toast('Attachment removed');
+  }
+
+  /* ---------------- popovers ---------------- */
+  function openEmojiPopover(anchorBtn, note) {
+    if (openPopover === 'emoji') { closePopovers(); return; }
+    closePopovers();
+    const pop = document.createElement('div');
+    pop.className = 'popover';
+    const grid = document.createElement('div');
+    grid.className = 'emoji-grid';
+    EMOJIS.forEach(em => {
+      const b = document.createElement('button');
+      b.textContent = em;
+      b.addEventListener('click', () => {
+        note.emoji = em;
+        note.updatedAt = Date.now();
+        save();
+        renderList();
+        renderEditor();
+      });
+      grid.appendChild(b);
+    });
+    pop.appendChild(grid);
+    document.getElementById('note-title-wrap').style.position = 'relative';
+    anchorBtn.parentElement.style.position = 'relative';
+    anchorBtn.parentElement.appendChild(pop);
+    openPopover = 'emoji';
+  }
+
+  function openColorPopover(anchor, note) {
+    if (openPopover === 'color') { closePopovers(); return; }
+    closePopovers();
+    const pop = document.createElement('div');
+    pop.className = 'popover';
+    const row = document.createElement('div');
+    row.className = 'color-row';
+    const noneDot = document.createElement('button');
+    noneDot.className = 'color-dot' + (!note.color ? ' selected' : '');
+    noneDot.style.background = 'var(--border)';
+    noneDot.title = 'No color';
+    noneDot.addEventListener('click', () => setNoteColor(note, null));
+    row.appendChild(noneDot);
+    COLORS.forEach(c => {
+      const dot = document.createElement('button');
+      dot.className = 'color-dot' + (note.color === c.key ? ' selected' : '');
+      dot.style.background = c.value;
+      dot.title = c.key;
+      dot.addEventListener('click', () => setNoteColor(note, c.key));
+      row.appendChild(dot);
+    });
+    pop.appendChild(row);
+    anchor.appendChild(pop);
+    openPopover = 'color';
+  }
+
+  function setNoteColor(note, key) {
+    note.color = key;
+    note.updatedAt = Date.now();
+    save();
+    renderList();
+    renderEditor();
+  }
+
+  function openExportMenu(anchor, note) {
+    if (openPopover === 'menu') { closePopovers(); return; }
+    closePopovers();
+    const menu = document.createElement('div');
+    menu.className = 'menu';
+    const items = [
+      { label: '📄  Save as .txt', fn: () => exportAsText(note) },
+      { label: '📝  Save as Markdown', fn: () => exportAsMarkdown(note) },
+      { label: '🖼️  Save as PNG image', fn: () => exportAsImage(note) }
+    ];
+    items.forEach(it => {
+      const b = document.createElement('button');
+      b.textContent = it.label;
+      b.addEventListener('click', () => { closePopovers(); it.fn(); });
+      menu.appendChild(b);
+    });
+    anchor.appendChild(menu);
+    openPopover = 'menu';
+  }
+
+  document.addEventListener('click', (e) => {
+    if (openPopover && !e.target.closest('.popover, .menu, #color-btn, #export-btn, #title-emoji-btn')) {
+      closePopovers();
+    }
+  });
+
+  /* ---------------- export ---------------- */
+  function safeFileName(note) {
+    const base = (note.title || 'untitled note').trim().replace(/[\\/:*?"<>|]+/g, '-').slice(0, 60);
+    return base || 'untitled note';
+  }
+
+  function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }
+
+  function exportAsText(note) {
+    const content = (note.title || 'Untitled note') + '\n\n' + (note.body || '');
+    downloadBlob(new Blob([content], { type: 'text/plain' }), safeFileName(note) + '.txt');
+    toast('Exported as .txt');
+  }
+
+  function exportAsMarkdown(note) {
+    const content = '# ' + (note.title || 'Untitled note') + '\n\n' + (note.body || '');
+    downloadBlob(new Blob([content], { type: 'text/markdown' }), safeFileName(note) + '.md');
+    toast('Exported as Markdown');
+  }
+
+  function wrapText(ctx, text, maxWidth) {
+    const lines = [];
+    (text || '').split('\n').forEach(paragraph => {
+      if (paragraph === '') { lines.push(''); return; }
+      const words = paragraph.split(' ');
+      let cur = '';
+      words.forEach(word => {
+        const test = cur ? cur + ' ' + word : word;
+        if (ctx.measureText(test).width > maxWidth && cur) {
+          lines.push(cur);
+          cur = word;
+        } else {
+          cur = test;
+        }
+      });
+      if (cur) lines.push(cur);
+    });
+    return lines;
+  }
+
+  function exportAsImage(note) {
+    const width = 900;
+    const padding = 56;
+    const titleFont = '700 32px -apple-system, Segoe UI, Helvetica, Arial, sans-serif';
+    const bodyFont = '400 18px -apple-system, Segoe UI, Helvetica, Arial, sans-serif';
+    const metaFont = '400 13px -apple-system, Segoe UI, Helvetica, Arial, sans-serif';
+    const lineHeight = 27;
+
+    const measure = document.createElement('canvas').getContext('2d');
+    measure.font = bodyFont;
+    const bodyLines = wrapText(measure, note.body || '', width - padding * 2);
+
+    const colorVal = noteColorValue(note.color) || '#d97757';
+    const titleText = (note.emoji ? note.emoji + '  ' : '') + (note.title || 'Untitled note');
+
+    const topBarH = 10;
+    const titleH = 56;
+    const metaH = 30;
+    const bodyH = Math.max(bodyLines.length * lineHeight, lineHeight) + 20;
+    const height = topBarH + padding + titleH + metaH + bodyH + padding;
+
+    const canvas = document.createElement('canvas');
+    const scale = 2;
+    canvas.width = width * scale;
+    canvas.height = height * scale;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(scale, scale);
+
+    ctx.fillStyle = '#fbfaf7';
+    ctx.fillRect(0, 0, width, height);
+    ctx.fillStyle = colorVal;
+    ctx.fillRect(0, 0, width, topBarH);
+
+    let y = topBarH + padding;
+    ctx.fillStyle = '#2a2825';
+    ctx.font = titleFont;
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillText(titleText, padding, y + 24);
+
+    ctx.font = metaFont;
+    ctx.fillStyle = '#8a8579';
+    ctx.fillText(formatDate(note.updatedAt), padding, y + titleH);
+
+    y += titleH + metaH;
+    ctx.font = bodyFont;
+    ctx.fillStyle = '#2a2825';
+    bodyLines.forEach((line, i) => {
+      ctx.fillText(line, padding, y + i * lineHeight);
+    });
+
+    canvas.toBlob(blob => {
+      if (!blob) { toast("Couldn't create image", { danger: true }); return; }
+      downloadBlob(blob, safeFileName(note) + '.png');
+      toast('Exported as PNG image');
+    }, 'image/png');
+  }
+
+  /* ---------------- attachments (upload) ---------------- */
+  const fileInput = document.getElementById('file-input');
+  fileInput.addEventListener('change', () => {
+    const note = notes.find(n => n.id === fileInput.dataset.noteId);
+    if (note && fileInput.files.length) attachFiles(note, fileInput.files);
+    fileInput.value = '';
+  });
+
+  function attachFiles(note, fileList) {
+    const files = Array.from(fileList);
+    let accepted = 0, rejected = 0;
+    let remaining = files.length;
+    if (!files.length) return;
+    files.forEach(file => {
+      if (file.size > MAX_FILE_BYTES) {
+        rejected++;
+        remaining--;
+        if (remaining === 0) finish();
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        note.attachments = note.attachments || [];
+        note.attachments.push({
+          id: uid(),
+          name: file.name,
+          type: file.type || 'application/octet-stream',
+          size: file.size,
+          isImage: file.type.startsWith('image/'),
+          dataUrl: reader.result
+        });
+        accepted++;
+        remaining--;
+        note.updatedAt = Date.now();
+        if (remaining === 0) finish();
+      };
+      reader.onerror = () => {
+        rejected++;
+        remaining--;
+        if (remaining === 0) finish();
+      };
+      reader.readAsDataURL(file);
+    });
+    function finish() {
+      const ok = save();
+      renderList();
+      renderAttachments();
+      const status = document.getElementById('save-status');
+      if (status) status.textContent = 'Saved ' + formatDate(note.updatedAt);
+      if (accepted && ok) toast(accepted + (accepted === 1 ? ' file attached' : ' files attached'));
+      if (rejected) toast(rejected + ' file(s) skipped — over 5MB limit', { danger: true });
+    }
+  }
+
+  /* ---------------- lightbox ---------------- */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxDownload = document.getElementById('lightbox-download');
+  function openLightbox(att) {
+    lightboxImg.src = att.dataUrl;
+    lightboxDownload.href = att.dataUrl;
+    lightboxDownload.download = att.name;
+    lightbox.classList.remove('hidden');
+  }
+  function closeLightbox() { lightbox.classList.add('hidden'); lightboxImg.src = ''; }
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+  /* ---------------- core actions ---------------- */
+  function selectNote(id) {
+    activeId = id;
+    renderList();
+    renderEditor();
+  }
+
+  function createNote() {
+    const note = {
+      id: uid(),
+      title: '',
+      body: '',
+      color: null,
+      emoji: '',
+      pinned: false,
+      attachments: [],
+      createdAt: Date.now(),
+      updatedAt: Date.now()
+    };
+    notes.push(note);
+    save();
+    activeId = note.id;
+    renderList();
+    renderEditor();
+    newNoteBtn.classList.remove('pop');
+    void newNoteBtn.offsetWidth;
+    newNoteBtn.classList.add('pop');
+    setTimeout(() => {
+      const t = document.getElementById('note-title');
+      if (t) t.focus();
+    }, 0);
+  }
+
+  function deleteNote(id) {
+    const idx = notes.findIndex(n => n.id === id);
+    if (idx === -1) return;
+    const [removed] = notes.splice(idx, 1);
+    save();
+    if (activeId === id) activeId = null;
+    renderList();
+    renderEditor();
+    if (pendingDelete) clearTimeout(pendingDelete.timer);
+    const handle = toast('Note deleted', {
+      actionLabel: 'Undo',
+      duration: 5000,
+      onAction: () => {
+        notes.splice(idx, 0, removed);
+        save();
+        activeId = removed.id;
+        renderList();
+        renderEditor();
+        pendingDelete = null;
+      }
+    });
+    pendingDelete = { note: removed, timer: setTimeout(() => { pendingDelete = null; }, 5000) };
+  }
+
+  /* ---------------- wiring ---------------- */
+  newNoteBtn.addEventListener('click', createNote);
+  searchEl.addEventListener('input', () => {
+    searchQuery = searchEl.value;
+    renderList();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'n') {
+      e.preventDefault();
+      createNote();
+    } else if (e.key === 'Escape') {
+      if (!lightbox.classList.contains('hidden')) closeLightbox();
+      else if (openPopover) closePopovers();
+    }
+  });
+
+  initTheme();
+  load();
+  renderList();
+  renderEditor();
+})();
+</script>
+</body>
+</html>
