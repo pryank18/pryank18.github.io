@@ -21,14 +21,24 @@ max-width:960px; margin:0 auto; display:grid; gap:18px;
 grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
 }
 .card{
-display:block; background:var(--surface); border:1px solid var(--border); border-radius:14px;
+display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--border); border-radius:14px;
 padding:22px; text-decoration:none; color:var(--text); transition:border-color .15s, transform .15s;
 }
 .card:hover{ border-color:var(--accent); transform:translateY(-2px); }
 .card h2{ font-size:19px; font-weight:700; margin-bottom:8px; }
-.card p{ font-size:13.5px; color:var(--text-dim); line-height:1.5; margin-bottom:14px; }
-.tag-row{ display:flex; gap:6px; flex-wrap:wrap; }
+.card p{ font-size:13.5px; color:var(--text-dim); line-height:1.55; margin-bottom:14px; }
+.tag-row{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
 .tag{ font-size:11px; font-weight:600; color:var(--accent); background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.3); padding:3px 9px; border-radius:20px; }
+.card-actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:auto; padding-top:4px; }
+.btn{ font-size:12.5px; font-weight:600; padding:8px 13px; border-radius:8px; text-decoration:none; display:inline-flex; align-items:center; gap:5px; transition:opacity .15s, background-color .15s; white-space:nowrap; }
+.btn:hover{ opacity:0.85; }
+.btn-primary{ background:var(--accent); color:#fff; }
+.btn-secondary{ background:transparent; color:var(--accent); border:1px solid rgba(59,130,246,0.35); }
+.about{ max-width:960px; margin:52px auto 0; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:30px 32px; }
+.about h2{ font-size:20px; font-weight:800; margin-bottom:16px; }
+.about p{ color:var(--text-dim); font-size:14px; line-height:1.7; margin-bottom:14px; }
+.about p:last-child{ margin-bottom:0; }
+.about strong{ color:var(--text); }
 footer{ text-align:center; margin-top:48px; color:var(--text-dim); font-size:12.5px; }
 footer a{ color:var(--accent); text-decoration:none; }
 </style>
@@ -39,32 +49,67 @@ footer a{ color:var(--accent); text-decoration:none; }
 <p>Product Manager driving GTM strategy, business growth, and end-to-end project execution — side-project web apps, all in one place.</p>
 </header>
 <main class="grid">
-<a class="card" href="depotline-fuel-ops/">
+
+<div class="card">
 <h2>Depotline</h2>
-<p>Responsive fuel operations dashboard — track depots, deliveries, fleet, inventory, and finance across multiple sites.</p>
+<p>A fuel operations dashboard that brings stock, pricing, and fleet fuel logs into a single live view — built for depot-level operators who currently run this across spreadsheets and WhatsApp threads. Tracks depots, deliveries, fleet, inventory, and finance across multiple sites from one screen.</p>
 <div class="tag-row"><span class="tag">html</span><span class="tag">css</span><span class="tag">javascript</span><span class="tag">dashboard</span></div>
-</a>
-<a class="card" href="dispatch-os/">
+<div class="card-actions">
+<a class="btn btn-primary" href="depotline-fuel-ops/" target="_blank" rel="noopener">Open Platform ↗</a>
+<a class="btn btn-secondary" href="https://github.com/pryank18/depotline-fuel-ops/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Product Spec</a>
+</div>
+</div>
+
+<div class="card">
 <h2>Dispatch OS</h2>
-<p>Ordering, credit limits, and stock — one platform for FMCG distributors and wholesalers to replace WhatsApp and notebooks.</p>
+<p>Ordering, credit limits, and stock management on one platform for FMCG distributors and wholesalers — replacing manual order-taking over WhatsApp and notebooks with a single queue to confirm, allocate, and dispatch against live stock and credit.</p>
 <div class="tag-row"><span class="tag">distribution</span><span class="tag">credit</span><span class="tag">saas</span></div>
-</a>
-<a class="card" href="Msafara/">
+<div class="card-actions">
+<a class="btn btn-primary" href="dispatch-os/" target="_blank" rel="noopener">Open Platform ↗</a>
+<a class="btn btn-secondary" href="https://github.com/pryank18/dispatch-os/blob/main/README.md" target="_blank" rel="noopener">Overview</a>
+</div>
+</div>
+
+<div class="card">
 <h2>Msafara</h2>
-<p>AI-assisted vendor coordination for tour operators and DMCs. Automates outreach, negotiation, deadline tracking, and client proposals over email and WhatsApp.</p>
+<p>AI-assisted vendor coordination for tour operators and DMCs. Drafts and sends vendor requests, follows up on silence, negotiates within bounded rules, tracks hold expiry, compares competitive offers, and generates client-facing proposals — over email and WhatsApp.</p>
 <div class="tag-row"><span class="tag">ai</span><span class="tag">automation</span><span class="tag">travel-tech</span><span class="tag">saas</span></div>
-</a>
-<a class="card" href="https://pryank18.github.io/fitnexx/">
+<div class="card-actions">
+<a class="btn btn-primary" href="Msafara/" target="_blank" rel="noopener">Open Platform ↗</a>
+<a class="btn btn-secondary" href="https://github.com/pryank18/Msafara/blob/main/README.md" target="_blank" rel="noopener">Documentation</a>
+</div>
+</div>
+
+<div class="card">
 <h2>Fitnexx</h2>
-<p>All-in-one fitness platform, log workouts, track nutrition, and watch your progress add up.</p>
+<p>An all-in-one fitness companion — plan and log workouts, track nutrition, and monitor progress on a single dashboard. Built and documented with a full product package: PRD, BRD, and MRD, alongside the working application.</p>
 <div class="tag-row"><span class="tag">html</span><span class="tag">css</span><span class="tag">javascript</span><span class="tag">fitness</span></div>
-</a>
-<a class="card" href="notes-app/">
+<div class="card-actions">
+<a class="btn btn-primary" href="https://pryank18.github.io/fitnexx/" target="_blank" rel="noopener">Open Platform ↗</a>
+<a class="btn btn-secondary" href="https://github.com/pryank18/fitnexx/blob/main/FitNexx_PRD.docx" target="_blank" rel="noopener">PRD</a>
+<a class="btn btn-secondary" href="https://github.com/pryank18/fitnexx/blob/main/FitNexx_BRD.docx" target="_blank" rel="noopener">BRD</a>
+<a class="btn btn-secondary" href="https://github.com/pryank18/fitnexx/blob/main/FitNexx_MRD.docx" target="_blank" rel="noopener">MRD</a>
+</div>
+</div>
+
+<div class="card">
 <h2>Notes</h2>
-<p>A lightweight, single-page notes app — create, edit, and organize notes right in the browser.</p>
+<p>A lightweight, single-page notes app — create, edit, and organize notes right in the browser. No build step, no backend, no dependencies.</p>
 <div class="tag-row"><span class="tag">javascript</span><span class="tag">html</span><span class="tag">productivity</span></div>
-</a>
+<div class="card-actions">
+<a class="btn btn-primary" href="notes-app/" target="_blank" rel="noopener">Open Platform ↗</a>
+<a class="btn btn-secondary" href="https://github.com/pryank18/notes-app/blob/main/README.md" target="_blank" rel="noopener">Overview</a>
+</div>
+</div>
+
 </main>
+
+<section class="about">
+<h2>About</h2>
+<p><strong>I'm Pryank Wadhera</strong>, a Product Manager with a background leading business operations and GTM execution in fuel distribution and logistics. Alongside my day-to-day PM work, I design and build product prototypes end-to-end — problem framing, requirements, interface design, and working front-end code.</p>
+<p>Every platform on this page is a <strong>self-built sample product</strong>, not a production system — each runs on demo/sample data and exists to demonstrate product thinking and execution rather than serve real customers. Every card links to a live, interactive demo you can open directly, along with the underlying product documentation (spec, PRD, BRD, or MRD) behind it.</p>
+</section>
+
 <footer>
 More projects on <a href="https://github.com/pryank18">GitHub</a>
 </footer>
