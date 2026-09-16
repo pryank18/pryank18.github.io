@@ -99,6 +99,11 @@
           .theme-dot{ width:26px; height:26px; border-radius:50%; cursor:pointer; border:2px solid rgba(255,255,255,.18); padding:0; transition:transform .15s ease, border-color .15s ease; }
           .theme-dot:hover{ transform:scale(1.18); }
           .theme-dot.active{ border-color:#fff; box-shadow:0 0 0 2px rgba(255,255,255,.25); }
+    .theme-toggle{ width:40px; height:40px; border-radius:50%; cursor:pointer; border:2px solid rgba(255,255,255,.22); padding:0; display:flex; align-items:center; justify-content:center; font-size:17px; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:var(--accent-contrast); box-shadow:0 6px 16px -8px var(--accent); transition:transform .15s ease, box-shadow .2s ease; }
+    .theme-toggle:hover{ transform:scale(1.1); }
+    .theme-toggle:active{ transform:scale(0.94); }
+    #tech-bg{ position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; opacity:.55; }
+    @media (prefers-reduced-motion: reduce){ #tech-bg{ opacity:.3; } }
 
           /* ---- card icon + accent bar ---- */
           .card-icon{ width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:21px; margin-bottom:14px; background:linear-gradient(135deg, var(--accent), var(--accent2)); box-shadow:0 10px 24px -10px var(--accent); }
@@ -107,17 +112,9 @@
     </style>
   </head>
   <body>
+    <canvas id="tech-bg" aria-hidden="true"></canvas>
     <div class="theme-switcher">
-      <button class="theme-dot active" data-theme="midnight" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)" aria-label="Midnight theme">
-      </button>
-      <button class="theme-dot" data-theme="aurora" style="background:linear-gradient(135deg,#10b981,#22d3ee)" aria-label="Aurora  theme">
-      </button>
-      <button class="theme-dot" data-theme="sunset" style="background:linear-gradient(135deg,#f97316,#ec4899)" aria-label="Sunset theme">
-      </button>
-      <button class="theme-dot" data-theme="forest" style="background:linear-gradient(135deg,#22c55e,#84cc16)" aria-label="Forest theme">
-      </button>
-      <button class="theme-dot" data-theme="mono" style="background:linear-gradient(135deg,#e5e5ea,#a1a1aa)" aria-label="Monochrome theme">
-      </button>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Change color theme">🎨</button>
     </div>
     <div class="hero">
       <div class="hero-globe"><canvas id="globe" aria-hidden="true"></canvas></div>
@@ -348,14 +345,95 @@
           }
           tick();
           setInterval(tick, 60000);
-          document.querySelectorAll('.theme-dot').forEach(function(dot){
-            dot.addEventListener('click', function(){
-              var name = dot.getAttribute('data-theme');
-              try{ localStorage.setItem('theme-override', JSON.stringify({name:name, t:Date.now()})); }catch(e){}
-              applyTheme(name);
+          var toggleBtn = document.getElementById('theme-toggle');
+          if(toggleBtn){
+            toggleBtn.addEventListener('click', function(){
+              var current = document.documentElement.getAttribute('data-theme') || autoTheme();
+              var idx = THEMES.indexOf(current);
+              var next = THEMES[(idx + 1) % THEMES.length];
+              try{ localStorage.setItem('theme-override', JSON.stringify({name:next, t:Date.now()})); }catch(e){}
+              applyTheme(next);
             });
-          });
+          }
         })();
+      </script>
+    <script>
+    (function(){
+    var canvas = document.getElementById('tech-bg');
+    if(!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var W, H, points, raf;
+    function hexToRgb(str){
+    str = (str || '').trim();
+    if(str.charAt(0) === '#'){
+    var v = parseInt(str.slice(1), 16);
+    return [(v >> 16) & 255, (v >> 8) & 255, v & 255];
+    }
+    var m = str.match(/\d+/g);
+    return m ? [+m[0], +m[1], +m[2]] : [59, 130, 246];
+    }
+    function resize(){
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    }
+    function makePoints(){
+    var count = Math.min(80, Math.max(24, Math.floor((W * H) / 22000)));
+    points = [];
+    for(var i = 0; i < count; i++){
+                       points.push({
+                       x: Math.random() * W,
+                       y: Math.random() * H,
+                       vx: (Math.random() - 0.5) * 0.3,
+                       vy: (Math.random() - 0.5) * 0.3
+                       });
+                       }
+                       }
+                       function draw(){
+                       var accent = hexToRgb(getComputedStyle(document.documentElement).getPropertyValue('--accent'));
+      ctx.clearRect(0, 0, W, H);
+      var maxDist = Math.min(150, W / 6);
+      for(var i = 0; i < points.length; i++){
+                         var p = points[i];
+                         if(!reduceMotion){
+                         p.x += p.vx; p.y += p.vy;
+                         if(p.x < 0 || p.x > W) p.vx *= -1;
+      if(p.y < 0 || p.y > H) p.vy *= -1;
+      }
+      for(var j = i + 1; j < points.length; j++){
+                             var q = points[j];
+                             var dx = p.x - q.x, dy = p.y - q.y;
+                             var dist = Math.sqrt(dx * dx + dy * dy);
+                             if(dist < maxDist){
+                             var alpha = (1 - dist / maxDist) * 0.22;
+      ctx.strokeStyle = 'rgba(' + accent[0] + ',' + accent[1] + ',' + accent[2] + ',' + alpha.toFixed(3) + ')';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+      ctx.lineTo(q.x, q.y);
+      ctx.stroke();
+      }
+      }
+      ctx.fillStyle = 'rgba(' + accent[0] + ',' + accent[1] + ',' + accent[2] + ',0.6)';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
+      ctx.fill();
+      }
+      if(!reduceMotion){ raf = requestAnimationFrame(draw); }
+      }
+      function start(){
+      resize();
+      makePoints();
+      draw();
+      }
+      window.addEventListener('resize', function(){
+      if(raf) cancelAnimationFrame(raf);
+      resize();
+      makePoints();
+      draw();
+      });
+      start();
+      })();
       </script>
 
   </body>
