@@ -34,7 +34,7 @@
       transition:opacity .25s ease;
     }
     .card:hover::before{ opacity:1; }
-    .card > h2, .card > p, .card > .tag-row, .card > .card-actions{ position:relative; z-index:2; }
+    .card > h2, .card > p, .card > .tag-row, .card > .card-actions, .card > .card-icon{ position:relative; z-index:2; }
     .card.featured{ grid-column:span 2; }
     @media (max-width:600px){ .card.featured{ grid-column:span 1; } }
     .card-preview{
@@ -85,9 +85,39 @@
     @media (prefers-reduced-motion: reduce){
       .card, .card::before, .card-preview, header, .about{ animation:none !important; transition:none !important; }
     }
+          /* ---- themes ---- */
+          body, .card, header::before{ transition:background .6s ease, border-color .6s ease, color .6s ease; }
+          html[data-theme="aurora"]{ --bg:#04140f; --surface:#0d2620; --border:#164438; --text:#eafff4; --text-dim:#8fc7b3; --accent:#10b981; --accent2:#22d3ee; }
+          html[data-theme="sunset"]{ --bg:#1a0f10; --surface:#2a1416; --border:#4a2024; --text:#fff1ec; --text-dim:#d99f92; --accent:#f97316; --accent2:#ec4899; }
+          html[data-theme="forest"]{ --bg:#0d1410; --surface:#182922; --border:#28402f; --text:#eefaf0; --text-dim:#9dbfa8; --accent:#22c55e; --accent2:#84cc16; }
+          html[data-theme="mono"]{ --bg:#0e0e10; --surface:#1a1a1d; --border:#2e2e33; --text:#f5f5f7; --text-dim:#9a9aa2; --accent:#e5e5ea; --accent2:#a1a1aa; }
+          :root{ --accent2:#8b5cf6; }
+
+          /* ---- theme switcher ---- */
+          .theme-switcher{ position:fixed; top:16px; right:16px; display:flex; gap:8px; z-index:50; }
+          .theme-dot{ width:26px; height:26px; border-radius:50%; cursor:pointer; border:2px solid rgba(255,255,255,.18); padding:0; transition:transform .15s ease, border-color .15s ease; }
+          .theme-dot:hover{ transform:scale(1.18); }
+          .theme-dot.active{ border-color:#fff; box-shadow:0 0 0 2px rgba(255,255,255,.25); }
+
+          /* ---- card icon + accent bar ---- */
+          .card-icon{ width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:21px; margin-bottom:14px; background:linear-gradient(135deg, var(--accent), var(--accent2)); box-shadow:0 10px 24px -10px var(--accent); }
+          .card::after{ content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--accent), var(--accent2)); opacity:.85; z-index:2; }
+          .card:hover{ transform:translateY(-3px); }
     </style>
   </head>
   <body>
+    <div class="theme-switcher">
+      <button class="theme-dot active" data-theme="midnight" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)" aria-label="Midnight theme">
+      </button>
+      <button class="theme-dot" data-theme="aurora" style="background:linear-gradient(135deg,#10b981,#22d3ee)" aria-label="Aurora  theme">
+      </button>
+      <button class="theme-dot" data-theme="sunset" style="background:linear-gradient(135deg,#f97316,#ec4899)" aria-label="Sunset theme">
+      </button>
+      <button class="theme-dot" data-theme="forest" style="background:linear-gradient(135deg,#22c55e,#84cc16)" aria-label="Forest theme">
+      </button>
+      <button class="theme-dot" data-theme="mono" style="background:linear-gradient(135deg,#e5e5ea,#a1a1aa)" aria-label="Monochrome theme">
+      </button>
+    </div>
     <div class="hero">
       <div class="hero-globe"><canvas id="globe" aria-hidden="true"></canvas></div>
       <header>
@@ -97,6 +127,7 @@
     </div>
   <main class="grid">
     <div class="card featured">
+      <div class="card-icon">🧾</div>
       <div class="card-preview" style="background-image:url('bolt-and-bahi-preview.png')"></div>
       <h2>Bolt & Bahi</h2>
     <p>AI-assisted GST ledger for Indian textile traders — retail counter billing, wholesale distribution, job work tracking, dispatch and logistics, and receivables in one local-first app, with ARA, a built-in assistant, and support for ten languages.</p>
@@ -116,6 +147,7 @@
     </div>
     </div>
     <div class="card featured">
+      <div class="card-icon">⛽</div>
       <div class="card-preview" style="background-image:url('depotline-preview.png')"></div>
       <h2>Depotline</h2>
     <p>A fuel operations dashboard that brings stock, pricing, and fleet fuel logs into a single live view — built for depot-level operators who currently run this across spreadsheets and WhatsApp threads. Tracks depots, deliveries, fleet, inventory, and finance across multiple sites from one screen.</p>
@@ -135,6 +167,7 @@
     </div>
     </div>
     <div class="card">
+      <div class="card-icon">📦</div>
       <h2>Dispatch OS</h2>
     <p>Ordering, credit limits, and stock management on one platform for FMCG distributors and wholesalers — replacing manual order-taking over WhatsApp and notebooks with a single queue to confirm, allocate, and dispatch against live stock and credit.</p>
     <div class="tag-row">
@@ -152,6 +185,7 @@
     </div>
     </div>
     <div class="card">
+      <div class="card-icon">🧭</div>
       <h2>Msafara</h2>
     <p>AI-assisted vendor coordination for tour operators and DMCs. Drafts and sends vendor requests, follows up on silence, negotiates within bounded rules, tracks hold expiry, compares competitive offers, and generates client-facing proposals — over email and WhatsApp.</p>
     <div class="tag-row">
@@ -170,6 +204,7 @@
     </div>
     </div>
     <div class="card">
+      <div class="card-icon">🏋</div>
       <h2>Fitnexx</h2>
     <p>An all-in-one fitness companion — plan and log workouts, track nutrition, and monitor progress on a single dashboard. Built and documented with a full product package: PRD, BRD, and MRD, alongside the working application.</p>
     <div class="tag-row">
@@ -188,6 +223,7 @@
     </div>
     </div>
     <div class="card">
+      <div class="card-icon">📝</div>
       <h2>Notes</h2>
     <p>A lightweight, single-page notes app — create, edit, and organize notes right in the browser. No build step, no backend, no dependencies.</p>
     <div class="tag-row">
@@ -277,6 +313,49 @@
       }catch(e){}
     })();
 </script>
+      <script>
+        (function(){
+          var THEMES = ['midnight','aurora','sunset','forest','mono'];
+          var SLOT_MS = 1000*60*60*2;
+          function autoTheme(){
+            var slot = Math.floor(Date.now()/SLOT_MS) % THEMES.length;
+            return THEMES[slot];
+          }
+          function setActiveDot(name){
+            var dots = document.querySelectorAll('.theme-dot');
+            dots.forEach(function(d){
+              d.classList.toggle('active', d.getAttribute('data-theme') === name);
+            });
+          }
+          function applyTheme(name){
+            document.documentElement.setAttribute('data-theme', name);
+            setActiveDot(name);
+          }
+          function currentOverride(){
+            try{
+              var raw = localStorage.getItem('theme-override');
+              if(!raw) return null;
+              var obj = JSON.parse(raw);
+              if(Date.now() - obj.t < SLOT_MS){ return obj.name; }
+              localStorage.removeItem('theme-override');
+              return null;
+            }catch(e){ return null; }
+          }
+          function tick(){
+            var override = currentOverride();
+            applyTheme(override || autoTheme());
+          }
+          tick();
+          setInterval(tick, 60000);
+          document.querySelectorAll('.theme-dot').forEach(function(dot){
+            dot.addEventListener('click', function(){
+              var name = dot.getAttribute('data-theme');
+              try{ localStorage.setItem('theme-override', JSON.stringify({name:name, t:Date.now()})); }catch(e){}
+              applyTheme(name);
+            });
+          });
+        })();
+      </script>
 
   </body>
 </html>
