@@ -1,6 +1,6 @@
 # Pryank Wadhera — Product Portfolio
 
-Senior Product Manager building workflow software for operations, logistics, and GTM teams — grounded in real field experience, not built as generic portfolio filler.
+Product Manager and Country Head, FuelBuddy Zimbabwe. I build workflow software for operations, logistics and GTM teams.
 
 ## About me
 
@@ -14,16 +14,14 @@ Ordered by relevance to my product focus (operations, logistics, and workflow so
 |---|---------|---------------|-----------|
 | 1 | Depotline | Fuel operations dashboard — depots, deliveries, fleet, inventory, and finance across multiple sites | [Open app](https://pryank18.github.io/depotline-fuel-ops/) |
 | 2 | Dispatch OS | Ordering, credit limits, and stock platform for FMCG distributors and wholesalers | [Open app](https://pryank18.github.io/dispatch-os/) |
-| 3 | Msafara | AI-assisted vendor coordination for tour operators and DMCs | [Open app](https://pryank18.github.io/Msafara/) |
-| 4 | Fitnexx | All-in-one fitness platform for workouts, nutrition, and progress tracking | [Open app](https://pryank18.github.io/fitnexx/) |
-| 5 | Notes | Lightweight, single-page notes app | [Open app](https://pryank18.github.io/notes-app/) |
+| 3 | Bolt & Bahi | GST ledger for Indian textile traders — billing, stock, job work, dispatch, and receivables | [Open app](https://pryank18.github.io/bolt-and-bahi/) |
+| 4 | Msafara | AI-assisted vendor coordination for tour operators and DMCs | [Open app](https://pryank18.github.io/Msafara/) |
 
 ## Tech
 
-HTML, CSS, JavaScript, GitHub Pages
+HTML/CSS/JavaScript, React + Vite, Python/FastAPI, Supabase, GitHub Pages
 
 ## Connect
 
 - GitHub: [@pryank18](https://github.com/pryank18)
-- - All repositories: [github.com/pryank18](https://github.com/pryank18?tab=repositories)
-  - 
+- All repositories: [github.com/pryank18](https://github.com/pryank18?tab=repositories)
