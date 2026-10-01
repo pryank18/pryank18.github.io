@@ -3,234 +3,424 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pryank Wadhera — Projects</title>
+    <title>Pryank Wadhera — Product &amp; Business Leader, 0→1 Builder</title>
+    <meta name="description" content="Pryank Wadhera: product and business leader who builds 0→1 products and the operations behind them. Country Head, FuelBuddy Zimbabwe. Live product demos, PRDs and case studies.">
+    <link rel="canonical" href="https://pryank18.github.io/">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Pryank Wadhera — Product & Business Leader, 0→1 Builder">
+    <meta property="og:description" content="I build products and the businesses around them. P&L owner, cross-border operator, hands-on builder. Live demos, PRDs and case studies.">
+    <meta property="og:url" content="https://pryank18.github.io/">
+    <meta property="og:image" content="https://pryank18.github.io/bolt-and-bahi-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#0b1220">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233b82f6'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='800' text-anchor='middle' fill='white'%3EPW%3C/text%3E%3C/svg%3E">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Person","name":"Pryank Wadhera","jobTitle":"Country Head, Zimbabwe","worksFor":{"@type":"Organization","name":"FuelBuddy"},"url":"https://pryank18.github.io/","email":"mailto:wadherapryank@gmail.com","sameAs":["https://linkedin.com/in/pryankwadhera","https://github.com/pryank18","https://fern-appliance-85f.notion.site/Pryank-Wadhera-3eaefd17b76680c88283e85a3217ff52"],"knowsAbout":["Product management","0 to 1 product development","P&L ownership","Go-to-market","B2B SaaS","Energy and fuel logistics","AI agents"]}
+    </script>
   <style>
     :root{
-      --bg:#0b1220; --surface:#141d33; --border:#232f4f; --text:#eef1f8; --text-dim:#8d97b8; --accent:#3b82f6; --accent-contrast:#fff;
+      --bg:#0b1220; --surface:#141d33; --border:#232f4f; --text:#eef1f8; --text-dim:#8d97b8; --accent:#3b82f6; --accent2:#8b5cf6; --accent-contrast:#fff;
     }
     *{box-sizing:border-box; margin:0; padding:0;}
+    html{ scroll-behavior:smooth; scroll-padding-top:72px; }
     body{
       background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;
-      min-height:100vh; padding:32px 20px 60px; overflow-x:hidden;
+      min-height:100vh; padding:0 20px 60px; overflow-x:hidden; line-height:1.5;
     }
-    header{ max-width:960px; margin:0 auto 36px; text-align:center; position:relative; z-index:1; }
-    header h1{ font-size:clamp(22px,5vw,32px); font-weight:800; margin-bottom:8px; background:linear-gradient(135deg,var(--text) 45%,var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    header p{ color:var(--text-dim); font-size:15px; }
-    .grid{
-      max-width:1100px; margin:0 auto; display:grid; gap:18px;
-      grid-template-columns:repeat(3, 1fr); grid-auto-flow:dense;
-    }
+    a{ color:inherit; }
+    .wrap{ max-width:1100px; margin:0 auto; position:relative; z-index:1; }
+
+    /* ---- nav ---- */
+    .nav{ position:sticky; top:0; z-index:40; margin:0 -20px; padding:12px 20px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); background:color-mix(in srgb, var(--bg) 78%, transparent); border-bottom:1px solid color-mix(in srgb, var(--border) 70%, transparent); }
+    .nav-inner{ max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:18px; }
+    .nav-brand{ font-weight:800; font-size:15px; text-decoration:none; letter-spacing:.2px; white-space:nowrap; }
+    .nav-brand span{ color:var(--accent); }
+    .nav-links{ display:flex; gap:18px; margin-left:auto; }
+    .nav-links a{ color:var(--text-dim); text-decoration:none; font-size:13.5px; font-weight:600; }
+    .nav-links a:hover{ color:var(--text); }
+    .nav-cta{ font-size:13px; font-weight:700; padding:8px 14px; border-radius:9px; text-decoration:none; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:var(--accent-contrast); white-space:nowrap; }
+    .theme-toggle{ width:34px; height:34px; flex:none; border-radius:50%; cursor:pointer; border:1px solid var(--border); padding:0; display:flex; align-items:center; justify-content:center; font-size:15px; background:var(--surface); transition:transform .15s ease; }
+    .theme-toggle:hover{ transform:scale(1.1); }
+    @media (max-width:820px){ .nav-links{ display:none; } .nav-cta{ margin-left:auto; } }
+
+    /* ---- hero ---- */
+    .hero{ position:relative; padding:64px 0 28px; }
+    .hero::before{ content:''; position:absolute; top:10px; left:0; width:min(560px,100%); height:300px; background:radial-gradient(closest-side, color-mix(in srgb, var(--accent) 20%, transparent), transparent); filter:blur(8px); z-index:-1; pointer-events:none; }
+    .hero-text{ max-width:700px; }
+    .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:var(--accent); margin-bottom:16px; }
+    .pulse{ width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 0 0 rgba(34,197,94,.6); animation:pulse 2s infinite; }
+    @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(34,197,94,.55);} 70%{box-shadow:0 0 0 9px rgba(34,197,94,0);} 100%{box-shadow:0 0 0 0 rgba(34,197,94,0);} }
+    .hero h1{ font-size:clamp(34px,6vw,56px); line-height:1.05; font-weight:850; letter-spacing:-1px; margin-bottom:14px; background:linear-gradient(135deg,var(--text) 50%,var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .hero .lede{ font-size:clamp(18px,2.4vw,22px); font-weight:650; margin-bottom:12px; }
+    .hero .sub{ color:var(--text-dim); font-size:15.5px; max-width:640px; margin-bottom:22px; }
+    .hero .sub strong{ color:var(--text); }
+    .hero-ctas{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:18px; }
+    .hero-meta{ display:flex; gap:8px; flex-wrap:wrap; }
+    .chip{ font-size:12px; font-weight:600; color:var(--text-dim); border:1px solid var(--border); background:var(--surface); padding:5px 11px; border-radius:20px; }
+    .chip b{ color:var(--text); font-weight:700; }
+    .hero-globe{ position:absolute; top:30px; right:-10px; width:300px; height:300px; opacity:0.9; pointer-events:none; z-index:-1; }
+    .hero-globe canvas{ width:100%; height:100%; }
+    .globe-cap{ position:absolute; bottom:-6px; right:30px; font-size:11px; color:var(--text-dim); letter-spacing:.4px; }
+    @media (max-width:1060px){ .hero-globe{ display:none; } }
+
+    /* ---- buttons ---- */
+    .btn{ font-size:13px; font-weight:650; padding:9px 15px; border-radius:9px; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:opacity .15s, transform .15s; white-space:nowrap; }
+    .btn:hover{ opacity:0.88; transform:translateY(-1px); }
+    .btn-primary{ background:linear-gradient(135deg,var(--accent),var(--accent2)); color:var(--accent-contrast); box-shadow:0 6px 18px -8px var(--accent); }
+    .btn-secondary{ background:transparent; color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+    .btn-ghost{ background:var(--surface); color:var(--text); border:1px solid var(--border); }
+
+    /* ---- stats ---- */
+    .stats{ display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:14px; overflow:hidden; margin:26px 0 8px; }
+    .stat{ background:var(--surface); padding:18px 18px 16px; }
+    .stat b{ display:block; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:24px; font-weight:800; letter-spacing:-.5px; background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .stat span{ font-size:12.5px; color:var(--text-dim); line-height:1.4; display:block; margin-top:4px; }
+    @media (max-width:900px){ .stats{ grid-template-columns:repeat(2,1fr); } .stat:last-child{ grid-column:span 2; } }
+
+    /* ---- sections ---- */
+    section.block{ margin-top:72px; }
+    .sec-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:22px; }
+    .sec-kicker{ font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.7px; color:var(--accent); margin-bottom:6px; }
+    .sec-head h2{ font-size:clamp(22px,3.4vw,30px); font-weight:800; letter-spacing:-.4px; }
+    .sec-head p{ color:var(--text-dim); font-size:14px; max-width:620px; margin-top:6px; }
+    .panel{ background:var(--surface); border:1px solid var(--border); border-radius:14px; }
+
+    /* ---- track record ---- */
+    .wins{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .win{ padding:20px; position:relative; }
+    .win h3{ font-size:15.5px; font-weight:750; margin-bottom:6px; }
+    .win p{ font-size:13.5px; color:var(--text-dim); line-height:1.55; }
+    .win .n{ font-family:ui-monospace,Menlo,monospace; font-size:11px; color:var(--accent); font-weight:700; margin-bottom:10px; display:block; }
+    @media (max-width:900px){ .wins{ grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:600px){ .wins{ grid-template-columns:1fr; } }
+
+    /* ---- product cards ---- */
+    .grid{ display:grid; gap:18px; grid-template-columns:repeat(3, 1fr); grid-auto-flow:dense; }
     @media (max-width:900px){ .grid{ grid-template-columns:repeat(2,1fr); } }
     @media (max-width:600px){ .grid{ grid-template-columns:1fr; } }
     .card{
       display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--border); border-radius:14px;
-      padding:22px; text-decoration:none; color:var(--text); transition:transform .12s ease-out, border-color .15s, box-shadow .2s;
+      padding:22px; color:var(--text); transition:transform .12s ease-out, border-color .15s, box-shadow .2s;
       position:relative; overflow:hidden; will-change:transform;
     }
     .card:hover{ border-color:var(--accent); box-shadow:0 18px 40px -20px color-mix(in srgb, var(--accent) 45%, transparent); }
-    .card::before{
-      content:''; position:absolute; inset:0; z-index:1; pointer-events:none; opacity:0;
-      background:radial-gradient(circle at var(--mx,50%) var(--my,50%), color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%);
-      transition:opacity .25s ease;
-    }
+    .card::before{ content:''; position:absolute; inset:0; z-index:1; pointer-events:none; opacity:0; background:radial-gradient(circle at var(--mx,50%) var(--my,50%), color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%); transition:opacity .25s ease; }
     .card:hover::before{ opacity:1; }
-    .card > h2, .card > p, .card > .tag-row, .card > .card-actions, .card > .card-icon{ position:relative; z-index:2; }
+    .card::after{ content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--accent), var(--accent2)); opacity:.85; z-index:2; }
+    .card > *:not(.card-preview){ position:relative; z-index:2; }
     .card.featured{ grid-column:span 2; }
     @media (max-width:600px){ .card.featured{ grid-column:span 1; } }
-    .card-preview{
-      position:absolute; inset:0; z-index:0; background-size:cover; background-position:center top;
-      opacity:0; transform:scale(1.06); filter:grayscale(0.25) brightness(0.65);
-      transition:opacity .4s ease, transform .4s ease;
-    }
-    .card:hover .card-preview{ opacity:0.32; transform:scale(1); }
-    .card h2{ font-size:19px; font-weight:700; margin-bottom:8px; }
-    .card p{ font-size:13.5px; color:var(--text-dim); line-height:1.55; margin-bottom:14px; }
+    .card-preview{ position:absolute; inset:0; z-index:0; background-size:cover; background-position:center top; opacity:0; transform:scale(1.06); filter:grayscale(0.25) brightness(0.65); transition:opacity .4s ease, transform .4s ease; }
+    .card:hover .card-preview{ opacity:0.3; transform:scale(1); }
+    .card-top{ display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+    .card-icon{ width:42px; height:42px; flex:none; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:21px; background:linear-gradient(135deg, var(--accent), var(--accent2)); box-shadow:0 10px 24px -10px var(--accent); }
+    .card h3{ font-size:19px; font-weight:750; }
+    .card .seg{ font-size:11.5px; color:var(--text-dim); font-weight:600; }
+    .card p{ font-size:13.5px; color:var(--text-dim); line-height:1.55; margin-bottom:12px; }
+    .card p b{ color:var(--text); font-weight:650; }
     .tag-row{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
     .tag{ font-size:11px; font-weight:600; color:var(--accent); background:color-mix(in srgb, var(--accent) 15%, transparent); border:1px solid color-mix(in srgb, var(--accent) 35%, transparent); padding:3px 9px; border-radius:20px; }
     .card-actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:auto; padding-top:4px; }
-    .btn{ font-size:12.5px; font-weight:600; padding:8px 13px; border-radius:8px; text-decoration:none; display:inline-flex; align-items:center; gap:5px; transition:opacity .15s, background-color .15s, transform .15s; white-space:nowrap; }
-    .btn:hover{ opacity:0.85; transform:translateY(-1px); }
-    .btn-primary{ background:linear-gradient(135deg,var(--accent),var(--accent2)); color:var(--accent-contrast); box-shadow:0 4px 14px -6px var(--accent); }
-    .btn-secondary{ background:transparent; color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
-    .about{ max-width:960px; margin:52px auto 0; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:30px 32px; }
-    .about h2{ font-size:20px; font-weight:800; margin-bottom:16px; }
-    .about p{ color:var(--text-dim); font-size:14px; line-height:1.7; margin-bottom:14px; }
-    .about p:last-child{ margin-bottom:0; }
-    .about strong{ color:var(--text); }
-    footer{ text-align:center; margin-top:48px; color:var(--text-dim); font-size:12.5px; }
+    .card-actions .btn{ font-size:12.5px; padding:8px 13px; }
+    .docs{ display:flex; gap:4px 12px; flex-wrap:wrap; margin-top:12px; padding-top:12px; border-top:1px dashed var(--border); font-size:12px; }
+    .docs span{ color:var(--text-dim); font-weight:600; }
+    .docs a{ color:var(--accent); text-decoration:none; font-weight:600; }
+    .docs a:hover{ text-decoration:underline; }
+    .card.mini{ padding:18px 20px; }
+    .card.mini h3{ font-size:16px; }
+    .card.soon{ border-style:dashed; background:transparent; }
+    .card.soon::after{ opacity:.35; }
+    .note{ font-size:12.5px; color:var(--text-dim); margin-top:14px; }
+
+    /* view toggle */
+    .view-toggle-inner{ display:inline-flex; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:3px; gap:3px; }
+    .view-btn{ font-size:12.5px; font-weight:600; padding:7px 14px; border-radius:9px; border:none; background:transparent; color:var(--text-dim); cursor:pointer; }
+    .view-btn.active{ background:linear-gradient(135deg,var(--accent),var(--accent2)); color:var(--accent-contrast); }
+    .grid.list-view{ grid-template-columns:1fr; gap:10px; }
+    .grid.list-view .card, .grid.list-view .card.featured{ grid-column:span 1; }
+    .grid.list-view .card p{ margin-bottom:8px; }
+    .grid.list-view .tag-row{ margin-bottom:10px; }
+
+    /* ---- case studies ---- */
+    .cases{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+    @media (max-width:700px){ .cases{ grid-template-columns:1fr; } }
+    .case{ display:flex; gap:14px; padding:18px 20px; text-decoration:none; transition:border-color .15s, transform .15s; }
+    .case:hover{ border-color:var(--accent); transform:translateY(-2px); }
+    .case .fmt{ flex:none; font-size:10.5px; font-weight:800; letter-spacing:.6px; text-transform:uppercase; color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 40%, transparent); border-radius:6px; padding:3px 7px; height:fit-content; min-width:64px; text-align:center; }
+    .case h3{ font-size:15px; font-weight:700; margin-bottom:4px; }
+    .case p{ font-size:13px; color:var(--text-dim); line-height:1.5; }
+    .earlier{ margin-top:14px; padding:14px 18px; font-size:13px; color:var(--text-dim); }
+    .earlier a{ color:var(--accent); text-decoration:none; font-weight:600; }
+
+    /* ---- leadership ---- */
+    .lead{ display:grid; grid-template-columns:1.1fr 1fr; gap:14px; }
+    @media (max-width:860px){ .lead{ grid-template-columns:1fr; } }
+    .lead .panel{ padding:22px 24px; }
+    .lead h3{ font-size:15px; font-weight:750; margin-bottom:14px; }
+    .principles{ list-style:none; counter-reset:p; }
+    .principles li{ counter-increment:p; position:relative; padding-left:34px; margin-bottom:12px; font-size:13.5px; color:var(--text-dim); line-height:1.5; }
+    .principles li::before{ content:counter(p,decimal-leading-zero); position:absolute; left:0; top:0; font-family:ui-monospace,Menlo,monospace; font-size:12px; font-weight:800; color:var(--accent); }
+    .principles li b{ color:var(--text); }
+    .plan{ display:grid; gap:10px; }
+    .plan-row{ display:grid; grid-template-columns:62px 1fr; gap:12px; padding:12px 0; border-top:1px solid var(--border); }
+    .plan-row:first-child{ border-top:none; padding-top:0; }
+    .plan-row .d{ font-family:ui-monospace,Menlo,monospace; font-size:12.5px; font-weight:800; color:var(--accent); }
+    .plan-row b{ display:block; font-size:13.5px; margin-bottom:2px; }
+    .plan-row span{ font-size:13px; color:var(--text-dim); }
+
+    /* ---- experience ---- */
+    .timeline{ padding:8px 24px; }
+    .role{ display:grid; grid-template-columns:150px 1fr; gap:18px; padding:16px 0; border-top:1px solid var(--border); }
+    .role:first-child{ border-top:none; }
+    .role .when{ font-family:ui-monospace,Menlo,monospace; font-size:12px; color:var(--text-dim); padding-top:2px; }
+    .role h3{ font-size:15px; font-weight:750; }
+    .role h3 small{ font-weight:600; color:var(--text-dim); font-size:13px; }
+    .role p{ font-size:13.5px; color:var(--text-dim); margin-top:3px; }
+    @media (max-width:600px){ .role{ grid-template-columns:1fr; gap:4px; } }
+    .edu{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; }
+    @media (max-width:760px){ .edu{ grid-template-columns:1fr; } }
+    .edu .panel{ padding:18px 22px; }
+    .edu h3{ font-size:14px; font-weight:750; margin-bottom:8px; }
+    .edu p, .edu li{ font-size:13px; color:var(--text-dim); line-height:1.55; }
+    .edu ul{ padding-left:16px; }
+
+    /* ---- contact ---- */
+    .contact{ margin-top:72px; padding:36px 32px; text-align:center; background:radial-gradient(120% 140% at 50% 0%, color-mix(in srgb, var(--accent) 18%, var(--surface)), var(--surface)); }
+    .contact h2{ font-size:clamp(22px,3.6vw,30px); font-weight:800; margin-bottom:8px; }
+    .contact p{ color:var(--text-dim); font-size:14.5px; max-width:620px; margin:0 auto 20px; }
+    .contact .hero-ctas{ justify-content:center; margin-bottom:0; }
+    footer{ text-align:center; margin-top:36px; color:var(--text-dim); font-size:12px; }
     footer a{ color:var(--accent); text-decoration:none; }
 
-    /* ---- hero globe + glow ---- */
-    .hero{ position:relative; max-width:1100px; margin:0 auto; }
-    header::before{
-      content:''; position:absolute; top:-50px; left:50%; transform:translateX(-50%);
-      width:520px; height:260px; background:radial-gradient(closest-side, color-mix(in srgb, var(--accent) 22%, transparent), transparent);
-      filter:blur(6px); z-index:-1; pointer-events:none;
-    }
-    .hero-globe{ position:absolute; top:-20px; right:0; width:250px; height:250px; opacity:0.85; pointer-events:none; z-index:0; }
-    .hero-globe canvas{ width:100%; height:100%; }
-    @media (max-width:1180px){ .hero-globe{ display:none; } }
-
-    /* ---- entrance animation ---- */
+    /* ---- motion ---- */
     @keyframes fadeUp{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
-    header, .about{ animation:fadeUp .6s ease backwards; }
-    .card{ animation:fadeUp .55s ease backwards; }
-    .card:nth-child(1){ animation-delay:.05s; }
-    .card:nth-child(2){ animation-delay:.1s; }
-    .card:nth-child(3){ animation-delay:.15s; }
-    .card:nth-child(4){ animation-delay:.2s; }
-    .card:nth-child(5){ animation-delay:.25s; }
-    .card:nth-child(6){ animation-delay:.3s; }
-
+    .hero-text, .stats{ animation:fadeUp .6s ease backwards; }
+    .stats{ animation-delay:.12s; }
+    .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal.in{ opacity:1; transform:none; }
     @media (prefers-reduced-motion: reduce){
-      .card, .card::before, .card-preview, header, .about{ animation:none !important; transition:none !important; }
+      html{ scroll-behavior:auto; }
+      .card, .card::before, .card-preview, .hero-text, .stats, .reveal{ animation:none !important; transition:none !important; opacity:1 !important; transform:none !important; }
+      .pulse{ animation:none; }
     }
-          /* ---- themes ---- */
-          body, .card, header::before{ transition:background .6s ease, border-color .6s ease, color .6s ease; }
-          html[data-theme="aurora"]{ --bg:#04140f; --surface:#0d2620; --border:#164438; --text:#eafff4; --text-dim:#8fc7b3; --accent:#10b981; --accent2:#22d3ee; }
-          html[data-theme="sunset"]{ --bg:#1a0f10; --surface:#2a1416; --border:#4a2024; --text:#fff1ec; --text-dim:#d99f92; --accent:#f97316; --accent2:#ec4899; }
-          html[data-theme="forest"]{ --bg:#0d1410; --surface:#182922; --border:#28402f; --text:#eefaf0; --text-dim:#9dbfa8; --accent:#22c55e; --accent2:#84cc16; }
-          html[data-theme="mono"]{ --bg:#0e0e10; --surface:#1a1a1d; --border:#2e2e33; --text:#f5f5f7; --text-dim:#9a9aa2; --accent:#e5e5ea; --accent2:#a1a1aa; --accent-contrast:#14141a; }
-          :root{ --accent2:#8b5cf6; }
 
-          /* ---- theme switcher ---- */
-          .theme-switcher{ position:fixed; top:16px; right:16px; display:flex; gap:8px; z-index:50; }
-    @media (max-width:820px){ .theme-switcher{ position:static; margin:0 auto 16px; justify-content:center; } }
-          .theme-dot{ width:26px; height:26px; border-radius:50%; cursor:pointer; border:2px solid rgba(255,255,255,.18); padding:0; transition:transform .15s ease, border-color .15s ease; }
-          .theme-dot:hover{ transform:scale(1.18); }
-          .theme-dot.active{ border-color:#fff; box-shadow:0 0 0 2px rgba(255,255,255,.25); }
-    .theme-toggle{ width:40px; height:40px; border-radius:50%; cursor:pointer; border:2px solid rgba(255,255,255,.22); padding:0; display:flex; align-items:center; justify-content:center; font-size:17px; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:var(--accent-contrast); box-shadow:0 6px 16px -8px var(--accent); transition:transform .15s ease, box-shadow .2s ease; }
-    .theme-toggle:hover{ transform:scale(1.1); }
-    .theme-toggle:active{ transform:scale(0.94); }
-    #tech-bg{ position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; opacity:.55; }
-    @media (prefers-reduced-motion: reduce){ #tech-bg{ opacity:.3; } }
-
-          /* ---- card icon + accent bar ---- */
-          .card-icon{ width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:21px; margin-bottom:14px; background:linear-gradient(135deg, var(--accent), var(--accent2)); box-shadow:0 10px 24px -10px var(--accent); }
-          .card::after{ content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--accent), var(--accent2)); opacity:.85; z-index:2; }
-          .card:hover{ transform:translateY(-3px); }
-.view-toggle{ display:flex; justify-content:center; margin:18px auto 28px; position:relative; z-index:1; }
-    .view-toggle-inner{ display:inline-flex; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:4px; gap:4px; box-shadow:0 8px 20px -12px rgba(0,0,0,.4); }
-    .view-btn{ display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:600; padding:9px 18px; border-radius:10px; border:none; background:transparent; color:var(--text-dim); cursor:pointer; transition:background-color .2s ease, color .2s ease, box-shadow .2s ease; }
-    .view-btn:hover:not(.active){ color:var(--text); background:rgba(255,255,255,.06); }
-    .view-btn.active{ background:linear-gradient(135deg,var(--accent),var(--accent2)); color:var(--accent-contrast); box-shadow:0 6px 16px -8px var(--accent); }
-    .grid.list-view{ grid-template-columns:1fr; gap:10px; }
-    .grid.list-view .card{ display:grid; grid-template-columns:42px 1fr auto; grid-template-rows:auto auto auto; align-items:start; column-gap:18px; padding:16px 22px; }
-    .grid.list-view .card.featured{ grid-column:span 1; }
-    .grid.list-view .card-icon{ grid-column:1; grid-row:1 / 4; align-self:center; margin-bottom:0; }
-    .grid.list-view .card > h2{ grid-column:2; grid-row:1; margin-bottom:4px; }
-    .grid.list-view .card > p{ grid-column:2; grid-row:2; margin-bottom:8px; }
-    .grid.list-view .card > .tag-row{ grid-column:2; grid-row:3; margin-bottom:0; }
-    .grid.list-view .card > .card-actions{ grid-column:3; grid-row:1 / 4; align-self:center; margin-top:0; max-width:260px; justify-content:flex-end; }
-    @media (max-width:760px){ .grid.list-view .card{ grid-template-columns:42px 1fr; } .grid.list-view .card > .card-actions{ grid-column:1 / 3; grid-row:4; align-self:start; margin-top:10px; max-width:none; justify-content:flex-start; } }
-    </style>
+    /* ---- themes ---- */
+    body, .card{ transition:background .6s ease, border-color .6s ease, color .6s ease; }
+    html[data-theme="aurora"]{ --bg:#04140f; --surface:#0d2620; --border:#164438; --text:#eafff4; --text-dim:#8fc7b3; --accent:#10b981; --accent2:#22d3ee; }
+    html[data-theme="sunset"]{ --bg:#1a0f10; --surface:#2a1416; --border:#4a2024; --text:#fff1ec; --text-dim:#d99f92; --accent:#f97316; --accent2:#ec4899; }
+    html[data-theme="forest"]{ --bg:#0d1410; --surface:#182922; --border:#28402f; --text:#eefaf0; --text-dim:#9dbfa8; --accent:#22c55e; --accent2:#84cc16; }
+    html[data-theme="mono"]{ --bg:#0e0e10; --surface:#1a1a1d; --border:#2e2e33; --text:#f5f5f7; --text-dim:#9a9aa2; --accent:#e5e5ea; --accent2:#a1a1aa; --accent-contrast:#14141a; }
+    #tech-bg{ position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; opacity:.45; }
+    @media (prefers-reduced-motion: reduce){ #tech-bg{ opacity:.25; } }
+    @media print{ #tech-bg, .nav, .hero-globe, .view-toggle{ display:none !important; } body{ background:#fff; color:#111; } }
+  </style>
   </head>
   <body>
     <canvas id="tech-bg" aria-hidden="true"></canvas>
-    <div class="theme-switcher">
-      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Change color theme">🎨</button>
-    </div>
-    <div class="hero">
-      <div class="hero-globe"><canvas id="globe" aria-hidden="true"></canvas></div>
-      <header>
-        <h1>Pryank Wadhera</h1>
-      <p>Product and business leader. Country Head, FuelBuddy Zimbabwe. Sample products I've built end to end, from field problem to PRD to working demo.</p>
-      </header>
-    </div>
-    <div class="view-toggle" role="group" aria-label="Choose view"><div class="view-toggle-inner"><button id="view-grid-btn" class="view-btn active" type="button">▦ Grid</button><button id="view-list-btn" class="view-btn" type="button">☰ List</button></div></div>
-  <main class="grid">
-    <div class="card featured">
-      <div class="card-icon">🧾</div>
-      <div class="card-preview" style="background-image:url('bolt-and-bahi-preview.png')"></div>
-      <h2>Bolt & Bahi</h2>
-    <p>AI-assisted GST ledger for Indian textile traders — retail counter billing, wholesale distribution, job work tracking, dispatch and logistics, and receivables in one local-first app, with ARA, a built-in assistant, and support for ten languages.</p>
-    <div class="tag-row">
-    <span class="tag">react</span>
-    <span class="tag">javascript</span>
-    <span class="tag">gst</span>
-    <span class="tag">textile</span>
-    </div>
-    <div class="card-actions">
-    <a class="btn btn-primary" href="https://pryank18.github.io/bolt-and-bahi/" target="_blank" rel="noopener">Open Platform ↗</a>
-    <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ebefd17b76681698b4ad899d7ff5902" target="_blank" rel="noopener">Case Study ↗</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/bolt-and-bahi/blob/main/README.md" target="_blank" rel="noopener">Overview</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Product Spec</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a>
-    </div>
-    </div>
-    <div class="card featured">
-      <div class="card-icon">📦</div>
-      <h2>Dispatch OS</h2>
-    <p>Ordering, credit limits, and stock management on one platform for FMCG distributors and wholesalers — replacing manual order-taking over WhatsApp and notebooks with a single queue to confirm, allocate, and dispatch against live stock and credit.</p>
-    <div class="tag-row">
-    <span class="tag">distribution</span>
-    <span class="tag">credit</span>
-    <span class="tag">saas</span>
-    </div>
-    <div class="card-actions">
-    <a class="btn btn-primary" href="dispatch-os/" target="_blank" rel="noopener">Open Platform ↗</a>
-    <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ebefd17b76681328d1ef67b614c73b4" target="_blank" rel="noopener">Case Study ↗</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/dispatch-os/blob/main/README.md" target="_blank" rel="noopener">Overview</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/dispatch-os/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Product Spec</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/dispatch-os/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/dispatch-os/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/dispatch-os/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a>
-    </div>
-    </div>
-    <div class="card">
-      <div class="card-icon">⛽</div>
-      <div class="card-preview" style="background-image:url('depotline-preview.png')"></div>
-      <h2>Depotline</h2>
-    <p>A fuel operations dashboard that brings stock, pricing, and fleet fuel logs into a single live view — built for depot-level operators who currently run this across spreadsheets and WhatsApp threads. Tracks depots, deliveries, fleet, inventory, and finance across multiple sites from one screen.</p>
-    <div class="tag-row">
-    <span class="tag">html</span>
-    <span class="tag">css</span>
-    <span class="tag">javascript</span>
-    <span class="tag">dashboard</span>
-    </div>
-    <div class="card-actions">
-    <a class="btn btn-primary" href="depotline-fuel-ops/" target="_blank" rel="noopener">Open Platform ↗</a>
-    <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ebefd17b76681089891ed7697810089" target="_blank" rel="noopener">Case Study ↗</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/depotline-fuel-ops/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Product Spec</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/depotline-fuel-ops/blob/main/README.md" target="_blank" rel="noopener">Overview</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/depotline-fuel-ops/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/depotline-fuel-ops/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/depotline-fuel-ops/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a>
-    </div>
-    </div>
-    <div class="card">
-      <div class="card-icon">🧭</div>
-      <h2>Msafara</h2>
-    <p>AI-assisted vendor coordination for tour operators and DMCs. Drafts and sends vendor requests, follows up on silence, negotiates within bounded rules, tracks hold expiry, compares competitive offers, and generates client-facing proposals — over email and WhatsApp.</p>
-    <div class="tag-row">
-    <span class="tag">ai</span>
-    <span class="tag">automation</span>
-    <span class="tag">travel-tech</span>
-    <span class="tag">saas</span>
-    </div>
-    <div class="card-actions">
-    <a class="btn btn-primary" href="Msafara/" target="_blank" rel="noopener">Open Platform ↗</a>
-    <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ebefd17b766814b8760e8717345b4a7" target="_blank" rel="noopener">Case Study ↗</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/Msafara/blob/main/README.md" target="_blank" rel="noopener">Documentation</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/Msafara/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Product Spec</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/Msafara/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/Msafara/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a>
-    <a class="btn btn-secondary" href="https://github.com/pryank18/Msafara/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a>
-    </div>
-    </div>
-  </main>
 
-    <section class="about">
-      <h2>About</h2>
-    <p><strong>I'm Pryank Wadhera</strong>, a product and business leader who builds 0→1 products and the operations behind them. I opened FuelBuddy's Zimbabwe market from zero and now run it as Country Head, owning the P&amp;L, procurement, logistics, sales and hiring. Before that I was a Product Manager at FuelBuddy India (including the Jindal Steel fuel management system) and an APM at Legal Suvidha, a LegalTech SaaS. I still build: problem framing, requirements, interface design and working code.</p>
-    <p>Every platform on this page is a <strong>self-built sample product</strong>, not a production system — each runs on demo/sample data and exists to demonstrate product thinking and execution rather than serve real customers. Every card links to a live, interactive demo you can open directly, along with the underlying product documentation (spec, PRD, BRD, or MRD) behind it.</p>
-    </section>
-  
-  <footer>
-    <a href="https://fern-appliance-85f.notion.site/Pryank-Wadhera-3eaefd17b76680c88283e85a3217ff52">Portfolio &amp; case studies (Notion)</a> · <a href="https://linkedin.com/in/pryankwadhera">LinkedIn</a> · <a href="https://github.com/pryank18">GitHub</a> · <a href="mailto:wadherapryank@gmail.com">wadherapryank@gmail.com</a>
-  </footer>
+    <nav class="nav" aria-label="Primary">
+      <div class="nav-inner">
+        <a class="nav-brand" href="#top">Pryank Wadhera<span>.</span></a>
+        <div class="nav-links">
+          <a href="#impact">Impact</a>
+          <a href="#products">Products</a>
+          <a href="#case-studies">Case studies</a>
+          <a href="#leadership">Leadership</a>
+          <a href="#experience">Experience</a>
+        </div>
+        <a class="nav-cta" href="mailto:wadherapryank@gmail.com">Get in touch</a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Change color theme" title="Change theme">🎨</button>
+      </div>
+    </nav>
+
+    <div class="wrap" id="top">
+      <header class="hero">
+        <div class="hero-globe"><canvas id="globe" aria-hidden="true"></canvas><span class="globe-cap">Delhi · Harare · Lusaka · Lagos · Dubai</span></div>
+        <div class="hero-text">
+          <div class="eyebrow"><span class="pulse" aria-hidden="true"></span>Open to Head of Product · VP Product · CPO-track roles</div>
+          <h1>Pryank Wadhera</h1>
+          <p class="lede">I build products and the businesses around them.</p>
+          <p class="sub">Product and business leader, 0→1 builder and P&amp;L owner. I opened FuelBuddy's Zimbabwe market from zero and now run it end to end as <strong>Country Head</strong>. Before that, Product Manager on industrial fuel-management software and APM in B2B LegalTech SaaS. I still ship working software myself.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="mailto:wadherapryank@gmail.com">Email me</a>
+            <a class="btn btn-ghost" href="https://fern-appliance-85f.notion.site/Pryank-Wadhera-3eaefd17b76680c88283e85a3217ff52" target="_blank" rel="noopener">Full profile &amp; case studies ↗</a>
+            <a class="btn btn-secondary" href="https://linkedin.com/in/pryankwadhera" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+          <div class="hero-meta">
+            <span class="chip"><b>Now:</b> Country Head, FuelBuddy Zimbabwe</span>
+            <span class="chip"><b>Based:</b> India · open to Dubai, India or remote</span>
+            <span class="chip"><b>Notice:</b> 30 days</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="stats" role="list" aria-label="At a glance">
+        <div class="stat" role="listitem"><b>7 yrs</b><span>Policy research, B2B SaaS and energy</span></div>
+        <div class="stat" role="listitem"><b>4</b><span>Countries operated in: Zimbabwe, Zambia, Nigeria, India</span></div>
+        <div class="stat" role="listitem"><b>46+</b><span>Enterprise and regional clients onboarded in Zimbabwe</span></div>
+        <div class="stat" role="listitem"><b>8 · 50+</b><span>Direct team · colleagues coordinated across 4 countries</span></div>
+        <div class="stat" role="listitem"><b>5</b><span>Products built end to end, each with live demo and full docs</span></div>
+      </div>
+
+      <section class="block reveal" id="impact">
+        <div class="sec-head"><div><div class="sec-kicker">Track record</div><h2>Outcomes, not titles</h2><p>Confidential commercial figures are withheld. The shape of the work is not.</p></div></div>
+        <div class="wins">
+          <div class="win panel"><span class="n">01 · MARKET ENTRY</span><h3>New market, zero to profitable in year one</h3><p>Entered Zimbabwe with no customers, no team and no supply chain. Built a recurring, margin-positive wholesale fuel business.</p></div>
+          <div class="win panel"><span class="n">02 · P&amp;L</span><h3>Country Head within a year of entry</h3><p>Promoted to own the full P&amp;L: procurement, logistics, sales, pricing and hiring.</p></div>
+          <div class="win panel"><span class="n">03 · ENTERPRISE PRODUCT</span><h3>Jindal Steel: pilot to long-term contract</h3><p>Built a fuel management system that cut loss, theft and spillage at the plant, then converted the pilot on outcome-based pricing.</p></div>
+          <div class="win panel"><span class="n">04 · GO-TO-MARKET</span><h3>A diversified client base</h3><p>46+ enterprise and regional accounts across sectors, so no single customer carries the business.</p></div>
+          <div class="win panel"><span class="n">05 · LEADERSHIP</span><h3>Cross-border teams</h3><p>Hire and lead an 8-person Zimbabwe team; coordinate 50+ colleagues across Mozambique, Zambia, the UAE and India.</p></div>
+          <div class="win panel"><span class="n">06 · STRATEGY</span><h3>Project Arjun with the CEO and GM</h3><p>Mapped EV and oil &amp; gas retail infrastructure to shape where the company diversifies next.</p></div>
+        </div>
+      </section>
+
+      <section class="block reveal" id="products">
+        <div class="sec-head">
+          <div><div class="sec-kicker">Built, not just specced</div><h2>Products I've built end to end</h2><p>Field problem → PRD → design → working code. Each has a live demo, a case study (decisions, cuts, metrics) and its PRD, BRD, MRD and spec.</p></div>
+          <div class="view-toggle" role="group" aria-label="Choose view"><div class="view-toggle-inner"><button id="view-grid-btn" class="view-btn active" type="button">▦ Grid</button><button id="view-list-btn" class="view-btn" type="button">☰ List</button></div></div>
+        </div>
+        <main class="grid">
+          <article class="card featured">
+            <div class="card-preview" style="background-image:url('bolt-and-bahi-preview.png')"></div>
+            <div class="card-top"><div class="card-icon">🧾</div><div><h3>Bolt &amp; Bahi</h3><div class="seg">B2B SMB · Vertical SaaS · India</div></div></div>
+            <p>Indian textile traders run billing, stock, job work and receivables across notebooks and Excel. <b>A local-first GST ledger</b> covering counter billing, wholesale, job work, dispatch and receivables, with ARA, a built-in AI assistant, in ten languages.</p>
+            <div class="tag-row"><span class="tag">react</span><span class="tag">supabase</span><span class="tag">ai assistant</span><span class="tag">gst</span></div>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="https://pryank18.github.io/bolt-and-bahi/" target="_blank" rel="noopener">Live demo ↗</a>
+              <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ebefd17b76681698b4ad899d7ff5902" target="_blank" rel="noopener">Case study ↗</a>
+            </div>
+            <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/bolt-and-bahi" target="_blank" rel="noopener">Code</a></div>
+          </article>
+
+          <article class="card">
+            <div class="card-preview" style="background-image:url('depotline-preview.png')"></div>
+            <div class="card-top"><div class="card-icon">⛽</div><div><h3>Depotline</h3><div class="seg">B2B · Energy ops</div></div></div>
+            <p>Depot operators juggle stock, pricing and fleet fuel logs in spreadsheets. <b>One live view</b> across depots, deliveries, fleet, inventory and finance, with margin always visible.</p>
+            <div class="tag-row"><span class="tag">dashboard</span><span class="tag">fuel</span><span class="tag">operations</span></div>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="https://pryank18.github.io/depotline-fuel-ops/" target="_blank" rel="noopener">Live demo ↗</a>
+              <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ebefd17b76681089891ed7697810089" target="_blank" rel="noopener">Case study ↗</a>
+            </div>
+            <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/depotline-fuel-ops/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/depotline-fuel-ops/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/depotline-fuel-ops/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/depotline-fuel-ops/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/depotline-fuel-ops" target="_blank" rel="noopener">Code</a></div>
+          </article>
+
+          <article class="card featured">
+            <div class="card-top"><div class="card-icon">📦</div><div><h3>Dispatch OS</h3><div class="seg">B2B · Distribution SaaS</div></div></div>
+            <p>FMCG distributors take orders over WhatsApp and lose track of credit and stock. <b>One queue to confirm, allocate and dispatch</b> against live stock and per-retailer credit limits, replacing notebooks and chat threads.</p>
+            <div class="tag-row"><span class="tag">distribution</span><span class="tag">credit control</span><span class="tag">saas</span></div>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="https://pryank18.github.io/dispatch-os/" target="_blank" rel="noopener">Live demo ↗</a>
+              <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ebefd17b76681328d1ef67b614c73b4" target="_blank" rel="noopener">Case study ↗</a>
+            </div>
+            <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/dispatch-os/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/dispatch-os/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/dispatch-os/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/dispatch-os/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/dispatch-os" target="_blank" rel="noopener">Code</a></div>
+          </article>
+
+          <article class="card">
+            <div class="card-top"><div class="card-icon">🧭</div><div><h3>Msafara</h3><div class="seg">B2B · AI agents · Travel</div></div></div>
+            <p>Tour operators and DMCs chase hotels and vendors by hand. <b>An AI agent</b> that drafts requests, follows up on silence, negotiates within set rules, tracks hold expiry and builds client proposals over email and WhatsApp.</p>
+            <div class="tag-row"><span class="tag">langgraph</span><span class="tag">agentic ai</span><span class="tag">travel-tech</span></div>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="https://pryank18.github.io/Msafara/" target="_blank" rel="noopener">Live demo ↗</a>
+              <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ebefd17b766814b8760e8717345b4a7" target="_blank" rel="noopener">Case study ↗</a>
+            </div>
+            <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/Msafara/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/Msafara/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/Msafara/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/Msafara/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/Msafara" target="_blank" rel="noopener">Code</a></div>
+          </article>
+
+          <article class="card">
+            <div class="card-top"><div class="card-icon">🏋️</div><div><h3>FitNexx</h3><div class="seg">B2C · Subscription · Fitness</div></div></div>
+            <p>Lifters follow fixed templates that ignore what they actually lift. <b>Every logged set adjusts the next one</b>: estimated 1RM, adaptive strength, hybrid and mobility programs, progress tracking, plus pricing pages to test the offer.</p>
+            <div class="tag-row"><span class="tag">b2c</span><span class="tag">adaptive</span><span class="tag">fitness</span></div>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="https://pryank18.github.io/fitnexx/" target="_blank" rel="noopener">Live demo ↗</a>
+              <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ecefd17b766812b9266c7de2fd7d751" target="_blank" rel="noopener">Case study ↗</a>
+            </div>
+            <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/fitnexx/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/fitnexx/blob/main/FitNexx_PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/fitnexx/blob/main/FitNexx_BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/fitnexx/blob/main/FitNexx_MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/fitnexx" target="_blank" rel="noopener">Code</a></div>
+          </article>
+
+          <article class="card mini">
+            <div class="card-top"><div class="card-icon">📝</div><div><h3>Notes</h3><div class="seg">Utility · Zero setup</div></div></div>
+            <p>A note tool that opens instantly with no account or backend: create as you type, search, light/dark, local persistence. A small exercise in ruthless scope.</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="https://pryank18.github.io/notes-app/" target="_blank" rel="noopener">Live demo ↗</a>
+            </div>
+            <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/notes-app/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/notes-app/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/notes-app/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/notes-app/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/notes-app" target="_blank" rel="noopener">Code</a></div>
+          </article>
+
+          <article class="card mini soon">
+            <div class="card-top"><div class="card-icon">🏺</div><div><h3>ArchaeologyWala</h3><div class="seg">In progress · Content platform</div></div></div>
+            <p>A React content platform for archaeology and history: blog, learning tracks, resource library and a contributor submission workflow.</p>
+            <div class="card-actions"><a class="btn btn-secondary" href="https://github.com/pryank18/ArchaeologyWala" target="_blank" rel="noopener">Code ↗</a></div>
+          </article>
+        </main>
+        <p class="note">All products run on fictional sample data and are not commercial systems. Built AI-assisted with Claude as coding partner; problem framing, scope, requirements and QA are mine.</p>
+      </section>
+
+      <section class="block reveal" id="case-studies">
+        <div class="sec-head"><div><div class="sec-kicker">Product thinking</div><h2>Case studies from the job</h2><p>Written the way I run product reviews: problem first, evidence second, scope last.</p></div><a class="btn btn-ghost" href="https://fern-appliance-85f.notion.site/Pryank-Wadhera-3eaefd17b76680c88283e85a3217ff52" target="_blank" rel="noopener">All on Notion ↗</a></div>
+        <div class="cases">
+          <a class="case panel" href="https://fern-appliance-85f.notion.site/156efd17b76680a0a3a4f08b51829521" target="_blank" rel="noopener"><span class="fmt">BRD</span><div><h3>FuelTracker: fuel loss control for industrial sites</h3><p>Field-evidence problem framing, outcome-based pricing, MoSCoW scope, metrics with baselines.</p></div></a>
+          <a class="case panel" href="https://fern-appliance-85f.notion.site/162efd17b76680468d55e3c3e12afb65" target="_blank" rel="noopener"><span class="fmt">PRD</span><div><h3>FleetOS: one app for fleet running costs</h3><p>Platform bet, what has to be true, ruthless cuts, gated roadmap.</p></div></a>
+          <a class="case panel" href="https://fern-appliance-85f.notion.site/15defd17b7668047ae5eeef1307e86fb" target="_blank" rel="noopener"><span class="fmt">Ops model</span><div><h3>Buddy Can: last-mile diesel for telecom towers</h3><p>Turning a logistics service into a repeatable, measurable product.</p></div></a>
+          <a class="case panel" href="https://fern-appliance-85f.notion.site/188efd17b7668080842deb5e66ec7343" target="_blank" rel="noopener"><span class="fmt">Fintech</span><div><h3>Kids Wallet (8–16): UPI with parental controls</h3><p>Two-sided fintech UX, trust and safety, edge-case thinking.</p></div></a>
+        </div>
+        <div class="earlier panel">Earlier work, rewritten to the same standard: <a href="https://fern-appliance-85f.notion.site/156efd17b7668093a9d2fcd09c8edc86" target="_blank" rel="noopener">Legal Suvidha compliance hub PRD</a> · <a href="https://fern-appliance-85f.notion.site/15defd17b7668071b8f8fd11ed8258b1" target="_blank" rel="noopener">InvoiceDiscount for SMEs</a> · <a href="https://fern-appliance-85f.notion.site/156efd17b7668036a7cecb4aabbb22c0" target="_blank" rel="noopener">CorpReady Academy BRD</a></div>
+      </section>
+
+      <section class="block reveal" id="leadership">
+        <div class="sec-head"><div><div class="sec-kicker">Leadership</div><h2>How I lead product</h2><p>Product and P&amp;L in one head: I judge features by margin, retention and adoption, not by how they look in a demo.</p></div></div>
+        <div class="lead">
+          <div class="panel">
+            <h3>Operating principles</h3>
+            <ol class="principles">
+              <li><b>Go to the site before writing the spec.</b> The best fuel products I've shipped started with a walk around a depot, not a survey form.</li>
+              <li><b>Price on value you can prove.</b> If the buyer can verify the saving, they'll share it.</li>
+              <li><b>A metric without a baseline is a wish.</b> Every goal gets a starting number and a date.</li>
+              <li><b>Say what we won't build.</b> A scope is only as good as its non-goals list.</li>
+              <li><b>Teams own the how, leadership owns the why.</b> My job is strategy, trade-offs and clearing the path.</li>
+              <li><b>AI in the workflow, not on the slide.</b> Agents compress discovery, prototyping and ops; measure the time saved like any feature.</li>
+            </ol>
+          </div>
+          <div class="panel">
+            <h3>First 90 days in a product leadership seat</h3>
+            <div class="plan">
+              <div class="plan-row"><span class="d">0–30</span><div><b>Listen</b><span>Customer and site visits, data audit, P&amp;L by product line, 1:1s with every product, engineering and sales lead. Output: a written diagnosis.</span></div></div>
+              <div class="plan-row"><span class="d">31–60</span><div><b>Focus</b><span>Pick the one or two bets that matter, write the kill/park list, set baselines. Output: one-page strategy and a scorecard the CEO and team sign.</span></div></div>
+              <div class="plan-row"><span class="d">61–90</span><div><b>Ship &amp; build the system</b><span>First visible win against a baseline, operating cadence, hiring plan for the gaps.</span></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block reveal" id="experience">
+        <div class="sec-head"><div><div class="sec-kicker">Experience</div><h2>Seven years, three domains</h2></div><a class="btn btn-ghost" href="https://linkedin.com/in/pryankwadhera" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+        <div class="timeline panel">
+          <div class="role"><div class="when">Apr 2026 – now</div><div><h3>Country Head, Zimbabwe <small>· FuelBuddy</small></h3><p>Full P&amp;L, procurement, logistics, sales and hiring; 8 direct reports.</p></div></div>
+          <div class="role"><div class="when">Apr 2025 – Mar 2026</div><div><h3>Sr. Manager, Business Development <small>· FuelBuddy (Zimbabwe)</small></h3><p>Opened the market from zero; built the client base (46+ accounts) and the supply chain.</p></div></div>
+          <div class="role"><div class="when">2023 – 2025</div><div><h3>Product Manager <small>· FuelBuddy (India), promoted from Research Associate in 6 months</small></h3><p>Jindal Steel fuel management system; Project Arjun with the CEO and GM; route optimisation, delivery SOPs and live customer-feedback loops.</p></div></div>
+          <div class="role"><div class="when">2021 – 2024</div><div><h3>Freelance product builder <small>· Independent</small></h3><p>Shopify API integrations for merchant stores.</p></div></div>
+          <div class="role"><div class="when">Feb 2021 – Nov 2022</div><div><h3>Associate Product Manager <small>· Legal Suvidha (LegalTech SaaS)</small></h3><p>B2B compliance SaaS, Gurugram.</p></div></div>
+          <div class="role"><div class="when">Aug 2019 – Jan 2021</div><div><h3>Research Associate <small>· Citizens Foundation for Policy Solutions</small></h3><p>Pollution-control policy research for the Delhi Government.</p></div></div>
+        </div>
+        <div class="edu">
+          <div class="panel"><h3>Why a historian ends up running fuel businesses</h3><p>Fieldwork in history, archaeology and anthropology taught me the habit that makes me a better PM: watch what people actually do before believing what they say.</p></div>
+          <div class="panel"><h3>Education &amp; beyond the day job</h3><ul><li>MBA, AI for Business — O.P. Jindal Global University (Dec 2026)</li><li>PhD (in progress), MA &amp; Masters — Deccan College Pune, IGNOU; BA History, University of Delhi</li><li>Guest mentor, IIM Raipur · Founder, TALAASH Heritage</li></ul></div>
+        </div>
+      </section>
+
+      <section class="contact panel reveal" id="contact">
+        <h2>Looking for a product leader who owns outcomes?</h2>
+        <p>Open to Head of Product, VP Product / CPO-track, Senior PM and product-led business leadership roles in Dubai, India or remote. Notice period: 30 days.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="mailto:wadherapryank@gmail.com">wadherapryank@gmail.com</a>
+          <a class="btn btn-ghost" href="https://linkedin.com/in/pryankwadhera" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn btn-ghost" href="https://github.com/pryank18" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn btn-ghost" href="https://fern-appliance-85f.notion.site/Pryank-Wadhera-3eaefd17b76680c88283e85a3217ff52" target="_blank" rel="noopener">Notion ↗</a>
+        </div>
+      </section>
+
+      <footer>© 2026 Pryank Wadhera · <a href="https://github.com/pryank18/pryank18.github.io">Source</a></footer>
+    </div>
+
   <script>
     (function(){
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -263,14 +453,14 @@
         var mod = await import('https://esm.sh/cobe@0.6.3');
         var createGlobe = mod.default;
         var canvas = document.getElementById('globe');
-        if(canvas && window.matchMedia('(min-width: 1180px)').matches){
+        if(canvas && window.matchMedia('(min-width: 1060px)').matches){
           var phi = 0;
           createGlobe(canvas, {
             devicePixelRatio: 2,
             width: 500,
             height: 500,
             phi: 0,
-            theta: 0.3,
+            theta: 0.15,
             dark: 1,
             diffuse: 1.2,
             mapSamples: 3000,
@@ -279,10 +469,11 @@
             markerColor: [0.23, 0.51, 0.96],
             glowColor: [0.16, 0.26, 0.46],
             markers: [
-              { location: [28.6139, 77.2090], size: 0.06 },
-              { location: [19.0760, 72.8777], size: 0.05 },
-              { location: [1.3521, 103.8198], size: 0.04 },
-              { location: [51.5074, -0.1278], size: 0.03 }
+              { location: [28.6139, 77.2090], size: 0.07 },
+              { location: [-17.8292, 31.0522], size: 0.08 },
+              { location: [-15.3875, 28.3228], size: 0.05 },
+              { location: [6.5244, 3.3792], size: 0.05 },
+              { location: [25.2048, 55.2708], size: 0.05 }
               ],
             onRender: function(state){
               state.phi = phi;
@@ -436,6 +627,13 @@
     if(listBtn){ listBtn.addEventListener('click', function(){ setView('list'); }); }
     })();
     </script>
-
+    <script>
+    (function(){
+      var els=document.querySelectorAll('.reveal');
+      if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
+      var io=new IntersectionObserver(function(entries){ entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); },{rootMargin:'0px 0px -8% 0px'});
+      els.forEach(function(e){ io.observe(e); });
+    })();
+    </script>
   </body>
 </html>

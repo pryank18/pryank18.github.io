@@ -18,6 +18,8 @@ Ordered by relevance to my product focus (operations, logistics, and workflow so
 | 2 | Dispatch OS | Ordering, credit limits, and stock platform for FMCG distributors and wholesalers | [Open app](https://pryank18.github.io/dispatch-os/) | [Notion](https://fern-appliance-85f.notion.site/3ebefd17b76681328d1ef67b614c73b4) |
 | 3 | Bolt & Bahi | GST ledger for Indian textile traders — billing, stock, job work, dispatch, and receivables | [Open app](https://pryank18.github.io/bolt-and-bahi/) | [Notion](https://fern-appliance-85f.notion.site/3ebefd17b76681698b4ad899d7ff5902) |
 | 4 | Msafara | AI-assisted vendor coordination for tour operators and DMCs | [Open app](https://pryank18.github.io/Msafara/) | [Notion](https://fern-appliance-85f.notion.site/3ebefd17b766814b8760e8717345b4a7) |
+| 5 | FitNexx | Strength training where every logged set adjusts the next session | [Open app](https://pryank18.github.io/fitnexx/) | [Notion](https://fern-appliance-85f.notion.site/3ecefd17b766812b9266c7de2fd7d751) |
+| 6 | Notes | Zero-setup browser notes utility | [Open app](https://pryank18.github.io/notes-app/) | [PRD](https://github.com/pryank18/notes-app/blob/main/docs/PRD.md) |
 
 ## Tech
 
