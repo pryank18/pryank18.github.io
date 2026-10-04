@@ -36,7 +36,7 @@
        "knowsLanguage":["English","Hindi","Punjabi","Marathi"],
        "knowsAbout":["Product management","Product strategy","0 to 1 products","B2B SaaS","Platform products","UPI payments","Checkout and reconciliation","IoT fuel management systems","Vendor management systems","REST APIs and integrations","Product analytics","A/B testing","Go-to-market","Market entry","P&L ownership","Agentic AI","LangGraph"],
        "sameAs":["https://linkedin.com/in/pryankwadhera","https://github.com/pryank18","https://fern-appliance-85f.notion.site/Pryank-Wadhera-3eaefd17b76680c88283e85a3217ff52"]},
-      {"@type":"ProfilePage","@id":"https://pryank18.github.io/#page","url":"https://pryank18.github.io/","name":"Pryank Wadhera — Product Leader","mainEntity":{"@id":"https://pryank18.github.io/#person"},"dateModified":"2026-10-01"}
+      {"@type":"ProfilePage","@id":"https://pryank18.github.io/#page","url":"https://pryank18.github.io/","name":"Pryank Wadhera — Product Leader","mainEntity":{"@id":"https://pryank18.github.io/#person"},"dateModified":"2026-10-04"}
     ]}
     </script>
   <style>
@@ -152,6 +152,19 @@
     .card.mini h3{ font-size:16px; }
     .card.soon{ border-style:dashed; background:transparent; }
     .card.soon::after{ opacity:.35; }
+    .hero .pl-line{ font-size:15.5px; font-weight:600; max-width:640px; margin:-4px 0 12px; padding-left:12px; border-left:3px solid var(--accent); }
+    .more-builds{ margin-top:18px; }
+    .more-builds > summary{ cursor:pointer; list-style:none; display:inline-block; font-size:13.5px; font-weight:650; color:var(--accent); padding:9px 16px; border:1px solid color-mix(in srgb, var(--accent) 40%, transparent); border-radius:10px; }
+    .more-builds > summary::-webkit-details-marker{ display:none; }
+    .more-builds[open] > summary{ margin-bottom:18px; }
+    .more-builds .so, .more-builds[open] .sc{ display:none; }
+    .more-builds[open] .so{ display:inline; }
+    .plan-wrap > summary{ cursor:pointer; list-style:none; }
+    .plan-wrap > summary::-webkit-details-marker{ display:none; }
+    .plan-wrap > summary h3{ display:inline; }
+    .plan-wrap > summary::after{ content:' ▾'; color:var(--accent); }
+    .plan-wrap[open] > summary{ margin-bottom:14px; }
+    .more-builds > summary:focus-visible, .plan-wrap > summary:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
     .note{ font-size:12.5px; color:var(--text-dim); margin-top:14px; }
 
     /* view toggle */
@@ -269,6 +282,7 @@
           <div class="eyebrow"><span class="pulse" aria-hidden="true"></span>Open to senior product &amp; product-leadership roles</div>
           <h1>Pryank Wadhera</h1>
           <p class="lede">I build products and the businesses around them.</p>
+          <p class="pl-line">Product and P&amp;L in one head: I judge features by margin, retention and adoption, not by how they look in a demo.</p>
           <p class="sub">Five of my seven years have been in product: B2B SaaS, B2C and platform products across fuel-tech and LegalTech, in India and Africa. I've shipped vendor platforms, UPI checkout and IoT systems wired into industrial fuel tanks, then carried the product into a new country and run the business it created. Today I lead FuelBuddy in Zimbabwe as <strong>Country Head and Product Manager</strong>.</p>
           <div class="hero-ctas">
             <a class="btn btn-primary" href="mailto:wadherapryank@gmail.com">Email me</a>
@@ -286,43 +300,31 @@
 
       <div class="stats" role="list" aria-label="At a glance">
         <div class="stat" role="listitem"><b>5 of 7</b><span>Years in product roles, after a start in policy research</span></div>
-        <div class="stat" role="listitem"><b>300+</b><span>Field interviews with petrol-pump owners behind one platform launch</span></div>
-        <div class="stat" role="listitem"><b>6</b><span>Products I built end to end on my own, all with live demos below</span></div>
-        <div class="stat" role="listitem"><b>8</b><span>People I lead in a new country, plus 50+ colleagues coordinated across four</span></div>
-        <div class="stat" role="listitem"><b>4</b><span>Countries operated in: India, Zimbabwe, Zambia, Nigeria</span></div>
+        <div class="stat" role="listitem"><b>150+</b><span>Vendors live on a platform I took from field interviews to launch</span></div>
+        <div class="stat" role="listitem"><b>2,000+</b><span>UPI transactions in a checkout pilot's first month</span></div>
+        <div class="stat" role="listitem"><b>50+</b><span>Repeat B2B customers won in a new country within nine months</span></div>
+        <div class="stat" role="listitem"><b>4</b><span>Markets worked across: India, Zimbabwe, Zambia, Nigeria</span></div>
       </div>
 
       <section class="block reveal" id="shipped">
         <div class="sec-head"><div><div class="sec-kicker">Track record</div><h2>What I've shipped inside a company</h2><p>Each one started in the field, not in a document. Client-confidential figures are left out.</p></div></div>
         <div class="wins">
-          <div class="win panel"><span class="n">B2B PLATFORM · VENDOR ONBOARDING</span><h3>Vendor Management System</h3><p>Built from 300+ conversations with petrol-pump owners. Standard validation and compliance rules took vendor onboarding from a full day plus next-day review to <b>under half a day</b>.</p></div>
-          <div class="win panel"><span class="n">IOT · INDUSTRIAL SAAS</span><h3>Fuel Management System for a large steel plant</h3><p>100+ requirements for a six-month pilot at a high-consumption industrial site, integrating tank gauges, dispensers, flow meters, RFID nozzle tags and sensors. Loss, theft and spillage controls lowered the cost of every litre; the pilot became a contract.</p></div>
-          <div class="win panel"><span class="n">PAYMENTS · 0→1</span><h3>UPI checkout, shipped early</h3><p>Led the 0→1 roadmap for a B2C fuel-retail app with the CEO and GM. When the launch moved to the next funding cycle, I shipped its UPI Intent and QR checkout inside the B2B platform instead, so the payment work <b>went live a funding cycle early</b>.</p></div>
-          <div class="win panel"><span class="n">OPERATIONS · EXPERIMENTATION</span><h3>Faster fuel deliveries</h3><p>A/B-tested fixes to IoT order sync, ops-to-driver alignment, routing and slot booking cut average delivery time, with the biggest gains on the slowest trucks.</p></div>
-          <div class="win panel"><span class="n">MARKET ENTRY · P&amp;L</span><h3>A new country, from zero</h3><p>Evaluated Zimbabwe, Zambia and Nigeria, then launched B2B bulk fuel in Zimbabwe: supply chain live in the first month, a repeat customer base inside the first year, and 40+ discovery interviews feeding the product backlog.</p></div>
+          <div class="win panel"><span class="n">B2B PLATFORM · VENDOR ONBOARDING</span><h3>Vendor Management System</h3><p>Built from 300+ conversations with petrol-pump owners. Standard validation and compliance rules took onboarding from a full day plus next-day review to <b>under half a day</b>, for 150+ vendors.</p></div>
+          <div class="win panel"><span class="n">IOT · INDUSTRIAL SAAS</span><h3>Fuel Management System for a large steel plant</h3><p>100+ requirements for a six-month pilot on ~2M litres of diesel a month, integrating tank gauges, dispensers, flow meters, RFID nozzle tags and sensors. Loss, theft and spillage controls saved <b>20 paise a litre</b>; the pilot became a contract.</p></div>
+          <div class="win panel"><span class="n">PAYMENTS · 0→1</span><h3>UPI checkout, shipped early</h3><p>Led the 0→1 roadmap for a B2C fuel-retail app with the CEO and GM. When the launch moved to the next funding cycle, I shipped its UPI Intent and QR checkout inside the B2B platform instead: <b>2,000+ transactions in month one</b>.</p></div>
+          <div class="win panel"><span class="n">OPERATIONS · EXPERIMENTATION</span><h3>Faster fuel deliveries</h3><p>A/B-tested fixes to IoT order sync, ops-to-driver alignment, routing and slot booking cut average delivery time from 60 to 55 minutes, and by up to 10 on some trucks.</p></div>
+          <div class="win panel"><span class="n">MARKET ENTRY · P&amp;L</span><h3>A new country, from zero</h3><p>Evaluated Zimbabwe, Zambia and Nigeria, then launched B2B bulk fuel in Zimbabwe: ~15 suppliers live in month one, <b>1.5M litres a month by month ten</b>, 50+ repeat customers in nine months, with 40+ discovery interviews feeding the product backlog.</p></div>
           <div class="win panel"><span class="n">B2B SAAS · PROCESS</span><h3>LegalTech MVP to launch</h3><p>Web and mobile MVP from Figma wireframes to launch in 6–8 months. Introduced the team's Agile product process, which cut time-to-market by 25%.</p></div>
         </div>
       </section>
 
       <section class="block reveal" id="products">
         <div class="sec-head">
-          <div><div class="sec-kicker">Built on my own time</div><h2>Products I've built end to end</h2><p>Field problem → PRD → design → working code. Each has a live demo, a case study (decisions, cuts, metrics) and its PRD, BRD, MRD and spec.</p></div>
+          <div><div class="sec-kicker">Built on my own time</div><h2>Products I've built end to end</h2><p>Field problem → PRD → design → working code. The four closest to my work are here; most come with a case study and their PRD, BRD, MRD and spec.</p></div>
           <div class="view-toggle" role="group" aria-label="Choose view"><div class="view-toggle-inner"><button id="view-grid-btn" class="view-btn active" type="button">▦ Grid</button><button id="view-list-btn" class="view-btn" type="button">☰ List</button></div></div>
         </div>
         <main class="grid">
           <article class="card featured">
-            <div class="card-preview" style="background-image:url('bolt-and-bahi-preview.png')"></div>
-            <div class="card-top"><div class="card-icon">🧾</div><div><h3>Bolt &amp; Bahi</h3><div class="seg">B2B SMB · Vertical SaaS · India</div></div></div>
-            <p>Indian textile traders run billing, stock, job work and receivables across notebooks and Excel. <b>A local-first GST ledger</b> covering counter billing, wholesale, job work, dispatch and receivables, with ARA, a built-in AI assistant, in ten languages.</p>
-            <div class="tag-row"><span class="tag">react</span><span class="tag">supabase</span><span class="tag">ai assistant</span><span class="tag">gst</span></div>
-            <div class="card-actions">
-              <a class="btn btn-primary" href="https://pryank18.github.io/bolt-and-bahi/" target="_blank" rel="noopener">Live demo ↗</a>
-              <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ebefd17b76681698b4ad899d7ff5902" target="_blank" rel="noopener">Case study ↗</a>
-            </div>
-            <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/bolt-and-bahi" target="_blank" rel="noopener">Code</a></div>
-          </article>
-
-          <article class="card">
             <div class="card-preview" style="background-image:url('depotline-preview.png')"></div>
             <div class="card-top"><div class="card-icon">⛽</div><div><h3>Depotline</h3><div class="seg">B2B · Energy ops</div></div></div>
             <p>Depot operators juggle stock, pricing and fleet fuel logs in spreadsheets. <b>One live view</b> across depots, deliveries, fleet, inventory and finance, with margin always visible.</p>
@@ -332,17 +334,6 @@
               <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ebefd17b76681089891ed7697810089" target="_blank" rel="noopener">Case study ↗</a>
             </div>
             <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/depotline-fuel-ops/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/depotline-fuel-ops/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/depotline-fuel-ops/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/depotline-fuel-ops/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/depotline-fuel-ops" target="_blank" rel="noopener">Code</a></div>
-          </article>
-
-          <article class="card featured">
-            <div class="card-top"><div class="card-icon">📦</div><div><h3>Dispatch OS</h3><div class="seg">B2B · Distribution SaaS</div></div></div>
-            <p>FMCG distributors take orders over WhatsApp and lose track of credit and stock. <b>One queue to confirm, allocate and dispatch</b> against live stock and per-retailer credit limits, replacing notebooks and chat threads.</p>
-            <div class="tag-row"><span class="tag">distribution</span><span class="tag">credit control</span><span class="tag">saas</span></div>
-            <div class="card-actions">
-              <a class="btn btn-primary" href="https://pryank18.github.io/dispatch-os/" target="_blank" rel="noopener">Live demo ↗</a>
-              <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ebefd17b76681328d1ef67b614c73b4" target="_blank" rel="noopener">Case study ↗</a>
-            </div>
-            <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/dispatch-os/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/dispatch-os/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/dispatch-os/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/dispatch-os/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/dispatch-os" target="_blank" rel="noopener">Code</a></div>
           </article>
 
           <article class="card">
@@ -356,33 +347,61 @@
             <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/Msafara/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/Msafara/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/Msafara/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/Msafara/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/Msafara" target="_blank" rel="noopener">Code</a></div>
           </article>
 
+          <article class="card featured">
+            <div class="card-preview" style="background-image:url('bolt-and-bahi-preview.png')"></div>
+            <div class="card-top"><div class="card-icon">🧾</div><div><h3>Bolt &amp; Bahi</h3><div class="seg">B2B SMB · Vertical SaaS · India</div></div></div>
+            <p>Indian textile traders run billing, stock, job work and receivables across notebooks and Excel. <b>A local-first GST ledger</b> covering counter billing, wholesale, job work, dispatch and receivables, with ARA, a built-in AI assistant, in ten languages.</p>
+            <div class="tag-row"><span class="tag">react</span><span class="tag">supabase</span><span class="tag">ai assistant</span><span class="tag">gst</span></div>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="https://pryank18.github.io/bolt-and-bahi/" target="_blank" rel="noopener">Live demo ↗</a>
+              <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ebefd17b76681698b4ad899d7ff5902" target="_blank" rel="noopener">Case study ↗</a>
+            </div>
+            <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/bolt-and-bahi/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/bolt-and-bahi" target="_blank" rel="noopener">Code</a></div>
+          </article>
+
           <article class="card">
-            <div class="card-top"><div class="card-icon">🏋️</div><div><h3>FitNexx</h3><div class="seg">B2C · Subscription · Fitness</div></div></div>
-            <p>Lifters follow fixed templates that ignore what they actually lift. <b>Every logged set adjusts the next one</b>: estimated 1RM, adaptive strength, hybrid and mobility programs, progress tracking, plus pricing pages to test the offer.</p>
-            <div class="tag-row"><span class="tag">b2c</span><span class="tag">adaptive</span><span class="tag">fitness</span></div>
+            <div class="card-top"><div class="card-icon">🎯</div><div><h3>Pravesh</h3><div class="seg">B2C · EdTech · India</div></div></div>
+            <p>Competitive-exam aspirants study alone while their families pay and worry without visibility. <b>A family-first prep companion</b>: daily targets, mock-test log, syllabus checklists and a focus timer, with guardian sharing and parental-consent flows for under-18s, in English, Hindi and Hinglish.</p>
+            <div class="tag-row"><span class="tag">b2c</span><span class="tag">auth &amp; consent</span><span class="tag">localization</span></div>
             <div class="card-actions">
-              <a class="btn btn-primary" href="https://pryank18.github.io/fitnexx/" target="_blank" rel="noopener">Live demo ↗</a>
-              <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ecefd17b766812b9266c7de2fd7d751" target="_blank" rel="noopener">Case study ↗</a>
+              <a class="btn btn-primary" href="https://macaly-as3vuklqtxkdw23zycthoic4-prod.macaly-app.com" target="_blank" rel="noopener">Live app ↗</a>
             </div>
-            <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/fitnexx/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/fitnexx/blob/main/FitNexx_PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/fitnexx/blob/main/FitNexx_BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/fitnexx/blob/main/FitNexx_MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/fitnexx" target="_blank" rel="noopener">Code</a></div>
-          </article>
-
-          <article class="card mini">
-            <div class="card-top"><div class="card-icon">📝</div><div><h3>Notes</h3><div class="seg">Utility · Zero setup</div></div></div>
-            <p>A note tool that opens instantly with no account or backend: create as you type, search, light/dark, local persistence. A small exercise in ruthless scope.</p>
-            <div class="card-actions">
-              <a class="btn btn-primary" href="https://pryank18.github.io/notes-app/" target="_blank" rel="noopener">Live demo ↗</a>
-            </div>
-            <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/notes-app/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/notes-app/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/notes-app/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/notes-app/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/notes-app" target="_blank" rel="noopener">Code</a></div>
-          </article>
-
-          <article class="card mini soon">
-            <div class="card-top"><div class="card-icon">🏺</div><div><h3>ArchaeologyWala</h3><div class="seg">In progress · Content platform</div></div></div>
-            <p>A React content platform for archaeology and history: blog, learning tracks, resource library and a contributor submission workflow.</p>
-            <div class="card-actions"><a class="btn btn-secondary" href="https://github.com/pryank18/ArchaeologyWala" target="_blank" rel="noopener">Code ↗</a></div>
+            <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/pryank18.github.io/blob/main/pravesh/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/pryank18.github.io/blob/main/pravesh/docs/PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/pryank18.github.io/blob/main/pravesh/docs/BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/pryank18.github.io/blob/main/pravesh/docs/MRD.md" target="_blank" rel="noopener">MRD</a></div>
           </article>
         </main>
-        <p class="note">All products run on fictional sample data and are not commercial systems. Built AI-assisted with Claude as coding partner; problem framing, scope, requirements and QA are mine.</p>
+        <details class="more-builds">
+          <summary><span class="sc">Show 3 more builds</span><span class="so">Hide extra builds</span></summary>
+          <div class="grid">
+            <article class="card">
+              <div class="card-top"><div class="card-icon">📦</div><div><h3>Dispatch OS</h3><div class="seg">B2B · Distribution SaaS</div></div></div>
+              <p>FMCG distributors take orders over WhatsApp and lose track of credit and stock. <b>One queue to confirm, allocate and dispatch</b> against live stock and per-retailer credit limits, replacing notebooks and chat threads.</p>
+              <div class="tag-row"><span class="tag">distribution</span><span class="tag">credit control</span><span class="tag">saas</span></div>
+              <div class="card-actions">
+                <a class="btn btn-primary" href="https://pryank18.github.io/dispatch-os/" target="_blank" rel="noopener">Live demo ↗</a>
+                <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ebefd17b76681328d1ef67b614c73b4" target="_blank" rel="noopener">Case study ↗</a>
+              </div>
+              <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/dispatch-os/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/dispatch-os/blob/main/docs/PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/dispatch-os/blob/main/docs/BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/dispatch-os/blob/main/docs/MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/dispatch-os" target="_blank" rel="noopener">Code</a></div>
+            </article>
+
+            <article class="card">
+              <div class="card-top"><div class="card-icon">🏋️</div><div><h3>FitNexx</h3><div class="seg">B2C · Subscription · Fitness</div></div></div>
+              <p>Lifters follow fixed templates that ignore what they actually lift. <b>Every logged set adjusts the next one</b>: estimated 1RM, adaptive strength, hybrid and mobility programs, progress tracking, plus pricing pages to test the offer.</p>
+              <div class="tag-row"><span class="tag">b2c</span><span class="tag">adaptive</span><span class="tag">fitness</span></div>
+              <div class="card-actions">
+                <a class="btn btn-primary" href="https://pryank18.github.io/fitnexx/" target="_blank" rel="noopener">Live demo ↗</a>
+                <a class="btn btn-secondary" href="https://fern-appliance-85f.notion.site/3ecefd17b766812b9266c7de2fd7d751" target="_blank" rel="noopener">Case study ↗</a>
+              </div>
+              <div class="docs"><span>Docs:</span><a href="https://github.com/pryank18/fitnexx/blob/main/docs/product-spec.md" target="_blank" rel="noopener">Spec</a><a href="https://github.com/pryank18/fitnexx/blob/main/FitNexx_PRD.md" target="_blank" rel="noopener">PRD</a><a href="https://github.com/pryank18/fitnexx/blob/main/FitNexx_BRD.md" target="_blank" rel="noopener">BRD</a><a href="https://github.com/pryank18/fitnexx/blob/main/FitNexx_MRD.md" target="_blank" rel="noopener">MRD</a><a href="https://github.com/pryank18/fitnexx" target="_blank" rel="noopener">Code</a></div>
+            </article>
+
+            <article class="card mini soon">
+              <div class="card-top"><div class="card-icon">🏺</div><div><h3>ArchaeologyWala</h3><div class="seg">In progress · Content platform</div></div></div>
+              <p>A React content platform for archaeology and history: blog, learning tracks, resource library and a contributor submission workflow.</p>
+              <div class="card-actions"><a class="btn btn-secondary" href="https://github.com/pryank18/ArchaeologyWala" target="_blank" rel="noopener">Code ↗</a></div>
+            </article>
+          </div>
+        </details>
+        <p class="note">Demos run on fictional sample data and are not commercial systems; Pravesh is a live app ahead of its soft launch. Built AI-assisted with Claude as coding partner; problem framing, scope, requirements and QA are mine.</p>
       </section>
 
       <section class="block reveal" id="case-studies">
@@ -408,7 +427,7 @@
       </section>
 
       <section class="block reveal" id="leadership">
-        <div class="sec-head"><div><div class="sec-kicker">Leadership</div><h2>How I lead product</h2><p>Product and P&amp;L in one head: I judge features by margin, retention and adoption, not by how they look in a demo.</p></div></div>
+        <div class="sec-head"><div><div class="sec-kicker">Leadership</div><h2>How I lead product</h2><p>Today I run a country P&amp;L and an eight-person team. Before that I was one of four PMs working with the CEO, CTO and a 15-engineer team.</p></div></div>
         <div class="lead">
           <div class="panel">
             <h3>Operating principles</h3>
@@ -421,13 +440,13 @@
               <li><b>AI in the workflow, not on the slide.</b> Agents compress discovery, prototyping and ops; measure the time saved like any feature.</li>
             </ol>
           </div>
-          <div class="panel">
-            <h3>First 90 days in a product leadership seat</h3>
+          <details class="panel plan-wrap">
+            <summary><h3>How I'd approach the first 90 days in a new product role</h3></summary>
             <div class="plan">
               <div class="plan-row"><span class="d">0–30</span><div><b>Listen</b><span>Customer and site visits, data audit, P&amp;L by product line, 1:1s with every product, engineering and sales lead. Output: a written diagnosis.</span></div></div>
               <div class="plan-row"><span class="d">31–60</span><div><b>Focus</b><span>Pick the one or two bets that matter, write the kill/park list, set baselines. Output: one-page strategy and a scorecard the CEO and team sign.</span></div></div>
               <div class="plan-row"><span class="d">61–90</span><div><b>Ship &amp; build the system</b><span>First visible win against a baseline, operating cadence, hiring plan for the gaps.</span></div></div>
-            </div>
+            </details>
           </div>
         </div>
       </section>
@@ -437,7 +456,7 @@
         <div class="timeline panel">
           <div class="role"><div class="when">May 2026 – present</div><div><h3>Country Head &amp; Product Manager <small>· FuelBuddy Zimbabwe</small></h3><p>Asked by the CEO to run the business without letting go of the product. Sets local release priorities for the fuel management and vendor platforms, writes the requirements taking both into Zambia and Nigeria, runs the P&amp;L and credit book, and leads an eight-person team.</p></div></div>
           <div class="role"><div class="when">Apr 2025 – Apr 2026</div><div><h3>Product Manager <small>· FuelBuddy Zimbabwe</small></h3><p>Launched B2B bulk fuel from zero, setting up banking, procurement, credit, dispatch and reporting under written SOPs, while customer discovery fed the product backlog and the FMS was piloted for the local market.</p></div></div>
-          <div class="role"><div class="when">Jul 2023 – Apr 2025</div><div><h3>Product Manager <small>· FuelBuddy India</small></h3><p>One of four PMs working with the CEO, CTO and MD and the engineering team. Vendor platform, IoT FMS, UPI checkout and delivery speed; also the Africa market evaluation and the trading-area analysis behind the company's first leased retail fuel station.</p></div></div>
+          <div class="role"><div class="when">Jul 2023 – Apr 2025</div><div><h3>Product Manager <small>· FuelBuddy India</small></h3><p>One of four PMs working with the CEO, CTO and MD and a 15-engineer team. Vendor platform, IoT FMS, UPI checkout and delivery speed; also the Africa market evaluation and the trading-area analysis behind the company's first leased retail fuel station.</p></div></div>
           <div class="role"><div class="when">Jan 2023 – Jun 2023</div><div><h3>Research Associate <small>· FuelBuddy India</small></h3><p>EV-charging and fuel-retail research turned into product and GTM inputs; moved into product within six months.</p></div></div>
           <div class="role"><div class="when">Feb 2021 – Nov 2022</div><div><h3>Associate Product Manager <small>· Legal Suvidha, LegalTech B2B SaaS</small></h3><p>MVP to launch, the Agile product process, and onboarding experiments while website traffic grew roughly eightfold.</p></div></div>
           <div class="role"><div class="when">2021 – 2024</div><div><h3>Integration consultant, part-time <small>· Shopify API</small></h3><p>REST API and webhook integrations, catalogue and SKU sync for merchant stores.</p></div></div>
@@ -451,7 +470,7 @@
 
       <section class="contact panel reveal" id="contact">
         <h2>Looking for a product leader who owns the outcome, not just the roadmap?</h2>
-        <p>Open to Senior PM, Head of Product and product-led business leadership roles. Relocation, hybrid or remote; notice period 30 days.</p>
+        <p>Open to Senior PM, Lead PM, Product Lead and Head of Product roles. Relocation, hybrid or remote; notice period 30 days.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="mailto:wadherapryank@gmail.com">wadherapryank@gmail.com</a>
           <a class="btn btn-ghost" href="Pryank_Wadhera_Senior_Product_Manager_Resume.pdf" download>Download resume ↓</a>
@@ -653,12 +672,11 @@
       </script>
     <script>
     (function(){
-    var grid = document.querySelector('main.grid');
+    var grids = document.querySelectorAll('#products .grid');
     var gridBtn = document.getElementById('view-grid-btn');
     var listBtn = document.getElementById('view-list-btn');
     function setView(mode){
-    if(!grid) return;
-    grid.classList.toggle('list-view', mode === 'list');
+    grids.forEach(function(g){ g.classList.toggle('list-view', mode === 'list'); });
     if(gridBtn) gridBtn.classList.toggle('active', mode !== 'list');
     if(listBtn) listBtn.classList.toggle('active', mode === 'list');
     try{ localStorage.setItem('viewMode', mode); }catch(e){}
