@@ -1,0 +1,30 @@
+{
+  "id": "/",
+  "name": "Pryank Wadhera — Senior Product Manager",
+  "short_name": "Pryank",
+  "description": "Senior Product Manager building B2B SaaS, UPI payments and IoT platforms. Case studies, live demos, PRDs and resume.",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#0f1b2a",
+  "theme_color": "#0f1b2a",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "categories": ["business", "productivity"],
+  "icons": [
+    { "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    { "src": "/assets/screens/phone.png", "sizes": "780x1688", "type": "image/png", "form_factor": "narrow", "label": "Profile on a phone" },
+    { "src": "/assets/screens/desktop.png", "sizes": "1440x900", "type": "image/png", "form_factor": "wide", "label": "Profile on a laptop" }
+  ],
+  "shortcuts": [
+    { "name": "Download resume", "short_name": "Resume", "url": "/Pryank_Wadhera_Senior_Product_Manager_Resume.pdf", "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Case studies", "short_name": "Cases", "url": "/?source=app#cases", "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Products built", "short_name": "Builds", "url": "/?source=app#builds", "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

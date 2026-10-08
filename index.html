@@ -10,7 +10,7 @@
       gtag('js', new Date());
       gtag('config', 'G-W1S3EQ0SZY');
     </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Pryank Wadhera | Senior Product Manager — B2B SaaS, Payments, IoT</title>
     <meta name="description" content="Senior Product Manager in New Delhi building B2B SaaS, UPI payments and IoT platforms. Launched a business in Zimbabwe from zero. Open to roles worldwide.">
     <meta name="keywords" content="Pryank Wadhera, senior product manager, product manager portfolio, lead product manager, product lead, B2B SaaS product manager, payments product manager, UPI, IoT product manager, fuel-tech, platform products, 0 to 1, market entry, country head, P&amp;L, agentic AI, New Delhi, India, Dubai, UAE, remote, open to relocation">
@@ -37,11 +37,19 @@
     <meta name="twitter:image" content="https://pryank18.github.io/og-card.png">
     <meta name="theme-color" content="#f3f6f9">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="application-name" content="Pryank">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Pryank">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400..700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400..700&display=swap"></noscript>
     <script>
       /* Theme follows the visitor's local time of day: dawn, day, dusk, night. A manual pick lasts for the visit. */
       (function(){
@@ -56,6 +64,11 @@
         d.setAttribute('data-tone', TONE[th]);
         if (t) d.setAttribute('data-pinned', '');
         d.classList.add('js');
+        // the globe picture is the largest thing on first paint: fetch it straight away
+        var l = document.createElement('link');
+        l.rel = 'preload'; l.as = 'image'; l.href = 'assets/img/globe-' + th + '.webp';
+        try { l.fetchPriority = 'high'; } catch(e){}
+        document.head.appendChild(l);
       })();
     </script>
     <script type="application/ld+json">
@@ -63,7 +76,6 @@
       {"@type":"Person","@id":"https://pryank18.github.io/#person","name":"Pryank Wadhera","givenName":"Pryank","familyName":"Wadhera","url":"https://pryank18.github.io/","image":"https://pryank18.github.io/og-card.png","email":"mailto:wadherapryank@gmail.com",
        "jobTitle":"Country Head & Product Manager",
        "description":"Senior product manager building B2B SaaS, payments and IoT platforms, and taking them into new markets with P&L ownership. Based in New Delhi; open to roles anywhere in the world, on-site, hybrid or remote.",
-       "worksFor":{"@type":"Organization","name":"FuelBuddy"},
        "workLocation":[{"@type":"Place","name":"Harare, Zimbabwe","address":{"@type":"PostalAddress","addressLocality":"Harare","addressCountry":"ZW"}},{"@type":"Place","name":"Dubai, United Arab Emirates","address":{"@type":"PostalAddress","addressLocality":"Dubai","addressCountry":"AE"}}],
        "homeLocation":{"@type":"Place","name":"New Delhi, India","address":{"@type":"PostalAddress","addressLocality":"New Delhi","addressCountry":"IN"}},
        "address":{"@type":"PostalAddress","addressLocality":"New Delhi","addressCountry":"IN"},
@@ -285,7 +297,7 @@
       .build p.desc b{color:var(--ink);font-weight:600}
       .acts{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px}
       .docs{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:14px;font-size:14px;color:var(--ink-3)}
-      .docs a{color:var(--ink-2);text-underline-offset:3px;text-decoration-color:var(--line)}
+      .docs a{color:var(--ink-2);text-underline-offset:3px;text-decoration-color:var(--line);display:inline-block;padding:3px 0}
       .docs a:hover{color:var(--ink);text-decoration-color:currentColor}
       .build.wide{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start;border:1px solid var(--line);background:var(--bg-2);border-radius:14px;padding:28px}
       .build.wide .build-body{padding:0}
@@ -382,7 +394,17 @@
       .mail{font-family:var(--serif);font-size:clamp(26px,3vw,36px);color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor;display:inline-block;margin-top:28px;line-height:1.2}
       footer{border-top:1px solid var(--line);font-size:14px;color:var(--ink-3)}
       footer .wrap{padding-top:20px;padding-bottom:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-      footer a{color:var(--ink-2)}
+      footer a{color:var(--ink-2);display:inline-block;padding:3px 0}
+
+      /* ---------- app shell: phones and tablets ---------- */
+      html{-webkit-tap-highlight-color:transparent}
+      .nav{padding-top:env(safe-area-inset-top)}
+      .nav-inner{padding-left:max(28px, env(safe-area-inset-left));padding-right:max(28px, env(safe-area-inset-right))}
+      .tabbar{display:none}
+      @media (hover:none){
+        .btn:active,.doc:active,.tab:active,.mode:active,.shot:active,.deep summary:active{transform:scale(.97)}
+        .btn,.doc,.tab,.mode,.shot{transition:transform .12s ease, background-color .15s, border-color .15s}
+      }
 
       /* ---------- responsive ---------- */
       @media (max-width:1040px){
@@ -405,6 +427,36 @@
         .build.wide{grid-template-columns:1fr}
         .build.wide .aside{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:20px}
       }
+      @media (max-width:1040px){
+        body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+        .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:45;
+          padding:6px max(6px, env(safe-area-inset-left)) calc(6px + env(safe-area-inset-bottom)) max(6px, env(safe-area-inset-right));
+          background:var(--nav);-webkit-backdrop-filter:saturate(1.4) blur(16px);backdrop-filter:saturate(1.4) blur(16px);border-top:1px solid var(--line)}
+        .tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:50px;border-radius:12px;text-decoration:none;color:var(--ink-3);font-size:11.5px;font-weight:600;letter-spacing:.01em}
+        .tab svg{width:22px;height:22px}
+        .tab[aria-current="true"]{color:var(--ink);background:var(--accent-soft)}
+        .tab[aria-current="true"] svg{color:var(--accent)}
+        .mode{min-width:44px;height:44px}
+        .nav .btn-sm{min-height:44px;padding:0 16px}
+        .btn-sm{min-height:44px}
+        .docs{gap:6px 6px}
+        .docs a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;justify-content:center;padding:0 12px;border:1px solid var(--line);border-radius:9px;text-decoration:none;background:var(--bg-2)}
+        .btn{min-height:44px}
+        .brand{min-height:44px}
+        .mail{display:inline-flex;align-items:center;min-height:44px}
+        footer a{display:inline-flex;align-items:center;min-height:44px}
+        .deep summary{padding:24px 0}
+        .globe{height:min(96vw, 520px);height:min(96vw, 520px, 86svh)}
+      }
+      @media (max-width:1040px) and (orientation:landscape) and (max-height:520px){
+        .tabbar{padding-top:3px;padding-bottom:calc(3px + env(safe-area-inset-bottom))}
+        .tab{min-height:44px;flex-direction:row;gap:6px}
+        body{padding-bottom:calc(48px + env(safe-area-inset-bottom))}
+      }
+      @media (max-width:350px){
+        .brand .name{display:none}
+        .brand{min-width:44px;justify-content:center}
+      }
       @media (max-width:760px){
         body{font-size:16.5px}
         .wrap,.nav-inner,.ledger ul{padding-left:18px;padding-right:18px}
@@ -418,7 +470,8 @@
         .status{border-radius:12px;font-size:13.5px;align-items:flex-start}
         .status i{margin-top:6px;flex:none}
         .hero-grid{padding-top:36px}
-        .hero h1{margin-top:20px}
+        .hero h1{margin-top:20px;font-size:clamp(42px, 14vw, 64px);white-space:nowrap}
+        .brand .name{white-space:nowrap}
         .btn{padding:12px 16px}
         .ctas .btn{flex:1 1 auto}
         .ledger ul{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -454,7 +507,7 @@
 
     <nav class="nav" id="nav" aria-label="Primary">
       <div class="nav-inner">
-        <a class="brand" href="#top" aria-label="Pryank Wadhera, back to top"><span class="mono" aria-hidden="true">P</span><span class="name">Pryank Wadhera</span></a>
+        <a class="brand" href="#top" title="Back to top"><span class="mono" aria-hidden="true">P</span><span class="name">Pryank Wadhera</span></a>
         <div class="nav-links">
           <a href="#shipped">Track record</a>
           <a href="#builds">Builds</a>
@@ -757,13 +810,13 @@
             <p>Each move added a layer: understanding users, building for them, then owning the economics around the product.</p>
           </div>
           <ol class="roles">
-            <li class="role now"><div class="when">May 2026 – present</div><div><h3>Country Head &amp; Product Manager <span>at FuelBuddy Zimbabwe</span></h3><p>Asked by the CEO to run the business without letting go of the product. Sets local release priorities for the fuel management and vendor platforms, writes the requirements taking both into Zambia and Nigeria, runs the P&amp;L and credit book, and leads an eight-person team. Engaged through the group's Dubai (UAE) entity, coordinating with teams across the UAE, India, Zambia and Mozambique.</p></div></li>
-            <li class="role"><div class="when">Apr 2025 – Apr 2026</div><div><h3>Product Manager <span>at FuelBuddy Zimbabwe</span></h3><p>Found product fit for the market: 40+ discovery interviews fed the backlog and the fuel management system was piloted locally, while I launched B2B bulk fuel from zero with banking, procurement, credit and dispatch under written SOPs.</p></div></li>
-            <li class="role"><div class="when">Jul 2023 – Apr 2025</div><div><h3>Product Manager <span>at FuelBuddy India</span></h3><p>One of four PMs working with the CEO, CTO and MD and a 15-engineer team. Vendor platform, IoT FMS, UPI checkout and delivery speed; also the Africa market evaluation and trading-area analysis for retail fuel sites.</p></div></li>
-            <li class="role"><div class="when">Jan 2023 – Jun 2023</div><div><h3>Research Associate <span>at FuelBuddy India</span></h3><p>EV-charging and fuel-retail research turned into product and GTM inputs; moved into product within six months.</p></div></li>
-            <li class="role"><div class="when">Feb 2021 – Nov 2022</div><div><h3>Associate Product Manager <span>at Legal Suvidha, LegalTech B2B SaaS</span></h3><p>MVP to launch, the Agile product process, and onboarding experiments while website traffic grew roughly eightfold.</p></div></li>
+            <li class="role now"><div class="when">May 2026 – present</div><div><h3>Country Head &amp; Product Manager <span>at a fuel-tech company, Zimbabwe</span></h3><p>Asked by the CEO to run the business without letting go of the product. Sets local release priorities for the fuel management and vendor platforms, writes the requirements taking both into Zambia and Nigeria, runs the P&amp;L and credit book, and leads an eight-person team. Engaged through the group's Dubai (UAE) entity, coordinating with teams across the UAE, India, Zambia and Mozambique.</p></div></li>
+            <li class="role"><div class="when">Apr 2025 – Apr 2026</div><div><h3>Product Manager <span>at a fuel-tech company, Zimbabwe</span></h3><p>Found product fit for the market: 40+ discovery interviews fed the backlog and the fuel management system was piloted locally, while I launched B2B bulk fuel from zero with banking, procurement, credit and dispatch under written SOPs.</p></div></li>
+            <li class="role"><div class="when">Jul 2023 – Apr 2025</div><div><h3>Product Manager <span>at a fuel-tech company, India</span></h3><p>One of four PMs working with the CEO, CTO and MD and a 15-engineer team. Vendor platform, IoT FMS, UPI checkout and delivery speed; also the Africa market evaluation and trading-area analysis for retail fuel sites.</p></div></li>
+            <li class="role"><div class="when">Jan 2023 – Jun 2023</div><div><h3>Research Associate <span>at a fuel-tech company, India</span></h3><p>EV-charging and fuel-retail research turned into product and GTM inputs; moved into product within six months.</p></div></li>
+            <li class="role"><div class="when">Feb 2021 – Nov 2022</div><div><h3>Associate Product Manager <span>at a LegalTech B2B SaaS company</span></h3><p>MVP to launch, the Agile product process, and onboarding experiments while website traffic grew roughly eightfold.</p></div></li>
             <li class="role"><div class="when">2021 – 2024</div><div><h3>Integration consultant, part-time <span>on the Shopify API</span></h3><p>REST API and webhook integrations, catalogue and SKU sync for merchant stores.</p></div></li>
-            <li class="role"><div class="when">Aug 2019 – Jan 2021</div><div><h3>Research Associate <span>at Citizens' Foundation for Policy Solutions</span></h3><p>Pollution-control policy research for the Delhi Government.</p></div></li>
+            <li class="role"><div class="when">Aug 2019 – Jan 2021</div><div><h3>Research Associate <span>at a public-policy think tank, New Delhi</span></h3><p>Pollution-control policy research for the Delhi Government.</p></div></li>
           </ol>
           <div class="why">
             <div>
@@ -798,6 +851,13 @@
         </div>
       </div>
     </section>
+    <nav class="tabbar" id="tabbar" aria-label="Sections">
+      <a class="tab" href="#shipped"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16M6 15l4-5 3 3 5-7"/></svg>Work</a>
+      <a class="tab" href="#builds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>Builds</a>
+      <a class="tab" href="#cases"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5"/></svg>Cases</a>
+      <a class="tab" href="#leadership"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.2 2.7-5.5 6-5.5s6 2.3 6 5.5M15.5 5.2a3 3 0 0 1 0 5.6M21 20c0-2.2-1.3-4-3.3-4.9"/></svg>Lead</a>
+      <a class="tab" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>Contact</a>
+    </nav>
     <footer>
       <div class="wrap"><span>© 2026 Pryank Wadhera</span><a href="https://github.com/pryank18/pryank18.github.io">Source on GitHub</a></div>
     </footer>
@@ -839,6 +899,24 @@
           }
         });
 
+        // bottom tab bar: highlight the section in view
+        var tabs = Array.prototype.slice.call(document.querySelectorAll('#tabbar .tab'));
+        if (tabs.length && 'IntersectionObserver' in window) {
+          var ids = tabs.map(function(t){ return t.getAttribute('href').slice(1); });
+          var inView = {};
+          var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(en){ inView[en.target.id] = en.isIntersecting; });
+            var cur = null; ids.forEach(function(id){ if (inView[id] && !cur) cur = id; });
+            tabs.forEach(function(t){ t.setAttribute('aria-current', t.getAttribute('href') === '#' + cur ? 'true' : 'false'); });
+          }, { rootMargin: '-45% 0px -50% 0px' });
+          ids.forEach(function(id){ var el = document.getElementById(id); if (el) io.observe(el); });
+        }
+
+        // installable app + offline reading
+        if ('serviceWorker' in navigator && location.protocol === 'https:') {
+          window.addEventListener('load', function(){ navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(function(){}); });
+        }
+
         // nav border once the page scrolls
         var nav = document.getElementById('nav');
         var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 8); };
@@ -862,6 +940,26 @@
         }
       })();
     </script>
-    <script type="module" src="assets/js/globe.js"></script>
+    <script type="module">
+      // Load the 3D globe only after the page has painted, so text and buttons come first on slow phones.
+      // Only devices with a real graphics chip get the live 3D globe; others keep the identical still image.
+      const hasGPU = () => {
+        try {
+          const c = document.createElement('canvas');
+          const gl = c.getContext('webgl2') || c.getContext('webgl');
+          if (!gl) return false;
+          const ext = gl.getExtension('WEBGL_debug_renderer_info');
+          const name = String((ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER)) || '');
+          const lose = gl.getExtension('WEBGL_lose_context'); if (lose) lose.loseContext();
+          return !/swiftshader|llvmpipe|softpipe|software|basic render/i.test(name);
+        } catch (e) { return false; }
+      };
+      const boot = () => {
+        if (hasGPU()) import('./assets/js/globe.js');
+        else { const g = document.getElementById('globe'); if (g) g.classList.add('is-fallback'); }
+      };
+      const later = () => ('requestIdleCallback' in window) ? requestIdleCallback(boot, { timeout: 1500 }) : setTimeout(boot, 300);
+      if (document.readyState === 'complete') later(); else window.addEventListener('load', later, { once: true });
+    </script>
   </body>
 </html>
