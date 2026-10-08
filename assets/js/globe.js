@@ -13,13 +13,32 @@ function start(host) {
   const canvasWrap = host.querySelector('.globe-canvas');
   const labelEls = Array.from(host.querySelectorAll('.globe-label'));
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Phones and low-core devices draw at ~30fps and a lower pixel ratio: same look, far less battery.
+  const lowPower = window.matchMedia('(max-width: 760px)').matches || (navigator.hardwareConcurrency || 8) <= 4;
+  // Label sizes are measured here (on resize and once fonts load), never inside the frame loop.
+  const labelSizes = [];
+  function measureLabels() {
+    labelEls.forEach((lab, i) => {
+      const span = lab.firstElementChild;
+      labelSizes[i] = span ? [span.offsetWidth, span.offsetHeight] : [0, 0];
+    });
+  }
   const DEG = Math.PI / 180;
   let visible = true, running = false, needs = true, started = false;
   const t0 = performance.now();
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lowPower ? 1.75 : 2));
   renderer.setClearColor(0x000000, 0);
+  // No graphics chip (software rendering): draw a still frame and only redraw when the visitor drags.
+  let software = false;
+  try {
+    const gl = renderer.getContext();
+    const ext = gl.getExtension('WEBGL_debug_renderer_info');
+    const name = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
+    software = /swiftshader|llvmpipe|softpipe|software|basic render/i.test(String(name || ''));
+  } catch (_) {}
+  const calm = reduced || software;
   canvasWrap.appendChild(renderer.domElement);
   renderer.domElement.setAttribute('aria-hidden', 'true');
 
@@ -137,7 +156,7 @@ function start(host) {
     const mesh = new THREE.Mesh(geo, arcMat);
     mesh.renderOrder = 3;
     const full = geo.index.count;
-    geo.setDrawRange(0, reduced ? full : 0);
+    geo.setDrawRange(0, calm ? full : 0);
     spin.add(mesh);
     const pulse = new THREE.Mesh(new THREE.SphereGeometry(0.016, 16, 16), pulseMat.clone());
     pulse.renderOrder = 4;
@@ -235,10 +254,12 @@ function start(host) {
     camera.updateProjectionMatrix();
     const pxPerUnit = H / (2 * Math.tan(camera.fov * DEG / 2) * camera.position.z);
     dotsMat.uniforms.uSize.value = clamp(pxPerUnit * 0.0125, 1.4, 4.2) * renderer.getPixelRatio();
+    measureLabels();
     kick();
   }
   new ResizeObserver(resize).observe(canvasWrap);
   resize();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measureLabels(); kick(); });
 
   // ---------- labels ----------
   const tmp = new THREE.Vector3(), nrm = new THREE.Vector3(), camDir = new THREE.Vector3();
@@ -263,8 +284,7 @@ function start(host) {
     labelEls.forEach((lab, i) => {
       if (!pts[i]) return;
       const { x, y, facing } = pts[i];
-      const span = lab.firstElementChild;
-      const w = span ? span.offsetWidth : 0, h = span ? span.offsetHeight : 0;
+      const [w, h] = labelSizes[i] || [0, 0];
       const prefLeft = lab.dataset.side === 'left', prefBelow = lab.dataset.v === 'below';
       const spots = [
         [prefLeft, prefBelow], [!prefLeft, prefBelow], [prefLeft, !prefBelow], [!prefLeft, !prefBelow]
@@ -280,8 +300,11 @@ function start(host) {
       let pick = spots.find(sp => { const b = boxOf(sp); return inFrame(b) && clear(b); })
               || spots.find(sp => inFrame(boxOf(sp))) || spots[0];
       lastSpot[i] = pick;
-      lab.classList.toggle('left', pick[0]);
-      lab.classList.toggle('below', pick[1]);
+      if (!lab._spot || lab._spot[0] !== pick[0] || lab._spot[1] !== pick[1]) {
+        lab.classList.toggle('left', pick[0]);
+        lab.classList.toggle('below', pick[1]);
+        lab._spot = pick;
+      }
       const visibleNow = facing > 0.18;
       if (visibleNow) placed.push(boxOf(pick));
       lab.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
@@ -293,7 +316,13 @@ function start(host) {
   // ---------- loop ----------
   function kick() { needs = true; if (!running && visible) { running = true; requestAnimationFrame(frame); } }
 
+  let lastDraw = 0;
   function frame(now) {
+    if (lowPower && !dragging && now - lastDraw < 31) {
+      if (visible) requestAnimationFrame(frame); else running = false;
+      return;
+    }
+    lastDraw = now;
     const t = (now - t0) / 1000;
     const idle = now - lastInteract > 2600;
 
@@ -302,15 +331,15 @@ function start(host) {
       velYaw *= 0.93; velPitch *= 0.9;
       if (idle) {
         userYaw = wrap(userYaw) * 0.965; userPitch *= 0.95;
-        if (!reduced) swayT += 1 / 60;
+        if (!calm) swayT += 1 / 60;
       }
     }
-    const sway = reduced ? 0 : Math.sin(swayT * 0.22) * 12 * DEG;
+    const sway = calm ? 0 : Math.sin(swayT * 0.22) * 12 * DEG;
     spin.rotation.y = BASE_YAW + sway + userYaw;
     pivot.rotation.x = BASE_PITCH + userPitch;
 
     // intro: arcs draw in, then pulses travel
-    if (!reduced) {
+    if (!calm) {
       arcs.forEach((a, i) => {
         const p = clamp((t - 0.6 - a.delay) / 1.5, 0, 1);
         const e = 1 - Math.pow(1 - p, 3);
@@ -338,7 +367,7 @@ function start(host) {
     needs = false;
 
     const settling = Math.abs(velYaw) > 1e-4 || Math.abs(userYaw) > 1e-3 || Math.abs(userPitch) > 1e-3;
-    const keep = visible && (!reduced || dragging || settling || needs || !started);
+    const keep = visible && (!calm || dragging || settling || needs || !started);
     if (keep) requestAnimationFrame(frame); else running = false;
   }
 
