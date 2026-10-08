@@ -105,13 +105,16 @@ function start(host) {
   const HARARE = { lat: -17.83, lon: 31.05 };
   const LUSAKA = { lat: -15.39, lon: 28.32 };
   const LAGOS = { lat: 6.52, lon: 3.38 };
+  const DUBAI = { lat: 25.2, lon: 55.27 };
   // New Delhi -> Harare: launched and run. Harare -> Lusaka and Lagos: next markets for the product.
   const routes = [
     { from: HOME, to: HARARE, delay: 0.3 },
     { from: HARARE, to: LUSAKA, delay: 1.5 },
-    { from: HARARE, to: LAGOS, delay: 1.7 }
+    { from: HARARE, to: LAGOS, delay: 1.7 },
+    { from: DUBAI, to: HARARE, delay: 1.0 }   // engagement and team coordination run through Dubai
   ];
-  const cities = [HOME, HARARE, LUSAKA, LAGOS];
+  // order matches the .globe-label elements in index.html
+  const cities = [HOME, HARARE, LUSAKA, LAGOS, DUBAI];
 
   const arcMat = new THREE.MeshBasicMaterial({ color: 0xf2a93b, transparent: true, opacity: 0.95, depthWrite: false });
   const pulseMat = new THREE.MeshBasicMaterial({ color: 0xffe2ad, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
@@ -199,11 +202,11 @@ function start(host) {
     oceanMat.color.set(get('--globe-ocean', '#13253a'));
     dotsMat.uniforms.uColor.value.set(get('--globe-land', '#d9c7a3'));
     glowMat.uniforms.uColor.value.set(get('--globe-glow', '#5c8db8'));
-    const light = document.documentElement.dataset.mode === 'light';
+    const light = document.documentElement.dataset.tone === 'light';
     glowMat.blending = light ? THREE.NormalBlending : THREE.AdditiveBlending;
     glowMat.uniforms.uStrength.value = light ? 0.5 : 0.85;
     glowMat.needsUpdate = true;
-    dotsMat.uniforms.uOpacity.value = light ? 0.8 : 0.9;
+    dotsMat.uniforms.uOpacity.value = 0.92;
     const arc = get('--globe-arc', '#f2a93b');
     arcMat.color.set(arc); markerMat.color.set(arc);
     const home = get('--globe-home', '#edf1f5');
@@ -216,7 +219,7 @@ function start(host) {
     });
     kick();
   }
-  new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-mode'] });
+  new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'data-tone'] });
   applyTheme();
 
   // ---------- size ----------
@@ -240,25 +243,52 @@ function start(host) {
   // ---------- labels ----------
   const tmp = new THREE.Vector3(), nrm = new THREE.Vector3(), camDir = new THREE.Vector3();
   const labelAnchors = cities.map(c => toVec(c.lat, c.lon, 1.0));
+  // Each label tries up to four spots around its city (preferred side first, then the other side,
+  // above then below) and takes the first that stays in frame and clears labels already placed.
+  // The previous spot is tried first so labels don't jump around while the globe sways.
+  const lastSpot = [];
+  function project(a) {
+    tmp.copy(a).applyMatrix4(spin.matrixWorld);
+    nrm.copy(tmp).normalize();
+    camDir.copy(camera.position).sub(tmp).normalize();
+    const facing = nrm.dot(camDir);
+    tmp.project(camera);
+    return { x: (tmp.x * 0.5 + 0.5) * W, y: (-tmp.y * 0.5 + 0.5) * H, facing };
+  }
   function placeLabels() {
+    const pts = labelAnchors.map(project);
+    // city dots are obstacles too, so no label hides another city's marker
+    const dots = pts.map((p, j) => p.facing > 0.18 ? [p.x - 9, p.y - 9, p.x + 9, p.y + 9, j] : null).filter(Boolean);
+    const placed = [];
     labelEls.forEach((lab, i) => {
-      const a = labelAnchors[i];
-      if (!a) return;
-      tmp.copy(a).applyMatrix4(spin.matrixWorld);
-      nrm.copy(tmp).normalize();
-      camDir.copy(camera.position).sub(tmp).normalize();
-      const facing = nrm.dot(camDir);
-      tmp.project(camera);
-      const x = (tmp.x * 0.5 + 0.5) * W, y = (-tmp.y * 0.5 + 0.5) * H;
-      // keep the label inside the box: prefer its side, flip when it would spill over an edge
-      const w = lab.firstElementChild ? lab.firstElementChild.offsetWidth : 0;
-      const prefersLeft = lab.dataset.side === 'left';
-      const fitsLeft = x - 14 - w >= 4, fitsRight = x + 14 + w <= W - 4;
-      lab.classList.toggle('left', prefersLeft ? (fitsLeft || !fitsRight) : (!fitsRight && fitsLeft));
+      if (!pts[i]) return;
+      const { x, y, facing } = pts[i];
+      const span = lab.firstElementChild;
+      const w = span ? span.offsetWidth : 0, h = span ? span.offsetHeight : 0;
+      const prefLeft = lab.dataset.side === 'left', prefBelow = lab.dataset.v === 'below';
+      const spots = [
+        [prefLeft, prefBelow], [!prefLeft, prefBelow], [prefLeft, !prefBelow], [!prefLeft, !prefBelow]
+      ];
+      if (lastSpot[i]) spots.unshift(lastSpot[i]);
+      const boxOf = ([left, below]) => {
+        const x0 = left ? x - 14 - w : x + 14, y0 = below ? y + 8 : y - 15;
+        return [x0, y0, x0 + w, y0 + h];
+      };
+      const inFrame = b => b[0] >= 4 && b[2] <= W - 4 && b[1] >= 4 && b[3] <= H - 4;
+      const apart = (b, p) => b[2] + 6 < p[0] || b[0] - 6 > p[2] || b[3] + 4 < p[1] || b[1] - 4 > p[3];
+      const clear = b => placed.every(p => apart(b, p)) && dots.every(d => d[4] === i || apart(b, d));
+      let pick = spots.find(sp => { const b = boxOf(sp); return inFrame(b) && clear(b); })
+              || spots.find(sp => inFrame(boxOf(sp))) || spots[0];
+      lastSpot[i] = pick;
+      lab.classList.toggle('left', pick[0]);
+      lab.classList.toggle('below', pick[1]);
+      const visibleNow = facing > 0.18;
+      if (visibleNow) placed.push(boxOf(pick));
       lab.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
       lab.style.opacity = String(clamp((facing - 0.18) / 0.2, 0, 1) * (started ? 1 : 0));
     });
   }
+
 
   // ---------- loop ----------
   function kick() { needs = true; if (!running && visible) { running = true; requestAnimationFrame(frame); } }
