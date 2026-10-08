@@ -3,14 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pryank Wadhera — Senior Product Manager | B2B SaaS, Payments, IoT &amp; 0→1 Platforms</title>
-    <meta name="description" content="Pryank Wadhera is a senior product manager who builds B2B SaaS, payments and IoT platforms, then takes them to new markets. Currently Country Head &amp; Product Manager for a fuel-tech business in Zimbabwe. Case studies, live demos and PRDs.">
-    <meta name="keywords" content="Pryank Wadhera, product manager, senior product manager, lead product manager, product lead, B2B SaaS, platform product, UPI payments, IoT, fuel management system, vendor management system, 0 to 1, market entry, P&amp;L, agentic AI, New Delhi">
+    <title>Pryank Wadhera | Senior Product Manager — B2B SaaS, Payments, IoT</title>
+    <meta name="description" content="Senior Product Manager in New Delhi building B2B SaaS, UPI payments and IoT platforms. Launched a business in Zimbabwe from zero. Open to India, Dubai, remote.">
+    <meta name="keywords" content="Pryank Wadhera, senior product manager, product manager portfolio, lead product manager, product lead, B2B SaaS product manager, payments product manager, UPI, IoT product manager, fuel-tech, platform products, 0 to 1, market entry, country head, P&amp;L, agentic AI, New Delhi, India, Dubai, UAE">
     <meta name="author" content="Pryank Wadhera">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <link rel="canonical" href="https://pryank18.github.io/">
+    <link rel="me" href="https://linkedin.com/in/pryankwadhera">
+    <link rel="me" href="https://github.com/pryank18">
     <meta property="og:type" content="profile">
     <meta property="og:site_name" content="Pryank Wadhera">
+    <meta property="og:locale" content="en_IN">
     <meta property="og:title" content="Pryank Wadhera — Senior Product Manager for B2B SaaS, Payments &amp; IoT Platforms">
     <meta property="og:description" content="Vendor platforms, UPI checkout and IoT systems shipped, then a fuel business taken from zero to 1.5M litres a month in a new country. Case studies, live demos and PRDs.">
     <meta property="og:url" content="https://pryank18.github.io/">
@@ -24,64 +27,100 @@
     <meta name="twitter:title" content="Pryank Wadhera — Senior Product Manager for B2B SaaS, Payments &amp; IoT Platforms">
     <meta name="twitter:description" content="Products shipped inside a company, products built on my own, and a market opened from zero. Live demos, PRDs and case studies.">
     <meta name="twitter:image" content="https://pryank18.github.io/og-card.png">
-    <meta name="theme-color" content="#0f1b2a">
+    <meta name="theme-color" content="#f3f6f9">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="modulepreload" href="assets/vendor/three.module.min.js">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400..700&display=swap" rel="stylesheet">
     <script>
+      /* Theme follows the visitor's local time of day: dawn, day, dusk, night. A manual pick lasts for the visit. */
       (function(){
         var d = document.documentElement, t = null;
-        try { t = localStorage.getItem('pw-theme'); } catch(e){}
-        if (t === 'day') t = 'light'; if (t === 'dusk') t = 'dark';
-        if (t !== 'light' && t !== 'dark') t = null;
-        var sys = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        d.setAttribute('data-mode', t || sys);
+        var TONE = {dawn:'light', day:'light', dusk:'dark', night:'dark'};
+        try { t = sessionStorage.getItem('pw-theme'); } catch(e){}
+        if (!TONE[t]) t = null;
+        var h = new Date().getHours();
+        var auto = h >= 5 && h < 9 ? 'dawn' : h >= 9 && h < 16 ? 'day' : h >= 16 && h < 19 ? 'dusk' : 'night';
+        var th = t || auto;
+        d.setAttribute('data-theme', th);
+        d.setAttribute('data-tone', TONE[th]);
         if (t) d.setAttribute('data-pinned', '');
         d.classList.add('js');
       })();
     </script>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@graph":[
-      {"@type":"Person","@id":"https://pryank18.github.io/#person","name":"Pryank Wadhera","url":"https://pryank18.github.io/","image":"https://pryank18.github.io/og-card.png","email":"mailto:wadherapryank@gmail.com",
+      {"@type":"Person","@id":"https://pryank18.github.io/#person","name":"Pryank Wadhera","givenName":"Pryank","familyName":"Wadhera","url":"https://pryank18.github.io/","image":"https://pryank18.github.io/og-card.png","email":"mailto:wadherapryank@gmail.com",
        "jobTitle":"Country Head & Product Manager",
-       "description":"Senior product manager building B2B SaaS, payments and IoT platforms, and taking them into new markets with P&L ownership.",
+       "description":"Senior product manager building B2B SaaS, payments and IoT platforms, and taking them into new markets with P&L ownership. Based in New Delhi; open to roles in India, Dubai (UAE) and remote.",
+       "worksFor":{"@type":"Organization","name":"FuelBuddy"},
+       "workLocation":[{"@type":"Place","name":"Harare, Zimbabwe","address":{"@type":"PostalAddress","addressLocality":"Harare","addressCountry":"ZW"}},{"@type":"Place","name":"Dubai, United Arab Emirates","address":{"@type":"PostalAddress","addressLocality":"Dubai","addressCountry":"AE"}}],
+       "homeLocation":{"@type":"Place","name":"New Delhi, India","address":{"@type":"PostalAddress","addressLocality":"New Delhi","addressCountry":"IN"}},
        "address":{"@type":"PostalAddress","addressLocality":"New Delhi","addressCountry":"IN"},
+       "hasOccupation":{"@type":"Occupation","name":"Senior Product Manager","occupationLocation":[{"@type":"City","name":"New Delhi"},{"@type":"City","name":"Dubai"}],"skills":"Product strategy, 0 to 1 products, B2B SaaS, payments and UPI checkout, IoT platforms, market entry, P&L ownership, program management, agentic AI"},
        "alumniOf":[{"@type":"CollegeOrUniversity","name":"O.P. Jindal Global University"},{"@type":"CollegeOrUniversity","name":"Deccan College Post-Graduate and Research Institute"},{"@type":"CollegeOrUniversity","name":"University of Delhi"}],
        "knowsLanguage":["English","Hindi","Punjabi","Marathi"],
-       "knowsAbout":["Product management","Product strategy","0 to 1 products","B2B SaaS","Platform products","UPI payments","Checkout and reconciliation","IoT fuel management systems","Vendor management systems","REST APIs and integrations","Product analytics","A/B testing","Go-to-market","Market entry","P&L ownership","Agentic AI","LangGraph"],
-       "sameAs":["https://linkedin.com/in/pryankwadhera","https://github.com/pryank18","https://fern-appliance-85f.notion.site/Pryank-Wadhera-3eaefd17b76680c88283e85a3217ff52"]},
-      {"@type":"ProfilePage","@id":"https://pryank18.github.io/#page","url":"https://pryank18.github.io/","name":"Pryank Wadhera — Senior Product Manager","mainEntity":{"@id":"https://pryank18.github.io/#person"},"dateModified":"2026-10-08"}
+       "knowsAbout":["Product management","Senior product management","Product strategy","0 to 1 products","B2B SaaS","Platform products","UPI payments","Checkout and reconciliation","IoT fuel management systems","Vendor management systems","Fuel-tech","REST APIs and integrations","Product analytics","A/B testing","Go-to-market","Market entry","Country management","P&L ownership","Program management","Agentic AI","LangGraph"],
+       "sameAs":["https://linkedin.com/in/pryankwadhera","https://www.linkedin.com/in/pryankwadhera","https://github.com/pryank18","https://fern-appliance-85f.notion.site/Pryank-Wadhera-3eaefd17b76680c88283e85a3217ff52"]},
+      {"@type":"WebSite","@id":"https://pryank18.github.io/#website","url":"https://pryank18.github.io/","name":"Pryank Wadhera","alternateName":"Pryank Wadhera — Product Manager portfolio","inLanguage":"en-IN","publisher":{"@id":"https://pryank18.github.io/#person"}},
+      {"@type":"ProfilePage","@id":"https://pryank18.github.io/#page","url":"https://pryank18.github.io/","name":"Pryank Wadhera — Senior Product Manager","isPartOf":{"@id":"https://pryank18.github.io/#website"},"mainEntity":{"@id":"https://pryank18.github.io/#person"},"inLanguage":"en-IN","dateModified":"2026-10-08"}
     ]}
     </script>
     <style>
-      /* ---------- tokens ---------- */
+      /* ---------- tokens: four times of day ---------- */
       :root{
-        --bg:#f4f6f8; --bg-2:#ffffff; --bg-3:#e9edf1;
-        --line:#d7dee6; --line-strong:#102033;
-        --ink:#102033; --ink-2:#3c4c5f; --ink-3:#5f6e80;
-        --accent:#9a5208; --accent-big:#b5650d; --accent-soft:rgba(181,101,13,.1);
-        --btn:#102033; --btn-ink:#ffffff; --btn-hover:#1d3550;
-        --nav:rgba(244,246,248,.82);
-        --focus:#1f5fd1;
-        --shadow:0 1px 2px rgba(16,32,51,.06), 0 12px 32px -12px rgba(16,32,51,.22);
-        --globe-ocean:#dbe3ec; --globe-land:#2d405a; --globe-glow:#9fb7d0;
-        --globe-arc:#c46a0a; --globe-home:#102033; --globe-pulse:#7a3d00;
         --serif:'Instrument Serif', 'Iowan Old Style', Georgia, serif;
         --sans:'Schibsted Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
         --maxw:1180px;
+      }
+      :root, :root[data-theme="day"]{
+        --bg:#f3f6f9; --bg-2:#ffffff; --bg-3:#e6ecf2;
+        --line:#d5dde6; --line-strong:#0f2338;
+        --ink:#0f2338; --ink-2:#3a4c60; --ink-3:#5d6e81;
+        --accent:#9a5208; --accent-big:#b5650d; --accent-soft:rgba(181,101,13,.1);
+        --btn:#0f2338; --btn-ink:#ffffff; --btn-hover:#1d3a58;
+        --nav:rgba(243,246,249,.84); --chip:rgba(255,255,255,.9);
+        --focus:#1f5fd1;
+        --shadow:0 1px 2px rgba(15,35,56,.06), 0 12px 32px -12px rgba(15,35,56,.22);
+        --globe-ocean:#1f4e78; --globe-land:#f3e4c6; --globe-glow:#7fb2e0;
+        --globe-arc:#f2a93b; --globe-home:#ffffff; --globe-pulse:#fff1d2;
         color-scheme:light;
       }
-      :root[data-mode="dark"]{
+      :root[data-theme="dawn"]{
+        --bg:#f2f0f6; --bg-2:#ffffff; --bg-3:#e7e3ef;
+        --line:#dbd5e4; --line-strong:#2b2140;
+        --ink:#2b2140; --ink-2:#554a66; --ink-3:#6f6482;
+        --accent:#9c3355; --accent-big:#b5416a; --accent-soft:rgba(181,65,106,.1);
+        --btn:#2b2140; --btn-ink:#ffffff; --btn-hover:#3e3059;
+        --nav:rgba(242,240,246,.84); --chip:rgba(255,255,255,.9);
+        --focus:#5b4bd1;
+        --shadow:0 1px 2px rgba(43,33,64,.06), 0 12px 32px -12px rgba(43,33,64,.24);
+        --globe-ocean:#3a3f72; --globe-land:#f7d3bd; --globe-glow:#f0a3a0;
+        --globe-arc:#ff9a6b; --globe-home:#ffffff; --globe-pulse:#ffe4d2;
+        color-scheme:light;
+      }
+      :root[data-theme="dusk"]{
+        --bg:#1c1726; --bg-2:#241d31; --bg-3:#2d2540;
+        --line:rgba(236,222,240,.13); --line-strong:rgba(244,238,243,.5);
+        --ink:#f4eef3; --ink-2:#cbbecc; --ink-3:#a092a4;
+        --accent:#f4a26a; --accent-big:#f4a26a; --accent-soft:rgba(244,162,106,.13);
+        --btn:#f4a26a; --btn-ink:#1f1208; --btn-hover:#f8b88a;
+        --nav:rgba(28,23,38,.8); --chip:rgba(36,29,49,.86);
+        --focus:#b9a6ff;
+        --shadow:0 1px 2px rgba(0,0,0,.3), 0 18px 40px -16px rgba(0,0,0,.6);
+        --globe-ocean:#2a2240; --globe-land:#f0caa2; --globe-glow:#c4677c;
+        --globe-arc:#ff9f62; --globe-home:#f4eef3; --globe-pulse:#ffd6b5;
+        color-scheme:dark;
+      }
+      :root[data-theme="night"]{
         --bg:#0f1b2a; --bg-2:#142336; --bg-3:#1a2c42;
         --line:rgba(214,226,240,.13); --line-strong:rgba(237,241,245,.55);
         --ink:#edf1f5; --ink-2:#b9c4d0; --ink-3:#8e9cac;
         --accent:#f2a93b; --accent-big:#f2a93b; --accent-soft:rgba(242,169,59,.12);
         --btn:#f2a93b; --btn-ink:#1a1206; --btn-hover:#f7bd62;
-        --nav:rgba(15,27,42,.78);
+        --nav:rgba(15,27,42,.78); --chip:rgba(20,35,54,.86);
         --focus:#8fb6ff;
         --shadow:0 1px 2px rgba(0,0,0,.3), 0 18px 40px -16px rgba(0,0,0,.6);
         --globe-ocean:#13253a; --globe-land:#d9c7a3; --globe-glow:#5c8db8;
@@ -89,14 +128,17 @@
         color-scheme:dark;
       }
       @media (prefers-color-scheme: dark){
-        :root:not([data-mode]){
+        :root:not([data-theme]){
           --bg:#0f1b2a; --bg-2:#142336; --bg-3:#1a2c42;
           --line:rgba(214,226,240,.13); --line-strong:rgba(237,241,245,.55);
           --ink:#edf1f5; --ink-2:#b9c4d0; --ink-3:#8e9cac;
           --accent:#f2a93b; --accent-big:#f2a93b; --accent-soft:rgba(242,169,59,.12);
           --btn:#f2a93b; --btn-ink:#1a1206; --btn-hover:#f7bd62;
-          --nav:rgba(15,27,42,.78);
+          --nav:rgba(15,27,42,.78); --chip:rgba(20,35,54,.86);
           --focus:#8fb6ff;
+          --shadow:0 1px 2px rgba(0,0,0,.3), 0 18px 40px -16px rgba(0,0,0,.6);
+          --globe-ocean:#13253a; --globe-land:#d9c7a3; --globe-glow:#5c8db8;
+          --globe-arc:#f2a93b; --globe-home:#edf1f5; --globe-pulse:#ffe2ad;
           color-scheme:dark;
         }
       }
@@ -126,11 +168,12 @@
       .nav-links a{font-size:15px;color:var(--ink-2);text-decoration:none;padding:6px 0}
       .nav-links a:hover{color:var(--ink)}
       .nav-cta{display:flex;align-items:center;gap:10px}
-      .mode{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center}
+      .mode{height:38px;min-width:38px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:0 10px;font:500 14px/1 var(--sans)}
       .mode:hover{background:var(--bg-3)}
-      .mode svg{width:18px;height:18px}
-      :root[data-mode="light"] .mode .sun{display:none}
-      :root[data-mode="dark"] .mode .moon{display:none}
+      .mode svg{width:18px;height:18px;display:none;flex:none}
+      .mode .lbl{white-space:nowrap}
+      :root[data-theme="dawn"] .mode .i-dawn, :root[data-theme="day"] .mode .i-day, :root[data-theme="dusk"] .mode .i-dusk, :root[data-theme="night"] .mode .i-night{display:block}
+      :root:not([data-theme]) .mode .i-day{display:block}
 
       /* ---------- buttons ---------- */
       .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:15.5px;line-height:1.1;text-decoration:none;border-radius:10px;padding:13px 20px;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:background-color .15s, border-color .15s, transform .15s}
@@ -153,7 +196,7 @@
       .hero .summary{margin-top:24px;max-width:54ch;color:var(--ink-2);font-size:17.5px;line-height:1.62}
       .hero .summary strong{color:var(--ink);font-weight:600}
       .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
-      .facts{display:flex;flex-wrap:wrap;gap:10px 30px;margin:30px 0 0;padding:18px 0 0;border-top:1px solid var(--line);max-width:560px}
+      .facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin:30px 0 0;padding:18px 0 0;border-top:1px solid var(--line);max-width:620px}
       .facts div{min-width:0}
       .facts dt{font-size:13.5px;color:var(--ink-3)}
       .facts dd{margin:2px 0 0;font-size:15px;font-weight:600}
@@ -163,9 +206,11 @@
       .globe-canvas{position:absolute;inset:-4% -10% -4% -4%;cursor:grab;touch-action:pan-y}
       .globe.is-dragging .globe-canvas{cursor:grabbing}
       .globe-canvas canvas{display:block;width:100%;height:100%;outline:none}
-      .globe-still{position:absolute;inset:-4% -10% -4% -4%;background:center/contain no-repeat;background-image:url('assets/img/globe-light.webp');transition:opacity .6s ease}
-      :root[data-mode="dark"] .globe-still{background-image:url('assets/img/globe-dark.webp')}
-      @media (prefers-color-scheme: dark){ :root:not([data-mode]) .globe-still{background-image:url('assets/img/globe-dark.webp')} }
+      .globe-still{position:absolute;inset:-4% -10% -4% -4%;background:center/contain no-repeat;background-image:url('assets/img/globe-day.webp');transition:opacity .6s ease}
+      :root[data-theme="dawn"] .globe-still{background-image:url('assets/img/globe-dawn.webp')}
+      :root[data-theme="dusk"] .globe-still{background-image:url('assets/img/globe-dusk.webp')}
+      :root[data-theme="night"] .globe-still{background-image:url('assets/img/globe-night.webp')}
+      @media (prefers-color-scheme: dark){ :root:not([data-theme]) .globe-still{background-image:url('assets/img/globe-night.webp')} }
       .globe.is-live .globe-still{opacity:0}
       .globe.is-fallback .globe-still{opacity:1}
       .globe.is-fallback .globe-canvas,.globe.is-fallback .globe-labels{display:none}
@@ -173,7 +218,7 @@
       .globe.is-live .globe-canvas canvas{opacity:1}
       .globe-labels{position:absolute;inset:-4% -10% -4% -4%;pointer-events:none}
       .globe-label{position:absolute;left:0;top:0;opacity:0;transition:opacity .25s;will-change:transform}
-      .globe-label span{position:absolute;left:14px;top:-15px;white-space:nowrap;font-size:13px;line-height:1.25;font-weight:600;color:var(--ink);background:var(--nav);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:7px;padding:4px 8px}
+      .globe-label span{position:absolute;left:14px;top:-15px;white-space:nowrap;font-size:13px;line-height:1.25;font-weight:600;color:var(--ink);background:var(--chip);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:7px;padding:4px 8px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
       .globe-label small{display:block;font-weight:400;font-size:12px;color:var(--ink-3)}
       .globe-label.left span{left:auto;right:14px}
       .globe-label.below span{top:8px}
@@ -337,7 +382,7 @@
         .nav-cta{margin-left:auto}
         .hero-grid{grid-template-columns:1fr;min-height:0;padding-top:48px;gap:8px}
         .globe{min-height:0;height:min(92vw,560px);margin-top:12px}
-        .globe-canvas,.globe-labels,.globe-still{inset:0}
+        .globe-canvas,.globe-labels,.globe-still{inset:0 0 54px 0}
         .globe figcaption{position:static;margin-top:6px;text-align:left;max-width:none}
         .globe{display:flex;flex-direction:column;justify-content:flex-end}
         .hero-text{display:contents}
@@ -357,6 +402,10 @@
         .wrap,.nav-inner,.ledger ul{padding-left:18px;padding-right:18px}
         .nav-inner{gap:12px}
         .brand{font-size:15px;gap:9px}
+        .mode .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+        .globe-label small{display:none}
+        .globe-label span{font-size:12.5px;padding:3px 7px}
+        .mode{padding:0;width:38px}
         .mono{width:30px;height:30px;font-size:18px}
         .status{border-radius:12px;font-size:13.5px;align-items:flex-start}
         .status i{margin-top:6px;flex:none}
@@ -407,9 +456,12 @@
         </div>
         <div class="nav-cta">
           <a class="btn btn-primary btn-sm" href="Pryank_Wadhera_Senior_Product_Manager_Resume.pdf" download>Resume</a>
-          <button class="mode" id="mode" type="button" aria-label="Switch to light or dark colours">
-            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
-            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+          <button class="mode" id="mode" type="button" aria-label="Change colour theme">
+            <svg class="i-dawn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 18h18M6.5 18a5.5 5.5 0 0 1 11 0M12 5v3M4.9 10.9l2 1.4M19.1 10.9l-2 1.4M9 21h6"/></svg>
+            <svg class="i-day" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+            <svg class="i-dusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 18h18M6.5 18a5.5 5.5 0 0 1 11 0M12 11V7M9.5 9.5 12 12l2.5-2.5M9 21h6"/></svg>
+            <svg class="i-night" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+            <span class="lbl" id="mode-lbl">Theme</span>
           </button>
         </div>
       </div>
@@ -421,7 +473,7 @@
           <p class="status"><i aria-hidden="true"></i>Open to Senior PM, Lead PM and Product Lead roles</p>
           <h1>Pryank Wadhera</h1>
           <p class="lede">I build products and the businesses around them.</p>
-          <p class="summary">I'm a senior product manager: five of my seven years have been in product, across fuel-tech and LegalTech in India and Africa. I've shipped vendor platforms, UPI checkout and IoT systems wired into industrial fuel tanks, then carried the product into a new country. Today I'm <strong>Country Head and Product Manager</strong> for a fuel-tech business in Zimbabwe, owning the product and the P&amp;L.</p>
+          <p class="summary">I'm a senior product manager: five of my seven years have been in product, across fuel-tech and LegalTech, with teams in India, Africa and the UAE. I've shipped vendor platforms, UPI checkout and IoT systems wired into industrial fuel tanks, then carried the product into a new country. Today I'm <strong>Country Head and Product Manager</strong> for a fuel-tech business in Zimbabwe, owning the product and the P&amp;L.</p>
           <div class="ctas">
             <a class="btn btn-primary" href="mailto:wadherapryank@gmail.com">Email me</a>
             <a class="btn btn-ghost" href="Pryank_Wadhera_Senior_Product_Manager_Resume.pdf" download>
@@ -431,7 +483,7 @@
           <dl class="facts">
             <div><dt>Based in</dt><dd>New Delhi, open to relocation</dd></div>
             <div><dt>Notice period</dt><dd>30 days</dd></div>
-            <div><dt>Works</dt><dd>On-site, hybrid or remote</dd></div>
+            <div><dt>Open to</dt><dd>India, Dubai (UAE) or remote</dd></div>
           </dl>
         </div>
 
@@ -441,11 +493,12 @@
           <div class="globe-labels" aria-hidden="true">
             <div class="globe-label"><span>New Delhi<small>Home base</small></span></div>
             <div class="globe-label"><span>Harare<small>Launched and run</small></span></div>
-            <div class="globe-label below" data-side="left"><span>Lusaka<small>Next market</small></span></div>
+            <div class="globe-label" data-side="left" data-v="below"><span>Lusaka<small>Next market</small></span></div>
             <div class="globe-label" data-side="left"><span>Lagos<small>Next market</small></span></div>
+            <div class="globe-label" data-side="left"><span>Dubai<small>Contract and coordination</small></span></div>
           </div>
           <figcaption>
-            <span class="sr">Globe showing a route from New Delhi to Harare, where I launched and run the business, and routes from Harare to Lusaka and Lagos, the next markets for the product.</span>
+            <span class="sr">Globe showing a route from New Delhi to Harare, where I launched and run the business; routes from Harare to Lusaka and Lagos, the next markets for the product; and a link to Dubai, where my engagement and team coordination sit.</span>
             <span aria-hidden="true">From New Delhi to Harare, where I launched and run the business, and on to the next markets. <span class="drag">Drag to turn.</span></span>
           </figcaption>
         </figure>
@@ -696,7 +749,7 @@
             <p>Each move added a layer: understanding users, building for them, then owning the economics around the product.</p>
           </div>
           <ol class="roles">
-            <li class="role now"><div class="when">May 2026 – present</div><div><h3>Country Head &amp; Product Manager <span>at FuelBuddy Zimbabwe</span></h3><p>Asked by the CEO to run the business without letting go of the product. Sets local release priorities for the fuel management and vendor platforms, writes the requirements taking both into Zambia and Nigeria, runs the P&amp;L and credit book, and leads an eight-person team.</p></div></li>
+            <li class="role now"><div class="when">May 2026 – present</div><div><h3>Country Head &amp; Product Manager <span>at FuelBuddy Zimbabwe</span></h3><p>Asked by the CEO to run the business without letting go of the product. Sets local release priorities for the fuel management and vendor platforms, writes the requirements taking both into Zambia and Nigeria, runs the P&amp;L and credit book, and leads an eight-person team. Engaged through the group's Dubai (UAE) entity, coordinating with teams across the UAE, India, Zambia and Mozambique.</p></div></li>
             <li class="role"><div class="when">Apr 2025 – Apr 2026</div><div><h3>Product Manager <span>at FuelBuddy Zimbabwe</span></h3><p>Found product fit for the market: 40+ discovery interviews fed the backlog and the fuel management system was piloted locally, while I launched B2B bulk fuel from zero with banking, procurement, credit and dispatch under written SOPs.</p></div></li>
             <li class="role"><div class="when">Jul 2023 – Apr 2025</div><div><h3>Product Manager <span>at FuelBuddy India</span></h3><p>One of four PMs working with the CEO, CTO and MD and a 15-engineer team. Vendor platform, IoT FMS, UPI checkout and delivery speed; also the Africa market evaluation and trading-area analysis for retail fuel sites.</p></div></li>
             <li class="role"><div class="when">Jan 2023 – Jun 2023</div><div><h3>Research Associate <span>at FuelBuddy India</span></h3><p>EV-charging and fuel-retail research turned into product and GTM inputs; moved into product within six months.</p></div></li>
@@ -727,7 +780,7 @@
     <section class="contact" id="contact" aria-labelledby="contact-h">
       <div class="wrap">
         <h2 id="contact-h">Looking for a product leader who owns the outcome, not just the roadmap?</h2>
-        <p>Open to Senior PM, Lead PM and Product Lead roles. Relocation, hybrid or remote; notice period 30 days.</p>
+        <p>Open to Senior PM, Lead PM and Product Lead roles in India, Dubai (UAE) or remote. Relocation, hybrid or on-site; notice period 30 days.</p>
         <a class="mail" href="mailto:wadherapryank@gmail.com">wadherapryank@gmail.com</a>
         <div class="ctas">
           <a class="btn btn-primary" href="Pryank_Wadhera_Senior_Product_Manager_Resume.pdf" download>Download resume</a>
@@ -744,18 +797,30 @@
     <script>
       (function(){
         var root = document.documentElement;
-        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+        var ORDER = ['dawn','day','dusk','night'];
+        var TONE = {dawn:'light', day:'light', dusk:'dark', night:'dark'};
+        var NAME = {dawn:'Dawn', day:'Day', dusk:'Dusk', night:'Night'};
+        var BAR = {dawn:'#f2f0f6', day:'#f3f6f9', dusk:'#1c1726', night:'#0f1b2a'};
         var meta = document.querySelector('meta[name="theme-color"]');
-        function paint(){ if(meta) meta.setAttribute('content', root.getAttribute('data-mode') === 'dark' ? '#0f1b2a' : '#f4f6f8'); }
-        paint();
-        document.getElementById('mode').addEventListener('click', function(){
-          var next = root.getAttribute('data-mode') === 'dark' ? 'light' : 'dark';
-          root.setAttribute('data-mode', next); root.setAttribute('data-pinned', '');
-          try { localStorage.setItem('pw-theme', next); } catch(e){}
-          paint();
+        var btn = document.getElementById('mode'), lbl = document.getElementById('mode-lbl');
+        function byHour(){ var h = new Date().getHours(); return h >= 5 && h < 9 ? 'dawn' : h >= 9 && h < 16 ? 'day' : h >= 16 && h < 19 ? 'dusk' : 'night'; }
+        function apply(th){
+          root.setAttribute('data-theme', th); root.setAttribute('data-tone', TONE[th]);
+          if (meta) meta.setAttribute('content', BAR[th]);
+          lbl.textContent = NAME[th];
+          var next = ORDER[(ORDER.indexOf(th) + 1) % ORDER.length];
+          btn.setAttribute('aria-label', 'Colour theme: ' + NAME[th] + '. Switch to ' + NAME[next] + '.');
+          btn.title = 'Theme follows your time of day. Click for ' + NAME[next] + '.';
+        }
+        apply(root.getAttribute('data-theme') || byHour());
+        btn.addEventListener('click', function(){
+          var cur = root.getAttribute('data-theme');
+          var next = ORDER[(ORDER.indexOf(cur) + 1) % ORDER.length];
+          apply(next); root.setAttribute('data-pinned', '');
+          try { sessionStorage.setItem('pw-theme', next); } catch(e){}
         });
-        var follow = function(e){ if(!root.hasAttribute('data-pinned')){ root.setAttribute('data-mode', e.matches ? 'dark' : 'light'); paint(); } };
-        if (mq.addEventListener) mq.addEventListener('change', follow); else if (mq.addListener) mq.addListener(follow);
+        // while the page stays open, move to the next time of day on its own
+        setInterval(function(){ if (!root.hasAttribute('data-pinned')) { var t = byHour(); if (t !== root.getAttribute('data-theme')) apply(t); } }, 60000);
 
         // nav border once the page scrolls
         var nav = document.getElementById('nav');
