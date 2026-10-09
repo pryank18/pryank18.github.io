@@ -24,7 +24,7 @@ function start(host) {
     });
   }
   const DEG = Math.PI / 180;
-  let visible = true, running = false, needs = true, started = false;
+  let inViewport = true, visible = !document.hidden, running = false, needs = true, started = false;
   const t0 = performance.now();
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
@@ -59,7 +59,15 @@ function start(host) {
   );
 
   // ---------- ocean + atmosphere ----------
-  const oceanMat = new THREE.MeshBasicMaterial({ color: 0x13253a });
+  // Soft fixed lighting gives the sphere depth while labels and routes stay crisp.
+  scene.add(new THREE.AmbientLight(0xffffff, 1.05));
+  const keyLight = new THREE.DirectionalLight(0xffffff, 1.4);
+  keyLight.position.set(-3, 4, 5);
+  scene.add(keyLight);
+  const rimLight = new THREE.DirectionalLight(0x5c8db8, 0.7);
+  rimLight.position.set(3, -1, -2);
+  scene.add(rimLight);
+  const oceanMat = new THREE.MeshPhongMaterial({ color: 0x13253a, shininess: 18, specular: 0x33445a });
   const ocean = new THREE.Mesh(new THREE.SphereGeometry(0.994, 72, 72), oceanMat);
   ocean.renderOrder = 0;
   spin.add(ocean);
@@ -221,6 +229,7 @@ function start(host) {
     oceanMat.color.set(get('--globe-ocean', '#13253a'));
     dotsMat.uniforms.uColor.value.set(get('--globe-land', '#d9c7a3'));
     glowMat.uniforms.uColor.value.set(get('--globe-glow', '#5c8db8'));
+    rimLight.color.set(get('--globe-glow', '#5c8db8'));
     const light = document.documentElement.dataset.tone === 'light';
     glowMat.blending = light ? THREE.NormalBlending : THREE.AdditiveBlending;
     glowMat.uniforms.uStrength.value = light ? 0.5 : 0.85;
@@ -372,10 +381,11 @@ function start(host) {
   }
 
   new IntersectionObserver((entries) => {
-    visible = entries[0].isIntersecting && !document.hidden;
+    inViewport = entries[0].isIntersecting;
+    visible = inViewport && !document.hidden;
     if (visible) kick();
   }, { threshold: 0 }).observe(host);
-  document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible) kick(); });
+  document.addEventListener('visibilitychange', () => { visible = inViewport && !document.hidden; if (visible) kick(); });
 
   renderer.domElement.addEventListener('webglcontextlost', (e) => { e.preventDefault(); host.classList.add('is-fallback'); });
   kick();
