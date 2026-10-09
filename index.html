@@ -50,27 +50,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400..700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400..700&display=swap"></noscript>
-    <script>
-      /* Theme follows the visitor's local time of day: dawn, day, dusk, night. A manual pick lasts for the visit. */
-      (function(){
-        var d = document.documentElement, t = null;
-        var TONE = {dawn:'light', day:'light', dusk:'dark', night:'dark'};
-        try { t = sessionStorage.getItem('pw-theme'); } catch(e){}
-        if (!TONE[t]) t = null;
-        var h = new Date().getHours();
-        var auto = h >= 5 && h < 9 ? 'dawn' : h >= 9 && h < 16 ? 'day' : h >= 16 && h < 19 ? 'dusk' : 'night';
-        var th = t || auto;
-        d.setAttribute('data-theme', th);
-        d.setAttribute('data-tone', TONE[th]);
-        if (t) d.setAttribute('data-pinned', '');
-        d.classList.add('js');
-        // the globe picture is the largest thing on first paint: fetch it straight away
-        var l = document.createElement('link');
-        l.rel = 'preload'; l.as = 'image'; l.href = 'assets/img/globe-' + th + '.webp';
-        try { l.fetchPriority = 'high'; } catch(e){}
-        document.head.appendChild(l);
-      })();
-    </script>
+    <script src="assets/js/theme.js"></script>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@graph":[
       {"@type":"Person","@id":"https://pryank18.github.io/#person","name":"Pryank Wadhera","givenName":"Pryank","familyName":"Wadhera","url":"https://pryank18.github.io/","image":"https://pryank18.github.io/og-card.png","email":"mailto:wadherapryank@gmail.com",
@@ -505,6 +485,7 @@
         .mail{font-size:clamp(20px,6.4vw,30px);word-break:break-all}
       }
     </style>
+    <link rel="stylesheet" href="assets/css/refinements.css">
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -868,31 +849,7 @@
 
     <script>
       (function(){
-        var root = document.documentElement;
-        var ORDER = ['dawn','day','dusk','night'];
-        var TONE = {dawn:'light', day:'light', dusk:'dark', night:'dark'};
-        var NAME = {dawn:'Dawn', day:'Day', dusk:'Dusk', night:'Night'};
-        var BAR = {dawn:'#f2f0f6', day:'#f3f6f9', dusk:'#1c1726', night:'#0f1b2a'};
-        var meta = document.querySelector('meta[name="theme-color"]');
-        var btn = document.getElementById('mode'), lbl = document.getElementById('mode-lbl');
-        function byHour(){ var h = new Date().getHours(); return h >= 5 && h < 9 ? 'dawn' : h >= 9 && h < 16 ? 'day' : h >= 16 && h < 19 ? 'dusk' : 'night'; }
-        function apply(th){
-          root.setAttribute('data-theme', th); root.setAttribute('data-tone', TONE[th]);
-          if (meta) meta.setAttribute('content', BAR[th]);
-          lbl.textContent = NAME[th];
-          var next = ORDER[(ORDER.indexOf(th) + 1) % ORDER.length];
-          btn.setAttribute('aria-label', 'Colour theme: ' + NAME[th] + '. Switch to ' + NAME[next] + '.');
-          btn.title = 'Theme follows your time of day. Click for ' + NAME[next] + '.';
-        }
-        apply(root.getAttribute('data-theme') || byHour());
-        btn.addEventListener('click', function(){
-          var cur = root.getAttribute('data-theme');
-          var next = ORDER[(ORDER.indexOf(cur) + 1) % ORDER.length];
-          apply(next); root.setAttribute('data-pinned', '');
-          try { sessionStorage.setItem('pw-theme', next); } catch(e){}
-        });
-        // while the page stays open, move to the next time of day on its own
-        setInterval(function(){ if (!root.hasAttribute('data-pinned')) { var t = byHour(); if (t !== root.getAttribute('data-theme')) apply(t); } }, 60000);
+        if (window.PortfolioTheme) window.PortfolioTheme.bind();
 
         // count "Email me" clicks in Google Analytics (resume downloads and outbound links are tracked by GA itself)
         document.addEventListener('click', function(e){
@@ -959,7 +916,9 @@
         } catch (e) { return false; }
       };
       const boot = () => {
-        if (hasGPU()) import('./assets/js/globe.js');
+        if (hasGPU()) import('./assets/js/globe.js').catch(() => {
+          const g = document.getElementById('globe'); if (g) g.classList.add('is-fallback');
+        });
         else { const g = document.getElementById('globe'); if (g) g.classList.add('is-fallback'); }
       };
       const later = () => ('requestIdleCallback' in window) ? requestIdleCallback(boot, { timeout: 1500 }) : setTimeout(boot, 300);
