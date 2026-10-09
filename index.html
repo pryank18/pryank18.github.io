@@ -50,7 +50,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400..700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400..700&display=swap"></noscript>
-    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/theme.js?v=20261009"></script>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@graph":[
       {"@type":"Person","@id":"https://pryank18.github.io/#person","name":"Pryank Wadhera","givenName":"Pryank","familyName":"Wadhera","url":"https://pryank18.github.io/","image":"https://pryank18.github.io/og-card.png","email":"mailto:wadherapryank@gmail.com",
@@ -485,7 +485,7 @@
         .mail{font-size:clamp(20px,6.4vw,30px);word-break:break-all}
       }
     </style>
-    <link rel="stylesheet" href="assets/css/refinements.css">
+    <link rel="stylesheet" href="assets/css/refinements.css?v=20261009b">
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -916,7 +916,7 @@
         } catch (e) { return false; }
       };
       const boot = () => {
-        if (hasGPU()) import('./assets/js/globe.js').catch(() => {
+        if (hasGPU()) import('./assets/js/globe.js?v=20261009').catch(() => {
           const g = document.getElementById('globe'); if (g) g.classList.add('is-fallback');
         });
         else { const g = document.getElementById('globe'); if (g) g.classList.add('is-fallback'); }
