@@ -35,3 +35,37 @@ main, .hero-text, .build, .build-body, .role > * { min-width: 0; }
   .role::before { left: 0; }
   .role .when { text-align: left; padding: 0; }
 }
+
+/* Readable text and aligned contact actions, without reordering the hero. */
+.hero .ctas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.hero .ctas .btn { min-width: 0; padding: 12px 10px; min-height: 48px; }
+.js .hero-text > * { animation: none; }
+.role h3 span, .sec-head p { color: var(--ink-2); }
+.globe { isolation: isolate; }
+.globe::before { content: ""; position: absolute; z-index: -1; pointer-events: none;
+  inset: 8% -3% 12%; border-radius: 50%;
+  background: radial-gradient(ellipse, var(--accent-soft), transparent 68%); }
+.globe-canvas:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 18px; }
+@media (max-width: 760px) {
+  .hero .ctas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
+  .hero .ctas .btn { font-size: 16px; }
+  .sec-head p, .role p, .why li, .lab-row p, .doc p, .phase p,
+  .strengths dd, .principles li, .steps p { font-size: 16.5px; line-height: 1.65; }
+  .sec-head h2 { font-size: clamp(36px, 9vw, 54px); line-height: 1.1; }
+  .facts { gap: 12px 22px; margin-top: 22px; }
+  .facts div:first-child { flex-basis: 100%; }
+  .facts dd { font-size: 15.5px; }
+  .globe { height: min(88vw, 410px); }
+  .globe figcaption { font-size: 13.5px; line-height: 1.5; text-align: center; }
+  .why { margin-top: 40px; padding-top: 30px; }
+  .mail { overflow-wrap: anywhere; word-break: normal; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .btn { transition: background .18s ease, border-color .18s ease, transform .18s ease; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .shot { box-shadow: var(--shadow); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn, .shot { transition: none !important; transform: none !important; }
+}
