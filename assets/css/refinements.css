@@ -53,6 +53,7 @@ footer .wrap { padding-bottom: 32px; }
 }
 
 @media (min-width: 1041px) {
+  .hero h1 { font-size: clamp(64px, 6.3vw, 88px); }
   .hero-grid { gap: 36px; padding-top: 64px; padding-bottom: 64px; }
   .globe figcaption { max-width: 39ch; }
 }
