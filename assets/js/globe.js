@@ -198,6 +198,22 @@ function start(host) {
   let dragging = false, lastX = 0, lastY = 0, lastInteract = -1e9;
   let swayT = 0;
 
+  // Keyboard access complements dragging without intercepting touch scrolling.
+  canvasWrap.tabIndex = 0;
+  canvasWrap.setAttribute('role', 'region');
+  canvasWrap.setAttribute('aria-label', 'Interactive globe. Drag or use arrow keys to rotate. Home resets the view.');
+  canvasWrap.addEventListener('keydown', (e) => {
+    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home'].includes(e.key)) return;
+    e.preventDefault();
+    velYaw = velPitch = 0;
+    if (e.key === 'Home') { userYaw = userPitch = 0; }
+    if (e.key === 'ArrowLeft') userYaw -= 0.12;
+    if (e.key === 'ArrowRight') userYaw += 0.12;
+    if (e.key === 'ArrowUp') userPitch = clamp(userPitch - 0.08, -0.55, 0.55);
+    if (e.key === 'ArrowDown') userPitch = clamp(userPitch + 0.08, -0.55, 0.55);
+    lastInteract = performance.now();
+    kick();
+  });
   const el = renderer.domElement;
   el.addEventListener('pointerdown', (e) => {
     dragging = true; lastX = e.clientX; lastY = e.clientY; velYaw = velPitch = 0;
