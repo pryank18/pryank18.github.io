@@ -5,15 +5,23 @@
    - Pages and scripts are network-first, so a deploy shows up immediately;
      the cache is only a fallback when the visitor is offline.
    Bump VERSION when the list of precached files changes. */
-const VERSION = 'pw-2026-10-08b';
+const VERSION = 'pw-2026-10-09-readability-v1';
 const PRECACHE = [
   '/',
   '/manifest.webmanifest',
   '/favicon.svg',
+  '/assets/css/refinements.css',
+  '/assets/js/theme.js',
   '/assets/js/globe.js',
   '/assets/js/land.js',
   '/assets/vendor/three.module.min.js',
-  '/assets/icons/icon-192.png'
+  '/assets/icons/icon-192.png',
+  '/assets/img/globe-dawn.webp',
+  '/assets/img/globe-day.webp',
+  '/assets/img/globe-dusk.webp',
+  '/assets/img/globe-night.webp',
+  '/depotline-preview.png',
+  '/bolt-and-bahi-preview.png'
 ];
 
 // Exact hub paths, plus prefixes that belong to the hub.
@@ -71,7 +79,7 @@ self.addEventListener('fetch', (e) => {
   if (!isHub(url)) return; // demo apps, analytics and everything else go straight to the network
 
   // The page itself: always try the network, keyed without the query string.
-  if (req.mode === 'navigate' || url.pathname === '/' || url.pathname === '/index.html') {
+  if (url.pathname === '/' || url.pathname === '/index.html') {
     e.respondWith(networkFirst(req, '/'));
     return;
   }
