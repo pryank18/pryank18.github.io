@@ -5,7 +5,7 @@
    - Pages and scripts are network-first, so a deploy shows up immediately;
      the cache is only a fallback when the visitor is offline.
    Bump VERSION when the list of precached files changes. */
-const VERSION = 'pw-2026-10-09-readability-v1';
+const VERSION = 'pw-2026-10-09-readability-v2';
 const PRECACHE = [
   '/',
   '/manifest.webmanifest',
@@ -32,7 +32,7 @@ const HUB_PREFIX = ['/assets/'];
 const FONT_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(VERSION).then((c) => c.addAll(PRECACHE)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(VERSION).then((c) => c.addAll(PRECACHE.map((url) => new Request(url, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (e) => {
