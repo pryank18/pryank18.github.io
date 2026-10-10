@@ -69,3 +69,46 @@ main, .hero-text, .build, .build-body, .role > * { min-width: 0; }
 @media (prefers-reduced-motion: reduce) {
   .btn, .shot { transition: none !important; transform: none !important; }
 }
+
+/* Use the compact layout across the full range where mobile navigation is active.
+   Some phone browsers report a 980px layout viewport. */
+@media (max-width: 1040px) {
+  .hero .ctas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .hero .ctas .btn { min-height: 52px; }
+  .ledger ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ledger li { border-left: 0 !important; border-top: 1px solid var(--line);
+    padding: 20px 16px 20px 0 !important; }
+  .ledger li:nth-child(even) { border-left: 1px solid var(--line) !important;
+    padding-left: 20px !important; padding-right: 0 !important; }
+  .ledger li:nth-child(-n+2) { border-top: 0; }
+  .ledger li:last-child { grid-column: 1 / -1; border-left: 0 !important; }
+  .builds, .steps, .doclist, .plan { grid-template-columns: 1fr; }
+  .lab-row, .deep summary { grid-template-columns: 1fr; }
+  .lab-row .acts { justify-content: flex-start; }
+  .sec-head h2 { font-size: clamp(36px, 6.4vw, 54px); line-height: 1.12; }
+  .globe { height: clamp(270px, 72vw, 360px); }
+  .globe figcaption { text-align: center; max-width: none; line-height: 1.5; }
+}
+@media (min-width: 761px) and (max-width: 1040px) {
+  body { font-size: 22px; }
+  .hero .summary, .contact p { font-size: 24px; line-height: 1.6; }
+  .hero .ctas .btn { min-height: 64px; font-size: 23px; }
+  .role p, .why li, .sec-head p, .lab-row p, .doc p, .phase p,
+  .strengths dd, .principles li, .steps p { font-size: 22px; line-height: 1.65; }
+  .ledger span { font-size: 21px; }
+  .ledger b { font-size: 48px; }
+  .globe figcaption { font-size: 18px; }
+  .globe-label span { font-size: 17px; }
+  .globe-label small { display: none; }
+  .mode .lbl { position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0 0 0 0); }
+  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: none; }
+  .facts div:first-child { grid-column: 1 / -1; }
+  .facts dt { font-size: 20px; }
+  .facts dd { font-size: 22px; }
+  .role { grid-template-columns: 1fr; gap: 8px; padding-left: 28px; }
+  .roles::before { left: 4px; }
+  .role::before { left: 0; }
+  .role .when { text-align: left; padding: 0; }
+  .phase + .phase { border-left: 0; border-top: 1px solid var(--line); }
+}
