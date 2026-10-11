@@ -5,12 +5,14 @@
    - Pages and scripts are network-first, so a deploy shows up immediately;
      the cache is only a fallback when the visitor is offline.
    Bump VERSION when the list of precached files changes. */
-const VERSION = 'pw-2026-10-10-wide-mobile-v5';
+const VERSION = 'pw-2026-10-12-fit-check-v1';
 const PRECACHE = [
   '/',
   '/manifest.webmanifest',
   '/favicon.svg',
   '/assets/css/refinements.css',
+  '/assets/css/fit.css',
+  '/assets/js/fit.js',
   '/assets/js/theme.js',
   '/assets/js/globe.js',
   '/assets/js/land.js',
