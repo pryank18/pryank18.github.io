@@ -50,7 +50,7 @@
         { id: 'b2b', label: 'B2B SaaS or platform', link: '#shipped',
           ev: 'A vendor platform with 150+ vendors live, a LegalTech B2B SaaS MVP taken to launch, and Dispatch OS, a multi-tenant distribution SaaS I built myself.' },
         { id: 'pay', label: 'Payments, fintech or lending', link: '#shipped',
-          ev: 'I specified UPI Intent and QR checkout (2,000+ transactions in month one), run a six-figure USD customer credit book with collections and credit risk, and designed Kids Wallet, a UPI product with parental controls.' },
+          ev: 'I specified UPI Intent and QR checkout (200+ users, 2,000+ transactions in month one), run a six-figure USD customer credit book with collections and credit risk, and designed Kids Wallet, a UPI product with parental controls.' },
         { id: 'iot', label: 'IoT or hardware-linked', link: '#shipped',
           ev: 'An IoT fuel-management system with tank gauges, dispensers, flow meters and RFID nozzle tags, piloted at a major steel producer: 20 paise a litre saved on ~2M litres a month.' },
         { id: 'ops', label: 'Marketplace, logistics or supply chain', link: '#shipped',
@@ -459,13 +459,9 @@
     }
     document.documentElement.classList.add('fit-ready');
 
-    // First visit in this session, landing on the page itself (not a deep link): open the intro once,
-    // after the first paint so the page is visible behind it.
-    var deepLink = location.hash && location.hash !== '#top' && location.hash !== '#fit-check';
+    // The fit check is opt-in: it opens from the nav, the hero button, the Fit section or the #fit-check link,
+    // never on its own. A reviewer gets to read the page before being asked anything.
     if (location.hash === '#fit-check') open(null, 'link');
-    else if (!deepLink && !seen() && typeof dlg.showModal === 'function') {
-      setTimeout(function () { if (!dlg.open) open(null, 'auto'); }, 1100);
-    }
   }
 
   window.PortfolioFit = { QUESTIONS: QUESTIONS, score: score, open: open };
