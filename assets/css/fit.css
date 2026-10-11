@@ -1,0 +1,113 @@
+/* Role fit check + floating WhatsApp chat. Uses the page's theme tokens. */
+
+/* ---------- section ---------- */
+.fit-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:40px;align-items:start;border:1px solid var(--line);background:var(--bg-2);border-radius:16px;padding:36px;position:relative;overflow:hidden}
+.fit-card::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 90% at 100% 0%, var(--accent-soft), transparent 70%)}
+.fit-card > *{position:relative}
+.fit-card h2{font-family:var(--serif);font-size:clamp(36px,4.2vw,54px);line-height:1.02;letter-spacing:-.015em}
+.fit-card .lead{color:var(--ink-2);margin-top:14px;max-width:46ch}
+.fit-card .note{font-size:14px;color:var(--ink-3);margin-top:14px}
+.fit-pick h3{font-family:var(--sans);font-weight:600;font-size:16px;color:var(--ink);margin-bottom:12px}
+.fit-roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fit-role{font:600 15px/1.3 var(--sans);text-align:left;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:14px 16px;min-height:52px;cursor:pointer;transition:border-color .15s, background-color .15s, transform .15s}
+.fit-role:hover{border-color:var(--accent)}
+.fit-role::after{content:" →";color:var(--accent)}
+html:not(.fit-ready) .fit-pick{display:none}
+.fit-nojs{display:none}
+html:not(.fit-ready) .fit-nojs{display:block;margin-top:18px}
+
+/* hero button */
+.btn-fit{color:var(--accent);border-color:var(--accent)}
+.btn-fit:hover{background:var(--accent-soft);border-color:var(--accent)}
+
+/* ---------- dialog ---------- */
+html.fit-open{overflow:hidden}
+.fit-dlg{width:min(640px, calc(100vw - 32px));max-height:min(88vh, 860px);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--bg-2);color:var(--ink);box-shadow:0 30px 80px -20px rgba(0,0,0,.45);overflow:hidden}
+.fit-dlg[open]{display:flex;flex-direction:column}
+.fit-dlg::backdrop{background:rgba(10,16,26,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.fit-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px 12px}
+.fit-step{font-size:14px;font-weight:600;color:var(--ink-3)}
+.fit-x{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:22px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.fit-x:hover{background:var(--bg-3)}
+.fit-bar{height:3px;background:var(--bg-3);margin:0 20px;border-radius:2px;overflow:hidden}
+.fit-bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s ease}
+.fit-body{flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain;padding:22px 20px 8px;-webkit-overflow-scrolling:touch}
+.fit-q{border:0;margin:0;padding:0;min-width:0}
+.fit-title{font-family:var(--serif);font-size:clamp(30px,4.4vw,40px);line-height:1.08;letter-spacing:-.01em;padding:0;outline:none}
+.fit-hint{color:var(--ink-2);font-size:15.5px;margin-top:8px}
+.fit-opts{display:grid;gap:10px;margin-top:20px}
+.fit-opt{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-height:56px;cursor:pointer;background:var(--bg);transition:border-color .15s, background-color .15s}
+.fit-opt:hover{border-color:var(--ink-3)}
+.fit-opt input{width:20px;height:20px;margin:0;flex:none;accent-color:var(--accent);cursor:pointer}
+.fit-opt span{font-weight:600;font-size:16px;line-height:1.35}
+.fit-opt:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.fit-opt:has(input:focus-visible){outline:2.5px solid var(--focus);outline-offset:2px}
+.fit-opt.is-off{opacity:.5;cursor:not-allowed}
+.fit-opt.is-off input{cursor:not-allowed}
+.fit-foot{display:flex;justify-content:space-between;gap:10px;padding:14px 20px calc(16px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
+.fit-foot .btn{min-height:48px}
+.fit-foot .fit-next{margin-left:auto;min-width:140px}
+.fit-next:disabled{opacity:.45;cursor:not-allowed;transform:none!important}
+.fit-dlg[data-view="result"] .fit-foot .fit-back::before{content:"← "}
+
+/* result */
+.fit-res-head{padding-bottom:16px;border-bottom:1px solid var(--line)}
+.fit-res-head .fit-title{color:var(--accent-big)}
+.fit-partial .fit-title{color:var(--ink)}
+.fit-res-sub{color:var(--ink-2);margin-top:6px;font-size:16px}
+.fit-rows{list-style:none;margin:0;padding:0}
+.fit-row{padding:16px 0;border-bottom:1px solid var(--line)}
+.fit-row-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.fit-crit{font-weight:700;font-size:15.5px;line-height:1.35}
+.fit-chip{flex:none;font-size:12.5px;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.fit-row.w3 .fit-chip{background:rgba(47,163,101,.15);color:#1f7a4b}
+.fit-row.w2 .fit-chip{background:var(--accent-soft);color:var(--accent)}
+.fit-row.w1 .fit-chip{background:var(--bg-3);color:var(--ink-2)}
+:root[data-tone="dark"] .fit-row.w3 .fit-chip{color:#7ad9a4}
+.fit-row p{color:var(--ink-2);font-size:15.5px;line-height:1.6;margin-top:6px}
+.fit-see{color:var(--accent);font-weight:600;white-space:nowrap;text-underline-offset:3px}
+.fit-probe{margin-top:20px;border-left:2px solid var(--accent);padding:2px 0 2px 16px}
+.fit-probe h3{font-family:var(--sans);font-weight:700;font-size:15.5px;margin-bottom:6px}
+.fit-probe ul{margin:0;padding-left:18px}
+.fit-probe li,.fit-probe p{color:var(--ink-2);font-size:15.5px;line-height:1.6}
+.fit-acts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:24px}
+.fit-acts .btn{min-height:48px;white-space:normal;text-align:center}
+.fit-acts .fit-wa{grid-column:1/-1}
+.fit-again{display:block;margin:16px auto 8px;background:none;border:0;color:var(--ink-3);font:600 15px var(--sans);text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:44px;padding:0 12px}
+.fit-dlg[data-view="result"] .fit-next{display:none}
+
+/* ---------- floating WhatsApp chat ---------- */
+.wa-fab{position:fixed;z-index:44;right:max(20px, env(safe-area-inset-right));bottom:calc(20px + env(safe-area-inset-bottom));
+  display:inline-flex;align-items:center;gap:10px;height:56px;min-width:56px;padding:0 16px;border-radius:999px;
+  background:#0f8443;color:#fff;text-decoration:none;font:700 15.5px/1 var(--sans);
+  box-shadow:0 6px 18px -4px rgba(0,0,0,.35), 0 2px 4px rgba(0,0,0,.12);transition:transform .18s ease, box-shadow .18s ease}
+.wa-fab svg{width:28px;height:28px;flex:none;fill:currentColor}
+.wa-fab:hover{background:#0c7139;transform:translateY(-2px);box-shadow:0 10px 24px -6px rgba(0,0,0,.4), 0 2px 4px rgba(0,0,0,.12)}
+.wa-fab:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.wa-fab .wa-lbl{text-shadow:0 1px 1px rgba(0,0,0,.2)}
+@media (max-width:1040px){
+  .wa-fab{bottom:calc(76px + env(safe-area-inset-bottom));padding:0;width:56px;justify-content:center}
+  .wa-fab .wa-lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+}
+@media (max-width:1040px) and (orientation:landscape) and (max-height:520px){
+  .wa-fab{bottom:calc(60px + env(safe-area-inset-bottom));width:48px;height:48px;min-width:48px}
+  .wa-fab svg{width:24px;height:24px}
+}
+@media (prefers-reduced-motion: reduce){ .wa-fab,.fit-bar i{transition:none} }
+@media print{ .wa-fab,.fit-dlg{display:none!important} }
+
+/* ---------- small screens ---------- */
+@media (max-width:1040px){
+  .fit-card{grid-template-columns:1fr;gap:26px}
+}
+@media (max-width:760px){
+  .fit-card{padding:24px 18px;border-radius:14px}
+  .fit-roles{grid-template-columns:1fr}
+  .fit-dlg{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border-radius:0;border:0}
+  .fit-top{padding-top:calc(12px + env(safe-area-inset-top))}
+  .fit-acts{grid-template-columns:1fr}
+}
+@media (min-width:761px) and (max-width:1040px) and (pointer:coarse){
+  .fit-role,.fit-opt span{font-size:19px}
+  .fit-hint,.fit-row p,.fit-probe li,.fit-probe p{font-size:19px}
+}
