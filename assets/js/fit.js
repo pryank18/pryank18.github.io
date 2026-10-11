@@ -297,6 +297,16 @@
     dlg.setAttribute('data-view', 'result');
     backBtn.hidden = false; nextBtn.hidden = true;
 
+    var note = el('div', 'fit-note');
+    var av = document.createElement('img');
+    av.src = 'assets/img/pryank-namaste.webp'; av.alt = ''; av.width = 301; av.height = 660; av.loading = 'lazy'; av.decoding = 'async';
+    note.appendChild(av);
+    var bub = el('div', 'fit-bubble');
+    bub.appendChild(el('p', null, 'Thank you for taking the minute. For a ' + s.role.toLowerCase() + ' role, this is what I\'d put in front of you. Every line below links to the work behind it, and I\'m one message away if you want the details.'));
+    bub.appendChild(el('span', 'fit-sign', 'Pryank'));
+    note.appendChild(bub);
+    body.appendChild(note);
+
     var head = el('div', 'fit-res-head');
     var h = el('h2', 'fit-title', 'Strong match');
     h.id = 'fit-title'; h.tabIndex = -1;
