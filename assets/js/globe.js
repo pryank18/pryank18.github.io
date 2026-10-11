@@ -133,7 +133,7 @@ function start(host) {
   const LUSAKA = { lat: -15.39, lon: 28.32 };
   const LAGOS = { lat: 6.52, lon: 3.38 };
   const DUBAI = { lat: 25.2, lon: 55.27 };
-  // New Delhi -> Harare: launched and run. Harare -> Lusaka and Lagos: next markets for the product.
+  // New Delhi -> Harare: launched and run. Harare -> Lusaka and Lagos: markets evaluated for entry.
   const routes = [
     { from: HOME, to: HARARE, delay: 0.3 },
     { from: HARARE, to: LUSAKA, delay: 1.5 },

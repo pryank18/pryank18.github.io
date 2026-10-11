@@ -84,7 +84,7 @@
         { id: 'zero', label: 'New, going from 0 to 1', link: '#cases',
           ev: 'Two 0-to-1 platforms in India and a market launched from zero. I start from the field: 300+ pump-owner interviews and 40+ market interviews shaped what got built.' },
         { id: 'grow', label: 'Growing, from 1 to 10', link: '#cases',
-          ev: 'I took a new market from launch to 1.5M litres a month, scaled the vendor platform to 150+ vendors, and now write the requirements taking both systems into Zambia and Nigeria.' },
+          ev: 'I took a new market from launch to 1.5M litres a month, scaled the vendor platform to 150+ vendors, and now write the requirements taking both systems into the next two markets.' },
         { id: 'mature', label: 'Established, being optimised', link: '#shipped',
           ev: 'I optimised a live delivery operation with A/B tests (60 to 55 minutes), took vendor onboarding from over a day to under half, and cut fuel loss at an industrial site by 20 paise a litre, measured against baselines.' },
         { id: 'expand', label: 'Expanding into a new market', link: '#cases',
@@ -136,7 +136,7 @@
         { id: 'uae', label: 'UAE or the Middle East', link: '#top',
           ev: 'I work with teams in the UAE today and I\'m ready to relocate there. 30-day notice.' },
         { id: 'africa', label: 'Africa', link: '#top',
-          ev: 'Based in Harare today, running a business across Zimbabwe with expansion into Zambia and Nigeria. 30-day notice.' },
+          ev: 'Based in Harare today, running a business across Zimbabwe and scoping the next two markets. 30-day notice.' },
         { id: 'abroad', label: 'Elsewhere, with relocation', link: '#top',
           ev: 'I\'ve moved country for work before (India to Zimbabwe in 2025) and I\'m ready to relocate again. 30-day notice.' }
       ]
