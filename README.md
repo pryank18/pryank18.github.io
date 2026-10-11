@@ -1,6 +1,6 @@
 # Pryank Wadhera — Product Portfolio
 
-Senior Product Manager · B2B SaaS, B2C and platform products · Payments, APIs, IoT and growth. Country Head & Product Manager for a fuel-tech business in Zimbabwe. I build 0→1 products and the operations behind them.
+Senior Product Manager · 0-to-1 B2B SaaS, AI and platform products · Country Head & Product Manager for a fuel-tech business in Zimbabwe. I build 0→1 products and the businesses around them.
 
 📘 Portfolio and case studies: [Notion portfolio](https://fern-appliance-85f.notion.site/Pryank-Wadhera-3eaefd17b76680c88283e85a3217ff52)
 
