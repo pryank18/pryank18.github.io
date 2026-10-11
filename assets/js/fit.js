@@ -186,10 +186,18 @@
     backBtn.hidden = true; nextBtn.hidden = true;
 
     var wrap = el('div', 'fit-intro');
+    var note = el('div', 'fit-note');
+    var av = document.createElement('img');
+    av.src = 'assets/img/pryank-namaste.webp'; av.alt = ''; av.width = 301; av.height = 660; av.decoding = 'async';
+    note.appendChild(av);
+    var bub = el('div', 'fit-bubble');
     var h = el('h2', 'fit-title', 'Hiring a product leader? Check the fit in 60 seconds.');
     h.id = 'fit-title'; h.tabIndex = -1;
-    wrap.appendChild(h);
-    wrap.appendChild(el('p', 'fit-hint', 'Seven quick questions about your role. For every answer you get the matching evidence from my work, with links to see it on this page, and a summary you can send to the hiring manager.'));
+    bub.appendChild(h);
+    bub.appendChild(el('p', 'fit-hint', 'Seven quick questions about your role. For every answer you get the matching evidence from my work, with links to see it on this page, and a summary you can send to the hiring manager.'));
+    bub.appendChild(el('span', 'fit-sign', 'Pryank'));
+    note.appendChild(bub);
+    wrap.appendChild(note);
     var ul = el('ul', 'fit-intro-pts');
     ['Takes about a minute', 'Evidence, not adjectives', 'Nothing is stored'].forEach(function (t) { ul.appendChild(el('li', null, t)); });
     wrap.appendChild(ul);
@@ -278,6 +286,7 @@
     else renderIntro();
   }
 
+  function withArticle(t) { return (/^[aeiou]/i.test(t) ? 'an ' : 'a ') + t; }
   function labels(id) {
     var q = QUESTIONS.filter(function (x) { return x.id === id; })[0];
     return (answers[id] || []).map(function (a) { var o = find(q, a); return o ? o.label : ''; }).filter(Boolean);
@@ -302,7 +311,7 @@
     av.src = 'assets/img/pryank-namaste.webp'; av.alt = ''; av.width = 301; av.height = 660; av.loading = 'lazy'; av.decoding = 'async';
     note.appendChild(av);
     var bub = el('div', 'fit-bubble');
-    bub.appendChild(el('p', null, 'Thank you for taking the minute. For a ' + s.role.toLowerCase() + ' role, this is what I\'d put in front of you. Every line below links to the work behind it, and I\'m one message away if you want the details.'));
+    bub.appendChild(el('p', null, 'Thank you for taking the minute. For ' + withArticle(s.role) + ' role, this is what I\'d put in front of you. Every line below links to the work behind it, and I\'m one message away if you want the details.'));
     bub.appendChild(el('span', 'fit-sign', 'Pryank'));
     note.appendChild(bub);
     body.appendChild(note);
@@ -340,7 +349,7 @@
       body.appendChild(pr);
     }
 
-    var msg = 'Hi Pryank, I\'m hiring for a ' + s.text + '. Your fit check came back as a strong match on all ' + r.total + ' points. Can we talk?';
+    var msg = 'Hi Pryank, I\'m hiring for ' + withArticle(s.text) + '. Your fit check came back as a strong match on all ' + r.total + ' points. Can we talk?';
     var acts = el('div', 'fit-acts');
     var wa = el('a', 'btn btn-primary fit-wa', 'Message me on WhatsApp');
     wa.href = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(msg);

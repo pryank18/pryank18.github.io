@@ -52,8 +52,11 @@ html.fit-open{overflow:hidden}
 
 /* intro */
 .fit-intro{padding:8px 0 16px}
-.fit-intro .fit-title{font-size:clamp(32px,4.6vw,44px);max-width:14ch}
-.fit-intro .fit-hint{font-size:16.5px;margin-top:14px;max-width:48ch}
+.fit-intro .fit-note{margin-bottom:0}
+.fit-intro .fit-bubble{padding:18px 20px}
+.fit-intro .fit-title{font-size:clamp(26px,3.8vw,36px);line-height:1.1}
+.fit-intro .fit-hint{font-size:16px;margin-top:10px}
+.fit-intro .fit-sign{margin-top:10px}
 .fit-intro-pts{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 18px}
 .fit-intro-pts li{font-size:14.5px;font-weight:600;color:var(--ink-2)}
 .fit-intro-pts li::before{content:"\2713";color:var(--accent);margin-right:7px}
