@@ -405,9 +405,10 @@
     opener = document.activeElement;
     answers = {}; step = 0;
     seen(true);
+    // A preselected role (the role buttons in the Fit section) goes straight to question 2.
+    // Every other entry point shows the intro first: the avatar, the promise, and a Start button.
     if (prefRole && find(QUESTIONS[0], prefRole)) { answers.role = [prefRole]; step = 1; renderQuestion(); }
-    else if (source === 'auto') renderIntro();
-    else renderQuestion();
+    else renderIntro();
     show();
     track('fit_check_start', { role: prefRole || '', source: source || 'button' });
   }
