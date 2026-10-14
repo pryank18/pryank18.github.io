@@ -1,0 +1,154 @@
+/* Depth layer: a 3D finish on top of the existing page.
+   Additive only. Every rule is scoped under html.d3, which depth.js sets,
+   so without JavaScript (or with this file removed) the page is unchanged.
+   No content, order, copy or SEO markup is touched. */
+
+/* ---------- 1. Hero: a survey-grid floor receding under the globe ---------- */
+.d3 .hero{isolation:isolate}
+.d3 .hero-grid::after{content:"";position:absolute;z-index:-1;pointer-events:none;
+  left:50%;width:140vw;margin-left:-70vw;bottom:0;height:70%;
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size:56px 56px;
+  transform-origin:50% 100%;
+  transform:perspective(520px) rotateX(64deg);
+  -webkit-mask-image:radial-gradient(45% 85% at 66% 100%, #000 10%, transparent 75%);
+          mask-image:radial-gradient(45% 85% at 66% 100%, #000 10%, transparent 75%);
+  opacity:.9}
+.d3[data-tone="dark"] .hero-grid::after{opacity:.8}
+@media (prefers-reduced-motion: no-preference){
+  .d3 .hero-grid::after{animation:d3-floor 14s linear infinite}
+}
+@keyframes d3-floor{to{background-position:0 56px, 0 56px}}
+@media (max-width:1040px){
+  .d3 .hero-grid::after{height:40%;background-size:40px 40px;
+    -webkit-mask-image:radial-gradient(80% 90% at 50% 100%, #000 15%, transparent 70%);
+            mask-image:radial-gradient(80% 90% at 50% 100%, #000 15%, transparent 70%)}
+  @keyframes d3-floor{to{background-position:0 40px, 0 40px}}
+}
+
+/* hero layers move at different depths (values set by depth.js) */
+.d3 .hero-text,.d3 .globe{will-change:transform}
+.d3 .hero-text{transform:translate3d(var(--tx,0px), var(--ty,0px), 0)}
+.d3 .globe{transform:translate3d(var(--gx2,0px), var(--gy2,0px), 0) scale(var(--gs,1))}
+/* the glow under the globe becomes a contact shadow on the floor */
+.d3 .globe::after{content:"";position:absolute;z-index:-1;pointer-events:none;
+  left:22%;right:18%;bottom:5%;height:9%;border-radius:50%;
+  background:radial-gradient(closest-side, rgba(0,0,0,.22), transparent);
+  filter:blur(6px)}
+.d3[data-tone="dark"] .globe::after{background:radial-gradient(closest-side, rgba(0,0,0,.5), transparent)}
+@media (max-width:1040px){ .d3 .globe::after{bottom:60px} }
+
+/* ---------- 2. Figures with a little body ---------- */
+.d3 .ledger b,.d3 .result .fig{
+  text-shadow:
+    0 1px 0 color-mix(in srgb, var(--accent-big) 78%, #000),
+    0 2px 0 color-mix(in srgb, var(--accent-big) 66%, #000),
+    0 3px 0 color-mix(in srgb, var(--accent-big) 55%, #000),
+    0 10px 18px rgba(0,0,0,.16)}
+.d3 .result .fig small{text-shadow:none}
+.d3[data-tone="dark"] .ledger b,.d3[data-tone="dark"] .result .fig{
+  text-shadow:
+    0 1px 0 color-mix(in srgb, var(--accent-big) 60%, #000),
+    0 2px 0 color-mix(in srgb, var(--accent-big) 45%, #000),
+    0 3px 0 color-mix(in srgb, var(--accent-big) 32%, #000),
+    0 12px 22px rgba(0,0,0,.5)}
+
+/* ---------- 3. Cards that tilt toward the pointer, with a moving highlight ---------- */
+.d3 .doc,.d3 .build.wide,.d3 .fit-card{position:relative;transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .3s, border-color .15s}
+.d3 .doc{overflow:hidden}
+.d3 .doc::after,.d3 .build.wide::after,.d3 .fit-card::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%), rgba(255,255,255,.16), transparent 45%);
+  opacity:0;transition:opacity .3s}
+.d3 .is-tilting::after{opacity:1}
+.d3 .doc:hover{transform:none}
+.d3 .doclist,.d3 .builds,.d3 #fit .wrap{perspective:1200px}
+
+/* buttons: a pressed edge underneath */
+.d3 .btn-primary{box-shadow:0 2px 0 color-mix(in srgb, var(--btn) 70%, #000), 0 8px 16px -10px rgba(0,0,0,.5)}
+.d3 .btn-primary:active{box-shadow:0 0 0 color-mix(in srgb, var(--btn) 70%, #000), 0 4px 10px -8px rgba(0,0,0,.5);transform:translateY(2px)}
+
+/* tilted items must never widen the page on phones */
+.d3 main,.d3 .contact{overflow-x:clip}
+
+/* ---------- 4. Content rises out of the page as it scrolls in ---------- */
+@media (prefers-reduced-motion: no-preference){
+  .d3 .rv{opacity:0;transform:perspective(900px) translate3d(0,28px,0) rotateX(9deg) scale(.96);transform-origin:50% 100%}
+  .d3 .rv.in{opacity:1;transform:none;
+    transition:opacity .7s ease, transform .9s cubic-bezier(.2,.75,.25,1);
+    transition-delay:var(--d,0s)}
+  /* ledger numbers flip up in sequence */
+  .d3 .ledger li.rv{transform:perspective(600px) rotateX(70deg) scale(.96);transform-origin:50% 100%}
+  .d3 .ledger li.rv.in{transform:none}
+}
+
+/* ---------- motion off: keep the static depth, drop all movement ---------- */
+@media (prefers-reduced-motion: reduce){
+  .d3 .hero-text,.d3 .globe{transform:none!important}
+  .d3 .doc,.d3 .build.wide,.d3 .fit-card{transform:none!important}
+}
+
+/* =====================================================================
+   PART 2: objects you can see are 3D in a still frame
+   ===================================================================== */
+:root{--edge:color-mix(in srgb, var(--bg-3) 70%, var(--ink) 30%)}
+[data-tone="dark"]{--edge:color-mix(in srgb, var(--bg-2) 55%, #000 45%)}
+
+/* ---------- A. a tilted ring around the globe, with one satellite ---------- */
+.d3 .orbit{position:absolute;inset:-4% -10% -4% -4%;pointer-events:none}
+.d3 .orbit-back{z-index:0}
+.d3 .globe-canvas,.d3 .globe-still{z-index:1}
+.d3 .orbit-front{z-index:2}
+.d3 .globe-labels{z-index:3}
+.d3 .hero-text{position:relative;z-index:3}
+.d3 .orbit-svg{position:absolute;inset:0;overflow:visible}
+.d3 .globe.orbit-off .orbit{display:none}
+.d3 .orbit-svg path{fill:none;stroke:var(--accent-big);stroke-width:1.6;stroke-linecap:round;
+  filter:drop-shadow(0 0 6px color-mix(in srgb, var(--accent-big) 55%, transparent))}
+.d3 .orbit-back .orbit-svg path{opacity:.4}
+.d3 .orbit-sat{position:absolute;left:0;top:0;width:10px;height:10px;border-radius:50%;will-change:transform,opacity;
+  background:#fff;box-shadow:0 0 0 3px color-mix(in srgb, var(--accent-big) 45%, transparent),0 0 14px 4px var(--accent-big)}
+@media (max-width:1040px){ .d3 .orbit{inset:0 0 54px 0} .d3 .orbit-sat{width:8px;height:8px} }
+
+/* ---------- B. product screenshots as angled 3D screens ---------- */
+.d3 .shot-wrap{perspective:1500px;padding:10px 0 26px;position:relative}
+.d3 .shot-wrap::after{content:"";position:absolute;left:8%;right:8%;bottom:2px;height:26px;border-radius:50%;
+  background:radial-gradient(closest-side, rgba(0,0,0,.32), transparent);filter:blur(4px);z-index:-1}
+.d3 .shot{border:8px solid #0d1520;border-radius:16px;
+  transform:rotateY(-14deg) rotateX(7deg);
+  box-shadow:1px 1px 0 #1c2836,2px 2px 0 #1a2532,3px 3px 0 #18222e,4px 4px 0 #161f2a,5px 5px 0 #141c26,6px 6px 0 #121a23,7px 7px 0 #10171f,8px 8px 0 #0e141b,22px 30px 46px -16px rgba(0,0,0,.55)}
+.d3 .build:nth-child(2) .shot{transform:rotateY(14deg) rotateX(7deg);
+  box-shadow:-1px 1px 0 #1c2836,-2px 2px 0 #1a2532,-3px 3px 0 #18222e,-4px 4px 0 #161f2a,-5px 5px 0 #141c26,-6px 6px 0 #121a23,-7px 7px 0 #10171f,-8px 8px 0 #0e141b,-22px 30px 46px -16px rgba(0,0,0,.55)}
+.d3 .shot:hover,.d3 .shot.tilting{box-shadow:0 30px 50px -20px rgba(0,0,0,.5)}
+.d3 .shot img{border-radius:8px}
+
+/* ---------- C. cards become slabs with real thickness ---------- */
+.d3 .doc,.d3 .build.wide,.d3 .fit-card,.d3 .deep details[open]{
+  box-shadow:1px 1px 0 var(--edge),2px 2px 0 var(--edge),3px 3px 0 var(--edge),4px 4px 0 var(--edge),5px 5px 0 var(--edge),6px 6px 0 var(--edge),16px 22px 34px -14px rgba(0,0,0,.3)}
+.d3 .doc:hover,.d3 .is-tilting{box-shadow:1px 1px 0 var(--edge),2px 2px 0 var(--edge),3px 3px 0 var(--edge),4px 4px 0 var(--edge),5px 5px 0 var(--edge),6px 6px 0 var(--edge),7px 7px 0 var(--edge),8px 8px 0 var(--edge),24px 30px 44px -14px rgba(0,0,0,.36)}
+
+/* the at-a-glance strip becomes five raised tiles */
+.d3 .ledger{background:transparent;border:0;box-shadow:none;padding:6px 0 20px}
+.d3 .ledger ul{gap:14px}
+.d3 .ledger li{background:var(--bg-2);border:1px solid var(--line)!important;border-radius:14px;padding:22px 20px 20px!important;
+  box-shadow:1px 1px 0 var(--edge),2px 2px 0 var(--edge),3px 3px 0 var(--edge),4px 4px 0 var(--edge),5px 5px 0 var(--edge),6px 6px 0 var(--edge),14px 20px 30px -12px rgba(0,0,0,.28)}
+@media (max-width:1040px){
+  .d3 .ledger ul{gap:12px}
+  .d3 .ledger li{padding:18px 16px 16px!important}
+  .d3 .ledger li:last-child{grid-column:1/-1}
+}
+@media (max-width:760px){ .d3 .ledger li{border-top:1px solid var(--line)!important} }
+
+/* ---------- D. the 3D avatar floats in the contact section ---------- */
+.d3 .contact-avatar{position:absolute;right:max(150px, calc((100vw - var(--maxw)) / 2 + 60px));bottom:0;height:min(84%, 430px);width:auto;
+  pointer-events:none;filter:drop-shadow(18px 26px 22px rgba(0,0,0,.35));transform-origin:50% 100%}
+.d3 .contact-floor{position:absolute;right:max(128px, calc((100vw - var(--maxw)) / 2 + 38px));bottom:4px;width:240px;height:30px;border-radius:50%;
+  background:radial-gradient(closest-side, rgba(0,0,0,.3), transparent);filter:blur(3px)}
+@media (prefers-reduced-motion: no-preference){ .d3 .contact-avatar{animation:d3-bob 5s ease-in-out infinite} }
+@keyframes d3-bob{50%{transform:translateY(-10px) rotate(-1deg)}}
+.d3 .contact .wrap{position:relative;z-index:1}
+@media (max-width:1040px){ .d3 .contact-avatar{top:36px;bottom:auto;height:220px;right:18px} .d3 .contact-floor{top:244px;bottom:auto;width:120px;right:14px;height:18px} }
+@media (max-width:760px){ .d3 .contact-avatar{top:30px;height:170px;right:10px} .d3 .contact-floor{top:190px;width:90px;right:8px} .d3 .contact h2{padding-right:92px} }
+
