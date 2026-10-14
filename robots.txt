@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /Pryank_Wadhera_Senior_Product_Manager_Resume.pdf
 
 Sitemap: https://pryank18.github.io/sitemap.xml
