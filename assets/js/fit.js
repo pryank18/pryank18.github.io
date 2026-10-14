@@ -33,13 +33,13 @@
           ev: 'A/B-tested onboarding as website visitors grew from around 120 to 1,000+, cut delivery time from 60 to 55 minutes with tested fixes, and won 50+ enterprise and regional B2B clients in nine months from a 400+ prospect network.',
           ask: 'how I turned a 400+ prospect network into 50+ enterprise and regional clients' },
         { id: 'prog', label: 'Project, Program or Delivery Manager', link: '#path',
-          ev: 'Launched a business in a new country under written SOPs, took an MVP from wireframes to launch in 6–8 months, and set up an Agile process that cut time-to-market by 25%. Certified Agile Scrum Master; backlog and sprints run in Jira.',
+          ev: 'Launched a business in a new country under written SOPs, took an MVP from wireframes to launch within 8 months, and set up an Agile process that cut time-to-market by 25%. Certified Agile Scrum Master; backlog and sprints run in Jira.',
           ask: 'how I ran a country launch to plan with suppliers, banks and regulators' },
         { id: 'gm', label: 'Country Head, GM or business leader', link: '#cases',
-          ev: 'I run a country P&L today: pricing, procurement, customer credit, logistics, sales, regulators and an eight-person team. The market went from zero to 1.5M litres a month by month ten.',
+          ev: 'I run a country P&L today: pricing, procurement, customer credit, logistics, sales, regulators and an eight-person team. I took the market from zero to a live B2B business with 8 active depots and 50+ enterprise and regional clients.',
           ask: 'how I built the operating model before the product in a new market' },
         { id: 'strat', label: 'Strategy, founder\'s office or chief of staff', link: '#cases',
-          ev: 'I led the market-entry evaluation of Zimbabwe, Zambia and Nigeria for the CEO, drove the 0-to-1 strategy for a B2C fuel-retail app with the GM and CEO, and turned research into product and GTM inputs. Guest mentor at IIM Raipur.',
+          ev: 'I led the market-entry evaluation of Zimbabwe, Zambia and Nigeria for the CEO, partnered with the GM and CEO on Project Arjun, an EV and oil & gas retail infrastructure plan built on 100+ fleet and EV operator interviews (approved by leadership), and turned research into product and GTM inputs. Guest mentor at IIM Raipur.',
           ask: 'how I evaluated three countries and picked the one we launched in' }
       ]
     },
@@ -50,15 +50,15 @@
         { id: 'b2b', label: 'B2B SaaS or platform', link: '#shipped',
           ev: 'A vendor platform with 150+ vendors live, a LegalTech B2B SaaS MVP taken to launch, and Dispatch OS, a multi-tenant distribution SaaS I built myself.' },
         { id: 'pay', label: 'Payments, fintech or lending', link: '#shipped',
-          ev: 'I specified UPI Intent and QR checkout (2,000+ transactions in month one of an internal pilot), run a six-figure USD customer credit book with collections and credit risk, and designed Kids Wallet, a UPI product with parental controls.' },
+          ev: 'I specified UPI Intent and QR checkout (2,000+ transactions in month one of an internal pilot), own the P&L, including customer credit and collections, and designed Kids Wallet, a UPI product with parental controls.' },
         { id: 'iot', label: 'IoT or hardware-linked', link: '#shipped',
-          ev: 'An IoT fuel-management system with tank gauges, dispensers, flow meters and RFID nozzle tags, piloted at a major steel producer: 20 paise a litre saved on ~2M litres a month.' },
+          ev: 'An IoT fuel-management system with tank gauges, dispensers, flow meters and RFID nozzle tags, piloted at a major steel producer: the IoT loss-control pilot cut loss, theft and spillage over six months.' },
         { id: 'ops', label: 'Marketplace, logistics or supply chain', link: '#shipped',
           ev: 'Delivery time cut from 60 to 55 minutes through tested routing, slot-booking and order-sync fixes; vendor and customer delivery SOPs; procurement, dispatch and supplier allocation run against a demand forecast in a new market.' },
         { id: 'ai', label: 'AI or agentic products', link: '#builds',
           ev: 'Msafara, a multi-agent vendor-coordination product (LangGraph, RAG, evals, human-in-the-loop), and ARA, an AI assistant inside a GST ledger app. MBA in AI for Business, 2026.' },
         { id: 'b2c', label: 'Consumer app', link: '#builds',
-          ev: 'Led the 0-to-1 roadmap and PRDs for a B2C fuel-retail app with the CEO and GM, and built Pravesh (exam prep with guardian consent flows) and FitNexx (subscription fitness) end to end.' },
+          ev: 'Built Pravesh (exam prep with guardian consent flows) and FitNexx (subscription fitness) end to end, and designed Kids Wallet, a UPI product with parental controls.' },
         { id: 'retail', label: 'E-commerce, retail or distribution', link: '#builds',
           ev: 'Dispatch OS for FMCG distributors (ordering, credit limits, stock, SKU catalogue) and Bolt & Bahi for textile traders (billing, stock, receivables), plus trading-area analysis for retail fuel sites and the company\'s first retail station lease with a national oil company.' },
         { id: 'energy', label: 'Energy, mobility or EV', link: '#path',
@@ -75,7 +75,7 @@
         { id: 'ent', label: 'Large enterprise or global capability centre', link: '#leadership',
           ev: 'Compliance rules and SOPs that scale, work with regulators (ZERA, ZIMRA), cross-border USD settlement with global suppliers, and stakeholder management across the CEO, CTO, MD and 50+ colleagues in four countries.' },
         { id: 'svc', label: 'Consulting, services or agency', link: '#cases',
-          ev: 'Policy research and stakeholder engagement for the Delhi Government, a scoped on-site FMS for a major beverage bottler, and case studies written the way I run reviews: problem, evidence, scope.' }
+          ev: 'Policy research and stakeholder engagement for the Delhi Government, a scoped on-site FMS for a large enterprise client, and case studies written the way I run reviews: problem, evidence, scope.' }
       ]
     },
     {
@@ -84,9 +84,9 @@
         { id: 'zero', label: 'New, going from 0 to 1', link: '#cases',
           ev: 'Two 0-to-1 platforms in India and a market launched from zero. I start from the field: 300+ pump-owner interviews and 40+ market interviews shaped what got built.' },
         { id: 'grow', label: 'Growing, from 1 to 10', link: '#cases',
-          ev: 'I took a new market from launch to 1.5M litres a month, scaled the vendor platform to 150+ vendors, and now write the requirements taking both systems into Zambia and Nigeria.' },
+          ev: 'I took a new market from zero to a live B2B business with 8 active depots and 50+ enterprise and regional B2B clients, scaled the vendor platform to 150+ vendors, and now write the requirements taking both systems into Zambia and Nigeria.' },
         { id: 'mature', label: 'Established, being optimised', link: '#shipped',
-          ev: 'I optimised a live delivery operation with A/B tests (60 to 55 minutes), took vendor onboarding from over a day to under half, and cut fuel loss at an industrial site by 20 paise a litre, measured against baselines.' },
+          ev: 'I optimised a live delivery operation with A/B tests (60 to 55 minutes), took vendor onboarding from over a day to under half, and ran a six-month IoT loss-control pilot at a major steel producer that cut loss, theft and spillage, measured against baselines.' },
         { id: 'expand', label: 'Expanding into a new market', link: '#cases',
           ev: 'I evaluated Zimbabwe, Zambia and Nigeria, launched in Zimbabwe with ~15 suppliers live in month one, set up cross-border USD settlement, and run the P&L there today.' }
       ]
@@ -104,7 +104,7 @@
         { id: 'stake', label: 'Stakeholder and executive management', link: '#leadership',
           ev: 'Day-to-day work with the CEO, CTO and MD, reporting to the Business Head, and alignment across suppliers, banks, regulators and 50+ colleagues in four countries.' },
         { id: 'pnl', label: 'Commercial or P&L ownership', link: '#leadership',
-          ev: 'A country P&L across pricing, procurement, credit, logistics and sales, with a six-figure USD credit book managed on a 4–5-day cycle.' },
+          ev: 'A country P&L across pricing, procurement, logistics and sales, including customer credit and collections.' },
         { id: 'lead', label: 'Team leadership and hiring', link: '#leadership',
           ev: 'An eight-person team led directly, including a business-development manager I hired, plus six student groups mentored at IIM Raipur.' },
         { id: 'disc', label: 'Discovery and user research', link: '#cases',
