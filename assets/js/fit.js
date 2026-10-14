@@ -130,15 +130,15 @@
       id: 'where', short: 'Location', title: 'Where and how will they work?', type: 'one',
       options: [
         { id: 'remote', label: 'Remote', link: '#top',
-          ev: 'I already work across India, Africa and the UAE without sharing an office. 30-day notice.' },
+          ev: 'I already work across India, Africa and the UAE without sharing an office. Available immediately, or within 15 days.' },
         { id: 'india', label: 'On-site or hybrid in India', link: '#top',
-          ev: 'Based in New Delhi and open to any Indian city. 30-day notice.' },
+          ev: 'Based in New Delhi and open to any Indian city. Available immediately, or within 15 days.' },
         { id: 'uae', label: 'UAE or the Middle East', link: '#top',
-          ev: 'I work with teams in the UAE today and I\'m ready to relocate there. 30-day notice.' },
+          ev: 'I work with teams in the UAE today and I\'m ready to relocate there. Available immediately, or within 15 days.' },
         { id: 'africa', label: 'Africa', link: '#top',
-          ev: 'Based in Harare today, running a business across Zimbabwe with expansion into Zambia and Nigeria. 30-day notice.' },
+          ev: 'Based in Harare today, running a business across Zimbabwe with expansion into Zambia and Nigeria. Available immediately, or within 15 days.' },
         { id: 'abroad', label: 'Elsewhere, with relocation', link: '#top',
-          ev: 'I\'ve moved country for work before (India to Zimbabwe in 2025) and I\'m ready to relocate again. 30-day notice.' }
+          ev: 'I\'ve moved country for work before (India to Zimbabwe in 2025) and I\'m ready to relocate again. Available immediately, or within 15 days.' }
       ]
     }
   ];
