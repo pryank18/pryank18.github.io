@@ -419,8 +419,14 @@
     }
     document.documentElement.classList.add('fit-ready');
 
-    // Opt-in only: the fit check opens when a visitor asks for it (nav, hero button, #fit-check link).
+    // First visit in this session, landing on the page itself (not a deep link): open the intro once,
+    // after the first paint so the page is visible behind it. Later visits in the same session don't repeat it.
+    // This auto-open is a standing owner requirement; do not switch it to opt-in.
+    var deepLink = location.hash && location.hash !== '#top' && location.hash !== '#fit-check';
     if (location.hash === '#fit-check') open(null, 'link');
+    else if (!deepLink && !seen() && typeof dlg.showModal === 'function') {
+      setTimeout(function () { if (!dlg.open) open(null, 'auto'); }, 1100);
+    }
   }
 
   window.PortfolioFit = { QUESTIONS: QUESTIONS, score: score, open: open };
