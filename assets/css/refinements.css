@@ -89,7 +89,7 @@ main, .hero-text, .build, .build-body, .role > * { min-width: 0; }
   .globe { height: clamp(270px, 72vw, 360px); }
   .globe figcaption { text-align: center; max-width: none; line-height: 1.5; }
 }
-@media (min-width: 761px) and (max-width: 1040px) {
+@media (min-width: 761px) and (max-width: 1040px) and (pointer: coarse) {
   body { font-size: 22px; }
   .hero .summary, .contact p { font-size: 24px; line-height: 1.6; }
   .hero .ctas .btn { min-height: 64px; font-size: 23px; }
