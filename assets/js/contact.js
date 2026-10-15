@@ -24,11 +24,9 @@
   function say(msg, kind) { status.textContent = msg; status.setAttribute('data-kind', kind || ''); }
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  function kindOf(v) {
-    if (EMAIL_RE.test(v)) return 'email';
+  function isPhone(v) {
     var digits = v.replace(/[\s\-().+]/g, '');
-    if (/^\d{8,15}$/.test(digits) && /^[+\d\s\-().]+$/.test(v)) return 'phone';
-    return '';
+    return /^\d{8,15}$/.test(digits) && /^[+\d\s\-().]+$/.test(v);
   }
 
   box.addEventListener('toggle', function () {
@@ -66,7 +64,8 @@
 
     var name = f('name').value.trim();
     var company = f('company').value.trim();
-    var contact = f('contact').value.trim();
+    var phone = f('phone').value.trim();
+    var email = f('email').value.trim();
     var role = f('role').value.trim();
 
     // bots: honeypot filled, or the form sent within 2 seconds of opening. Look successful, send nothing.
@@ -74,16 +73,18 @@
 
     if (name.length < 2) return invalid(f('name'), 'Please add your name.');
     if (company.length < 2) return invalid(f('company'), 'Please add your company.');
-    var kind = kindOf(contact);
-    if (!kind) return invalid(f('contact'), 'Please add a phone number or an email.');
+    if (!phone && !email) return invalid(f('phone'), 'Please add a phone number or an email, so I can reach you.');
+    if (phone && !isPhone(phone)) return invalid(f('phone'), 'That phone number looks incomplete. Add the country code if it\'s outside India.');
+    if (email && !EMAIL_RE.test(email)) return invalid(f('email'), 'That email looks incomplete.');
+    var kind = phone && email ? 'both' : (phone ? 'phone' : 'email');
 
     var tz = '';
     try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e2) {}
     var data = {
       name: name,
       company: company,
-      contact: contact,
-      contact_type: kind,
+      phone: phone || '-',
+      email: email || '-',
       role: role || '-',
       application_ref: stored('pw-ref') || 'none',
       page: location.pathname,
@@ -92,7 +93,7 @@
       _template: 'table',
       _captcha: 'false'
     };
-    if (kind === 'email') data.email = contact; // lets "Reply" in the inbox go straight to them
+    if (!email) delete data.email; // a real email becomes the reply-to address in the inbox
 
     send.disabled = true;
     send.textContent = 'Sending…';
@@ -111,7 +112,7 @@
     }).then(function (res) {
       if (res.ok && String(res.j.success) === 'true') {
         thanks(name);
-        track('lead_submit', { link_location: 'contact', contact_type: kind });
+        track('lead_submit', { link_location: 'contact', contact_given: kind });
       } else {
         throw new Error('not delivered');
       }

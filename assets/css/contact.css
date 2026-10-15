@@ -18,12 +18,15 @@
 .contact .lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .contact .lead-field{display:flex;flex-direction:column;gap:6px;min-width:0}
 .contact .lead-field span{font-size:14px;font-weight:600;color:var(--ink-2)}
+.contact .lead-wide{grid-column:1 / -1}
 .contact .lead-field em{font-style:normal;font-weight:400;color:var(--ink-3)}
 .contact .lead-field input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg-2);width:100%;min-height:46px;
   padding:10px 12px;border:1px solid var(--line);border-radius:10px;-webkit-appearance:none;appearance:none}
 .contact .lead-field input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .contact .lead-field input[aria-invalid="true"]{border-color:#c0392b}
 
+.contact .lead-form p.lead-hint{margin:10px 0 0;max-width:none;font-size:14px;color:var(--ink-3)}
+.contact .lead-form.is-sent p.lead-hint{display:none}
 .contact .lead-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:16px}
 .contact .lead-send{min-height:46px;min-width:120px}
 .contact .lead-send:disabled{opacity:.7;cursor:progress}
