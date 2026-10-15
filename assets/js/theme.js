@@ -48,7 +48,7 @@
   if (location.pathname === '/' || location.pathname === '/index.html') {
     var preload = document.createElement('link');
     preload.rel = 'preload'; preload.as = 'image';
-    preload.href = 'assets/img/globe-' + root.getAttribute('data-theme') + '.webp';
+    preload.href = 'assets/img/globe-' + root.getAttribute('data-theme') + '.webp?v=4'; // must match the CSS URL exactly, or the image downloads twice
     document.head.appendChild(preload);
   }
   window.PortfolioTheme = { bind: function () {

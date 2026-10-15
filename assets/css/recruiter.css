@@ -1,0 +1,55 @@
+/* Recruiter pass (Oct 2026): fewer layers, bigger targets, nothing hidden behind motion. */
+
+/* status pill: title plus the scope that backs it */
+.status > span{min-width:0}
+.status-scope{color:var(--ink-3);font-weight:400}
+@media (max-width:760px){ .status-scope{display:block} .status-scope .sep{display:none} }
+
+/* hero buttons: four in a row on desktop */
+.hero .ctas .btn{white-space:nowrap}
+
+/* icon-only share buttons on product cards */
+.btn-ico{width:40px;padding:0;justify-content:center}
+.btn-ico .share-ico{margin:0}
+@media (max-width:1040px){ .btn-ico{width:44px} }
+
+/* inline links: a 44px tap area without changing the line height */
+.inline-link{display:inline;padding:12px 2px;margin:-12px -2px;font-weight:600;color:var(--accent);text-underline-offset:3px}
+.docs a{min-height:44px;display:inline-flex;align-items:center}
+
+/* footer links */
+.foot-links{display:flex;flex-wrap:wrap;gap:4px 18px}
+
+/* laptops and windows narrower than 1040px with a mouse get the normal top navigation, not the phone tab bar */
+@media (min-width:761px) and (max-width:1040px) and (pointer:fine){
+  .tabbar{display:none!important}
+  body{padding-bottom:0}
+  .nav-links{display:flex;gap:16px}
+  .nav-links a{font-size:14px}
+  .nav-links a[href="#path"]{display:none}
+  .nav-cta{margin-left:0}
+  .mode .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .wa-fab{bottom:calc(20px + env(safe-area-inset-bottom))}
+}
+
+/* small phones: show the name, drop the theme switch (themes still follow the time of day) */
+@media (max-width:400px){
+  .brand .name{display:block}
+  .brand{flex:1 1 auto}
+  #mode{display:none}
+}
+
+/* phones: the WhatsApp button waits until the visitor is past the hero, so it never covers the intro */
+@media (max-width:760px){
+  .wa-fab.fab-hero{opacity:0;transform:translateY(16px) scale(.9);pointer-events:none}
+}
+
+/* fit check: transferable evidence is labelled as such */
+.fit-chip.fit-chip-adj{background:var(--accent-soft);color:var(--accent)}
+.fit-chip.fit-chip-adj::before{content:"\2194  "}
+
+/* desktop: the shorter hero brings the globe's caption up into the sphere; keep it underneath */
+@media (min-width:1041px){
+  .hero-grid{padding-bottom:84px}
+  .globe figcaption{bottom:-58px}
+}

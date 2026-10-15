@@ -131,55 +131,7 @@
 
     if (calm) return; // static depth only
 
-    /* ---------- reveals ---------- */
-    var groups = [
-      '.ledger li', '.result', '.build', '.lab-row', '.deep details', '.doc',
-      '.strengths > div', '.principles li', '.phase', '.role', '.why > div', '.fit-card', '.contact .wrap > *'
-    ];
-    var vh = window.innerHeight || 800;
-    var items = [];
-    groups.forEach(function (sel) {
-      var list = document.querySelectorAll(sel);
-      Array.prototype.forEach.call(list, function (el, i) {
-        // anything already on screen at load stays put: no flash, no shift
-        if (el.getBoundingClientRect().top < vh * 0.92) return;
-        el.classList.add('rv');
-        el.style.setProperty('--d', Math.min(i % 6, 5) * 0.07 + 's');
-        items.push(el);
-      });
-    });
-    var showAll = function () { items.forEach(function (el) { el.classList.add('in'); }); };
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
-        });
-      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-      items.forEach(function (el) { io.observe(el); });
-      // a fast fling can skip an item entirely; anything already above the fold is shown
-      var sweepQueued = false;
-      var sweep = function () {
-        sweepQueued = false;
-        var lim = window.innerHeight;
-        items = items.filter(function (el) {
-          if (el.classList.contains('in')) return false;
-          if (el.getBoundingClientRect().top < lim) { el.classList.add('in'); io.unobserve(el); return false; }
-          return true;
-        });
-      };
-      window.addEventListener('scroll', function () {
-        if (items.length && !sweepQueued) { sweepQueued = true; setTimeout(sweep, 120); }
-      }, { passive: true });
-      // jumping by anchor (tab bar, nav, "Case study" links) must never land on hidden content
-      window.addEventListener('hashchange', function () {
-        var t = document.getElementById(location.hash.slice(1));
-        if (!t) return;
-        Array.prototype.forEach.call(t.querySelectorAll('.rv'), function (el) { el.classList.add('in'); });
-        if (t.classList.contains('rv')) t.classList.add('in');
-      });
-      // printing and find-in-page must see everything
-      window.addEventListener('beforeprint', showAll);
-    } else { showAll(); }
+    /* Scroll reveals were removed (Oct 2026): content is always visible the moment it is on screen. */
 
     /* ---------- hero depth: scroll on every device, pointer on desktop ---------- */
     var hero = document.querySelector('.hero');

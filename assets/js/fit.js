@@ -1,5 +1,5 @@
 /* Role fit check.
-   A recruiter answers seven questions about the role. Every answer maps to
+   A recruiter answers four questions about the role. Every answer maps to
    evidence from Pryank's work (resume facts, public case studies and builds),
    so the result is a brief-specific proof of fit with links into the page.
    Nothing is stored or sent anywhere; the summary only leaves the page if the
@@ -13,36 +13,40 @@
   var RESUME = 'Pryank_Wadhera_Senior_Product_Manager_Resume.pdf';
   var SESSION_KEY = 'pw-fit-seen-v2';
 
+  /* Every option carries a match level, so the result reads as an honest brief:
+     'direct'   = done in a paid role, on the resume
+     'adjacent' = transferable, or shown in personal builds rather than at work
+     Wording and figures follow the resume, which is the source of truth. */
   var QUESTIONS = [
     {
       id: 'role', short: 'Role', title: 'What are you hiring for?', type: 'one',
       options: [
-        { id: 'spm', label: 'Product Manager or Senior PM', link: '#shipped',
-          ev: 'Over seven years of experience, over five in product. In India I shipped a vendor management system now serving 150+ vendors and specified an IoT fuel-management system piloted at a major steel producer, then launched a new market and run it. I own product today as Country Head and Product Manager.',
-          ask: 'how I took a product from 300+ field interviews to 150+ vendors live' },
-        { id: 'head', label: 'Lead PM, Group PM or Head of Product', link: '#leadership',
-          ev: 'I set Zimbabwe release priorities for two platforms and write the requirements taking them into the next two markets. I worked directly with the CEO, CTO and MD in India, and today lead an eight-person team alongside a country P&L. I coordinate 50+ colleagues across Mozambique, Zambia, the UAE and India.',
-          ask: 'how I set roadmap priorities against North Star metrics across three markets' },
-        { id: 'tpm', label: 'Technical or Platform PM', link: '#shipped',
-          ev: '100+ requirements for an IoT system (tank gauges, dispensers, flow meters, RFID nozzle tags), REST API integrations, UPI Intent and QR checkout, and IoT-server order sync. I work in SQL, Postman and Supabase, and build with Python and LangGraph.',
+        { id: 'spm', label: 'Product Manager or Senior PM', link: '#shipped', fit: 'direct',
+          ev: 'Seven-plus years in total, five-plus in product. In India I shipped a vendor management system now serving 150+ vendors, UPI checkout, and an IoT fuel-management system piloted at a major steel producer; then I launched a new market and now run it as Country Head and Product Manager.',
+          ask: 'how I took a vendor platform from 300+ pump-owner interviews to 150+ vendors' },
+        { id: 'head', label: 'Lead PM, Group PM or Head of Product', link: '#leadership', fit: 'direct',
+          ev: 'I set Zimbabwe release priorities for two platforms on the central roadmap, tracked against North Star KPIs, and write the requirements taking them into Zambia and Nigeria. I worked directly with the CEO, CTO and MD in India, and today lead an 8-person team alongside a country P&L.',
+          ask: 'how I set roadmap priorities against North Star KPIs across three markets' },
+        { id: 'tpm', label: 'Technical or Platform PM', link: '#shipped', fit: 'direct',
+          ev: '100+ requirements defined for an IoT system (tank gauges, flow meters, RFID), REST API integrations, UPI Intent and QR checkout, and root-causing IoT order-sync failures. I work in SQL, Postman and Supabase, and build with Python and LangGraph.',
           ask: 'how the IoT fuel-management system was specified and piloted' },
-        { id: 'ai', label: 'AI Product Manager', link: '#builds',
-          ev: 'I built Msafara, a multi-agent product with LangGraph, RAG, evals and human-in-the-loop escalation, and ARA, an AI assistant inside Bolt & Bahi. MBA in AI for Business (expected Dec 2026) and the AI-First Product Leader certification.',
+        { id: 'ai', label: 'AI Product Manager', link: '#builds', fit: 'adjacent',
+          ev: 'Shown in personal builds rather than at work so far: Msafara, a multi-agent prototype with LangGraph, RAG, evals and human-in-the-loop escalation, and ARA, an AI assistant inside Bolt & Bahi. MBA in AI for Business (expected Dec 2026).',
           ask: 'how I bound an AI agent\'s autonomy and designed its escalation rules' },
-        { id: 'growth', label: 'Growth PM', link: '#shipped',
-          ev: 'A/B-tested onboarding flows, cut delivery time from 60 to 55 minutes with A/B-tested fixes, and won 50+ enterprise and regional B2B clients in nine months from a 400+ prospect network.',
-          ask: 'how I turned a 400+ prospect network into 50+ enterprise and regional clients' },
-        { id: 'proj', label: 'Project Manager', link: '#path',
-          ev: 'Took a web and mobile MVP from Figma wireframes to launch within 8 months, specified 100+ requirements for a six-month IoT pilot, and launched a business in a new country under written SOPs. Certified Agile Scrum Master; backlog and sprints run in Jira.',
-          ask: 'how the IoT pilot was specified from 100+ requirements' },
-        { id: 'prog', label: 'Program or Delivery Manager', link: '#path',
-          ev: 'Launched a new market by bringing suppliers, banks, transporters and an eight-person team onto one plan, set up the company\'s first Agile product process (time-to-market down 25%), and coordinate with teams across the UAE, India, Zambia and Mozambique.',
+        { id: 'growth', label: 'Growth PM', link: '#shipped', fit: 'adjacent',
+          ev: 'Transferable rather than a growth title: A/B-tested onboarding flows, delivery time cut from 60 to 55 minutes with A/B-tested fixes, funnel metrics in Amplitude and Tableau, and 50+ enterprise and regional clients won from a 400+ network.',
+          ask: 'how I turned a 400+ network into 50+ enterprise and regional clients' },
+        { id: 'proj', label: 'Project Manager', link: '#path', fit: 'direct',
+          ev: 'Took a web and mobile MVP from Figma wireframes to launch within 8 months, ran the six-month IoT pilot from 100+ requirements, and launched a business in a new country under written SOPs. Certified Agile Scrum Master; backlog and sprints in Jira.',
+          ask: 'how the six-month IoT pilot was planned and measured' },
+        { id: 'prog', label: 'Program or Delivery Manager', link: '#path', fit: 'direct',
+          ev: 'Launched a new market by bringing suppliers, banks, transporters and an 8-person team onto one plan, introduced Agile/Scrum with standard PRDs and sprint planning (time-to-market down 25%), and coordinate 50+ colleagues across Mozambique, Zambia, the UAE and India.',
           ask: 'how I ran a country launch to plan with suppliers, banks and regulators' },
-        { id: 'gm', label: 'Country Head, GM or business leader', link: '#cases',
-          ev: 'I run a country P&L today: pricing, procurement, customer credit, logistics, sales, regulators and an eight-person team. I took the market from zero to a live B2B business with 8 active depots and 50+ enterprise and regional clients.',
+        { id: 'gm', label: 'Country Head, GM or business leader', link: '#cases', fit: 'direct',
+          ev: 'I run a country P&L today across pricing, procurement, logistics and sales, plus customer credit and collections, within ZERA and ZIMRA rules. I took the market from zero to 8 active depots and 50+ enterprise and regional clients, with zero stock-outs.',
           ask: 'how I built the operating model before the product in a new market' },
-        { id: 'strat', label: 'Strategy, founder\'s office or chief of staff', link: '#cases',
-          ev: 'I led the market-entry evaluation of Zimbabwe, Zambia and Nigeria for the CEO, partnered with the GM and CEO on Project Arjun, an EV and oil & gas retail infrastructure plan built on 100+ fleet and EV operator interviews (approved by leadership), and turned research into product and GTM inputs. Guest mentor at IIM Raipur.',
+        { id: 'strat', label: 'Strategy, founder\'s office or chief of staff', link: '#cases', fit: 'direct',
+          ev: 'I led the market and competitive evaluation of Zimbabwe, Zambia and Nigeria, and partnered with the GM and CEO on Project Arjun, mapping EV and oil & gas retail infrastructure from 100+ fleet and EV operator interviews (plan approved by leadership).',
           ask: 'how I evaluated three countries and picked the one we launched in' }
       ]
     },
@@ -50,96 +54,48 @@
       id: 'product', short: 'Product', title: 'What will they own?', type: 'many', max: 3,
       hint: 'Pick up to three.',
       options: [
-        { id: 'b2b', label: 'B2B SaaS or platform', link: '#shipped',
-          ev: 'A vendor platform with 150+ vendors live, a LegalTech B2B SaaS MVP taken to launch, and Dispatch OS, a multi-tenant distribution SaaS I built myself.' },
-        { id: 'pay', label: 'Payments, fintech or lending', link: '#shipped',
-          ev: 'I specified UPI Intent and QR checkout (2,000+ transactions in month one of an internal pilot), own the P&L, including customer credit and collections, and designed Kids Wallet, a UPI product with parental controls.' },
-        { id: 'iot', label: 'IoT or hardware-linked', link: '#shipped',
-          ev: 'An IoT fuel-management system with tank gauges, dispensers, flow meters and RFID nozzle tags, piloted at a major steel producer: the IoT loss-control pilot cut loss, theft and spillage over six months.' },
-        { id: 'ops', label: 'Marketplace, logistics or supply chain', link: '#shipped',
-          ev: 'Delivery time cut from 60 to 55 minutes through tested routing, slot-booking and order-sync fixes; vendor and customer delivery SOPs; procurement, dispatch and supplier allocation run against a demand forecast in a new market.' },
-        { id: 'ai', label: 'AI or agentic products', link: '#builds',
-          ev: 'Msafara, a multi-agent vendor-coordination product (LangGraph, RAG, evals, human-in-the-loop), and ARA, an AI assistant inside a GST ledger app. MBA in AI for Business, expected Dec 2026.' },
-        { id: 'b2c', label: 'Consumer app', link: '#builds',
-          ev: 'Built Pravesh (exam prep with guardian consent flows) and FitNexx (subscription fitness) end to end, and designed Kids Wallet, a UPI product with parental controls.' },
-        { id: 'retail', label: 'E-commerce, retail or distribution', link: '#builds',
-          ev: 'Dispatch OS for FMCG distributors (ordering, credit limits, stock, SKU catalogue) and Bolt & Bahi for textile traders (billing, stock, receivables), plus trading-area analysis for retail fuel sites and the company\'s first retail station lease with a national oil company.' },
-        { id: 'energy', label: 'Energy, mobility or EV', link: '#path',
-          ev: 'Fuel-tech from vendor platform to IoT tank monitoring to a bulk-fuel business run end to end, plus EV-charging and fuel-retail infrastructure mapping with 100+ fleet and EV operator interviews.' }
-      ]
-    },
-    {
-      id: 'company', short: 'Company', title: 'What kind of company is it?', type: 'one',
-      options: [
-        { id: 'early', label: 'Early-stage startup', link: '#cases',
-          ev: 'At a fuel-tech startup I worked directly with the CEO, CTO and MD, then launched its new-country business from zero with no suppliers, banking or customers in place.' },
-        { id: 'scale', label: 'Growth-stage or scale-up', link: '#shipped',
-          ev: 'One of four PMs with a 15-engineer team, shipping a vendor platform, IoT FMS and UPI checkout while the business expanded into Africa.' },
-        { id: 'ent', label: 'Large enterprise or global capability centre', link: '#leadership',
-          ev: 'Compliance rules and SOPs that scale, work with regulators (ZERA, ZIMRA), cross-border USD settlement with global suppliers, and stakeholder management across the CEO, CTO, MD and 50+ colleagues in four countries.' },
-        { id: 'svc', label: 'Consulting, services or agency', link: '#cases',
-          ev: 'Policy research and stakeholder engagement for the Delhi Government, a scoped on-site FMS for a large enterprise client, and case studies written the way I run reviews: problem, evidence, scope.' }
-      ]
-    },
-    {
-      id: 'stage', short: 'Stage', title: 'Where is the product today?', type: 'one',
-      options: [
-        { id: 'zero', label: 'New, going from 0 to 1', link: '#cases',
-          ev: 'A vendor platform taken from field interviews to 150+ vendors, an IoT system specified from 100+ requirements, and a market launched from zero. I start from the field: 300+ pump-owner interviews and 40+ market interviews shaped what got built.' },
-        { id: 'grow', label: 'Growing, from 1 to 10', link: '#cases',
-          ev: 'I took a new market from zero to a live B2B business with 8 active depots and 50+ enterprise and regional B2B clients, scaled the vendor platform to 150+ vendors, and now write the requirements taking both systems into Zambia and Nigeria.' },
-        { id: 'mature', label: 'Established, being optimised', link: '#shipped',
-          ev: 'I optimised a live delivery operation with A/B tests (60 to 55 minutes), took vendor onboarding from over a day to under half, and specified the IoT system behind a six-month pilot at a major steel producer that cut loss, theft and spillage.' },
-        { id: 'expand', label: 'Expanding into a new market', link: '#cases',
-          ev: 'I evaluated Zimbabwe, Zambia and Nigeria, launched in Zimbabwe with ~15 suppliers live in month one, set up cross-border USD settlement, and run the P&L there today.' }
-      ]
-    },
-    {
-      id: 'skills', short: 'Must-have', title: 'Which skills matter most?', type: 'many', max: 3,
-      hint: 'Pick up to three.',
-      options: [
-        { id: 'tech', label: 'Technical fluency: APIs, SQL, data', link: '#shipped',
-          ev: 'SQL and Excel for demand forecasting, REST APIs and integrations, Postman, Supabase, and Python with LangGraph and an LLM API. 100+ IoT requirements written and shipped.' },
-        { id: 'exp', label: 'Analytics and experimentation', link: '#shipped',
-          ev: 'Funnel analytics in Amplitude and Tableau, A/B-tested delivery fixes (60 to 55 minutes) and onboarding flows, and every goal set against a baseline.' },
-        { id: 'aiskill', label: 'Hands-on AI and LLMs', link: '#builds',
-          ev: 'LLM agent orchestration, prompt design, RAG, evals and human-in-the-loop design, shipped in Msafara and ARA. MBA in AI for Business.' },
-        { id: 'stake', label: 'Stakeholder and executive management', link: '#leadership',
-          ev: 'Worked day to day with the CEO, CTO and MD in India, report to the Business Head today, and alignment across suppliers, banks, regulators and 50+ colleagues in four countries.' },
-        { id: 'pnl', label: 'Commercial or P&L ownership', link: '#leadership',
-          ev: 'A country P&L across pricing, procurement, logistics and sales, including customer credit and collections.' },
-        { id: 'lead', label: 'Team leadership and hiring', link: '#leadership',
-          ev: 'An eight-person team led directly, including a business-development manager I hired, plus six student groups mentored at IIM Raipur.' },
-        { id: 'disc', label: 'Discovery and user research', link: '#cases',
-          ev: '300+ pump-owner interviews, 100+ fleet and EV operator interviews, 40+ market interviews, and a live customer feedback loop into the backlog.' },
-        { id: 'proc', label: 'Process and Agile delivery', link: '#path',
-          ev: 'Set up a company\'s first Agile product process with standard PRDs and sprint planning (time-to-market down 25%). Certified Agile Scrum Master; Jira and Confluence daily.' }
+        { id: 'b2b', label: 'B2B SaaS or platform', link: '#shipped', fit: 'direct',
+          ev: 'A vendor management system serving 150+ vendors, and a LegalTech SaaS MVP taken to launch. On my own time, Dispatch OS, a multi-tenant distribution SaaS used in distributor pitches.' },
+        { id: 'pay', label: 'Payments, fintech or lending', link: '#shipped', fit: 'direct',
+          ev: 'Specified and shipped UPI Intent and QR checkout (2,000+ transactions in month one), and own customer credit and collections in a country P&L today.' },
+        { id: 'iot', label: 'IoT or hardware-linked', link: '#shipped', fit: 'direct',
+          ev: 'Defined 100+ requirements for an IoT fuel-management system (tank gauges, flow meters, RFID); its six-month pilot at a major Indian steel producer cut loss, theft and spillage.' },
+        { id: 'ops', label: 'Marketplace, logistics or supply chain', link: '#shipped', fit: 'direct',
+          ev: 'Delivery time cut from 60 to 55 minutes through tested fixes to order sync, routing and slot booking, and supplier volumes allocated across 8 depots from a daily demand forecast with zero stock-outs.' },
+        { id: 'ai', label: 'AI or agentic products', link: '#builds', fit: 'adjacent',
+          ev: 'From personal builds: Msafara, a multi-agent vendor-coordination prototype (LangGraph, RAG, evals, human-in-the-loop), and ARA, an AI assistant inside a GST ledger app. MBA in AI for Business, expected Dec 2026.' },
+        { id: 'b2c', label: 'Consumer app', link: '#builds', fit: 'adjacent',
+          ev: 'B2C products at FuelBuddy alongside B2B, plus personal builds: Pravesh, a live exam-prep app with a free model and voluntary UPI support, and FitNexx, a subscription fitness app.' },
+        { id: 'retail', label: 'E-commerce, retail or distribution', link: '#builds', fit: 'adjacent',
+          ev: 'Secured FuelBuddy\'s first Indian Oil (IOCL) retail station lease; a Shopify app integrated with 3+ merchant stores for freelance clients; and Dispatch OS for FMCG distributors.' },
+        { id: 'energy', label: 'Energy, mobility or EV', link: '#path', fit: 'direct',
+          ev: 'Fuel-tech from vendor platform to IoT tank monitoring to a bulk-fuel business run end to end, plus EV and oil & gas retail infrastructure mapping from 100+ fleet and EV operator interviews.' }
       ]
     },
     {
       id: 'years', short: 'Experience', title: 'How much experience does the role ask for?', type: 'one',
       options: [
-        { id: 'y3', label: '3 to 5 years', link: '#path',
-          ev: 'Over seven years in total and over five in product, well above the bar, with leadership scope already in hand.' },
-        { id: 'y5', label: '5 to 8 years', link: '#path',
-          ev: 'Over seven years in total, over five in product, and a country P&L and team on top.' },
-        { id: 'y8', label: '8 to 12 years', link: '#path',
-          ev: 'Over seven years in total and over five in product, with scope usually seen at this level: a country P&L, an eight-person team, a 0-to-1 vendor platform and a market launched from zero.' }
+        { id: 'y3', label: '3 to 5 years', link: '#path', fit: 'adjacent',
+          ev: 'Seven-plus years in total and five-plus in product, so more than this role asks. Worth agreeing scope and level early in the conversation.' },
+        { id: 'y5', label: '5 to 8 years', link: '#path', fit: 'direct',
+          ev: 'Seven-plus years in total and five-plus in product, with a country P&L and an 8-person team on top.' },
+        { id: 'y8', label: '8 to 12 years', link: '#path', fit: 'adjacent',
+          ev: 'Seven-plus years in total and five-plus in product, so a little under the number. The scope is at that level: a country P&L, an 8-person team, a 0-to-1 vendor platform and a market launched from zero.' }
       ]
     },
     {
       id: 'where', short: 'Location', title: 'Where and how will they work?', type: 'one',
       options: [
-        { id: 'remote', label: 'Remote', link: '#top',
-          ev: 'I already work with teams across India, Africa and the UAE without sharing an office.' },
-        { id: 'india', label: 'On-site or hybrid in India', link: '#top',
-          ev: 'Based in New Delhi and open to any Indian city.' },
-        { id: 'uae', label: 'UAE or the Middle East', link: '#top',
-          ev: 'I coordinate with colleagues in the UAE today and I\'m ready to relocate there.' },
-        { id: 'africa', label: 'Africa', link: '#top',
+        { id: 'remote', label: 'Remote', link: '#top', fit: 'direct',
+          ev: 'I already work with colleagues across Mozambique, Zambia, the UAE and India without sharing an office.' },
+        { id: 'india', label: 'On-site or hybrid in India', link: '#top', fit: 'direct',
+          ev: 'Home base New Delhi, open to relocation within India, and available to join immediately.' },
+        { id: 'uae', label: 'UAE or the Middle East', link: '#top', fit: 'direct',
+          ev: 'I coordinate with colleagues in the UAE today and I\'m open to relocating.' },
+        { id: 'africa', label: 'Africa', link: '#top', fit: 'direct',
           ev: 'I launched and run a B2B business in Zimbabwe and write the requirements for the next rollouts in Zambia and Nigeria.' },
-        { id: 'abroad', label: 'Elsewhere, with relocation', link: '#top',
-          ev: 'I\'ve moved country for work before (India to Zimbabwe in 2025) and I\'m ready to relocate again.' }
+        { id: 'abroad', label: 'Elsewhere, with relocation', link: '#top', fit: 'direct',
+          ev: 'I moved country for work in 2025 (India to Zimbabwe) and I\'m open to relocating again.' }
       ]
     }
   ];
@@ -159,7 +115,8 @@
         if (o.ask) asks.push(o.ask);
       });
     });
-    return { rows: rows, asks: asks, total: rows.length, level: 'strong' };
+    var direct = rows.filter(function (r) { return r.o.fit !== 'adjacent'; }).length;
+    return { rows: rows, asks: asks, total: rows.length, direct: direct };
   }
 
   /* ---------- dialog ---------- */
@@ -195,7 +152,7 @@
     var h = el('h2', 'fit-title', 'Hiring a product leader? Check the fit in 60 seconds.');
     h.id = 'fit-title'; h.tabIndex = -1;
     bub.appendChild(h);
-    bub.appendChild(el('p', 'fit-hint', 'Seven quick questions about your role. For every answer you get the matching evidence from my work, with links to see it on this page, and a summary you can send to the hiring manager.'));
+    bub.appendChild(el('p', 'fit-hint', 'Four quick questions about your role. For every answer you get the matching evidence from my work, marked as direct or adjacent, with links to see it on this page and a summary you can send to the hiring manager.'));
     bub.appendChild(el('span', 'fit-sign', 'Pryank'));
     note.appendChild(bub);
     wrap.appendChild(note);
@@ -294,7 +251,7 @@
   }
   function summaryLine() {
     var role = labels('role')[0] || 'product';
-    var bits = [labels('product').join(', '), labels('company')[0], labels('stage')[0], labels('skills').join(', '), labels('years')[0], labels('where')[0]].filter(Boolean);
+    var bits = [labels('product').join(', '), labels('years')[0], labels('where')[0]].filter(Boolean);
     return { role: role, text: role + ' (' + bits.join('; ') + ')' };
   }
 
@@ -321,7 +278,7 @@
     var h = el('h2', 'fit-title', 'How my work maps to your role');
     h.id = 'fit-title'; h.tabIndex = -1;
     head.appendChild(h);
-    head.appendChild(el('p', 'fit-res-sub', 'For your ' + s.role + ' role: each answer below links to the work behind it.'));
+    head.appendChild(el('p', 'fit-res-sub', 'For your ' + s.role + ' role. Direct means I have done it in a paid role; adjacent means transferable, or shown in my own builds. Each line links to the work behind it.'));
     body.appendChild(head);
 
     var ul = el('ul', 'fit-rows');
@@ -329,7 +286,8 @@
       var li = el('li', 'fit-row');
       var top = el('div', 'fit-row-top');
       top.appendChild(el('span', 'fit-crit', row.q.short + ': ' + row.o.label));
-      top.appendChild(el('span', 'fit-chip', 'Evidence'));
+      var adj = row.o.fit === 'adjacent';
+      top.appendChild(el('span', 'fit-chip' + (adj ? ' fit-chip-adj' : ''), adj ? 'Adjacent' : 'Direct'));
       li.appendChild(top);
       var p = el('p', null, row.o.ev + ' ');
       var a = el('a', 'fit-see', 'See it');
@@ -364,7 +322,7 @@
     cp.type = 'button';
     cp.addEventListener('click', function () {
       var lines = ['Pryank Wadhera: evidence for ' + s.text, ''];
-      r.rows.forEach(function (row) { lines.push('- ' + row.q.short + ' (' + row.o.label + '): ' + row.o.ev); });
+      r.rows.forEach(function (row) { lines.push('- ' + row.q.short + ' (' + row.o.label + ', ' + (row.o.fit === 'adjacent' ? 'adjacent' : 'direct') + '): ' + row.o.ev); });
       if (r.asks.length) { lines.push('', 'Ask him:'); r.asks.forEach(function (t) { lines.push('- ' + t.charAt(0).toUpperCase() + t.slice(1)); }); }
       lines.push('', 'Resume: ' + SITE + RESUME, 'Portfolio: ' + SITE, 'WhatsApp: +91 7397829282 | ' + EMAIL);
       copy(lines.join('\n'), cp);
