@@ -59,7 +59,7 @@
         { id: 'pay', label: 'Payments, fintech or lending', link: '#shipped', fit: 'direct',
           ev: 'Specified and shipped UPI Intent and QR checkout (2,000+ transactions in month one), and own customer credit and collections in a country P&L today.' },
         { id: 'iot', label: 'IoT or hardware-linked', link: '#shipped', fit: 'direct',
-          ev: 'Defined 100+ requirements for an IoT fuel-management system (tank gauges, flow meters, RFID); its six-month pilot at a major Indian steel producer cut loss, theft and spillage.' },
+          ev: 'Defined 100+ requirements for an IoT fuel-management system (tank gauges, flow meters, RFID); its six-month pilot at a major Indian steel producer cut loss, theft and spillage by about 20 paise per litre, a ~₹4 lakh a month run-rate by months 5–6.' },
         { id: 'ops', label: 'Marketplace, logistics or supply chain', link: '#shipped', fit: 'direct',
           ev: 'Delivery time cut from 60 to 55 minutes through tested fixes to order sync, routing and slot booking, and supplier volumes allocated across 8 depots from a daily demand forecast with zero stock-outs.' },
         { id: 'ai', label: 'AI or agentic products', link: '#builds', fit: 'adjacent',
