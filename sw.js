@@ -4,8 +4,10 @@
      (/bolt-and-bahi/, /Msafara/ ...) and are never intercepted.
    - Pages and scripts are network-first, so a deploy shows up immediately;
      the cache is only a fallback when the visitor is offline.
-   Bump VERSION when the list of precached files changes. */
-const VERSION = 'pw-2026-10-16-recruiter-v24';
+   Bump VERSION when the list of precached files changes.
+   The globe images and the 3D files are not precached: each visitor needs only one theme's
+   image, and only devices with a graphics chip load the 3D globe. Both are cached on first use. */
+const VERSION = 'pw-2026-10-16-recruiter-v25';
 const PRECACHE = [
   '/',
   '/manifest.webmanifest',
@@ -21,16 +23,9 @@ const PRECACHE = [
   '/404.html',
   '/assets/img/pryank-namaste.webp',
   '/assets/js/theme.js',
-  '/assets/js/globe.js',
-  '/assets/js/land.js',
-  '/assets/vendor/three.module.min.js',
   '/assets/icons/icon-192.png',
-  '/assets/img/globe-dawn.webp',
-  '/assets/img/globe-day.webp',
-  '/assets/img/globe-dusk.webp',
-  '/assets/img/globe-night.webp',
-  '/depotline-preview.png',
-  '/bolt-and-bahi-preview.png'
+  '/assets/img/builds/depotline-preview-800.webp',
+  '/assets/img/builds/bolt-and-bahi-preview-800.webp'
 ];
 
 // Exact hub paths, plus prefixes that belong to the hub.
