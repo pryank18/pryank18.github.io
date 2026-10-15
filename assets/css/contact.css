@@ -1,0 +1,53 @@
+/* Contact section: Call button and the collapsed "Prefer I reach you?" call-back form. */
+
+/* Call: the number shows on wide screens (no phone to tap), just "Call" on phones */
+.btn-call .call-num{font-weight:500;color:var(--ink-2)}
+@media (max-width:760px){ .btn-call .call-num{display:none} }
+
+/* the form stays one quiet link until opened */
+.contact .lead{margin-top:26px;max-width:640px}
+.contact .lead-toggle{list-style:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;cursor:pointer;
+  font-weight:600;color:var(--accent);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.contact .lead-toggle::-webkit-details-marker{display:none}
+.contact .lead-toggle::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+  transform:rotate(45deg) translateY(-2px);transition:transform .15s}
+.contact .lead[open] .lead-toggle::after{transform:rotate(-135deg) translate(-2px,0)}
+.contact .lead-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.contact .lead-form{margin-top:14px;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+.contact .lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact .lead-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.contact .lead-field span{font-size:14px;font-weight:600;color:var(--ink-2)}
+.contact .lead-field em{font-style:normal;font-weight:400;color:var(--ink-3)}
+.contact .lead-field input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg-2);width:100%;min-height:46px;
+  padding:10px 12px;border:1px solid var(--line);border-radius:10px;-webkit-appearance:none;appearance:none}
+.contact .lead-field input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.contact .lead-field input[aria-invalid="true"]{border-color:#c0392b}
+
+.contact .lead-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:16px}
+.contact .lead-send{min-height:46px;min-width:120px}
+.contact .lead-send:disabled{opacity:.7;cursor:progress}
+.contact .lead-form p.lead-note{margin:0;max-width:none;font-size:14px;color:var(--ink-3)}
+.contact .lead-form p.lead-status{margin:0;max-width:none;font-size:15px}
+.contact .lead-form p.lead-status:not(:empty){margin-top:12px}
+.contact .lead-form p.lead-status[data-kind="error"]{color:#c0392b}
+.contact .lead-form p.lead-status[data-kind="ok"]{color:var(--ink);font-weight:600}
+.contact .lead-form p.lead-status a{color:var(--accent);font-weight:600}
+
+/* after sending: only the thank-you line stays */
+.contact .lead-form.is-sent .lead-grid,
+.contact .lead-form.is-sent .lead-foot{display:none}
+.contact .lead-form.is-sent p.lead-status{margin-top:0}
+
+/* honeypot: off-screen for people, still filled in by bots */
+.contact .lead-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+@media (max-width:760px){
+  .contact .lead-grid{grid-template-columns:1fr}
+  .contact .lead-form{padding:16px}
+  .contact .lead-send{width:100%}
+}
+
+/* dark themes: a lighter red that stays readable */
+[data-tone="dark"] .contact .lead-field input[aria-invalid="true"]{border-color:#ff8a7a}
+[data-tone="dark"] .contact .lead-form p.lead-status[data-kind="error"]{color:#ff8a7a}

@@ -108,7 +108,7 @@
 
       // the floating WhatsApp button steps aside while it would cover a contact or footer link (any screen size)
       var fab = document.getElementById('wa-fab');
-      var targets = Array.prototype.slice.call(document.querySelectorAll('#contact .mail, #contact .copy-mail, #contact .ctas .btn, footer a, footer span'));
+      var targets = Array.prototype.slice.call(document.querySelectorAll('#contact .mail, #contact .copy-mail, #contact .ctas .btn, #contact .lead-toggle, #contact .lead-form input, #contact .lead-send, footer a, footer span'));
       if (fab && targets.length) {
         var fabQueued = false;
         var checkFab = function () {
