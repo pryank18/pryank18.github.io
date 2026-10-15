@@ -558,10 +558,10 @@
     <script src="assets/js/depth.js?v=20261016b" defer></script>
     <link rel="stylesheet" href="assets/css/share.css?v=20261015">
     <link rel="stylesheet" href="assets/css/recruiter.css?v=20261016d">
-    <link rel="stylesheet" href="assets/css/contact.css?v=20261016a">
+    <link rel="stylesheet" href="assets/css/contact.css?v=20261016b">
     <script src="assets/js/share.js?v=20261015" defer></script>
   <script src="assets/js/insights.js?v=20261016a" defer></script>
-  <script src="assets/js/contact.js?v=20261016a" defer></script>
+  <script src="assets/js/contact.js?v=20261016b" defer></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -944,9 +944,11 @@
             <div class="lead-grid">
               <label class="lead-field"><span>Your name</span><input name="name" type="text" autocomplete="name" maxlength="80" required></label>
               <label class="lead-field"><span>Company</span><input name="company" type="text" autocomplete="organization" maxlength="100" required></label>
-              <label class="lead-field"><span>Phone or email</span><input name="contact" type="text" autocomplete="tel" maxlength="120" required></label>
-              <label class="lead-field"><span>Role <em>(optional)</em></span><input name="role" type="text" maxlength="120"></label>
+              <label class="lead-field lead-wide"><span>Role <em>(optional)</em></span><input name="role" type="text" maxlength="120"></label>
+              <label class="lead-field"><span>Phone</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="25" aria-describedby="lead-hint"></label>
+              <label class="lead-field"><span>Email</span><input name="email" type="email" inputmode="email" autocomplete="email" maxlength="120" aria-describedby="lead-hint"></label>
             </div>
+            <p class="lead-hint" id="lead-hint">Phone, email or both. One is enough.</p>
             <div class="lead-hp" aria-hidden="true"><label>Leave this empty<input name="_honey" type="text" tabindex="-1" autocomplete="off"></label></div>
             <div class="lead-foot"><button class="btn btn-primary lead-send" type="submit">Send</button><p class="lead-note">Used only to get back to you. Never shared.</p></div>
             <p class="lead-status" role="status" aria-live="polite"></p>
