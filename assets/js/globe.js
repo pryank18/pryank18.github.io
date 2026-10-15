@@ -132,6 +132,7 @@ function start(host) {
   const HARARE = { lat: -17.83, lon: 31.05 };
   const LUSAKA = { lat: -15.39, lon: 28.32 };
   const LAGOS = { lat: 6.52, lon: 3.38 };
+  const DUBAI = { lat: 25.2, lon: 55.27 };
   // New Delhi -> Harare: the market launched and run (solid). Harare -> Lusaka and Lagos: markets
   // evaluated for entry only (faint), so the globe never reads as operations in every city.
   const routes = [
@@ -140,8 +141,10 @@ function start(host) {
     { from: HARARE, to: LAGOS, delay: 1.7, evaluated: true }
   ];
   // order matches the .globe-label elements in index.html
-  const cities = [HOME, HARARE, LUSAKA, LAGOS];
+  // Dubai is not a market: a small neutral marker with no route, for the UAE team I coordinate with.
+  const cities = [HOME, HARARE, LUSAKA, LAGOS, DUBAI];
   const EVALUATED = new Set([LUSAKA, LAGOS]);
+  const TEAM = new Set([DUBAI]);
 
   const arcMat = new THREE.MeshBasicMaterial({ color: 0xf2a93b, transparent: true, opacity: 0.95, depthWrite: false });
   const pulseMat = new THREE.MeshBasicMaterial({ color: 0xffe2ad, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
@@ -149,6 +152,7 @@ function start(host) {
   const evalArcMat = new THREE.MeshBasicMaterial({ color: 0xf2a93b, transparent: true, opacity: 0.4, depthWrite: false });
   const evalMarkerMat = new THREE.MeshBasicMaterial({ color: 0xf2a93b, transparent: true, opacity: 0.5 });
   const homeMat = new THREE.MeshBasicMaterial({ color: 0xedf1f5 });
+  const teamMat = new THREE.MeshBasicMaterial({ color: 0xedf1f5, transparent: true, opacity: 0.7 });
 
   const arcs = routes.map((m) => {
     const a0 = toVec(m.from.lat, m.from.lon);
@@ -178,19 +182,21 @@ function start(host) {
   const rings = [];
   cities.forEach((c, i) => {
     const p = toVec(c.lat, c.lon, 1.003);
-    const dot = new THREE.Mesh(new THREE.SphereGeometry(i === 0 ? 0.019 : 0.016, 20, 20), i === 0 ? homeMat : (EVALUATED.has(c) ? evalMarkerMat : markerMat));
+    const team = TEAM.has(c);
+    const dot = new THREE.Mesh(new THREE.SphereGeometry(i === 0 ? 0.019 : (team ? 0.012 : 0.016), 20, 20),
+      i === 0 ? homeMat : (team ? teamMat : (EVALUATED.has(c) ? evalMarkerMat : markerMat)));
     dot.position.copy(p);
     dot.renderOrder = 5;
     spin.add(dot);
     const ring = new THREE.Mesh(
       new THREE.RingGeometry(0.024, 0.031, 48),
-      new THREE.MeshBasicMaterial({ color: i === 0 ? 0xedf1f5 : 0xf2a93b, transparent: true, side: THREE.DoubleSide, depthWrite: false })
+      new THREE.MeshBasicMaterial({ color: (i === 0 || team) ? 0xedf1f5 : 0xf2a93b, transparent: true, side: THREE.DoubleSide, depthWrite: false })
     );
     ring.position.copy(toVec(c.lat, c.lon, 1.006));
     ring.lookAt(toVec(c.lat, c.lon, 2));
     ring.renderOrder = 5;
     spin.add(ring);
-    rings.push({ ring, phase: i * 0.6, home: i === 0, dim: EVALUATED.has(c) ? 0.45 : 1 });
+    rings.push({ ring, phase: i * 0.6, home: i === 0 || team, dim: team ? 0.35 : (EVALUATED.has(c) ? 0.45 : 1) });
   });
 
   // ---------- view + interaction ----------
@@ -256,7 +262,7 @@ function start(host) {
     const arc = get('--globe-arc', '#f2a93b');
     arcMat.color.set(arc); markerMat.color.set(arc); evalArcMat.color.set(arc); evalMarkerMat.color.set(arc);
     const home = get('--globe-home', '#edf1f5');
-    homeMat.color.set(home);
+    homeMat.color.set(home); teamMat.color.set(home);
     rings.forEach(r => r.ring.material.color.set(r.home ? home : arc));
     arcs.forEach(a => {
       a.pulse.material.color.set(get('--globe-pulse', '#ffe2ad'));
