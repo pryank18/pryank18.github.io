@@ -174,3 +174,26 @@
 /* WhatsApp button steps aside while it would cover a contact or footer link (set by depth.js, only while they would overlap) */
 .d3 .wa-fab{transition:transform .25s ease, opacity .25s ease, box-shadow .18s ease}
 .d3 .wa-fab.fab-aside{opacity:0;transform:translateY(16px) scale(.9);pointer-events:none}
+
+/* ---------- D. the Msafara card and the lab rows get small 3D screens too ---------- */
+/* Msafara sits in the right column, so it turns the same way as the right-hand build. */
+.d3 .build.wide .aside-shot{padding:6px 0 20px;z-index:0}
+.d3 .build.wide .aside-shot::after{bottom:0;height:20px}
+.d3 .build.wide .aside-shot .shot{transform:rotateY(14deg) rotateX(7deg);
+  box-shadow:-1px 1px 0 #1c2836,-2px 2px 0 #1a2532,-3px 3px 0 #18222e,-4px 4px 0 #161f2a,-5px 5px 0 #141c26,-6px 6px 0 #121a23,-7px 7px 0 #10171f,-8px 8px 0 #0e141b,-20px 26px 40px -16px rgba(0,0,0,.5)}
+.d3 .build.wide .aside-shot .shot:hover,.d3 .build.wide .aside-shot .shot.tilting{box-shadow:0 26px 44px -20px rgba(0,0,0,.5)}
+/* lab rows: a thin-bezel mini screen angled into the row */
+.d3 .lab-id{perspective:700px}
+.d3 .lab-thumb{border:3px solid #0d1520;border-radius:9px;background:#0d1520;transform-origin:0 50%;transform:rotateY(-16deg) rotateX(6deg);
+  transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .3s;
+  box-shadow:1px 1px 0 #1c2836,2px 2px 0 #18222e,3px 3px 0 #141c26,4px 4px 0 #10171f,10px 14px 20px -10px rgba(0,0,0,.45)}
+.d3 .lab-thumb img{border-radius:5px}
+.d3 .lab-row:hover .lab-thumb{transform:rotateY(-6deg) rotateX(3deg) translateZ(14px);
+  box-shadow:1px 1px 0 #1c2836,2px 2px 0 #18222e,3px 3px 0 #141c26,4px 4px 0 #10171f,14px 20px 26px -12px rgba(0,0,0,.5)}
+@media (max-width:1040px){
+  .d3 .build.wide .aside-shot .shot{transform:rotateY(6deg) rotateX(4deg) scale(.96)}
+  .d3 .lab-thumb{transform:rotateY(-10deg) rotateX(4deg)}
+}
+@media (prefers-reduced-motion: reduce){
+  .d3 .lab-thumb,.d3 .lab-row:hover .lab-thumb{transition:none;transform:rotateY(-16deg) rotateX(6deg)}
+}

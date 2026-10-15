@@ -115,3 +115,23 @@ main, .hero-text, .build, .build-body, .role > * { min-width: 0; }
 
 /* The "Docs:" label sits level with its links. */
 .docs { align-items: center; }
+
+/* Build screenshots in the spare space: the Msafara card's right column and each lab row.
+   Sized to sit inside space that was already empty, so rows and cards keep their layout. */
+.build.wide .aside-shot { margin: 18px auto 0; max-width: 300px; }
+.lab-id { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.lab-id > div { min-width: 0; }
+.lab-thumb { flex: 0 0 80px; display: block; border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--line); background: var(--bg-3); box-shadow: var(--shadow); }
+.lab-thumb img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; }
+@media (min-width: 1041px) and (max-width: 1180px) {
+  .build.wide .aside-shot { max-width: 268px; }
+  .lab-id { gap: 12px; }
+  .lab-thumb { flex-basis: 60px; }
+}
+@media (max-width: 1040px) {
+  .build.wide .aside-shot { max-width: 420px; margin-top: 22px; }
+}
+@media (max-width: 760px) {
+  .lab-thumb { flex-basis: 72px; }
+}
