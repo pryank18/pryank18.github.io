@@ -50,7 +50,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400..700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400..700&display=swap"></noscript>
-    <script src="assets/js/theme.js?v=20261009"></script>
+    <script src="assets/js/theme.js?v=20261015"></script>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@graph":[
       {"@type":"Person","@id":"https://pryank18.github.io/#person","name":"Pryank Wadhera","givenName":"Pryank","familyName":"Wadhera","url":"https://pryank18.github.io/","image":"https://pryank18.github.io/og-card.png?v=2","email":"mailto:wadherapryank@gmail.com",
@@ -65,7 +65,7 @@
        "knowsAbout":["Product management","Senior product management","Technical product management","B2C products","Consumer apps","Product discovery","Product roadmaps","PRDs","SQL","Agile and Scrum","Jira","Product strategy","0 to 1 products","B2B SaaS","Platform products","UPI payments","Checkout and reconciliation","IoT fuel management systems","Vendor management systems","Fuel-tech","REST APIs and integrations","Product analytics","A/B testing","Go-to-market","Market entry","Country management","P&L ownership","Program management","Agentic AI","LangGraph"],
        "sameAs":["https://linkedin.com/in/pryankwadhera","https://www.linkedin.com/in/pryankwadhera","https://github.com/pryank18","https://fern-appliance-85f.notion.site/Pryank-Wadhera-3eaefd17b76680c88283e85a3217ff52"]},
       {"@type":"WebSite","@id":"https://pryank18.github.io/#website","url":"https://pryank18.github.io/","name":"Pryank Wadhera","alternateName":"Pryank Wadhera — Product Manager portfolio","inLanguage":"en-IN","publisher":{"@id":"https://pryank18.github.io/#person"}},
-      {"@type":"ProfilePage","@id":"https://pryank18.github.io/#page","url":"https://pryank18.github.io/","name":"Pryank Wadhera — Senior Product Manager","isPartOf":{"@id":"https://pryank18.github.io/#website"},"mainEntity":{"@id":"https://pryank18.github.io/#person"},"inLanguage":"en-IN","dateModified":"2026-10-14T21:00:00+05:30"}
+      {"@type":"ProfilePage","@id":"https://pryank18.github.io/#page","url":"https://pryank18.github.io/","name":"Pryank Wadhera — Senior Product Manager","isPartOf":{"@id":"https://pryank18.github.io/#website"},"mainEntity":{"@id":"https://pryank18.github.io/#person"},"inLanguage":"en-IN","dateModified":"2026-10-15T12:30:00+05:30"}
     ]}
     </script>
     <style>
@@ -272,6 +272,11 @@
       .shot::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(500px circle at var(--gx,50%) var(--gy,0%), rgba(255,255,255,.18), transparent 45%);opacity:0;transition:opacity .3s}
       .shot.tilting::after{opacity:1}
       .build-body{padding:22px 2px 0}
+      .stat{display:flex;align-items:baseline;gap:12px;margin-bottom:10px}
+      .stat b{flex:none;font-family:var(--serif);font-weight:400;font-size:clamp(38px,3.8vw,48px);line-height:1;letter-spacing:-.01em;color:var(--accent-big)}
+      .stat span{font-size:14px;line-height:1.4;color:var(--ink-3);max-width:32ch}
+      .d3 .stat b{text-shadow:0 1px 0 color-mix(in srgb, var(--accent-big) 78%, #000),0 2px 0 color-mix(in srgb, var(--accent-big) 66%, #000),0 8px 14px rgba(0,0,0,.14)}
+      .d3[data-tone="dark"] .stat b{text-shadow:0 1px 0 color-mix(in srgb, var(--accent-big) 60%, #000),0 2px 0 color-mix(in srgb, var(--accent-big) 45%, #000),0 10px 18px rgba(0,0,0,.45)}
       .build h3{font-family:var(--sans);font-weight:700;font-size:24px;line-height:1.2;letter-spacing:-.012em}
       .seg{font-size:14.5px;color:var(--ink-3);margin-top:4px}
       .build p.desc{color:var(--ink-2);margin-top:12px;max-width:58ch}
@@ -317,6 +322,8 @@
       .steps p b{color:var(--ink);font-weight:600}
       .steps .full{grid-column:1/-1;border-left:2px solid var(--accent);padding-left:18px}
       .steps .full p{font-family:var(--serif);font-size:24px;line-height:1.3;color:var(--ink)}
+      .steps .page-link{grid-column:1/-1}
+      .steps .page-link a{font-weight:600;font-size:15.5px;color:var(--accent);text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px}
 
       .docs-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin:72px 0 18px}
       .docs-head h3{font-family:var(--serif);font-size:30px;line-height:1.05}
@@ -630,6 +637,7 @@
             <article class="build">
               <div class="shot-wrap"><a class="shot tilt" href="https://pryank18.github.io/depotline-fuel-ops/" target="_blank" rel="noopener" aria-label="Open the Depotline demo"><img src="depotline-preview.png" alt="Depotline dashboard showing depots, deliveries and margin" loading="lazy" width="1564" height="784"></a></div>
               <div class="build-body">
+                <p class="stat"><b>5 in 1</b><span>areas of depot work in one live view</span></p>
                 <h3>Depotline</h3>
                 <p class="seg">B2B operations SaaS (energy)</p>
                 <p class="desc">Depot operators juggle stock, pricing and fleet fuel logs in spreadsheets. <b>One live view</b> across depots, deliveries, fleet, inventory and finance, with margin always visible.</p>
@@ -640,6 +648,7 @@
             <article class="build">
               <div class="shot-wrap"><a class="shot tilt" href="https://pryank18.github.io/bolt-and-bahi/" target="_blank" rel="noopener" aria-label="Open the Bolt and Bahi demo"><img src="bolt-and-bahi-preview.png" alt="Bolt and Bahi ledger showing billing and receivables" loading="lazy" width="1564" height="784"></a></div>
               <div class="build-body">
+                <p class="stat"><b>10</b><span>languages in one local-first GST ledger</span></p>
                 <h3>Bolt &amp; Bahi</h3>
                 <p class="seg">B2B SMB, vertical SaaS, India</p>
                 <p class="desc">Indian textile traders run billing, stock, job work and receivables across notebooks and Excel. <b>A local-first GST ledger</b> with ARA, a built-in AI assistant, in ten languages.</p>
@@ -649,6 +658,7 @@
             </article>
             <article class="build wide">
               <div class="build-body">
+                <p class="stat"><b>4 jobs</b><span>drafting, chasing, negotiating and proposals, inside set rules</span></p>
                 <h3>Msafara</h3>
                 <p class="seg">B2B, AI agents, travel</p>
                 <p class="desc">Tour operators chase hotels and vendors by hand. <b>A multi-agent system</b> that drafts requests, follows up on silence, negotiates within set rules and builds client proposals over email and WhatsApp. Python, LangGraph and an LLM API, with RAG for vendor context and evals on the agent's decisions.</p>
@@ -709,6 +719,7 @@
                 <div><h4>Decision</h4><p>A six-month pilot measured against the site's own baseline, with the saving as the metric. The buyer could verify the saving at the meter, which is what makes a hardware-linked product sellable.</p></div>
                 <div><h4>Result</h4><p>Savings did not arrive in month one. As the controls and site behaviour settled, the pilot <b>cut loss, theft and spillage over six months</b>.</p></div>
                 <div class="full"><h4>What I'd do differently</h4><p>Set the expectation of a ramp in the contract. A saving that climbs over six months reads as a miss in month two unless the buyer was shown the curve first.</p></div>
+                <p class="page-link"><a href="/work/iot-loss-control/">Read it as a full page, with related work</a></p>
               </div>
             </details>
             <details id="case-upi">
@@ -722,6 +733,7 @@
                 <div><h4>Decision</h4><p>Specify the checkout for the B2B platform and pilot it internally first, with FuelBuddy's own teams in Gurugram, Bengaluru, Hyderabad and smaller clusters in Odisha, so the payment stack was proven before wider rollout.</p></div>
                 <div><h4>Result</h4><p><b>2,000+ UPI transactions in month one of the internal pilot</b>, and the failure and reconciliation paths got real traffic before any customer relied on them.</p></div>
                 <div class="full"><h4>Alongside it</h4><p>Partnered with the GM and CEO on Project Arjun, an EV and oil &amp; gas retail infrastructure plan built on 100+ fleet and EV operator interviews; plan approved by leadership.</p></div>
+                <p class="page-link"><a href="/work/upi-checkout/">Read it as a full page, with related work</a></p>
               </div>
             </details>
             <details id="case-vms">
@@ -735,6 +747,7 @@
                 <div><h4>What I built</h4><p>Standard validation and compliance rules inside the onboarding flow, so a submission was checked once, against one rulebook, at the moment of entry instead of the next morning.</p></div>
                 <div><h4>Result</h4><p>Onboarding came down to <b>under half a day</b>, for <b>150+ vendors</b> now live on the platform.</p></div>
                 <div class="full"><h4>What I'd keep</h4><p>The fix was a rule set more than a feature, and it came from the pumps, not from a document. Every platform I've built since started the same way.</p></div>
+                <p class="page-link"><a href="/work/vendor-onboarding/">Read it as a full page, with related work</a></p>
               </div>
             </details>
             <details id="case-market">
@@ -748,6 +761,7 @@
                 <div><h4>Decision</h4><p>The business before the product: banking, procurement, credit, dispatch and reporting under written SOPs, with ~15 suppliers live in month one and cross-border USD settlement with them. The interviews became FMS and VMS requirements fed through a live feedback loop.</p></div>
                 <div><h4>Result</h4><p><b>A live B2B business with 8 active depots</b>, <b>50+ enterprise and regional B2B clients in nine months</b> from a 400+ transporter and fleet network across six cities, and the Country Head role added to the product one.</p></div>
                 <div class="full"><h4>What I'd do differently</h4><p>I scoped an on-site fuel management system for a large enterprise client, hardware and digital payments included, before confirming the hardware could be sourced in-country. It's paused. In a new market, check the supply chain for the product before you check the appetite for it.</p></div>
+                <p class="page-link"><a href="/work/market-entry-zimbabwe/">Read it as a full page, with the timeline and related work</a></p>
               </div>
             </details>
           </div>

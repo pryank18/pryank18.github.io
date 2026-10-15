@@ -44,10 +44,13 @@
   } catch (_) {}
   root.classList.add('js');
   sync();
-  var preload = document.createElement('link');
-  preload.rel = 'preload'; preload.as = 'image';
-  preload.href = 'assets/img/globe-' + root.getAttribute('data-theme') + '.webp';
-  document.head.appendChild(preload);
+  // the globe image only exists on the home page
+  if (location.pathname === '/' || location.pathname === '/index.html') {
+    var preload = document.createElement('link');
+    preload.rel = 'preload'; preload.as = 'image';
+    preload.href = 'assets/img/globe-' + root.getAttribute('data-theme') + '.webp';
+    document.head.appendChild(preload);
+  }
   window.PortfolioTheme = { bind: function () {
     if (button) return;
     button = document.getElementById('mode');
