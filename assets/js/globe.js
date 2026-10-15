@@ -132,20 +132,22 @@ function start(host) {
   const HARARE = { lat: -17.83, lon: 31.05 };
   const LUSAKA = { lat: -15.39, lon: 28.32 };
   const LAGOS = { lat: 6.52, lon: 3.38 };
-  const DUBAI = { lat: 25.2, lon: 55.27 };
-  // New Delhi -> Harare: launched and run. Harare -> Lusaka and Lagos: markets evaluated for entry.
+  // New Delhi -> Harare: the market launched and run (solid). Harare -> Lusaka and Lagos: markets
+  // evaluated for entry only (faint), so the globe never reads as operations in every city.
   const routes = [
     { from: HOME, to: HARARE, delay: 0.3 },
-    { from: HARARE, to: LUSAKA, delay: 1.5 },
-    { from: HARARE, to: LAGOS, delay: 1.7 },
-    { from: DUBAI, to: HARARE, delay: 1.0 }   // engagement and team coordination run through Dubai
+    { from: HARARE, to: LUSAKA, delay: 1.5, evaluated: true },
+    { from: HARARE, to: LAGOS, delay: 1.7, evaluated: true }
   ];
   // order matches the .globe-label elements in index.html
-  const cities = [HOME, HARARE, LUSAKA, LAGOS, DUBAI];
+  const cities = [HOME, HARARE, LUSAKA, LAGOS];
+  const EVALUATED = new Set([LUSAKA, LAGOS]);
 
   const arcMat = new THREE.MeshBasicMaterial({ color: 0xf2a93b, transparent: true, opacity: 0.95, depthWrite: false });
   const pulseMat = new THREE.MeshBasicMaterial({ color: 0xffe2ad, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
   const markerMat = new THREE.MeshBasicMaterial({ color: 0xf2a93b });
+  const evalArcMat = new THREE.MeshBasicMaterial({ color: 0xf2a93b, transparent: true, opacity: 0.4, depthWrite: false });
+  const evalMarkerMat = new THREE.MeshBasicMaterial({ color: 0xf2a93b, transparent: true, opacity: 0.5 });
   const homeMat = new THREE.MeshBasicMaterial({ color: 0xedf1f5 });
 
   const arcs = routes.map((m) => {
@@ -160,8 +162,8 @@ function start(host) {
       pts.push(p.multiplyScalar(1.004 + lift * Math.sin(Math.PI * t)));
     }
     const curve = new THREE.CatmullRomCurve3(pts);
-    const geo = new THREE.TubeGeometry(curve, 128, 0.0052, 6, false);
-    const mesh = new THREE.Mesh(geo, arcMat);
+    const geo = new THREE.TubeGeometry(curve, 128, m.evaluated ? 0.0036 : 0.0052, 6, false);
+    const mesh = new THREE.Mesh(geo, m.evaluated ? evalArcMat : arcMat);
     mesh.renderOrder = 3;
     const full = geo.index.count;
     geo.setDrawRange(0, calm ? full : 0);
@@ -176,7 +178,7 @@ function start(host) {
   const rings = [];
   cities.forEach((c, i) => {
     const p = toVec(c.lat, c.lon, 1.003);
-    const dot = new THREE.Mesh(new THREE.SphereGeometry(i === 0 ? 0.019 : 0.016, 20, 20), i === 0 ? homeMat : markerMat);
+    const dot = new THREE.Mesh(new THREE.SphereGeometry(i === 0 ? 0.019 : 0.016, 20, 20), i === 0 ? homeMat : (EVALUATED.has(c) ? evalMarkerMat : markerMat));
     dot.position.copy(p);
     dot.renderOrder = 5;
     spin.add(dot);
@@ -188,7 +190,7 @@ function start(host) {
     ring.lookAt(toVec(c.lat, c.lon, 2));
     ring.renderOrder = 5;
     spin.add(ring);
-    rings.push({ ring, phase: i * 0.6, home: i === 0 });
+    rings.push({ ring, phase: i * 0.6, home: i === 0, dim: EVALUATED.has(c) ? 0.45 : 1 });
   });
 
   // ---------- view + interaction ----------
@@ -252,7 +254,7 @@ function start(host) {
     glowMat.needsUpdate = true;
     dotsMat.uniforms.uOpacity.value = 0.92;
     const arc = get('--globe-arc', '#f2a93b');
-    arcMat.color.set(arc); markerMat.color.set(arc);
+    arcMat.color.set(arc); markerMat.color.set(arc); evalArcMat.color.set(arc); evalMarkerMat.color.set(arc);
     const home = get('--globe-home', '#edf1f5');
     homeMat.color.set(home);
     rings.forEach(r => r.ring.material.color.set(r.home ? home : arc));
@@ -380,10 +382,10 @@ function start(host) {
       rings.forEach(r => {
         const k = ((t * 0.55 + r.phase) % 1);
         r.ring.scale.setScalar(1 + k * 1.6);
-        r.ring.material.opacity = (1 - k) * 0.85;
+        r.ring.material.opacity = (1 - k) * 0.85 * r.dim;
       });
     } else {
-      rings.forEach(r => { r.ring.scale.setScalar(1.3); r.ring.material.opacity = 0.5; });
+      rings.forEach(r => { r.ring.scale.setScalar(1.3); r.ring.material.opacity = 0.5 * r.dim; });
     }
 
     if (!started && t > 0.15) { started = true; host.classList.add('is-live'); }
