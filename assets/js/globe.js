@@ -301,6 +301,7 @@ function start(host) {
     kick();
   }
   new ResizeObserver(resize).observe(canvasWrap);
+  window.matchMedia('(max-width: 1040px)').addEventListener('change', () => { measureLabels(); kick(); });
   resize();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measureLabels(); kick(); });
 
@@ -319,7 +320,10 @@ function start(host) {
     tmp.project(camera);
     return { x: (tmp.x * 0.5 + 0.5) * W, y: (-tmp.y * 0.5 + 0.5) * H, facing };
   }
+  // phones and tablets show name-only tags; a tag with no clear spot hides instead of overlapping
+  const compactMQ = window.matchMedia('(max-width: 1040px)');
   function placeLabels() {
+    const compact = compactMQ.matches;
     const pts = labelAnchors.map(project);
     // city dots are obstacles too, so no label hides another city's marker
     const dots = pts.map((p, j) => p.facing > 0.18 ? [p.x - 9, p.y - 9, p.x + 9, p.y + 9, j] : null).filter(Boolean);
@@ -332,26 +336,34 @@ function start(host) {
       const spots = [
         [prefLeft, prefBelow], [!prefLeft, prefBelow], [prefLeft, !prefBelow], [!prefLeft, !prefBelow]
       ];
-      if (lastSpot[i]) spots.unshift(lastSpot[i]);
+      // compact tags may also sit centred above or below their marker
+      if (compact) spots.push(['c', false], ['c', true]);
+      if (lastSpot[i] && (compact || lastSpot[i][0] !== 'c')) spots.unshift(lastSpot[i]);
       const boxOf = ([left, below]) => {
+        if (left === 'c') {
+          const x0 = x - w / 2, y0 = below ? y + 12 : y - 12 - h;
+          return [x0, y0, x0 + w, y0 + h];
+        }
         const x0 = left ? x - 14 - w : x + 14, y0 = below ? y + 8 : y - 15;
         return [x0, y0, x0 + w, y0 + h];
       };
       const inFrame = b => b[0] >= 4 && b[2] <= W - 4 && b[1] >= 4 && b[3] <= H - 4;
       const apart = (b, p) => b[2] + 6 < p[0] || b[0] - 6 > p[2] || b[3] + 4 < p[1] || b[1] - 4 > p[3];
       const clear = b => placed.every(p => apart(b, p)) && dots.every(d => d[4] === i || apart(b, d));
-      let pick = spots.find(sp => { const b = boxOf(sp); return inFrame(b) && clear(b); })
-              || spots.find(sp => inFrame(boxOf(sp))) || spots[0];
+      const clearPick = spots.find(sp => { const b = boxOf(sp); return inFrame(b) && clear(b); });
+      const blocked = compact && !clearPick;
+      let pick = clearPick || spots.find(sp => inFrame(boxOf(sp))) || spots[0];
       lastSpot[i] = pick;
       if (!lab._spot || lab._spot[0] !== pick[0] || lab._spot[1] !== pick[1]) {
-        lab.classList.toggle('left', pick[0]);
+        lab.classList.toggle('left', pick[0] === true);
+        lab.classList.toggle('center', pick[0] === 'c');
         lab.classList.toggle('below', pick[1]);
         lab._spot = pick;
       }
-      const visibleNow = facing > 0.18;
+      const visibleNow = facing > 0.18 && !blocked;
       if (visibleNow) placed.push(boxOf(pick));
       lab.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
-      lab.style.opacity = String(clamp((facing - 0.18) / 0.2, 0, 1) * (started ? 1 : 0));
+      lab.style.opacity = blocked ? '0' : String(clamp((facing - 0.18) / 0.2, 0, 1) * (started ? 1 : 0));
     });
   }
 
