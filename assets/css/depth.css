@@ -124,6 +124,12 @@
 .d3 .shot:hover,.d3 .shot.tilting{box-shadow:0 30px 50px -20px rgba(0,0,0,.5)}
 .d3 .shot img{border-radius:8px}
 
+/* phones and tablets (one column): a gentler angle, scaled so each screen stays inside the content column */
+@media (max-width:1040px){
+  .d3 .shot{transform:rotateY(-6deg) rotateX(4deg) scale(.96)}
+  .d3 .build:nth-child(2) .shot{transform:rotateY(6deg) rotateX(4deg) scale(.96)}
+}
+
 /* ---------- C. cards become slabs with real thickness ---------- */
 .d3 .doc,.d3 .build.wide,.d3 .fit-card,.d3 .deep details[open]{
   box-shadow:1px 1px 0 var(--edge),2px 2px 0 var(--edge),3px 3px 0 var(--edge),4px 4px 0 var(--edge),5px 5px 0 var(--edge),6px 6px 0 var(--edge),16px 22px 34px -14px rgba(0,0,0,.3)}
@@ -141,14 +147,30 @@
 }
 @media (max-width:760px){ .d3 .ledger li{border-top:1px solid var(--line)!important} }
 
-/* ---------- D. the 3D avatar floats in the contact section ---------- */
-.d3 .contact-avatar{position:absolute;right:max(150px, calc((100vw - var(--maxw)) / 2 + 60px));bottom:0;height:min(84%, 430px);width:auto;
-  pointer-events:none;filter:drop-shadow(18px 26px 22px rgba(0,0,0,.35));transform-origin:50% 100%}
-.d3 .contact-floor{position:absolute;right:max(128px, calc((100vw - var(--maxw)) / 2 + 38px));bottom:4px;width:240px;height:30px;border-radius:50%;
-  background:radial-gradient(closest-side, rgba(0,0,0,.3), transparent);filter:blur(3px)}
-@media (prefers-reduced-motion: no-preference){ .d3 .contact-avatar{animation:d3-bob 5s ease-in-out infinite} }
-@keyframes d3-bob{50%{transform:translateY(-10px) rotate(-1deg)}}
+/* ---------- D. the 3D avatar stands in the contact section, facing the text ---------- */
+/* desktop: right edge on the page's content edge (clear of the WhatsApp button), feet level with the button row */
 .d3 .contact .wrap{position:relative;z-index:1}
-@media (max-width:1040px){ .d3 .contact-avatar{top:36px;bottom:auto;height:220px;right:18px} .d3 .contact-floor{top:244px;bottom:auto;width:120px;right:14px;height:18px} }
-@media (max-width:760px){ .d3 .contact-avatar{top:30px;height:170px;right:10px} .d3 .contact-floor{top:190px;width:90px;right:8px} .d3 .contact h2{padding-right:92px} }
+.d3 .contact-figure{position:absolute;z-index:0;pointer-events:none;
+  right:max(150px, calc((100vw - var(--maxw)) / 2 + 28px));bottom:88px;height:min(400px, calc(100% - 184px))}
+.d3 .contact-figure::after{content:"";position:absolute;left:50%;bottom:-12px;width:150%;height:26px;transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(closest-side, rgba(0,0,0,.28), transparent);filter:blur(3px);z-index:-1}
+.d3[data-tone="dark"] .contact-figure::after{background:radial-gradient(closest-side, rgba(0,0,0,.55), transparent)}
+/* the image is drawn facing right (it faces the message in the fit check); mirrored here so it faces the text on its left */
+.d3 .contact-avatar{display:block;height:100%;width:auto;transform:scaleX(-1);transform-origin:50% 100%;
+  filter:drop-shadow(-14px 22px 18px rgba(0,0,0,.28))}
+@media (prefers-reduced-motion: no-preference){ .d3 .contact-avatar{animation:d3-bob 5s ease-in-out infinite} }
+@keyframes d3-bob{0%,100%{transform:scaleX(-1)}50%{transform:scaleX(-1) translateY(-8px)}}
+/* tablets: top level with the heading, on the content edge */
+@media (max-width:1040px){
+  .d3 .contact-figure{top:96px;bottom:auto;right:28px;height:220px}
+  .d3 .contact-figure::after{bottom:-10px;height:18px}
+}
+/* phones: smaller, beside the heading; the heading keeps a clear gutter */
+@media (max-width:760px){
+  .d3 .contact-figure{top:44px;right:18px;height:170px}
+  .d3 .contact h2{padding-right:96px}
+}
 
+/* WhatsApp button steps aside while it would cover a contact or footer link (set by depth.js, only while they would overlap) */
+.d3 .wa-fab{transition:transform .25s ease, opacity .25s ease, box-shadow .18s ease}
+.d3 .wa-fab.fab-aside{opacity:0;transform:translateY(16px) scale(.9);pointer-events:none}
