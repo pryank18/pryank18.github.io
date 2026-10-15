@@ -335,6 +335,7 @@
     again.addEventListener('click', function () { answers = {}; step = 0; renderQuestion(); });
     body.appendChild(again);
 
+    try { sessionStorage.setItem('pw-fit-role', s.role); } catch (e) {}
     track('fit_check_complete', { role: (answers.role || [''])[0], product: (answers.product || []).join(','), years: (answers.years || [''])[0], work_mode: (answers.where || [''])[0], points: r.total });
     setTimeout(function () { h.focus({ preventScroll: true }); }, 30);
     body.scrollTop = 0;

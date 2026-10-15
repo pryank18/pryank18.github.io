@@ -7,7 +7,7 @@
    Bump VERSION when the list of precached files changes.
    The globe images and the 3D files are not precached: each visitor needs only one theme's
    image, and only devices with a graphics chip load the 3D globe. Both are cached on first use. */
-const VERSION = 'pw-2026-10-16-recruiter-v25';
+const VERSION = 'pw-2026-10-16-contact-v26';
 const PRECACHE = [
   '/',
   '/manifest.webmanifest',
@@ -20,6 +20,8 @@ const PRECACHE = [
   '/assets/js/share.js',
   '/assets/css/share.css',
   '/assets/css/recruiter.css',
+  '/assets/css/contact.css',
+  '/assets/js/contact.js',
   '/404.html',
   '/assets/img/pryank-namaste.webp',
   '/assets/js/theme.js',
