@@ -84,13 +84,46 @@
       }
     }
 
-    /* ---------- the 3D avatar in the contact section ---------- */
+    /* ---------- the 3D avatar in the contact section (decorative; faces the text) ---------- */
     var contact = document.getElementById('contact');
     if (contact) {
-      var floor = document.createElement('div'); floor.className = 'contact-floor'; floor.setAttribute('aria-hidden', 'true');
+      var fig = document.createElement('div'); fig.className = 'contact-figure'; fig.setAttribute('aria-hidden', 'true');
       var av = new Image(); av.className = 'contact-avatar'; av.src = 'assets/img/pryank-namaste.webp'; av.alt = '';
-      av.setAttribute('aria-hidden', 'true'); av.loading = 'lazy'; av.decoding = 'async'; av.width = 219; av.height = 480;
-      contact.appendChild(floor); contact.appendChild(av);
+      av.loading = 'lazy'; av.decoding = 'async'; av.width = 219; av.height = 480;
+      fig.appendChild(av); contact.appendChild(fig);
+      // phones and tablets: he stands beside the heading, never taller than it, so he can't reach the paragraph
+      var heading = contact.querySelector('h2');
+      var sizeFig = function () {
+        if (window.innerWidth <= 1040 && heading) {
+          var cap = window.innerWidth <= 760 ? 170 : 220;
+          fig.style.height = Math.round(Math.min(cap, heading.offsetHeight)) + 'px';
+        } else { fig.style.height = ''; }
+      };
+      sizeFig();
+      window.addEventListener('resize', sizeFig);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizeFig);
+
+      // the floating WhatsApp button steps aside while it would cover a contact or footer link (any screen size)
+      var fab = document.getElementById('wa-fab');
+      var targets = Array.prototype.slice.call(document.querySelectorAll('#contact .mail, #contact .ctas .btn, footer a'));
+      if (fab && targets.length) {
+        var fabQueued = false;
+        var checkFab = function () {
+          fabQueued = false;
+          var f = fab.getBoundingClientRect();
+          var hide = targets.some(function (t) {
+            var r = t.getBoundingClientRect();
+            return !(r.right < f.left - 6 || r.left > f.right + 6 || r.bottom < f.top - 6 || r.top > f.bottom + 6);
+          });
+          fab.classList.toggle('fab-aside', hide);
+        };
+        var queueFab = function () { if (!fabQueued) { fabQueued = true; raf(checkFab); } };
+        window.addEventListener('scroll', queueFab, { passive: true });
+        window.addEventListener('resize', queueFab);
+        // the contact block slides into place as it appears: check again once it has settled
+        contact.addEventListener('transitionend', queueFab);
+        checkFab();
+      }
     }
 
     if (calm) return; // static depth only
@@ -196,6 +229,7 @@
     // any failure: put the page back exactly as it was
     root.classList.remove('d3');
     Array.prototype.forEach.call(document.querySelectorAll('.rv'), function (el) { el.classList.remove('rv'); });
-    Array.prototype.forEach.call(document.querySelectorAll('.orbit, .contact-avatar, .contact-floor'), function (el) { el.parentNode.removeChild(el); });
+    Array.prototype.forEach.call(document.querySelectorAll('.orbit, .contact-figure'), function (el) { el.parentNode.removeChild(el); });
+    var wf = document.getElementById('wa-fab'); if (wf) wf.classList.remove('fab-aside');
   }
 })();

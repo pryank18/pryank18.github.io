@@ -6374,6 +6374,14 @@ function buildAiContext(){
   ].join('\n');
 }
 
+/* ---- Assistant backend: set window.DEPOTLINE_ASSISTANT_URL to a server endpoint to enable live answers.
+   With no endpoint (the public demo), calls fail fast and the UI shows its normal "unavailable" state. ---- */
+function callAssistant(payload){
+  const url = window.DEPOTLINE_ASSISTANT_URL;
+  if(!url) return Promise.reject(new Error('assistant endpoint not configured'));
+  return fetch(url, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(payload) });
+}
+
 /* ---- AI Command Center: proactive briefing on the Dashboard, not buried in chat ---- */
 let dailyBriefing = { text:null, loading:false, error:null, generatedAt:null };
 async function generateDailyBriefing(){
@@ -6382,11 +6390,7 @@ async function generateDailyBriefing(){
   if(currentView==='dashboard') document.getElementById('view').innerHTML = viewDashboard();
   try{
     const systemPrompt = `You are the AI command center for Depotline, a fuel operations platform. Generate a short executive briefing (4-6 lines max) from the live risk data below. Lead with the single most urgent item. Use a 🔴/🟡/🟢 marker per line based on severity. Be specific — name the depot, client, or ticket. No preamble, no sign-off, just the briefing lines. ${aiLanguageInstruction()}\n\nLIVE DATA:\n${buildAiContext()}`;
-    const response = await fetch(ASSISTANT_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "assistant-model-default", max_tokens: 400, system: systemPrompt, messages: [{role:'user', content:"Generate today's briefing."}] })
-    });
+    const response = await callAssistant({ max_tokens: 400, system: systemPrompt, messages: [{role:'user', content:"Generate today's briefing."}] });
     const data = await response.json();
     const text = (data.content || []).map(b=>b.text||'').join('\n').trim();
     dailyBriefing = { text: text || null, loading:false, error: text? null : 'empty', generatedAt: nowTime() };
@@ -6461,16 +6465,7 @@ async function sendAiMessage(preset){
   try{
     const systemPrompt = `You are the operations assistant embedded in Depotline, a global fuel delivery management platform used by fuel depots, industrial sites and retail stations worldwide. Answer using the live data below. Be concise (2-4 sentences unless a list is clearly needed), use litres (L) and dollar amounts as given, and speak like a knowledgeable operations manager — practical, no fluff. ${aiLanguageInstruction()} This applies regardless of the language of the data below.\n\nLIVE DATA:\n${buildAiContext()}`;
     const history = aiMessages.slice(-8).map(m=> ({ role: m.role, content: m.raw || m.content }));
-    const response = await fetch(ASSISTANT_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "assistant-model-default",
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages: history,
-      })
-    });
+    const response = await callAssistant({ max_tokens: 1000, system: systemPrompt, messages: history });
     const data = await response.json();
     const replyText = (data.content || []).map(b=> b.text || '').join('\n').trim() || "I couldn't generate a response for that — try rephrasing.";
     document.getElementById('aiTyping')?.remove();

@@ -112,3 +112,6 @@ main, .hero-text, .build, .build-body, .role > * { min-width: 0; }
   .role .when { text-align: left; padding: 0; }
   .phase + .phase { border-left: 0; border-top: 1px solid var(--line); }
 }
+
+/* The "Docs:" label sits level with its links. */
+.docs { align-items: center; }
