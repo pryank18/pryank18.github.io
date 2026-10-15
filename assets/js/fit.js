@@ -2,7 +2,7 @@
    A recruiter answers four questions about the role. Every answer maps to
    evidence from Pryank's work (resume facts, public case studies and builds),
    so the result is a brief-specific proof of fit with links into the page.
-   Nothing is stored or sent anywhere; the summary only leaves the page if the
+   No answers are saved; only anonymous start/complete events go to analytics; the summary only leaves the page if the
    visitor chooses WhatsApp, email or copy. */
 (function () {
   'use strict';
@@ -157,7 +157,7 @@
     note.appendChild(bub);
     wrap.appendChild(note);
     var ul = el('ul', 'fit-intro-pts');
-    ['Takes about a minute', 'Evidence, not adjectives', 'Nothing is stored'].forEach(function (t) { ul.appendChild(el('li', null, t)); });
+    ['Takes about a minute', 'Evidence, not adjectives', 'No sign-up, no contact details'].forEach(function (t) { ul.appendChild(el('li', null, t)); });
     wrap.appendChild(ul);
     var acts = el('div', 'fit-intro-acts');
     var go = el('button', 'btn btn-primary', 'Start the fit check');
