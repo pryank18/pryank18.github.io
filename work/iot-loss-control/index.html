@@ -8,7 +8,31 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-W1S3EQ0SZY');
+      (function(){
+        // per-application tag: ?ref=company-role. Kept for the visit, removed from the address bar.
+        var ref = '', fresh = false, u;
+        try {
+          u = new URL(location.href);
+          var r = (u.searchParams.get('ref') || '').toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 60);
+          if (r) {
+            ref = r; fresh = true;
+            try { sessionStorage.setItem('pw-ref', r); } catch (e) {}
+            u.searchParams.delete('ref');
+            history.replaceState(history.state, '', u.pathname + u.search + u.hash);
+          } else {
+            try { ref = sessionStorage.getItem('pw-ref') || ''; } catch (e) {}
+          }
+        } catch (e) {}
+        window.PW_REF = ref;
+        var cfg = {};
+        if (ref) {
+          gtag('set', { ref: ref });
+          gtag('set', 'user_properties', { application_ref: ref });
+          cfg.ref = ref;
+          if (fresh) cfg.page_location = location.origin + location.pathname + '?utm_source=application&utm_medium=tracked_link&utm_campaign=' + ref;
+        }
+        gtag('config', 'G-W1S3EQ0SZY', cfg);
+      })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>IoT loss-control platform for heavy industry: case study | Pryank Wadhera</title>
@@ -49,6 +73,7 @@
     <script type="application/ld+json">
     {"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://pryank18.github.io/work/iot-loss-control/#article", "headline": "An IoT loss-control system for heavy industry, piloted at a major steel producer", "description": "How a six-month IoT pilot at a major steel producer cut fuel loss, theft and spillage, measured against the site's own baseline.", "image": "https://pryank18.github.io/work/iot-loss-control/og.png?v=2", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "inLanguage": "en-IN", "author": {"@type": "Person", "@id": "https://pryank18.github.io/#person", "name": "Pryank Wadhera", "url": "https://pryank18.github.io/"}, "publisher": {"@type": "Person", "@id": "https://pryank18.github.io/#person", "name": "Pryank Wadhera", "url": "https://pryank18.github.io/"}, "mainEntityOfPage": "https://pryank18.github.io/work/iot-loss-control/", "isPartOf": {"@id": "https://pryank18.github.io/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Pryank Wadhera", "item": "https://pryank18.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Case studies", "item": "https://pryank18.github.io/#cases"}, {"@type": "ListItem", "position": 3, "name": "IoT loss control for heavy industry", "item": "https://pryank18.github.io/work/iot-loss-control/"}]}]}
     </script>
+  <script src="/assets/js/insights.js?v=20261016a" defer></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -98,7 +123,7 @@
     </section>
     <a class="wa-fab" id="wa-fab" href="https://wa.me/917397829282?text=Hi%20Pryank%2C%20I%20read%20your%20case%20study%20and%20would%20like%20to%20talk%20about%20a%20role." target="_blank" rel="noopener" aria-label="Chat with Pryank on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span class="wa-lbl">Chat</span></a>
     <footer>
-      <div class="wrap"><span>© 2026 Pryank Wadhera</span><a href="/">Back to the portfolio</a></div>
+      <div class="wrap"><span>© 2026 Pryank Wadhera</span><a href="/">Back to the portfolio</a><span>Anonymous analytics only</span></div>
     </footer>
     <script>
       (function(){
