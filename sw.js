@@ -5,7 +5,7 @@
    - Pages and scripts are network-first, so a deploy shows up immediately;
      the cache is only a fallback when the visitor is offline.
    Bump VERSION when the list of precached files changes. */
-const VERSION = 'pw-2026-10-15-audit-v18';
+const VERSION = 'pw-2026-10-15-legend-v19';
 const PRECACHE = [
   '/',
   '/manifest.webmanifest',

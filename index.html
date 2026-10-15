@@ -398,6 +398,7 @@
         .btn,.doc,.tab,.mode,.shot{transition:transform .12s ease, background-color .15s, border-color .15s}
       }
 
+
       /* ---------- responsive ---------- */
       @media (max-width:1040px){
         .nav-links{display:none}
@@ -495,6 +496,27 @@
         .contact .wrap{padding-top:72px;padding-bottom:64px}
         .mail{font-size:clamp(20px,6.4vw,30px);word-break:break-all}
       }
+      /* phones: floating labels collide on a small globe, so a fixed legend explains every point instead */
+      .globe-legend{display:none}
+      @media (max-width:1040px){
+        .globe-labels{display:none}
+        .globe-canvas,.globe-still{inset:0}
+        .globe figcaption > [aria-hidden="true"]{display:none}
+        .globe figcaption{margin:0}
+        .globe-legend{display:grid;order:4;gap:9px;list-style:none;margin:4px 0 0;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--bg-2);font-size:14.5px;line-height:1.35;color:var(--ink-2)}
+        .globe-legend li{display:flex;align-items:center;gap:11px}
+        .globe-legend b{color:var(--ink);font-weight:600;margin-right:4px}
+        .globe-legend .k{flex:none;width:11px;height:11px;border-radius:50%}
+        .globe-legend .k-home{background:var(--globe-home);box-shadow:0 0 0 1.5px var(--ink-3)}
+        .globe-legend .k-run{background:var(--globe-arc)}
+        .globe-legend .k-eval{background:var(--globe-arc);opacity:.45}
+        .globe-legend .k-team{width:8px;height:8px;margin:0 1.5px;background:var(--ink-3)}
+      }
+      @media (min-width:761px) and (max-width:1040px){
+        .globe-legend{font-size:19px;padding:18px 22px;max-width:620px;justify-self:center;width:100%}
+        .globe-legend .k{width:14px;height:14px}
+        .globe-legend .k-team{width:10px;height:10px;margin:0 2px}
+      }
     </style>
     <link rel="stylesheet" href="assets/css/refinements.css?v=20261015n">
     <link rel="stylesheet" href="assets/css/fit.css?v=20261015">
@@ -566,6 +588,12 @@
             <span aria-hidden="true">Harare is the market I launched from zero. Lusaka and Lagos I evaluated; they are the next rollouts. Dubai is the UAE team I coordinate with. <span class="drag">Drag to turn.</span></span>
           </figcaption>
         </figure>
+        <ul class="globe-legend" aria-hidden="true">
+          <li><i class="k k-home"></i><span><b>New Delhi</b> Home base</span></li>
+          <li><i class="k k-run"></i><span><b>Harare</b> Launched from zero: 8 depots</span></li>
+          <li><i class="k k-eval"></i><span><b>Lusaka, Lagos</b> Evaluated · next rollouts</span></li>
+          <li><i class="k k-team"></i><span><b>Dubai</b> UAE team I coordinate with</span></li>
+        </ul>
       </div>
 
       <div class="ledger">
@@ -992,7 +1020,7 @@
         } catch (e) { return false; }
       };
       const boot = () => {
-        if (hasGPU()) import('./assets/js/globe.js?v=20261015d').catch(() => {
+        if (hasGPU()) import('./assets/js/globe.js?v=20261015e').catch(() => {
           const g = document.getElementById('globe'); if (g) g.classList.add('is-fallback');
         });
         else { const g = document.getElementById('globe'); if (g) g.classList.add('is-fallback'); }
