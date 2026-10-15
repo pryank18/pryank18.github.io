@@ -119,7 +119,9 @@ h1,h2,h3,h4{margin:0;font-weight:400;text-wrap:balance}
 .figs span{display:block;margin-top:10px;font-size:14.5px;line-height:1.45;color:var(--ink-2)}
 
 /* body */
-.case-body{max-width:var(--read);margin:0 auto;padding:64px 28px 0}
+.case-body{max-width:var(--maxw);margin:0 auto;padding:64px 28px 0}
+/* same reading width as before, but on the page's left edge (header, figures and closing section share it) */
+.case-body > *{max-width:calc(var(--read) - 56px)}
 .block + .block{margin-top:44px}
 .block h2{font-family:var(--sans);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
 .block p{color:var(--ink-2)}
@@ -174,6 +176,7 @@ footer a{color:var(--ink-2);display:inline-flex;align-items:center;min-height:44
   .wrap,.figs-wrap,.nav-inner{padding-left:18px;padding-right:18px}
   .case-body{padding:44px 18px 0}
   .brand .name{display:none}
+  .brand{min-width:44px;justify-content:center}
   .mode .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
   .mode{padding:0;width:44px}
   .case-head .wrap{padding-top:36px;padding-bottom:32px}
