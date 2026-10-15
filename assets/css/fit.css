@@ -9,6 +9,7 @@
 .fit-card .note{font-size:14px;color:var(--ink-3);margin-top:14px}
 .fit-pick h3{font-family:var(--sans);font-weight:600;font-size:16px;color:var(--ink);margin-bottom:12px}
 .fit-roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fit-roles .fit-role:last-child:nth-child(odd){grid-column:1/-1}
 .fit-role{font:600 15px/1.3 var(--sans);text-align:left;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:14px 16px;min-height:52px;cursor:pointer;transition:border-color .15s, background-color .15s, transform .15s}
 .fit-role:hover{border-color:var(--accent)}
 .fit-role::after{content:" →";color:var(--accent)}
