@@ -3,6 +3,8 @@
 /* status pill: title plus the scope that backs it */
 .status > span{min-width:0}
 .status-scope{color:var(--ink-3);font-weight:400}
+.status-scope .nw{white-space:nowrap}
+.status-scope{display:block} .status-scope .sep{display:none}
 @media (max-width:760px){ .status-scope{display:block} .status-scope .sep{display:none} }
 
 /* hero buttons: four in a row on desktop */
