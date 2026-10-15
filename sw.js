@@ -5,7 +5,7 @@
    - Pages and scripts are network-first, so a deploy shows up immediately;
      the cache is only a fallback when the visitor is offline.
    Bump VERSION when the list of precached files changes. */
-const VERSION = 'pw-2026-10-15-depth-v16';
+const VERSION = 'pw-2026-10-15-share-v17';
 const PRECACHE = [
   '/',
   '/manifest.webmanifest',
@@ -15,6 +15,8 @@ const PRECACHE = [
   '/assets/css/depth.css',
   '/assets/js/depth.js',
   '/assets/js/fit.js',
+  '/assets/js/share.js',
+  '/assets/css/share.css',
   '/assets/img/pryank-namaste.webp',
   '/assets/js/theme.js',
   '/assets/js/globe.js',
@@ -31,7 +33,7 @@ const PRECACHE = [
 
 // Exact hub paths, plus prefixes that belong to the hub.
 const HUB_EXACT = new Set(['/', '/index.html', '/manifest.webmanifest', '/favicon.svg',
-  '/apple-touch-icon.png', '/og-card.png', '/depotline-preview.png', '/bolt-and-bahi-preview.png',
+  '/apple-touch-icon.png', '/og-card.png', '/og-card.jpg', '/depotline-preview.png', '/bolt-and-bahi-preview.png',
   '/Pryank_Wadhera_Senior_Product_Manager_Resume.pdf']);
 const HUB_PREFIX = ['/assets/'];
 const FONT_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com'];

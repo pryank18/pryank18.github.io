@@ -92,11 +92,14 @@
       av.loading = 'lazy'; av.decoding = 'async'; av.width = 219; av.height = 480;
       fig.appendChild(av); contact.appendChild(fig);
       // phones and tablets: he stands beside the heading, never taller than it, so he can't reach the paragraph
+      // the first paragraph keeps clear space on the right (depth.css), so he may stand beside both
       var heading = contact.querySelector('h2');
+      var lead = contact.querySelector('h2 + p');
       var sizeFig = function () {
         if (window.innerWidth <= 1040 && heading) {
           var cap = window.innerWidth <= 760 ? 170 : 220;
-          fig.style.height = Math.round(Math.min(cap, heading.offsetHeight)) + 'px';
+          var span = lead ? (lead.offsetTop + lead.offsetHeight - heading.offsetTop) : heading.offsetHeight;
+          fig.style.height = Math.round(Math.min(cap, span)) + 'px';
         } else { fig.style.height = ''; }
       };
       sizeFig();
@@ -105,7 +108,7 @@
 
       // the floating WhatsApp button steps aside while it would cover a contact or footer link (any screen size)
       var fab = document.getElementById('wa-fab');
-      var targets = Array.prototype.slice.call(document.querySelectorAll('#contact .mail, #contact .ctas .btn, footer a'));
+      var targets = Array.prototype.slice.call(document.querySelectorAll('#contact .mail, #contact .copy-mail, #contact .ctas .btn, footer a, footer span'));
       if (fab && targets.length) {
         var fabQueued = false;
         var checkFab = function () {

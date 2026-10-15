@@ -163,11 +163,13 @@
 /* tablets: top level with the heading, on the content edge */
 @media (max-width:1040px){
   .d3 .contact-figure{top:96px;bottom:auto;right:28px;height:220px}
+  .d3 #contact h2 + p{padding-right:130px}
   .d3 .contact-figure::after{bottom:-10px;height:18px}
 }
 /* phones: smaller, beside the heading; the heading keeps a clear gutter */
 @media (max-width:760px){
   .d3 .contact-figure{top:44px;right:18px;height:170px}
+  .d3 #contact h2 + p{padding-right:96px}
   .d3 .contact h2{padding-right:96px}
 }
 

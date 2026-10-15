@@ -1,5 +1,5 @@
 /* Role fit check.
-   A recruiter answers seven questions about the role. Every answer maps to
+   A recruiter answers six questions about the role. Every answer maps to
    evidence from Pryank's work (resume facts, public case studies and builds),
    so the result is a brief-specific proof of fit with links into the page.
    Nothing is stored or sent anywhere; the summary only leaves the page if the
@@ -18,10 +18,10 @@
       id: 'role', short: 'Role', title: 'What are you hiring for?', type: 'one',
       options: [
         { id: 'spm', label: 'Product Manager or Senior PM', link: '#shipped',
-          ev: 'Over seven years of experience, over five in product. Two 0-to-1 platforms built in India (a vendor management system for 150+ vendors and an IoT fuel-management system), then a new market launched and run. I own product today as Country Head and Product Manager.',
+          ev: 'Over seven years of experience, over five in product. In India I shipped a vendor management system now serving 150+ vendors and specified an IoT fuel-management system piloted at a major steel producer, then launched a new market and run it. I own product today as Country Head and Product Manager.',
           ask: 'how I took a product from 300+ field interviews to 150+ vendors live' },
         { id: 'head', label: 'Lead PM, Group PM or Head of Product', link: '#leadership',
-          ev: 'I set release priorities for two platforms across three countries, work directly with the CEO, CTO and MD, and lead an eight-person team alongside a country P&L. I coordinate 50+ colleagues across Mozambique, Zambia, the UAE and India.',
+          ev: 'I set Zimbabwe release priorities for two platforms and write the requirements taking them into the next two markets. I worked directly with the CEO, CTO and MD in India, and today lead an eight-person team alongside a country P&L. I coordinate 50+ colleagues across Mozambique, Zambia, the UAE and India.',
           ask: 'how I set roadmap priorities against North Star metrics across three markets' },
         { id: 'tpm', label: 'Technical or Platform PM', link: '#shipped',
           ev: '100+ requirements for an IoT system (tank gauges, dispensers, flow meters, RFID nozzle tags), REST API and webhook integrations, UPI Intent and QR checkout, and IoT-server order sync. I work in SQL, Postman and Supabase, and build with Python and LangGraph.',
@@ -30,11 +30,11 @@
           ev: 'I built Msafara, a multi-agent product with LangGraph, RAG, evals and human-in-the-loop escalation, and ARA, an AI assistant inside Bolt & Bahi. MBA in AI for Business (2026) and the AI-First Product Leader certification.',
           ask: 'how I bound an AI agent\'s autonomy and designed its escalation rules' },
         { id: 'growth', label: 'Growth PM', link: '#shipped',
-          ev: 'A/B-tested onboarding as website visitors grew from around 120 to 1,000+, cut delivery time from 60 to 55 minutes with tested fixes, and won 50+ enterprise and regional B2B clients in nine months from a 400+ prospect network.',
+          ev: 'A/B-tested onboarding flows, cut delivery time from 60 to 55 minutes with A/B-tested fixes, and won 50+ enterprise and regional B2B clients in nine months from a 400+ prospect network.',
           ask: 'how I turned a 400+ prospect network into 50+ enterprise and regional clients' },
         { id: 'proj', label: 'Project Manager', link: '#path',
-          ev: 'Took a web and mobile MVP from Figma wireframes to launch within 8 months, ran a six-month IoT pilot against 100+ requirements, and launched a business in a new country under written SOPs. Certified Agile Scrum Master; backlog and sprints run in Jira.',
-          ask: 'how I ran the six-month IoT pilot from requirements to measured savings' },
+          ev: 'Took a web and mobile MVP from Figma wireframes to launch within 8 months, specified 100+ requirements for a six-month IoT pilot, and launched a business in a new country under written SOPs. Certified Agile Scrum Master; backlog and sprints run in Jira.',
+          ask: 'how the IoT pilot was specified from 100+ requirements' },
         { id: 'prog', label: 'Program or Delivery Manager', link: '#path',
           ev: 'Launched a new market by bringing suppliers, banks, transporters and an eight-person team onto one plan, set up the company\'s first Agile product process (time-to-market down 25%), and coordinate with teams across the UAE, India, Zambia and Mozambique.',
           ask: 'how I ran a country launch to plan with suppliers, banks and regulators' },
@@ -72,7 +72,7 @@
       id: 'company', short: 'Company', title: 'What kind of company is it?', type: 'one',
       options: [
         { id: 'early', label: 'Early-stage startup', link: '#cases',
-          ev: 'I joined a fuel-tech startup as a research associate and was a product manager within six months, then launched its new-country business from zero with no suppliers, banking or customers in place.' },
+          ev: 'At a fuel-tech startup I worked directly with the CEO, CTO and MD, then launched its new-country business from zero with no suppliers, banking or customers in place.' },
         { id: 'scale', label: 'Growth-stage or scale-up', link: '#shipped',
           ev: 'One of four PMs with a 15-engineer team, shipping a vendor platform, IoT FMS and UPI checkout while the business expanded into Africa.' },
         { id: 'ent', label: 'Large enterprise or global capability centre', link: '#leadership',
@@ -85,11 +85,11 @@
       id: 'stage', short: 'Stage', title: 'Where is the product today?', type: 'one',
       options: [
         { id: 'zero', label: 'New, going from 0 to 1', link: '#cases',
-          ev: 'Two 0-to-1 platforms in India and a market launched from zero. I start from the field: 300+ pump-owner interviews and 40+ market interviews shaped what got built.' },
+          ev: 'A vendor platform taken from field interviews to 150+ vendors, an IoT system specified from 100+ requirements, and a market launched from zero. I start from the field: 300+ pump-owner interviews and 40+ market interviews shaped what got built.' },
         { id: 'grow', label: 'Growing, from 1 to 10', link: '#cases',
           ev: 'I took a new market from zero to a live B2B business with 8 active depots and 50+ enterprise and regional B2B clients, scaled the vendor platform to 150+ vendors, and now write the requirements taking both systems into Zambia and Nigeria.' },
         { id: 'mature', label: 'Established, being optimised', link: '#shipped',
-          ev: 'I optimised a live delivery operation with A/B tests (60 to 55 minutes), took vendor onboarding from over a day to under half, and ran a six-month IoT loss-control pilot at a major steel producer that cut loss, theft and spillage, measured against baselines.' },
+          ev: 'I optimised a live delivery operation with A/B tests (60 to 55 minutes), took vendor onboarding from over a day to under half, and specified the IoT system behind a six-month pilot at a major steel producer that cut loss, theft and spillage.' },
         { id: 'expand', label: 'Expanding into a new market', link: '#cases',
           ev: 'I evaluated Zimbabwe, Zambia and Nigeria, launched in Zimbabwe with ~15 suppliers live in month one, set up cross-border USD settlement, and run the P&L there today.' }
       ]
@@ -105,7 +105,7 @@
         { id: 'aiskill', label: 'Hands-on AI and LLMs', link: '#builds',
           ev: 'LLM agent orchestration, prompt design, RAG, evals and human-in-the-loop design, shipped in Msafara and ARA. MBA in AI for Business.' },
         { id: 'stake', label: 'Stakeholder and executive management', link: '#leadership',
-          ev: 'Day-to-day work with the CEO, CTO and MD, reporting to the Business Head, and alignment across suppliers, banks, regulators and 50+ colleagues in four countries.' },
+          ev: 'Worked day to day with the CEO, CTO and MD in India, report to the Business Head today, and alignment across suppliers, banks, regulators and 50+ colleagues in four countries.' },
         { id: 'pnl', label: 'Commercial or P&L ownership', link: '#leadership',
           ev: 'A country P&L across pricing, procurement, logistics and sales, including customer credit and collections.' },
         { id: 'lead', label: 'Team leadership and hiring', link: '#leadership',
@@ -124,24 +124,7 @@
         { id: 'y5', label: '5 to 8 years', link: '#path',
           ev: 'Over seven years in total, over five in product, and a country P&L and team on top.' },
         { id: 'y8', label: '8 to 12 years', link: '#path',
-          ev: 'Over seven years in total and over five in product, with scope usually seen at this level: a country P&L, an eight-person team, two 0-to-1 platforms and a market launched from zero.' },
-        { id: 'y12', label: '12 years or more', link: '#leadership',
-          ev: 'Over seven years in total, with the scope this level asks for: full P&L ownership, team leadership, regulators and multi-country expansion, plus an MBA in AI for Business in progress.' }
-      ]
-    },
-    {
-      id: 'where', short: 'Location', title: 'Where and how will they work?', type: 'one',
-      options: [
-        { id: 'remote', label: 'Remote', link: '#top',
-          ev: 'I already work across India, Africa and the UAE without sharing an office. Available immediately, or within 15 days.' },
-        { id: 'india', label: 'On-site or hybrid in India', link: '#top',
-          ev: 'Based in New Delhi and open to any Indian city. Available immediately, or within 15 days.' },
-        { id: 'uae', label: 'UAE or the Middle East', link: '#top',
-          ev: 'I work with teams in the UAE today and I\'m ready to relocate there. Available immediately, or within 15 days.' },
-        { id: 'africa', label: 'Africa', link: '#top',
-          ev: 'Based in Harare today, running a business across Zimbabwe with expansion into Zambia and Nigeria. Available immediately, or within 15 days.' },
-        { id: 'abroad', label: 'Elsewhere, with relocation', link: '#top',
-          ev: 'I\'ve moved country for work before (India to Zimbabwe in 2025) and I\'m ready to relocate again. Available immediately, or within 15 days.' }
+          ev: 'Over seven years in total and over five in product, with scope usually seen at this level: a country P&L, an eight-person team, a 0-to-1 vendor platform and a market launched from zero.' }
       ]
     }
   ];
@@ -197,7 +180,7 @@
     var h = el('h2', 'fit-title', 'Hiring a product leader? Check the fit in 60 seconds.');
     h.id = 'fit-title'; h.tabIndex = -1;
     bub.appendChild(h);
-    bub.appendChild(el('p', 'fit-hint', 'Seven quick questions about your role. For every answer you get the matching evidence from my work, with links to see it on this page, and a summary you can send to the hiring manager.'));
+    bub.appendChild(el('p', 'fit-hint', 'Six quick questions about your role. For every answer you get the matching evidence from my work, with links to see it on this page, and a summary you can send to the hiring manager.'));
     bub.appendChild(el('span', 'fit-sign', 'Pryank'));
     note.appendChild(bub);
     wrap.appendChild(note);
@@ -296,7 +279,7 @@
   }
   function summaryLine() {
     var role = labels('role')[0] || 'product';
-    var bits = [labels('product').join(', '), labels('company')[0], labels('stage')[0], labels('skills').join(', '), labels('years')[0], labels('where')[0]].filter(Boolean);
+    var bits = [labels('product').join(', '), labels('company')[0], labels('stage')[0], labels('skills').join(', '), labels('years')[0]].filter(Boolean);
     return { role: role, text: role + ' (' + bits.join('; ') + ')' };
   }
 
@@ -320,10 +303,10 @@
     body.appendChild(note);
 
     var head = el('div', 'fit-res-head');
-    var h = el('h2', 'fit-title', 'Strong match');
+    var h = el('h2', 'fit-title', 'How my work maps to your role');
     h.id = 'fit-title'; h.tabIndex = -1;
     head.appendChild(h);
-    head.appendChild(el('p', 'fit-res-sub', 'for your ' + s.role + ' role. All ' + r.total + ' requirements are backed by evidence from my work. Each line links to where you can see it.'));
+    head.appendChild(el('p', 'fit-res-sub', 'For your ' + s.role + ' role: each answer below links to the work behind it.'));
     body.appendChild(head);
 
     var ul = el('ul', 'fit-rows');
@@ -352,7 +335,7 @@
       body.appendChild(pr);
     }
 
-    var msg = 'Hi Pryank, I\'m hiring for ' + withArticle(s.text) + '. Your fit check came back as a strong match on all ' + r.total + ' points. Can we talk?';
+    var msg = 'Hi Pryank, I\'m hiring for ' + withArticle(s.text) + '. I went through your fit check and would like to talk.';
     var acts = el('div', 'fit-acts');
     var wa = el('a', 'btn btn-primary fit-wa', 'Message me on WhatsApp');
     wa.href = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(msg);
@@ -365,7 +348,7 @@
     var cp = el('button', 'btn btn-ghost', 'Copy summary');
     cp.type = 'button';
     cp.addEventListener('click', function () {
-      var lines = ['Pryank Wadhera: strong match for ' + s.text, ''];
+      var lines = ['Pryank Wadhera: evidence for ' + s.text, ''];
       r.rows.forEach(function (row) { lines.push('- ' + row.q.short + ' (' + row.o.label + '): ' + row.o.ev); });
       if (r.asks.length) { lines.push('', 'Ask him:'); r.asks.forEach(function (t) { lines.push('- ' + t.charAt(0).toUpperCase() + t.slice(1)); }); }
       lines.push('', 'Resume: ' + SITE + RESUME, 'Portfolio: ' + SITE, 'WhatsApp: +91 7397829282 | ' + EMAIL);
@@ -463,13 +446,8 @@
     }
     document.documentElement.classList.add('fit-ready');
 
-    // First visit in this session, landing on the page itself (not a deep link): open the intro once,
-    // after the first paint so the page is visible behind it. Later visits in the same session don't repeat it.
-    var deepLink = location.hash && location.hash !== '#top' && location.hash !== '#fit-check';
+    // Opt-in only: the fit check opens when a visitor asks for it (nav, hero button, #fit-check link).
     if (location.hash === '#fit-check') open(null, 'link');
-    else if (!deepLink && !seen() && typeof dlg.showModal === 'function') {
-      setTimeout(function () { if (!dlg.open) open(null, 'auto'); }, 1100);
-    }
   }
 
   window.PortfolioFit = { QUESTIONS: QUESTIONS, score: score, open: open };
