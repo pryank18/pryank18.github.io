@@ -1,5 +1,5 @@
 /* Role fit check.
-   A recruiter answers six questions about the role. Every answer maps to
+   A recruiter answers seven questions about the role. Every answer maps to
    evidence from Pryank's work (resume facts, public case studies and builds),
    so the result is a brief-specific proof of fit with links into the page.
    Nothing is stored or sent anywhere; the summary only leaves the page if the
@@ -24,10 +24,10 @@
           ev: 'I set Zimbabwe release priorities for two platforms and write the requirements taking them into the next two markets. I worked directly with the CEO, CTO and MD in India, and today lead an eight-person team alongside a country P&L. I coordinate 50+ colleagues across Mozambique, Zambia, the UAE and India.',
           ask: 'how I set roadmap priorities against North Star metrics across three markets' },
         { id: 'tpm', label: 'Technical or Platform PM', link: '#shipped',
-          ev: '100+ requirements for an IoT system (tank gauges, dispensers, flow meters, RFID nozzle tags), REST API and webhook integrations, UPI Intent and QR checkout, and IoT-server order sync. I work in SQL, Postman and Supabase, and build with Python and LangGraph.',
+          ev: '100+ requirements for an IoT system (tank gauges, dispensers, flow meters, RFID nozzle tags), REST API integrations, UPI Intent and QR checkout, and IoT-server order sync. I work in SQL, Postman and Supabase, and build with Python and LangGraph.',
           ask: 'how the IoT fuel-management system was specified and piloted' },
         { id: 'ai', label: 'AI Product Manager', link: '#builds',
-          ev: 'I built Msafara, a multi-agent product with LangGraph, RAG, evals and human-in-the-loop escalation, and ARA, an AI assistant inside Bolt & Bahi. MBA in AI for Business (2026) and the AI-First Product Leader certification.',
+          ev: 'I built Msafara, a multi-agent product with LangGraph, RAG, evals and human-in-the-loop escalation, and ARA, an AI assistant inside Bolt & Bahi. MBA in AI for Business (expected Dec 2026) and the AI-First Product Leader certification.',
           ask: 'how I bound an AI agent\'s autonomy and designed its escalation rules' },
         { id: 'growth', label: 'Growth PM', link: '#shipped',
           ev: 'A/B-tested onboarding flows, cut delivery time from 60 to 55 minutes with A/B-tested fixes, and won 50+ enterprise and regional B2B clients in nine months from a 400+ prospect network.',
@@ -59,7 +59,7 @@
         { id: 'ops', label: 'Marketplace, logistics or supply chain', link: '#shipped',
           ev: 'Delivery time cut from 60 to 55 minutes through tested routing, slot-booking and order-sync fixes; vendor and customer delivery SOPs; procurement, dispatch and supplier allocation run against a demand forecast in a new market.' },
         { id: 'ai', label: 'AI or agentic products', link: '#builds',
-          ev: 'Msafara, a multi-agent vendor-coordination product (LangGraph, RAG, evals, human-in-the-loop), and ARA, an AI assistant inside a GST ledger app. MBA in AI for Business, 2026.' },
+          ev: 'Msafara, a multi-agent vendor-coordination product (LangGraph, RAG, evals, human-in-the-loop), and ARA, an AI assistant inside a GST ledger app. MBA in AI for Business, expected Dec 2026.' },
         { id: 'b2c', label: 'Consumer app', link: '#builds',
           ev: 'Built Pravesh (exam prep with guardian consent flows) and FitNexx (subscription fitness) end to end, and designed Kids Wallet, a UPI product with parental controls.' },
         { id: 'retail', label: 'E-commerce, retail or distribution', link: '#builds',
@@ -99,7 +99,7 @@
       hint: 'Pick up to three.',
       options: [
         { id: 'tech', label: 'Technical fluency: APIs, SQL, data', link: '#shipped',
-          ev: 'SQL and Excel for demand forecasting, REST APIs and webhooks, Postman, Supabase, and Python with LangGraph and an LLM API. 100+ IoT requirements written and shipped.' },
+          ev: 'SQL and Excel for demand forecasting, REST APIs and integrations, Postman, Supabase, and Python with LangGraph and an LLM API. 100+ IoT requirements written and shipped.' },
         { id: 'exp', label: 'Analytics and experimentation', link: '#shipped',
           ev: 'Funnel analytics in Amplitude and Tableau, A/B-tested delivery fixes (60 to 55 minutes) and onboarding flows, and every goal set against a baseline.' },
         { id: 'aiskill', label: 'Hands-on AI and LLMs', link: '#builds',
@@ -125,6 +125,21 @@
           ev: 'Over seven years in total, over five in product, and a country P&L and team on top.' },
         { id: 'y8', label: '8 to 12 years', link: '#path',
           ev: 'Over seven years in total and over five in product, with scope usually seen at this level: a country P&L, an eight-person team, a 0-to-1 vendor platform and a market launched from zero.' }
+      ]
+    },
+    {
+      id: 'where', short: 'Location', title: 'Where and how will they work?', type: 'one',
+      options: [
+        { id: 'remote', label: 'Remote', link: '#top',
+          ev: 'I already work with teams across India, Africa and the UAE without sharing an office.' },
+        { id: 'india', label: 'On-site or hybrid in India', link: '#top',
+          ev: 'Based in New Delhi and open to any Indian city.' },
+        { id: 'uae', label: 'UAE or the Middle East', link: '#top',
+          ev: 'I coordinate with colleagues in the UAE today and I\'m ready to relocate there.' },
+        { id: 'africa', label: 'Africa', link: '#top',
+          ev: 'I launched and run a B2B business in Zimbabwe and write the requirements for the next rollouts in Zambia and Nigeria.' },
+        { id: 'abroad', label: 'Elsewhere, with relocation', link: '#top',
+          ev: 'I\'ve moved country for work before (India to Zimbabwe in 2025) and I\'m ready to relocate again.' }
       ]
     }
   ];
@@ -180,7 +195,7 @@
     var h = el('h2', 'fit-title', 'Hiring a product leader? Check the fit in 60 seconds.');
     h.id = 'fit-title'; h.tabIndex = -1;
     bub.appendChild(h);
-    bub.appendChild(el('p', 'fit-hint', 'Six quick questions about your role. For every answer you get the matching evidence from my work, with links to see it on this page, and a summary you can send to the hiring manager.'));
+    bub.appendChild(el('p', 'fit-hint', 'Seven quick questions about your role. For every answer you get the matching evidence from my work, with links to see it on this page, and a summary you can send to the hiring manager.'));
     bub.appendChild(el('span', 'fit-sign', 'Pryank'));
     note.appendChild(bub);
     wrap.appendChild(note);
@@ -279,7 +294,7 @@
   }
   function summaryLine() {
     var role = labels('role')[0] || 'product';
-    var bits = [labels('product').join(', '), labels('company')[0], labels('stage')[0], labels('skills').join(', '), labels('years')[0]].filter(Boolean);
+    var bits = [labels('product').join(', '), labels('company')[0], labels('stage')[0], labels('skills').join(', '), labels('years')[0], labels('where')[0]].filter(Boolean);
     return { role: role, text: role + ' (' + bits.join('; ') + ')' };
   }
 
