@@ -8,6 +8,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+      // owner switch: open any page once with ?me=1 and this browser is tagged internal in GA (excluded from reports); ?me=0 undoes it.
+      (function(){try{var u=new URL(location.href),m=u.searchParams.get('me');if(m!==null){if(m==='0')localStorage.removeItem('pw-me');else localStorage.setItem('pw-me','1');u.searchParams.delete('me');history.replaceState(history.state,'',u.pathname+u.search+u.hash);}if(localStorage.getItem('pw-me')==='1'){window.PW_ME=true;gtag('set',{traffic_type:'internal'});}}catch(e){}})();
       (function(){
         // per-application tag: ?ref=company-role. Kept for the visit, removed from the address bar.
         var ref = '', fresh = false, u;
@@ -31,6 +33,7 @@
           cfg.ref = ref;
           if (fresh) cfg.page_location = location.origin + location.pathname + '?utm_source=application&utm_medium=tracked_link&utm_campaign=' + ref;
         }
+        if (window.PW_ME) cfg.traffic_type = 'internal';
         gtag('config', 'G-W1S3EQ0SZY', cfg);
       })();
     </script>

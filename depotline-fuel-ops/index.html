@@ -8,7 +8,9 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-W1S3EQ0SZY');
+  // owner switch: open any page once with ?me=1 and this browser is tagged internal in GA (excluded from reports); ?me=0 undoes it.
+  (function(){try{var u=new URL(location.href),m=u.searchParams.get('me');if(m!==null){if(m==='0')localStorage.removeItem('pw-me');else localStorage.setItem('pw-me','1');u.searchParams.delete('me');history.replaceState(history.state,'',u.pathname+u.search+u.hash);}if(localStorage.getItem('pw-me')==='1'){window.PW_ME=true;gtag('set',{traffic_type:'internal'});}}catch(e){}})();
+  gtag('config', 'G-W1S3EQ0SZY', window.PW_ME ? { traffic_type: 'internal' } : {});
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Depotline — Depot Operations Demo (Stock, Pricing, Margin) | Pryank Wadhera</title>
