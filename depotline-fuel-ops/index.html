@@ -886,7 +886,7 @@ function setRole(role){
 /* ============================= LOGIN WIZARD ============================= */
 // Country -> Designation -> Passcode. Illustrative auth only (any 4+ character
 // passcode is accepted) — this simulates the login sequence, it is not real security.
-let sessionActive = false;
+let sessionActive = true; // visitors land straight on the dashboard as the demo admin; the sign-in flow stays one click away under "Switch account"
 let loginStep = 1;
 let loginCountry = null;
 let loginDesignation = null;
