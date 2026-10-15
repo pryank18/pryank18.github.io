@@ -152,7 +152,7 @@ function start(host) {
   const evalArcMat = new THREE.MeshBasicMaterial({ color: 0xf2a93b, transparent: true, opacity: 0.4, depthWrite: false });
   const evalMarkerMat = new THREE.MeshBasicMaterial({ color: 0xf2a93b, transparent: true, opacity: 0.5 });
   const homeMat = new THREE.MeshBasicMaterial({ color: 0xedf1f5 });
-  const teamMat = new THREE.MeshBasicMaterial({ color: 0xedf1f5, transparent: true, opacity: 0.7 });
+  const teamMat = new THREE.MeshBasicMaterial({ color: 0x8fa3b8, transparent: true, opacity: 0.9 });
 
   const arcs = routes.map((m) => {
     const a0 = toVec(m.from.lat, m.from.lon);
@@ -180,6 +180,8 @@ function start(host) {
   });
 
   const rings = [];
+  const markerDots = [];
+  let markerScale = 1;   // markers grow on small canvases (phones) so they stay readable
   cities.forEach((c, i) => {
     const p = toVec(c.lat, c.lon, 1.003);
     const team = TEAM.has(c);
@@ -188,15 +190,16 @@ function start(host) {
     dot.position.copy(p);
     dot.renderOrder = 5;
     spin.add(dot);
+    markerDots.push(dot);
     const ring = new THREE.Mesh(
       new THREE.RingGeometry(0.024, 0.031, 48),
-      new THREE.MeshBasicMaterial({ color: (i === 0 || team) ? 0xedf1f5 : 0xf2a93b, transparent: true, side: THREE.DoubleSide, depthWrite: false })
+      new THREE.MeshBasicMaterial({ color: i === 0 ? 0xedf1f5 : (team ? 0x8fa3b8 : 0xf2a93b), transparent: true, side: THREE.DoubleSide, depthWrite: false })
     );
     ring.position.copy(toVec(c.lat, c.lon, 1.006));
     ring.lookAt(toVec(c.lat, c.lon, 2));
     ring.renderOrder = 5;
     spin.add(ring);
-    rings.push({ ring, phase: i * 0.6, home: i === 0 || team, dim: team ? 0.35 : (EVALUATED.has(c) ? 0.45 : 1) });
+    rings.push({ ring, phase: i * 0.6, home: i === 0, team, dim: team ? 0.35 : (EVALUATED.has(c) ? 0.45 : 1) });
   });
 
   // ---------- view + interaction ----------
@@ -262,8 +265,8 @@ function start(host) {
     const arc = get('--globe-arc', '#f2a93b');
     arcMat.color.set(arc); markerMat.color.set(arc); evalArcMat.color.set(arc); evalMarkerMat.color.set(arc);
     const home = get('--globe-home', '#edf1f5');
-    homeMat.color.set(home); teamMat.color.set(home);
-    rings.forEach(r => r.ring.material.color.set(r.home ? home : arc));
+    homeMat.color.set(home); teamMat.color.set(get('--globe-team', '#8fa3b8'));
+    rings.forEach(r => r.ring.material.color.set(r.home ? home : (r.team ? get('--globe-team', '#8fa3b8') : arc)));
     arcs.forEach(a => {
       a.pulse.material.color.set(get('--globe-pulse', '#ffe2ad'));
       a.pulse.material.blending = light ? THREE.NormalBlending : THREE.AdditiveBlending;
@@ -287,6 +290,13 @@ function start(host) {
     camera.updateProjectionMatrix();
     const pxPerUnit = H / (2 * Math.tan(camera.fov * DEG / 2) * camera.position.z);
     dotsMat.uniforms.uSize.value = clamp(pxPerUnit * 0.0125, 1.4, 4.2) * renderer.getPixelRatio();
+    // markers keep at least ~4.5px radius on screen, whatever the globe's size
+    markerScale = clamp(4.5 / (0.016 * pxPerUnit), 1, 3.5);
+    const small = markerScale > 1.15;
+    markerDots.forEach(d => d.scale.setScalar(markerScale));
+    evalArcMat.opacity = small ? 0.6 : 0.4;
+    evalMarkerMat.opacity = small ? 0.75 : 0.5;
+    teamMat.opacity = 0.95;
     measureLabels();
     kick();
   }
@@ -387,11 +397,11 @@ function start(host) {
       });
       rings.forEach(r => {
         const k = ((t * 0.55 + r.phase) % 1);
-        r.ring.scale.setScalar(1 + k * 1.6);
+        r.ring.scale.setScalar((1 + k * 1.6) * markerScale);
         r.ring.material.opacity = (1 - k) * 0.85 * r.dim;
       });
     } else {
-      rings.forEach(r => { r.ring.scale.setScalar(1.3); r.ring.material.opacity = 0.5 * r.dim; });
+      rings.forEach(r => { r.ring.scale.setScalar(1.3 * markerScale); r.ring.material.opacity = 0.5 * r.dim; });
     }
 
     if (!started && t > 0.15) { started = true; host.classList.add('is-live'); }
