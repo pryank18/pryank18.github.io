@@ -544,7 +544,7 @@
     <link rel="stylesheet" href="assets/css/depth.css?v=20261016a">
     <script src="assets/js/depth.js?v=20261016a" defer></script>
     <link rel="stylesheet" href="assets/css/share.css?v=20261015">
-    <link rel="stylesheet" href="assets/css/recruiter.css?v=20261016a">
+    <link rel="stylesheet" href="assets/css/recruiter.css?v=20261016b">
     <script src="assets/js/share.js?v=20261015" defer></script>
   </head>
   <body>
@@ -625,7 +625,7 @@
         <div class="wrap">
           <div class="sec-head">
             <h2 id="shipped-h">What I've shipped inside a company</h2>
-            <p>Five results from FuelBuddy, largest scope first. Each started in the field, not in a document.</p>
+            <p>Results from FuelBuddy, largest scope first. Each started in the field, not in a document.</p>
           </div>
           <div class="results">
             <article class="result">
@@ -653,7 +653,7 @@
               </div>
             </article>
             <article class="result">
-              <div class="fig">6-month<small>IoT pilot at a major Indian steel producer that cut loss, theft and spillage</small></div>
+              <div class="fig fig-sm">6-month pilot<small>at a major Indian steel producer; savings figures kept private</small></div>
               <div>
                 <h3>IoT loss-control platform for heavy industry (fuel)</h3>
                 <p class="kind">IoT, industrial SaaS, 0→1</p>
@@ -661,11 +661,11 @@
               </div>
             </article>
             <article class="result">
-              <div class="fig">60 → 55 min<small>average fuel delivery time</small></div>
+              <div class="fig fig-sm">A/B tested<small>fixes against the live delivery baseline</small></div>
               <div>
                 <h3>Delivery-time optimisation, A/B tested</h3>
                 <p class="kind">Operations, experimentation</p>
-                <p>Root-caused failures in IoT-server order sync, route optimisation and slot booking, tested the fixes against the live delivery baseline, and kept the ones that moved the average.</p>
+                <p>Root-caused failures in IoT-server order sync, route optimisation and slot booking, tested the fixes against the live delivery baseline, and kept the ones that moved the average: delivery time came down from 60 to 55 minutes.</p>
               </div>
             </article>
           </div>
@@ -755,32 +755,18 @@
             <p>Written the way I run product reviews: problem, evidence, decision, result, and what I'd do differently. Commercial terms stay private.</p>
           </div>
           <div class="deep">
-            <details id="case-fms">
+            <details id="case-market">
               <summary>
-                <div><span class="tag">Shipped</span><h3>An IoT loss-control system for heavy industry, piloted at a major steel producer</h3><p>Tank gauges, dispensers, flow meters and RFID on one platform, piloted at a major Indian steel producer.</p></div>
+                <div><span class="tag">Running</span><h3>Opening a new country for the business, from zero</h3><p>Choosing a market, launching B2B bulk fuel in Zimbabwe, and finding what the product has to be before it has to be software.</p></div>
                 <span class="tog" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
               </summary>
               <div class="steps">
-                <div><h4>Problem</h4><p>At an industrial site, diesel leaves the tank through loss, theft and spillage that nobody can see, so nobody can price it. The plant knew its monthly consumption; it did not know how much of it was waste.</p></div>
-                <div><h4>Evidence</h4><p>Site walks at the plant, with the people who dispense fuel as well as the people who buy it. The gaps were at the nozzle and the tank, so the product had to live there: automatic tank gauges, dispensers, flow meters, RFID nozzle tags and tank sensors, 100+ requirements in all.</p></div>
-                <div><h4>Decision</h4><p>A six-month pilot measured against the site's own baseline, with the saving as the metric. The buyer could verify the saving at the meter, which is what makes a hardware-linked product sellable.</p></div>
-                <div><h4>Result</h4><p>Savings did not arrive in month one. As the controls and site behaviour settled, the six-month pilot <b>cut loss, theft and spillage</b> against the site's own baseline.</p></div>
-                <div class="full"><h4>What I'd do differently</h4><p>Set the expectation of a ramp in the contract. A saving that climbs over six months reads as a miss in month two unless the buyer was shown the curve first.</p></div>
-                <p class="page-link"><a href="/work/iot-loss-control/">Read it as a full page, with related work</a></p>
-              </div>
-            </details>
-            <details id="case-upi">
-              <summary>
-                <div><span class="tag">Shipped</span><h3>UPI checkout, specified and shipped in the B2B platform</h3><p>UPI Intent and QR checkout for the B2B platform, piloted internally with FuelBuddy's own teams before wider use.</p></div>
-                <span class="tog" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-              </summary>
-              <div class="steps">
-                <div><h4>Problem</h4><p>The B2B platform needed digital payments. The riskiest component was the checkout itself: UPI Intent and QR flows, failure handling and reconciliation against orders. Shipping it untested would have meant finding the failure cases in front of customers.</p></div>
-                <div><h4>Evidence</h4><p>The B2B platform already had daily users inside the company who paid for fuel on it. Every unknown in the checkout spec could be tested with them at no acquisition cost: intent hand-offs, failed-payment states and reconciliation against orders.</p></div>
-                <div><h4>Decision</h4><p>Specify the checkout for the B2B platform and pilot it internally first, with FuelBuddy's own teams in Gurugram, Bengaluru, Hyderabad and smaller clusters in Odisha, so the payment stack was proven before wider rollout.</p></div>
-                <div><h4>Result</h4><p><b>2,000+ UPI transactions in month one of the internal pilot</b>, and the failure and reconciliation paths got real traffic before any customer relied on them.</p></div>
-                <div class="full"><h4>Alongside it</h4><p>Partnered with the GM and CEO on Project Arjun, an EV and oil &amp; gas retail infrastructure plan built on 100+ fleet and EV operator interviews; plan approved by leadership.</p></div>
-                <p class="page-link"><a href="/work/upi-checkout/">Read it as a full page, with related work</a></p>
+                <div><h4>Problem</h4><p>The company wanted to expand into Africa, with no local presence, suppliers, banking or customers in any of the candidate countries.</p></div>
+                <div><h4>Evidence</h4><p>Evaluated Zimbabwe, Zambia and Nigeria for the CEO, then picked Zimbabwe. On the ground, 40+ discovery interviews with transporters, vendors, fuel stations and corporates shaped what to sell first and what the product would need later.</p></div>
+                <div><h4>Decision</h4><p>The business before the product: banking, procurement, credit, dispatch and reporting under written SOPs, with ~15 suppliers signed in month one, including global commodity traders and the national oil company on USD settlement. The interviews became FMS and VMS requirements fed through a live feedback loop.</p></div>
+                <div><h4>Result</h4><p><b>A live B2B business with 8 active depots</b> and <b>50+ enterprise and regional clients</b> won from a 400+ network, zero stock-outs against a daily demand forecast, and the Country Head role added to the product one.</p></div>
+                <div class="full"><h4>What I'd do differently</h4><p>I scoped an on-site fuel management system for a large enterprise client, hardware and digital payments included, before confirming the hardware could be sourced in-country. It's paused. In a new market, check the supply chain for the product before you check the appetite for it.</p></div>
+                <p class="page-link"><a href="/work/market-entry-zimbabwe/">Read it as a full page, with the timeline and related work</a></p>
               </div>
             </details>
             <details id="case-vms">
@@ -797,18 +783,32 @@
                 <p class="page-link"><a href="/work/vendor-onboarding/">Read it as a full page, with related work</a></p>
               </div>
             </details>
-            <details id="case-market">
+            <details id="case-upi">
               <summary>
-                <div><span class="tag">Running</span><h3>Opening a new country for the business, from zero</h3><p>Choosing a market, launching B2B bulk fuel in Zimbabwe, and finding what the product has to be before it has to be software.</p></div>
+                <div><span class="tag">Shipped</span><h3>UPI checkout, specified and shipped in the B2B platform</h3><p>UPI Intent and QR checkout for the B2B platform, piloted internally with FuelBuddy's own teams before wider use.</p></div>
                 <span class="tog" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
               </summary>
               <div class="steps">
-                <div><h4>Problem</h4><p>The company wanted to expand into Africa, with no local presence, suppliers, banking or customers in any of the candidate countries.</p></div>
-                <div><h4>Evidence</h4><p>Evaluated Zimbabwe, Zambia and Nigeria for the CEO, then picked Zimbabwe. On the ground, 40+ discovery interviews with transporters, vendors, fuel stations and corporates shaped what to sell first and what the product would need later.</p></div>
-                <div><h4>Decision</h4><p>The business before the product: banking, procurement, credit, dispatch and reporting under written SOPs, with ~15 suppliers signed in month one, including global commodity traders and the national oil company on USD settlement. The interviews became FMS and VMS requirements fed through a live feedback loop.</p></div>
-                <div><h4>Result</h4><p><b>A live B2B business with 8 active depots</b> and <b>50+ enterprise and regional clients</b> won from a 400+ network, zero stock-outs against a daily demand forecast, and the Country Head role added to the product one.</p></div>
-                <div class="full"><h4>What I'd do differently</h4><p>I scoped an on-site fuel management system for a large enterprise client, hardware and digital payments included, before confirming the hardware could be sourced in-country. It's paused. In a new market, check the supply chain for the product before you check the appetite for it.</p></div>
-                <p class="page-link"><a href="/work/market-entry-zimbabwe/">Read it as a full page, with the timeline and related work</a></p>
+                <div><h4>Problem</h4><p>The B2B platform needed digital payments. The riskiest component was the checkout itself: UPI Intent and QR flows, failure handling and reconciliation against orders. Shipping it untested would have meant finding the failure cases in front of customers.</p></div>
+                <div><h4>Evidence</h4><p>The B2B platform already had daily users inside the company who paid for fuel on it. Every unknown in the checkout spec could be tested with them at no acquisition cost: intent hand-offs, failed-payment states and reconciliation against orders.</p></div>
+                <div><h4>Decision</h4><p>Specify the checkout for the B2B platform and pilot it internally first, with FuelBuddy's own teams in Gurugram, Bengaluru, Hyderabad and smaller clusters in Odisha, so the payment stack was proven before wider rollout.</p></div>
+                <div><h4>Result</h4><p><b>2,000+ UPI transactions in month one of the internal pilot</b>, and the failure and reconciliation paths got real traffic before any customer relied on them.</p></div>
+                <div class="full"><h4>Alongside it</h4><p>Partnered with the GM and CEO on Project Arjun, an EV and oil &amp; gas retail infrastructure plan built on 100+ fleet and EV operator interviews; plan approved by leadership.</p></div>
+                <p class="page-link"><a href="/work/upi-checkout/">Read it as a full page, with related work</a></p>
+              </div>
+            </details>
+            <details id="case-fms">
+              <summary>
+                <div><span class="tag">Shipped</span><h3>An IoT loss-control system for heavy industry, piloted at a major steel producer</h3><p>Tank gauges, dispensers, flow meters and RFID on one platform, piloted at a major Indian steel producer.</p></div>
+                <span class="tog" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+              </summary>
+              <div class="steps">
+                <div><h4>Problem</h4><p>At an industrial site, diesel leaves the tank through loss, theft and spillage that nobody can see, so nobody can price it. The plant knew its monthly consumption; it did not know how much of it was waste.</p></div>
+                <div><h4>Evidence</h4><p>Site walks at the plant, with the people who dispense fuel as well as the people who buy it. The gaps were at the nozzle and the tank, so the product had to live there: automatic tank gauges, dispensers, flow meters, RFID nozzle tags and tank sensors, 100+ requirements in all.</p></div>
+                <div><h4>Decision</h4><p>A six-month pilot measured against the site's own baseline, with the saving as the metric. The buyer could verify the saving at the meter, which is what makes a hardware-linked product sellable.</p></div>
+                <div><h4>Result</h4><p>Savings did not arrive in month one. As the controls and site behaviour settled, the six-month pilot <b>cut loss, theft and spillage</b> against the site's own baseline.</p></div>
+                <div class="full"><h4>What I'd do differently</h4><p>Set the expectation of a ramp in the contract. A saving that climbs over six months reads as a miss in month two unless the buyer was shown the curve first.</p></div>
+                <p class="page-link"><a href="/work/iot-loss-control/">Read it as a full page, with related work</a></p>
               </div>
             </details>
           </div>
@@ -820,13 +820,13 @@
             </div>
             <a class="btn btn-ghost btn-sm" href="https://pryank18.github.io/docs/" target="_blank" rel="noopener">All documents on Notion</a>
           </div>
-          <div class="doclist">
+          <div class="doclist" data-more="Show all product documents">
             <a class="doc" href="https://pryank18.github.io/docs/fueltracker-brd/" target="_blank" rel="noopener"><span class="fmt">BRD</span><div><h4>FuelTracker: loss-control BRD for industrial sites (fuel)</h4><p>Field-evidence problem framing, outcome-based pricing, MoSCoW scope, metrics with baselines.</p></div></a>
             <a class="doc" href="https://pryank18.github.io/docs/fleetos-prd/" target="_blank" rel="noopener"><span class="fmt">PRD</span><div><h4>FleetOS: one app for fleet running costs</h4><p>Platform bet, what has to be true, ruthless cuts, gated roadmap.</p></div></a>
             <a class="doc" href="https://pryank18.github.io/docs/buddy-can/" target="_blank" rel="noopener"><span class="fmt">Ops model</span><div><h4>Buddy Can: last-mile delivery model for telecom towers (diesel)</h4><p>Turning a logistics service into a repeatable, measurable product.</p></div></a>
             <a class="doc" href="https://pryank18.github.io/docs/kids-wallet/" target="_blank" rel="noopener"><span class="fmt">Fintech</span><div><h4>Kids Wallet (8–16): UPI with parental controls</h4><p>Two-sided fintech UX, trust and safety, edge-case thinking.</p></div></a>
           </div>
-          <p class="earlier">Earlier work, rewritten to the same standard: <a href="https://pryank18.github.io/docs/legaltech-compliance-prd/" target="_blank" rel="noopener">LegalTech compliance hub PRD</a> and <a href="https://pryank18.github.io/docs/invoice-discount/" target="_blank" rel="noopener">InvoiceDiscount for SMEs</a>.</p>
+          <p class="earlier">Earlier work, rewritten to the same standard: <a class="inline-link" href="https://pryank18.github.io/docs/legaltech-compliance-prd/" target="_blank" rel="noopener">LegalTech compliance hub PRD</a> and <a class="inline-link" href="https://pryank18.github.io/docs/invoice-discount/" target="_blank" rel="noopener">InvoiceDiscount for SMEs</a>.</p>
         </div>
       </section>
 
@@ -839,7 +839,7 @@
           <div class="split">
             <div>
               <h3 class="sub-h">The problems I'm hired for</h3>
-              <dl class="strengths">
+              <dl class="strengths" data-more="Show all seven areas">
                 <div><dt>Payments and checkout</dt><dd>UPI Intent and QR, failure handling, refunds, reconciliation</dd></div>
                 <div><dt>IoT and hardware-linked SaaS</dt><dd>Tank gauges, RFID, flow meters, field-grade connectivity</dd></div>
                 <div><dt>B2B platforms</dt><dd>Vendor onboarding, credit, ordering, APIs and integrations</dd></div>
@@ -977,6 +977,18 @@
           if (d && d.tagName === 'DETAILS' && !d.open) d.open = true;
         };
         window.addEventListener('hashchange', openCase); openCase();
+
+        // phones: long lists start short, with a "show all" button
+        if (window.matchMedia('(max-width:760px)').matches) {
+          Array.prototype.forEach.call(document.querySelectorAll('[data-more]'), function(list){
+            list.classList.add('is-collapsed');
+            var btn = document.createElement('button');
+            btn.type = 'button'; btn.className = 'more-btn'; btn.textContent = list.getAttribute('data-more');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.addEventListener('click', function(){ list.classList.remove('is-collapsed'); btn.remove(); });
+            list.insertAdjacentElement('afterend', btn);
+          });
+        }
 
         // phones: the WhatsApp button appears once the visitor is past the hero
         var fab = document.getElementById('wa-fab'), heroEl = document.getElementById('top');
