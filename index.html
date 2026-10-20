@@ -731,19 +731,19 @@
             </article>
             <article class="build wide">
               <div class="build-body">
-                <p class="stat"><b>4 jobs</b><span>drafting, chasing, negotiating and proposals, inside set rules</span></p>
+                <p class="stat"><b>100%</b><span>of 100 test trips completed, vs 86% for a rules baseline, with 0 price-limit breaches</span></p>
                 <h3>Msafara</h3>
                 <p class="seg">B2B, AI agents, travel</p>
-                <p class="desc">Tour operators chase hotels and vendors by hand. <b>A multi-agent system</b> that drafts requests, follows up on silence, negotiates within set rules and builds client proposals over email and WhatsApp. Python, LangGraph and an LLM API, with RAG for vendor context and evals on the agent's decisions.</p>
-                <div class="acts"><a class="btn btn-primary btn-sm" href="https://pryank18.github.io/Msafara/" target="_blank" rel="noopener">Open demo</a><a class="btn btn-ghost btn-sm" href="https://pryank18.github.io/docs/msafara/" target="_blank" rel="noopener">Case study</a><button class="btn btn-ghost btn-sm btn-ico" type="button" data-share data-share-url="https://pryank18.github.io/Msafara/" data-share-title="Msafara: multi-agent vendor coordination" data-share-text="Msafara, a multi-agent AI product for tour operators, built by Pryank Wadhera." data-share-type="product" data-share-id="msafara" aria-label="Share Msafara: multi-agent vendor coordination"><svg class="share-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></button></div>
+                <p class="desc">Tour operators chase hotels and vendors by hand. <b>A multi-agent system</b> where LLM agents read trip requests and vendor replies, then decide to accept, counter or escalate by calling tools, while code enforces the price limits and a person approves every message. Python, LangGraph, tool calling and RAG, measured on 100 synthetic trips against a rules baseline.</p>
+                <div class="acts"><a class="btn btn-primary btn-sm" href="https://pryank18.github.io/Msafara/" target="_blank" rel="noopener">Open demo</a><a class="btn btn-ghost btn-sm" href="https://pryank18.github.io/Msafara/#evals" target="_blank" rel="noopener">Eval results</a><a class="btn btn-ghost btn-sm" href="https://pryank18.github.io/docs/msafara/" target="_blank" rel="noopener">Case study</a><button class="btn btn-ghost btn-sm btn-ico" type="button" data-share data-share-url="https://pryank18.github.io/Msafara/" data-share-title="Msafara: multi-agent vendor coordination" data-share-text="Msafara, a multi-agent AI product for tour operators, built by Pryank Wadhera." data-share-type="product" data-share-id="msafara" aria-label="Share Msafara: multi-agent vendor coordination"><svg class="share-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></button></div>
                 <div class="docs"><a href="https://github.com/pryank18/Msafara/tree/main/docs" target="_blank" rel="noopener">Product docs (spec, PRD, BRD, MRD)</a><a href="https://github.com/pryank18/Msafara" target="_blank" rel="noopener">Code</a></div>
               </div>
               <div class="aside">
                 <h4>What the agent is allowed to do</h4>
                 <ul>
                   <li>Draft and send vendor requests, then follow up when a vendor goes quiet</li>
-                  <li>Negotiate only inside the rate rules the operator sets</li>
-                  <li>Hand off to a person whenever a rule would be broken</li>
+                  <li>Negotiate only inside price limits enforced in code: a tool refuses any counter outside them</li>
+                  <li>Hand off to a person whenever a reply is unclear or a rule would be broken; nothing is sent without approval</li>
                 </ul>
                 <div class="shot-wrap aside-shot"><a class="shot tilt" href="https://pryank18.github.io/Msafara/" target="_blank" rel="noopener" aria-label="Open the Msafara demo"><img src="assets/img/builds/msafara.webp" srcset="assets/img/builds/msafara-600.webp 600w, assets/img/builds/msafara.webp 1000w" sizes="(max-width: 1279px) 390px, 280px" alt="Msafara vendor queue showing open, confirmed, negotiating and escalated requests" loading="lazy" width="1000" height="500"></a></div>
               </div>
