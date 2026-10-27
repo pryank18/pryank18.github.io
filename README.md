@@ -1,12 +1,12 @@
 # Pryank Wadhera — Product Portfolio
 
-Senior Product Manager | 0-to-1 B2B SaaS, B2C, AI and Platform Products | Country Head & Product Manager in Zimbabwe. I build 0→1 products and the businesses around them.
+Senior Product Manager | 0-to-1 B2B SaaS, B2C, AI and Platform Products. I build 0→1 products and the businesses around them.
 
 📘 Portfolio and case studies: [Notion portfolio](https://pryank18.github.io/docs/)
 
 ## About me
 
-I run business operations and GTM, including P&L, procurement and cross-border teams, for a B2B fuel-logistics business. I build the tools I wished existed on the ground — turning messy, manual operations into simple, usable software.
+Most recently I ran business operations and GTM, including P&L, procurement and cross-border teams, for a B2B fuel-logistics business. I build the tools I wished existed on the ground — turning messy, manual operations into simple, usable software.
 
 ## Live projects
 

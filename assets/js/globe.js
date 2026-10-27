@@ -141,7 +141,7 @@ function start(host) {
     { from: HARARE, to: LAGOS, delay: 1.7, evaluated: true }
   ];
   // order matches the .globe-label elements in index.html
-  // Dubai is not a market: a small neutral marker with no route, for the UAE team I coordinate with.
+  // Dubai is not a market: a small neutral marker with no route, for the UAE team I worked with.
   const cities = [HOME, HARARE, LUSAKA, LAGOS, DUBAI];
   const EVALUATED = new Set([LUSAKA, LAGOS]);
   const TEAM = new Set([DUBAI]);
