@@ -122,6 +122,14 @@
   /* ---------- dialog ---------- */
   var dlg, body, stepEl, bar, backBtn, nextBtn, opener = null;
   var step = 0, answers = {}, tapped = null, tappedAt = 0;
+  // fit_check_start is sent once a person acts in the dialog. The automatic open on landing
+  // only logs fit_check_shown, so link scanners that load the page never count as a start.
+  var startInfo = null, startSent = false;
+  function sendStart() {
+    if (startSent || !startInfo) return;
+    startSent = true;
+    track('fit_check_start', startInfo);
+  }
 
   function el(tag, cls, text) {
     var n = document.createElement(tag);
@@ -360,7 +368,7 @@
     if (typeof dlg.showModal === 'function') { if (!dlg.open) dlg.showModal(); }
     else dlg.setAttribute('open', '');
   }
-  function open(prefRole, source) {
+  function open(prefRole, entry) {
     if (!dlg) return;
     opener = document.activeElement;
     answers = {}; step = 0;
@@ -370,7 +378,11 @@
     if (prefRole && find(QUESTIONS[0], prefRole)) { answers.role = [prefRole]; step = 1; renderQuestion(); }
     else renderIntro();
     show();
-    track('fit_check_start', { role: prefRole || '', source: source || 'button' });
+    // "entry", not "source": GA4 reads an event parameter named source as the session's traffic source.
+    startSent = false;
+    startInfo = { role: prefRole || '', entry: entry || 'button' };
+    if (entry === 'auto') track('fit_check_shown', { entry: 'auto' });
+    else sendStart();
   }
   function close() {
     if (!dlg) return;
@@ -398,6 +410,15 @@
     dlg.addEventListener('cancel', function () { seen(true); });
     // click on the dimmed backdrop closes
     dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+    // a real tap or key press inside the dialog (not the close button or backdrop) counts as the start
+    function engage(e) {
+      if (!e.isTrusted || e.target === dlg) return;
+      if (e.target.closest && e.target.closest('.fit-x')) return;
+      if (e.type === 'keydown' && e.key === 'Escape') return;
+      sendStart();
+    }
+    dlg.addEventListener('click', engage, true);
+    dlg.addEventListener('keydown', engage, true);
 
     document.addEventListener('click', function (e) {
       var t = e.target.closest && e.target.closest('[data-fit-open]');
