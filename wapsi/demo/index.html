@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5MJP4356');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W1S3EQ0SZY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      // owner switch: open any page once with ?me=1 and this browser is tagged internal in GA (excluded from reports); ?me=0 undoes it.
+      (function(){try{var u=new URL(location.href),m=u.searchParams.get('me');if(m!==null){if(m==='0')localStorage.removeItem('pw-me');else localStorage.setItem('pw-me','1');u.searchParams.delete('me');history.replaceState(history.state,'',u.pathname+u.search+u.hash);}if(localStorage.getItem('pw-me')==='1'){window.PW_ME=true;gtag('set',{traffic_type:'internal'});}}catch(e){}})();
+      (function(){
+        // per-application tag: ?ref=company-role. Kept for the visit, removed from the address bar.
+        var ref = '', fresh = false, u;
+        try {
+          u = new URL(location.href);
+          var r = (u.searchParams.get('ref') || '').toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 60);
+          if (r) {
+            ref = r; fresh = true;
+            try { sessionStorage.setItem('pw-ref', r); } catch (e) {}
+            u.searchParams.delete('ref');
+            history.replaceState(history.state, '', u.pathname + u.search + u.hash);
+          } else {
+            try { ref = sessionStorage.getItem('pw-ref') || ''; } catch (e) {}
+          }
+        } catch (e) {}
+        window.PW_REF = ref;
+        var cfg = {};
+        if (ref) {
+          gtag('set', { ref: ref });
+          gtag('set', 'user_properties', { application_ref: ref });
+          cfg.ref = ref;
+          if (fresh) cfg.page_location = location.origin + location.pathname + '?utm_source=application&utm_medium=tracked_link&utm_campaign=' + ref;
+        }
+        if (window.PW_ME) cfg.traffic_type = 'internal';
+        gtag('config', 'G-W1S3EQ0SZY', cfg);
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Wapsi live demo: WhatsApp cart recovery | Pryank Wadhera</title>
+    <meta name="description" content="Live demo of Wapsi: abandon a cart, watch the pre-send checks run, get the WhatsApp reminder, recover the order and see it measured against a holdout. Sample data.">
+    <meta name="author" content="Pryank Wadhera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://pryank18.github.io/wapsi/demo/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Pryank Wadhera">
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:title" content="Wapsi live demo: WhatsApp cart recovery">
+    <meta property="og:description" content="Live demo of Wapsi: abandon a cart, watch the pre-send checks run, get the WhatsApp reminder, recover the order and see it measured against a holdout. Sample data.">
+    <meta property="og:url" content="https://pryank18.github.io/wapsi/demo/">
+    <meta property="og:image" content="https://pryank18.github.io/wapsi/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Wapsi live demo: WhatsApp cart recovery">
+    <meta name="twitter:description" content="Live demo of Wapsi: abandon a cart, watch the pre-send checks run, get the WhatsApp reminder, recover the order and see it measured against a holdout. Sample data.">
+    <meta name="twitter:image" content="https://pryank18.github.io/wapsi/og.png">
+    <meta name="theme-color" content="#F6F6F9" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#111117" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+    <script src="/assets/js/insights.js?v=20261027a" defer></script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Wapsi live demo","url":"https://pryank18.github.io/wapsi/demo/","applicationCategory":"BusinessApplication","operatingSystem":"Web browser","description":"Live demo of Wapsi: abandon a cart, watch the pre-send checks run, get the WhatsApp reminder, recover the order and see it measured against a holdout. Sample data.","author":{"@type":"Person","@id":"https://pryank18.github.io/#person","name":"Pryank Wadhera"},"isPartOf":{"@id":"https://pryank18.github.io/#website"}}</script>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MJP4356"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+<style>
+:root{
+  --bg:#F6F6F9; --surface:#FFFFFF; --ink:#17171F; --muted:#545466; --line:#DEDEE8; --soft:#EEEEF4;
+  --accent:#B4530A; --accent-soft:#FBEBDD; --navy:#24345C; --navy-soft:#E4E9F4;
+  --good:#17703F; --good-soft:#E2F3E8; --bad:#A32020; --bad-soft:#FBE5E5; --wait:#8A5A00; --wait-soft:#FBF1D9;
+  --chat:#EFE7DE; --bub-in:#FFFFFF; --bub-out:#D9FDD3; --chat-head:#0B5C4B;
+  --display:'Unbounded','Arial Black',system-ui,sans-serif;
+  --body:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --ink-3:var(--muted);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111117; --surface:#1A1A23; --ink:#EDEDF3; --muted:#A6A6B8; --line:#2E2E3B; --soft:#23232E;
+  --accent:#F3994F; --accent-soft:#3A2414; --navy:#A9BCE8; --navy-soft:#1E2740;
+  --good:#6DD49A; --good-soft:#143322; --bad:#F08A8A; --bad-soft:#3A1717; --wait:#F2C770; --wait-soft:#352A10;
+  --chat:#0B141A; --bub-in:#202C33; --bub-out:#005C4B; --chat-head:#1F2C34; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111117; --surface:#1A1A23; --ink:#EDEDF3; --muted:#A6A6B8; --line:#2E2E3B; --soft:#23232E;
+  --accent:#F3994F; --accent-soft:#3A2414; --navy:#A9BCE8; --navy-soft:#1E2740;
+  --good:#6DD49A; --good-soft:#143322; --bad:#F08A8A; --bad-soft:#3A1717; --wait:#F2C770; --wait-soft:#352A10;
+  --chat:#0B141A; --bub-in:#202C33; --bub-out:#005C4B; --chat-head:#1F2C34; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.mono{font-family:var(--mono)}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.bar-in{max-width:1320px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px))}
+.logo{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.03em;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--accent)}
+.badge{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 9px;white-space:nowrap}
+.bar .sp{flex:1}
+.clock{font-family:var(--mono);font-size:13px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 11px;white-space:nowrap}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:38px;padding:0 13px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:14px;font-weight:500;text-decoration:none;color:var(--ink);white-space:nowrap}
+.pill:hover{border-color:var(--muted)}
+.pill.solid{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pill.acc{background:var(--accent);border-color:var(--accent);color:#fff}
+.pill:disabled{opacity:.45;cursor:not-allowed}
+.tabs{max-width:1320px;margin:0 auto;display:flex;gap:4px;padding:0 max(16px,env(safe-area-inset-right,0px)) 8px max(16px,env(safe-area-inset-left,0px))}
+.tab{border:0;background:none;padding:8px 14px;border-radius:999px;font-size:14.5px;font-weight:500;color:var(--muted)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+
+/* layout */
+main{max-width:1320px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px))}
+.view{display:none}
+.view.on{display:block}
+.sim{display:none;gap:22px;align-items:flex-start}
+body.v-sim .sim{display:flex}
+.sim .phone-col{flex:0 0 360px;position:sticky;top:112px}
+.sim .con-col{flex:1;min-width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+.h{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+h2.t{font-family:var(--display);font-size:22px;letter-spacing:-.02em;line-height:1.2;margin:0 0 6px}
+.lede{color:var(--muted);margin:0 0 16px}
+.note{font-size:13px;color:var(--muted)}
+
+/* phone */
+.phone{width:100%;max-width:360px;margin:0 auto;height:min(720px,calc(100vh - 140px));min-height:560px;border-radius:38px;background:#0E0E12;padding:10px;box-shadow:0 18px 50px -18px rgba(0,0,0,.45)}
+.screen{position:relative;height:100%;border-radius:30px;overflow:hidden;background:var(--surface);display:flex;flex-direction:column}
+.status{display:flex;justify-content:space-between;align-items:center;padding:10px 22px 6px;font-size:12.5px;font-weight:600}
+.status .dots{letter-spacing:2px;font-size:11px}
+.scr{flex:1;overflow:auto;display:flex;flex-direction:column}
+.store-head{display:flex;align-items:center;justify-content:space-between;padding:8px 16px 12px;border-bottom:1px solid var(--line)}
+.store-head b{font-size:17px;letter-spacing:-.01em}
+.cartbtn{position:relative;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 12px;font-size:13.5px}
+.cartbtn i{font-style:normal;background:var(--accent);color:#fff;border-radius:999px;font-size:11px;padding:1px 6px;margin-left:4px}
+.prods{padding:12px 14px;display:flex;flex-direction:column;gap:12px}
+.prod{border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;gap:12px}
+.sw{flex:0 0 64px;height:78px;border-radius:10px}
+.prod h4{margin:0;font-size:15px}
+.prod .pr{font-family:var(--mono);font-size:13.5px;margin:2px 0 6px}
+.sizes{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.sz{min-width:34px;height:30px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-size:12.5px}
+.sz[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.sz:disabled{text-decoration:line-through;opacity:.45}
+.add{border:0;background:var(--ink);color:var(--bg);border-radius:999px;padding:6px 12px;font-size:13px}
+.pad{padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.line{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;padding:8px 0;border-bottom:1px solid var(--line)}
+.line small{display:block;color:var(--muted);font-size:12.5px}
+.tot{display:flex;justify-content:space-between;font-weight:700;font-size:16px}
+.fld label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:4px}
+.fld input[type=text],.fld input[type=tel]{width:100%;height:42px;border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:0 12px;font-size:15px}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;border:1px dashed var(--line);border-radius:10px;padding:10px}
+.chk input{width:18px;height:18px;margin-top:2px;accent-color:var(--accent)}
+.big{height:46px;border:0;border-radius:12px;background:var(--ink);color:var(--bg);font-weight:600;font-size:15px;width:100%}
+.big.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.banner{border-radius:10px;padding:9px 11px;font-size:13px;background:var(--good-soft);color:var(--good)}
+.home{flex:1;background:linear-gradient(160deg,#2B3A67,#6B3F6E 55%,#B4530A);color:#fff;display:flex;flex-direction:column;padding:26px 20px;gap:18px}
+.home .msg{background:rgba(255,255,255,.14);border-radius:14px;padding:12px 14px;font-size:13.5px}
+.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:auto;margin-bottom:12px}
+.app{border:0;background:none;color:#fff;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11.5px;position:relative}
+.app .ic{width:54px;height:54px;border-radius:15px;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:22px}
+.app .ic.chat{background:#1FA855}
+.app em{position:absolute;top:-4px;right:6px;background:#E0352B;color:#fff;font-style:normal;font-size:11px;border-radius:999px;min-width:19px;height:19px;display:grid;place-items:center;padding:0 5px}
+.chat-head{background:var(--chat-head);color:#fff;display:flex;align-items:center;gap:10px;padding:10px 14px}
+.chat-head .av{width:34px;height:34px;border-radius:50%;background:var(--accent);display:grid;place-items:center;font-weight:700;font-size:14px}
+.chat-head small{display:block;opacity:.8;font-size:11.5px}
+.chat-head button{border:0;background:none;color:#fff;font-size:18px;padding:0 4px}
+.chat{flex:1;background:var(--chat);padding:12px 10px;display:flex;flex-direction:column;gap:8px;overflow:auto}
+.day{align-self:center;font-size:11.5px;background:var(--bub-in);border-radius:8px;padding:3px 9px;color:var(--muted)}
+.bub{max-width:84%;border-radius:10px;padding:8px 10px 6px;font-size:14px;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.bub.in{align-self:flex-start;background:var(--bub-in);border-top-left-radius:2px}
+.bub.out{align-self:flex-end;background:var(--bub-out);border-top-right-radius:2px}
+.bub .meta{display:flex;justify-content:flex-end;gap:6px;font-size:10.5px;color:var(--muted);margin-top:3px}
+.bub .tagl{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.bub .cta{display:block;width:calc(100% + 20px);margin:8px -10px -6px;border:0;border-top:1px solid var(--line);background:none;color:#1C8CD8;font-weight:600;padding:9px;font-size:14px;border-radius:0 0 10px 10px}
+.bub.sys{align-self:center;background:var(--wait-soft);color:var(--ink);font-size:12.5px;max-width:92%;text-align:center}
+.quick{display:flex;gap:6px;overflow-x:auto;padding:8px 10px 4px;background:var(--chat)}
+.quick button{flex:none;border:1px solid var(--line);background:var(--bub-in);border-radius:999px;padding:6px 11px;font-size:12.5px}
+.compose{display:flex;gap:6px;padding:6px 8px 10px;background:var(--chat)}
+.compose input{flex:1;height:40px;border-radius:999px;border:0;background:var(--bub-in);padding:0 14px;font-size:14px}
+.compose button{width:40px;height:40px;border-radius:50%;border:0;background:#1FA855;color:#fff;font-size:16px}
+.done{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:10px;padding:24px}
+.done .tick{width:64px;height:64px;border-radius:50%;background:var(--good-soft);color:var(--good);display:grid;place-items:center;font-size:30px}
+
+/* console */
+.guide{display:flex;gap:12px;align-items:flex-start;background:var(--accent-soft);border-radius:14px;padding:14px 16px;margin-bottom:16px}
+.guide .n{font-family:var(--mono);font-size:12px;background:var(--accent);color:#fff;border-radius:999px;padding:3px 9px;white-space:nowrap}
+.guide p{margin:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.ctrls{display:flex;flex-wrap:wrap;gap:8px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.row:last-child{border-bottom:0}
+.row select{height:36px;border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:0 8px;max-width:190px}
+.switch{position:relative;width:44px;height:26px;flex:none}
+.switch input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.switch span{position:absolute;inset:0;border-radius:999px;background:var(--line);transition:background .15s}
+.switch span::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .15s}
+.switch input:checked+span{background:var(--accent)}
+.switch input:checked+span::after{transform:translateX(18px)}
+.state{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px}
+.state div{min-width:120px}
+.state dt{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.state dd{margin:2px 0 0;font-weight:600}
+.chip{display:inline-block;font-family:var(--mono);font-size:11.5px;border-radius:999px;padding:3px 9px;font-weight:500}
+.c-good{background:var(--good-soft);color:var(--good)} .c-bad{background:var(--bad-soft);color:var(--bad)} .c-wait{background:var(--wait-soft);color:var(--wait)} .c-nav{background:var(--navy-soft);color:var(--navy)} .c-mut{background:var(--soft);color:var(--muted)}
+.log{list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:12.5px;display:flex;flex-direction:column;max-height:430px;overflow:auto}
+.log li{display:grid;grid-template-columns:96px 56px 1fr;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.log .tm{color:var(--muted)}
+.lg-PASS{color:var(--good)} .lg-STOP{color:var(--bad)} .lg-HOLD{color:var(--wait)} .lg-SENT,.lg-ORDER{color:var(--accent);font-weight:600} .lg-INFO,.lg-SWEEP,.lg-REPLY,.lg-BOT{color:var(--navy)}
+.empty{color:var(--muted);font-size:14px;padding:12px 0}
+
+/* dashboard */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:16px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.kpi b{display:block;font-family:var(--display);font-size:22px;letter-spacing:-.02em;margin:4px 0 2px}
+.kpi span{font-size:13px;color:var(--muted)}
+.kpi.ns{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.kpi.ns span,.kpi.ns .h{color:inherit;opacity:.75}
+.chart svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.mrow{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.mrow:last-child{border:0}
+.mrow b{font-variant-numeric:tabular-nums}
+.funnel{display:flex;flex-direction:column;gap:8px}
+.fb{display:grid;grid-template-columns:150px 1fr 70px;gap:10px;align-items:center;font-size:13.5px}
+.fb .tr{height:12px;background:var(--soft);border-radius:999px;overflow:hidden}
+.fb .tr i{display:block;height:100%;background:var(--accent);border-radius:999px}
+.fb b{text-align:right;font-variant-numeric:tabular-nums}
+
+/* carts */
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.filters button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:13.5px}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+.tbl td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl tr.live td{background:var(--accent-soft)}
+.tbl .r{text-align:right}
+
+/* setup */
+.tpl{border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.tpl .top{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
+.tpl code{font-family:var(--mono);font-size:13px}
+.tpl p{margin:0;font-size:14px;background:var(--bg);border-radius:8px;padding:8px 10px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.warn{background:var(--wait-soft);color:var(--ink);border-radius:10px;padding:9px 11px;font-size:13px}
+
+/* toast + bottom nav */
+.toast{position:fixed;left:16px;right:16px;margin:0 auto;max-width:440px;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateY(16px);opacity:0;pointer-events:none;z-index:50;background:var(--ink);color:var(--bg);border-radius:14px;padding:10px 10px 10px 14px;display:flex;gap:10px;align-items:center;font-size:14px;box-shadow:0 12px 30px -10px rgba(0,0,0,.5);transition:opacity .2s,transform .2s;}
+.toast.on{opacity:1;transform:none;pointer-events:auto}
+.toast span{flex:1;min-width:0}
+.toast button{border:0;background:var(--accent);color:#fff;border-radius:999px;padding:6px 12px;font-weight:600;white-space:nowrap}
+.bnav{display:none}
+.mguide{display:none}
+footer{max-width:1320px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-right,0px)) 40px;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+
+@media (max-width:999px){
+  .tabs{display:none}
+  .sim{display:block!important}
+  .sim .phone-col,.sim .con-col{display:none;position:static}
+  body.v-shopper .sim .phone-col{display:block}
+  body.v-console .sim .con-col{display:block}
+  .phone{height:calc(100dvh - 190px);min-height:520px;max-width:400px}
+  main{padding-top:14px;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+  footer{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+  .bnav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))}
+  .bnav button{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11.5px;color:var(--muted);padding:6px 0;border-radius:12px;position:relative}
+  .bnav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .bnav button[aria-selected="true"]{color:var(--accent);background:var(--accent-soft)}
+  .bnav em{position:absolute;top:2px;right:calc(50% - 20px);background:#E0352B;color:#fff;font-style:normal;font-size:10px;border-radius:999px;min-width:16px;height:16px;display:grid;place-items:center;padding:0 4px}
+  .hide-m{display:none}
+  .mguide{display:flex;gap:10px;align-items:flex-start;background:var(--accent-soft);border-radius:12px;padding:10px 12px;margin:0 auto 12px;max-width:400px;font-size:14px}
+  .mguide .n{font-family:var(--mono);font-size:11.5px;background:var(--accent);color:#fff;border-radius:999px;padding:2px 8px;white-space:nowrap}
+  .mguide p{margin:0}
+  .tbl thead{display:none}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl tr{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:6px 4px;background:var(--surface)}
+  .tbl tr.live{border-color:var(--accent)}
+  .tbl td{border:0;padding:4px 10px;display:flex;justify-content:space-between;gap:12px;text-align:right}
+  .tbl td::before{content:attr(data-l);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:left}
+  .tbl tr.live td{background:none}
+  .fb{grid-template-columns:110px 1fr 58px}
+}
+@media (max-width:600px){
+  .phone{padding:0;background:none;box-shadow:none;border-radius:20px;border:1px solid var(--line);height:calc(100dvh - 220px);min-height:480px;overflow:hidden}
+  .screen{border-radius:20px}
+  .status{display:none}
+}
+@media (max-width:420px){.bar .badge{display:none}.bar-in{gap:8px}.clock{font-size:12px;padding:5px 9px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="logo" href="/wapsi/" title="Back to the Wapsi case study">Wapsi<span>.</span></a>
+    <span class="badge">Live demo · sample data</span>
+    <span class="sp"></span>
+    <span class="clock" id="clock" aria-live="polite"></span>
+    <button class="pill" type="button" data-act="reset" title="Start the demo again">Reset</button>
+    <a class="pill hide-m" href="/wapsi/">Case study</a>
+  </div>
+  <div class="tabs" role="tablist" aria-label="Demo sections">
+    <button class="tab" role="tab" data-view="sim">Simulator</button>
+    <button class="tab" role="tab" data-view="dashboard">Results</button>
+    <button class="tab" role="tab" data-view="carts">Carts</button>
+    <button class="tab" role="tab" data-view="setup">Rules and templates</button>
+  </div>
+</header>
+
+<main id="main">
+  <div class="sim">
+    <div class="phone-col"><div class="mguide" id="mguide"></div><div class="phone"><div class="screen" id="screen"></div></div></div>
+    <div class="con-col" id="console"></div>
+  </div>
+  <section class="view" id="v-dashboard"></section>
+  <section class="view" id="v-carts"></section>
+  <section class="view" id="v-setup"></section>
+</main>
+
+<footer>
+  <span>Wapsi is a concept product by Pryank Wadhera. Everything here runs in your browser on sample data; no messages are sent and nothing is stored.</span>
+  <span><a href="/wapsi/">Case study</a> · <a href="/">Portfolio</a></span>
+</footer>
+
+<nav class="bnav" aria-label="Demo sections">
+  <button data-view="shopper"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Shopper<em id="b-unread" hidden></em></button>
+  <button data-view="console"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/></svg>Console</button>
+  <button data-view="dashboard"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Results</button>
+  <button data-view="carts"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg>Carts</button>
+  <button data-view="setup"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Rules</button>
+</nav>
+<div class="toast" id="toast" role="status"><span id="toast-t"></span><button type="button" data-act="open-shopper">Open phone</button></div>
+
+<script>
+(function(){
+'use strict';
+var RATE = 0.8631, GST = 0.18, PER_MSG = RATE * (1 + GST);
+var PRODUCTS = [
+  { id:'linen', name:'Linen shirt', colour:'Sage', price:1499, sw:'linear-gradient(135deg,#9DB59A,#6F8C6C)', sizes:{S:4,M:2,L:0} },
+  { id:'oxford', name:'Oxford shirt', colour:'Sky blue', price:1799, sw:'linear-gradient(135deg,#A9C4E2,#6E8FB8)', sizes:{S:3,M:5,L:1} },
+  { id:'chino', name:'Slim chinos', colour:'Stone', price:2199, sw:'linear-gradient(135deg,#D9C8A8,#A99572)', sizes:{'30':2,'32':4,'34':0} }
+];
+var DEFAULTS = { delay:45, qs:21, qe:9, max:2, offer:10, hold:10, model:true, follow:24 };
+var S, sample;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function inr(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); }
+function inr2(n){ return '₹' + n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+function pct(n,d){ return d ? (100*n/d) : 0; }
+function prod(id){ for (var i=0;i<PRODUCTS.length;i++) if (PRODUCTS[i].id===id) return PRODUCTS[i]; }
+function hhmm(d){ var h=d.getHours(), m=d.getMinutes(), ap=h<12?'am':'pm', h12=h%12||12; return h12+':'+(m<10?'0':'')+m+' '+ap; }
+function dayName(d){ return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()]; }
+function hourLabel(h){ var ap=h<12?'am':'pm'; return (h%12||12)+' '+ap; }
+function mulberry(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+
+function fresh(){
+  return {
+    clock: new Date(2026,9,28,11,0).getTime(),
+    set: clone(DEFAULTS),
+    stock: (function(){ var o={}; PRODUCTS.forEach(function(p){ o[p.id]=clone(p.sizes); }); return o; })(),
+    shop: { screen:'store', cart:[], pick:{}, name:'Riya', phone:'98765 43210', optIn:false, reached:false },
+    tw: { elsewhere:false, returning:false, holdout:'out', intent:'auto' },
+    live: null, chat: [], log: [], unread: 0, view: S ? S.view : null, filter:'all', rng: mulberry(42)
+  };
+}
+
+/* ---------- sample history (30 days, generated in the browser) ---------- */
+function makeSample(){
+  var r = mulberry(218), rows = [], start = new Date(2026,8,28).getTime();
+  var first = ['Aarav','Diya','Kabir','Ananya','Vihaan','Isha','Arjun','Meera','Reyansh','Saanvi','Ishaan','Tara','Advait','Navya','Rohan','Kiara'];
+  for (var d=0; d<30; d++){
+    var n = 38 + Math.floor(r()*18);
+    for (var k=0;k<n;k++){
+      var v = Math.round((900 + Math.pow(r(),1.6)*3600)/10)*10;
+      var row = { id:'C-'+(1000+rows.length), day:d, at:start + d*864e5 + Math.floor(r()*864e5), value:v, name:first[Math.floor(r()*first.length)],
+        phone:'+91 9' + Math.floor(r()*9) + '••••• ' + (10+Math.floor(r()*89)),
+        group:'none', status:'', reason:'', intent:'', msgs:0, delivered:0, tapped:false, recovered:false, revenue:0, discount:0, optout:false, blocked:false, replied:false, bot:false };
+      var hasPhone = r() < 0.80, consent = hasPhone && r() < 0.72;
+      if (!hasPhone){ row.status='Not reachable'; row.reason='No phone number'; rows.push(row); continue; }
+      if (!consent){ row.status='Not reachable'; row.reason='No WhatsApp opt-in'; rows.push(row); continue; }
+      if (r() < 0.06){ row.status='Skipped'; row.reason='Ordered on another device'; rows.push(row); continue; }
+      if (r() < 0.03){ row.status='Skipped'; row.reason='Items sold out'; rows.push(row); continue; }
+      var x = r(); row.intent = x < 0.25 ? 'high' : x < 0.75 ? 'mid' : 'low';
+      if (r() < 0.10){
+        row.group='holdout'; row.status='Holdout'; row.reason='Control group, no message';
+        var ph = {high:0.24, mid:0.045, low:0.015}[row.intent];
+        if (r() < ph){ row.recovered=true; row.revenue=v; row.status='Came back alone'; }
+        rows.push(row); continue;
+      }
+      row.group='messaged'; row.msgs=1; row.delivered = r()<0.95 ? 1 : 0;
+      if (!row.delivered){ row.status='Not delivered'; row.reason='Marketing message cap reached'; rows.push(row); continue; }
+      if (r() < 0.005){ row.optout=true; row.status='Opted out'; row.reason='Replied STOP'; rows.push(row); continue; }
+      if (r() < 0.002){ row.blocked=true; }
+      row.replied = r() < 0.09; row.bot = row.replied && r() < 0.78;
+      var pm = {high:0.27, mid:0.10, low:0.025}[row.intent];
+      row.tapped = r() < 0.34;
+      if (row.tapped && r() < pm/0.34*0.9){ row.recovered=true; row.revenue=v; row.status='Recovered'; row.reason='After the reminder'; }
+      else if (row.intent==='mid' && !row.replied){
+        row.msgs=2; row.delivered = 2;
+        if (r() < 0.07){ row.recovered=true; row.discount=Math.round(v*0.10); row.revenue=v-row.discount; row.status='Recovered'; row.reason='After the 10% offer'; }
+        else { row.status='No response'; row.reason='Reminder and offer sent'; }
+      } else { row.status='No response'; row.reason = row.intent==='high' ? 'Reminder, no offer' : 'One reminder, then stop'; }
+      rows.push(row);
+    }
+  }
+  return rows;
+}
+
+/* ---------- logging ---------- */
+function log(kind, text){ S.log.unshift({ t:S.clock, k:kind, x:text }); }
+function chatIn(o){ o.t = S.clock; S.chat.push(o); }
+
+/* ---------- shopper ---------- */
+function cartValue(items){ return items.reduce(function(s,i){ return s + prod(i.pid).price * i.qty; }, 0); }
+function stockOf(i){ return S.stock[i.pid][i.size]; }
+
+function leaveSite(){
+  var sh = S.shop;
+  if (!sh.cart.length) return;
+  var X = S.live;
+  if (X && !X.recovered){
+    X.items = clone(sh.cart); X.value = cartValue(sh.cart); X.idleSince = S.clock; X.reached = X.reached || sh.reached;
+    if (!X.optedOut) X.consent = X.consent || (sh.reached && sh.optIn);
+    if (X.reminders === 0){ X.nextAt = S.clock + S.set.delay*6e4; X.status = 'Idle'; X.reason = 'Waiting for the sweep'; }
+    else { X.status = 'Reminded'; X.reason = 'Left again after the reminder'; }
+    sh.screen = 'home'; log('INFO', 'Cart ' + X.id + ' went quiet again: ' + inr(X.value)); return;
+  }
+  S.live = { id:'C-2041', items:clone(sh.cart), value:cartValue(sh.cart), name:sh.name || 'Shopper', phone:sh.phone, consent:sh.reached && sh.optIn, reached:sh.reached,
+    idleSince:S.clock, nextAt:S.clock + S.set.delay*6e4, status:'Idle', reason:'Waiting for the sweep', reminders:0, group:null, plan:null, offerSent:false, optedOut:false, replied:false, msgs:0, recovered:false, revenue:0, discount:0, intent:null };
+  sh.screen = 'home';
+  log('INFO', 'Cart C-2041 went quiet: ' + inr(S.live.value) + ', ' + (sh.reached ? 'reached checkout' : 'left from the cart page') + (S.live.consent ? ', WhatsApp opt-in given' : ', no WhatsApp opt-in'));
+}
+
+function placeOrder(viaLink){
+  var L = S.live, sh = S.shop;
+  sh.cart.forEach(function(i){ if (S.stock[i.pid][i.size] > 0) S.stock[i.pid][i.size] -= i.qty; });
+  if (L && !L.recovered){
+    var disc = (viaLink && L.offerSent) ? Math.round(L.value * S.set.offer/100) : 0;
+    L.recovered = true; L.discount = disc; L.revenue = L.value - disc; L.nextAt = null; L.plan = null;
+    if (viaLink){ L.status='Recovered'; L.reason = L.offerSent ? 'After the ' + S.set.offer + '% offer' : 'After the reminder'; log('ORDER', 'Order placed from the WhatsApp link: ' + inr(L.revenue) + (disc ? ' after ' + inr(disc) + ' off' : '') + '. Counted as recovered.'); }
+    else { L.status = L.group==='holdout' ? 'Came back alone' : 'Ordered'; L.reason = L.reminders ? 'Came back without the link' : 'Came back before any message'; log('ORDER', 'Shopper came back and ordered on their own: ' + inr(L.revenue) + '. ' + (L.group==='holdout' ? 'This is what the holdout baseline measures.' : 'No message needed.')); }
+  } else if (!L){ log('ORDER', 'Order placed straight away. No cart left to recover.'); }
+  sh.screen = 'done';
+}
+
+/* ---------- the engine ---------- */
+function intentBand(L){
+  if (S.tw.intent !== 'auto') return { band:S.tw.intent, score:null };
+  var s = 0.45 + (S.tw.returning ? 0.3 : 0) + (L.reached ? 0.1 : 0) - (L.value > 4000 ? 0.1 : 0) - (L.items.length === 1 && !L.reached ? 0.1 : 0);
+  s = Math.max(0.05, Math.min(0.95, s));
+  return { band: s >= 0.7 ? 'high' : s >= 0.4 ? 'mid' : 'low', score:s };
+}
+var BAND = { high:'likely to return without help', mid:'persuadable', low:'casual browsing' };
+
+function sendTemplate(kind){
+  var L = S.live, avail = L.items.filter(function(i){ return stockOf(i) > 0; });
+  var what = avail.map(function(i){ return prod(i.pid).name.toLowerCase() + ' (' + i.size + ')'; }).join(' and ');
+  var text, tpl;
+  if (kind === 'offer'){
+    tpl = 'cart_offer_' + S.set.offer;
+    text = 'Hi ' + L.name + ', still thinking it over? Your ' + what + ' ' + (avail.length>1?'are':'is') + ' waiting, and we have added ' + S.set.offer + '% off with code WAPSI' + S.set.offer + ' if you finish your order today.';
+    L.offerSent = true;
+  } else {
+    tpl = 'cart_reminder_v2';
+    text = 'Hi ' + L.name + ', your ' + what + ' ' + (avail.length>1?'are':'is') + ' still in your cart at Ivy & Loom, and your size is in stock. Tap below to finish your order.';
+  }
+  chatIn({ from:'biz', kind:'tpl', tpl:tpl, text:text, cta:true });
+  L.reminders++; L.msgs++; S.unread++;
+  log('SENT', 'Template ' + tpl + ' delivered. Charged as marketing: ' + inr2(PER_MSG) + ' incl. GST.');
+  notify('New WhatsApp message on the shopper’s phone');
+}
+
+function evaluate(){
+  var L = S.live, st = S.set, now = new Date(S.clock), follow = L.reminders >= 1;
+  log('SWEEP', (follow ? 'Follow-up check for ' : 'Sweep picked up ') + L.id + ': quiet ' + Math.round((S.clock - L.idleSince)/6e4) + ' min, no order seen');
+  function stop(step, why, status, reason){ log('STOP', step + ': ' + why); L.status = status; L.reason = reason; L.nextAt = null; L.plan = null; }
+  if (!L.consent || L.optedOut){ return stop('Consent', L.optedOut ? 'shopper replied STOP' : 'no WhatsApp opt-in on record', L.optedOut ? 'Opted out' : 'Not reachable', L.optedOut ? 'Replied STOP' : 'No WhatsApp opt-in'); }
+  log('PASS', 'Consent: opted in at checkout; wording, time and source stored');
+  if (L.group === null){
+    var inH = S.tw.holdout === 'in' ? true : S.tw.holdout === 'out' ? false : S.rng() < st.hold/100;
+    L.group = inH ? 'holdout' : 'messaged';
+    if (inH){ log('HOLD', 'Holdout: drawn into the ' + st.hold + '% control group. No message; the outcome is still tracked.'); L.status='Holdout'; L.reason='Control group, no message'; L.nextAt=null; return; }
+    log('PASS', 'Holdout: assigned to the messaged group');
+  }
+  if (S.tw.elsewhere){ return stop('Orders', 'a cash-on-delivery order exists from another device', 'Skipped', 'Ordered on another device'); }
+  log('PASS', 'Orders: none on any device or by COD');
+  var out = L.items.filter(function(i){ return stockOf(i) <= 0; });
+  if (out.length === L.items.length){ return stop('Stock', 'everything in the cart is sold out; similar items are suggested in the store instead', 'Skipped', 'Items sold out'); }
+  log('PASS', 'Stock and price: ' + (out.length ? out.length + ' item sold out, the message lists only what is available' : 'unchanged'));
+  var h = now.getHours();
+  if (h >= st.qs || h < st.qe){
+    var next = new Date(now); if (h >= st.qs) next.setDate(next.getDate()+1); next.setHours(st.qe,0,0,0);
+    log('HOLD', 'Quiet hours: ' + hhmm(now) + ' is outside ' + hourLabel(st.qe) + ' to ' + hourLabel(st.qs) + '. Re-checked at ' + hourLabel(st.qe) + '.');
+    L.status = 'Waiting'; L.reason = 'Quiet hours'; L.nextAt = next.getTime(); return;
+  }
+  log('PASS', 'Quiet hours: inside sending hours');
+  if (L.reminders >= st.max){ return stop('Message limit', st.max + ' message' + (st.max>1?'s':'') + ' already sent for this cart', 'No response', 'Limit reached'); }
+  log('PASS', 'Message limit: ' + L.reminders + ' of ' + st.max + ' used');
+  if (follow){
+    if (L.plan === 'offer'){ log('PASS', 'No reply and no order in ' + st.follow + ' hours: the offer goes out'); sendTemplate('offer'); L.status='Offer sent'; L.reason='Final message'; }
+    L.nextAt = null; L.plan = null; return;
+  }
+  var ib = intentBand(L); L.intent = ib.band;
+  if (!st.model){
+    log('INFO', 'Intent model is off: every cart gets the same reminder with the offer');
+    sendTemplate('offer'); L.status='Offer sent'; L.reason='Blanket offer, model off'; L.nextAt=null; return;
+  }
+  log('PASS', 'Intent: ' + BAND[ib.band] + (ib.score !== null ? ' (score ' + ib.score.toFixed(2) + ')' : ' (set by you)'));
+  sendTemplate('reminder');
+  if (ib.band === 'mid' && st.max >= 2){ L.plan='offer'; L.nextAt = S.clock + st.follow*36e5; L.status='Reminded'; L.reason='Offer queued if no reply in ' + st.follow + ' h'; log('INFO', 'Offer queued for ' + st.follow + ' hours from now, cancelled by any reply or order'); }
+  else { L.nextAt = null; L.status='Reminded'; L.reason = ib.band==='high' ? 'Reminder, no offer' : 'One reminder, then stop'; }
+}
+
+function advance(mins){
+  var end = S.clock + mins*6e4;
+  while (S.clock < end){
+    S.clock = Math.min(end, S.clock + 5*6e4);
+    if (S.live && S.live.nextAt && S.clock >= S.live.nextAt && !S.live.recovered) evaluate();
+  }
+}
+function jumpToNext(){
+  if (!S.live || !S.live.nextAt) return;
+  var mins = Math.max(5, Math.ceil((S.live.nextAt - S.clock)/6e4/5)*5);
+  advance(mins);
+}
+
+/* ---------- chat replies ---------- */
+function reply(text){
+  var L = S.live; if (!L) return;
+  text = String(text).trim(); if (!text) return;
+  chatIn({ from:'me', text:text });
+  var q = text.toLowerCase();
+  log('REPLY', 'Shopper replied: “' + text.slice(0,60) + '”. The 24-hour chat window is open; replies in it are free.');
+  if (/^(stop|unsubscribe)\b/.test(q)){
+    L.optedOut = true; L.consent = false; L.plan = null; L.nextAt = null; L.status='Opted out'; L.reason='Replied STOP';
+    chatIn({ from:'sys', text:'You won’t get more messages from Ivy & Loom here. Reply START to undo.' });
+    log('STOP', 'Opt-out recorded instantly. No further messages to this number.');
+    return;
+  }
+  if (/^start\b/.test(q) && L.optedOut){ L.optedOut=false; L.consent=true; chatIn({from:'sys',text:'You’re subscribed again.'}); log('INFO','Opt-in restored by the shopper'); return; }
+  L.replied = true;
+  if (L.plan === 'offer'){ L.plan = null; L.nextAt = null; L.reason='Replied, offer cancelled'; log('INFO', 'Queued offer cancelled: the shopper is talking, so no discount is needed'); }
+  var ans, bot = true;
+  if (/(size|stock|available|left|fit)/.test(q)){
+    ans = L.items.map(function(i){ var p=prod(i.pid), n=S.stock[i.pid][i.size]; return p.name + ' in ' + i.size + ': ' + (n>0 ? n + ' left' : 'sold out'); }).join('. ') + '. Your cart is saved, so the link above still works.';
+  } else if (/(deliver|arrive|ship|pin|when)/.test(q)){ ans = 'Delivery to 110017 takes 2 to 4 working days. Cash on delivery is available.'; }
+  else if (/(return|exchange|refund)/.test(q)){ ans = 'Free returns and size exchanges within 7 days of delivery.'; }
+  else if (/(cod|cash)/.test(q)){ ans = 'Yes, cash on delivery is available on this order.'; }
+  else if (/(discount|offer|code|coupon)/.test(q)){ ans = L.offerSent ? 'Code WAPSI' + S.set.offer + ' is already applied through the link above.' : 'There’s no code on this order right now, but free delivery is already included.'; }
+  else { bot = false; ans = 'Thanks, I’ve passed this to the Ivy & Loom team. Someone will reply here shortly.'; }
+  chatIn({ from:'biz', kind:'bot', text:ans });
+  log(bot ? 'BOT' : 'INFO', bot ? 'Assistant answered from live stock and store policy' : 'Handed over to store staff: the assistant does not guess');
+}
+
+/* ---------- toast ---------- */
+var toastTimer;
+function notify(t){
+  if (window.matchMedia('(min-width:1000px)').matches || S.view === 'shopper') return;
+  var el = document.getElementById('toast'); document.getElementById('toast-t').textContent = t;
+  el.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(function(){ el.classList.remove('on'); }, 5000);
+}
+
+/* ---------- render: phone ---------- */
+function renderPhone(){
+  var sh = S.shop, now = new Date(S.clock), h = '';
+  h += '<div class="status"><span>' + hhmm(now).replace(' am','').replace(' pm','') + '</span><span class="dots">●●● ▮</span></div>';
+  var count = sh.cart.reduce(function(s,i){return s+i.qty;},0);
+  if (sh.screen === 'store' || sh.screen === 'cart' || sh.screen === 'checkout' || sh.screen === 'restored'){
+    h += '<div class="store-head"><b>Ivy &amp; Loom</b>' + (sh.screen==='store' ? '<button class="cartbtn" data-act="go-cart">Cart<i>' + count + '</i></button>' : '<button class="cartbtn" data-act="go-store">← Shop</button>') + '</div>';
+  }
+  h += '<div class="scr">';
+  if (sh.screen === 'store'){
+    h += '<div class="prods">';
+    PRODUCTS.forEach(function(p){
+      var pick = sh.pick[p.id];
+      h += '<div class="prod"><div class="sw" style="background:' + p.sw + '"></div><div style="flex:1;min-width:0"><h4>' + p.name + '</h4><div class="pr">' + inr(p.price) + ' · ' + p.colour + '</div><div class="sizes" role="group" aria-label="Size for ' + p.name + '">';
+      Object.keys(S.stock[p.id]).forEach(function(z){ var n=S.stock[p.id][z]; h += '<button class="sz" data-act="size" data-p="' + p.id + '" data-z="' + z + '" aria-pressed="' + (pick===z) + '"' + (n<=0?' disabled aria-label="Size ' + z + ', sold out"':'') + '>' + z + '</button>'; });
+      h += '</div><button class="add" data-act="add" data-p="' + p.id + '"' + (pick ? '' : ' disabled style="opacity:.45"') + '>' + (pick ? 'Add size ' + pick : 'Pick a size') + '</button></div></div>';
+    });
+    h += '</div>';
+  } else if (sh.screen === 'cart' || sh.screen === 'restored'){
+    h += '<div class="pad">';
+    if (sh.screen === 'restored') h += '<div class="banner">Cart rebuilt from the signed link in WhatsApp' + (S.live && S.live.offerSent ? '. Code WAPSI' + S.set.offer + ' applied.' : '.') + '</div>';
+    if (!sh.cart.length) h += '<p class="note">Your cart is empty. Add a shirt from the shop.</p>';
+    sh.cart.forEach(function(i,ix){ var p=prod(i.pid); h += '<div class="line"><span>' + p.name + '<small>Size ' + i.size + ' · ' + p.colour + '</small></span><span class="mono">' + inr(p.price*i.qty) + ' <button class="cartbtn" style="padding:2px 8px" data-act="rm" data-i="' + ix + '" aria-label="Remove ' + p.name + '">×</button></span></div>'; });
+    var val = cartValue(sh.cart), disc = (sh.screen==='restored' && S.live && S.live.offerSent) ? Math.round(val*S.set.offer/100) : 0;
+    if (sh.cart.length){
+      if (disc) h += '<div class="line"><span>Code WAPSI' + S.set.offer + '</span><span class="mono">−' + inr(disc) + '</span></div>';
+      h += '<div class="tot"><span>Total</span><span class="mono">' + inr(val-disc) + '</span></div>';
+      if (sh.screen === 'restored') h += '<button class="big" data-act="order-link">Place order</button>';
+      else h += '<button class="big" data-act="go-checkout">Checkout</button>';
+      h += '<button class="big ghost" data-act="leave">Close the tab and leave</button>';
+    }
+    h += '</div>';
+  } else if (sh.screen === 'checkout'){
+    h += '<div class="pad"><b>Contact</b>';
+    h += '<div class="fld"><label for="f-name">First name</label><input id="f-name" type="text" autocomplete="off" value="' + esc(sh.name) + '"></div>';
+    h += '<div class="fld"><label for="f-phone">Mobile number (+91)</label><input id="f-phone" type="tel" inputmode="numeric" autocomplete="off" value="' + esc(sh.phone) + '"></div>';
+    h += '<label class="chk"><input type="checkbox" id="f-opt"' + (sh.optIn?' checked':'') + '><span>Send me order updates and reminders on WhatsApp. I can reply STOP at any time.</span></label>';
+    h += '<p class="note" style="margin:0">The box starts unticked. Wapsi messages only shoppers who tick it.</p>';
+    h += '<div class="tot"><span>To pay</span><span class="mono">' + inr(cartValue(sh.cart)) + '</span></div>';
+    h += '<button class="big" data-act="order-now">Pay and place order</button>';
+    h += '<button class="big ghost" data-act="leave">Close the tab and leave</button></div>';
+  } else if (sh.screen === 'home'){
+    h += '<div class="home"><div style="font-size:42px;font-weight:300;letter-spacing:-1px">' + hhmm(now).replace(/ (am|pm)/,'') + '</div><div style="margin-top:-14px;opacity:.85">' + dayName(now) + ', ' + now.getDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][now.getMonth()] + '</div>';
+    var lastBiz = null; for (var i=S.chat.length-1;i>=0;i--){ if (S.chat[i].from==='biz'){ lastBiz=S.chat[i]; break; } }
+    if (S.unread && lastBiz) h += '<button class="home msg" style="flex:none;border:0;text-align:left;padding:12px 14px;color:#fff;background:rgba(255,255,255,.16)" data-act="open-chat"><b>Ivy &amp; Loom</b><br>' + esc(lastBiz.text.slice(0,82)) + '…</button>';
+    else h += '<div class="msg">The shopper has left the store. Move time forward in the console and watch what Wapsi does.</div>';
+    h += '<div class="apps"><button class="app" data-act="open-chat"><span class="ic chat">✉</span>Chats' + (S.unread ? '<em>' + S.unread + '</em>' : '') + '</button><button class="app" data-act="back-store"><span class="ic">▣</span>Ivy &amp; Loom</button><span class="app"><span class="ic">♫</span>Music</span><span class="app"><span class="ic">☀</span>Weather</span></div></div>';
+  } else if (sh.screen === 'chat'){
+    h = h.replace('<div class="scr">','');
+    h += '<div class="chat-head"><button data-act="close-chat" aria-label="Back">←</button><span class="av">IL</span><span><b>Ivy &amp; Loom</b><small>Business account</small></span></div><div class="chat" id="chat">';
+    if (!S.chat.length) h += '<div class="day">No messages yet</div>';
+    else h += '<div class="day">' + dayName(new Date(S.chat[0].t)) + '</div>';
+    S.chat.forEach(function(m){
+      if (m.from === 'sys'){ h += '<div class="bub sys">' + esc(m.text) + '</div>'; return; }
+      var cls = m.from==='me' ? 'out' : 'in';
+      h += '<div class="bub ' + cls + '">' + (m.kind==='bot' ? '<div class="tagl">Assistant</div>' : '') + esc(m.text) + '<div class="meta">' + hhmm(new Date(m.t)) + (cls==='out'?' ✓✓':'') + '</div>' + (m.cta && !(S.live && S.live.recovered) ? '<button class="cta" data-act="tap-link">Finish my order</button>' : '') + '</div>';
+    });
+    h += '</div>';
+    if (S.live && S.chat.length && !S.live.recovered){
+      var sz = S.live.items[0] ? S.live.items[0].size : 'M';
+      h += '<div class="quick"><button data-act="qr" data-q="Is size ' + sz + ' still in stock?">Is size ' + sz + ' in stock?</button><button data-act="qr" data-q="When will it arrive?">When will it arrive?</button><button data-act="qr" data-q="Can I return it?">Returns?</button><button data-act="qr" data-q="STOP">STOP</button></div>';
+      h += '<form class="compose" data-form="chat"><input name="m" placeholder="Message" aria-label="Type a reply" autocomplete="off"><button aria-label="Send">➤</button></form>';
+    }
+    document.getElementById('screen').innerHTML = h;
+    var c = document.getElementById('chat'); if (c) c.scrollTop = c.scrollHeight;
+    return;
+  } else if (sh.screen === 'done'){
+    var L = S.live;
+    h += '<div class="done"><div class="tick">✓</div><b style="font-size:18px">Order placed</b><p class="note" style="margin:0">' + (L && L.recovered && L.status==='Recovered' ? 'Recovered through the WhatsApp link. Check Results to see it counted against the holdout.' : 'Thanks for shopping with Ivy &amp; Loom.') + '</p><button class="big ghost" style="max-width:220px" data-act="reset">Start again</button></div>';
+  }
+  h += '</div>';
+  document.getElementById('screen').innerHTML = h;
+}
+
+/* ---------- render: console ---------- */
+function guide(){
+  var sh = S.shop, L = S.live;
+  if (!L){
+    if (!sh.cart.length) return ['1','Add something to the cart on the shopper’s phone, then go to checkout.'];
+    if (sh.screen !== 'checkout') return ['2','Open checkout. That is where the phone number and the WhatsApp opt-in are collected.'];
+    return ['3','Tick the WhatsApp box (or leave it unticked to see the consent check stop), then close the tab and leave.'];
+  }
+  if (L.status === 'Active') return ['3','The shopper is back in the store. Place the order, or close the tab again to restart the idle timer.'];
+  if (L.recovered) return ['✓','Done. Open Results to see the order counted, or Reset and try another path: holdout, night time, sold out or STOP.'];
+  if (L.nextAt && L.reminders === 0) return ['4','The cart is idle. Jump to the sweep to run every pre-send check, in order.'];
+  if (L.status === 'Waiting') return ['4','Quiet hours. Jump to the re-check, which runs at ' + hourLabel(S.set.qe) + '.'];
+  if (L.reminders && !L.recovered && L.status !== 'Opted out') return ['5','Open the shopper’s phone: tap the link to order, ask about stock, or reply STOP.' + (L.plan==='offer' ? ' Or jump ' + S.set.follow + ' h ahead to see the offer.' : '')];
+  return ['✓', L.reason + '. Reset to try another path.'];
+}
+function renderConsole(){
+  var L = S.live, g = guide(), h = '';
+  var mg = document.getElementById('mguide'); if (mg) mg.innerHTML = '<span class="n">' + (g[0].length===1 && g[0]!=='\u2713' ? 'Step ' + g[0] : g[0]) + '</span><p>' + g[1].replace('Open the shopper\u2019s phone: t','T').replace(' on the shopper\u2019s phone','') + (g[0]==='4' ? ' Open Console.' : '') + '</p>';
+  h += '<div class="guide"><span class="n">' + (g[0].length===1 && g[0]!=='✓' ? 'Step ' + g[0] : g[0]) + '</span><p>' + g[1] + '</p></div>';
+  h += '<div class="grid2">';
+  h += '<div class="card"><p class="h">Time</p><div class="ctrls">';
+  h += '<button class="pill solid" data-act="next"' + (L && L.nextAt ? '' : ' disabled') + '>' + (L && L.nextAt ? 'Jump to the next check' : 'Nothing scheduled') + '</button>';
+  h += '<button class="pill" data-act="adv" data-m="15">+15 min</button><button class="pill" data-act="adv" data-m="60">+1 h</button><button class="pill" data-act="adv" data-m="1440">+24 h</button><button class="pill" data-act="night">Set to 11:30 pm</button>';
+  h += '</div><p class="note" style="margin:10px 0 0">The sweep runs every five minutes and picks up carts quiet for ' + S.set.delay + ' minutes.</p></div>';
+  h += '<div class="card"><p class="h">This cart</p>';
+  if (!L) h += '<p class="empty" style="padding:0">No abandoned cart yet.</p>';
+  else {
+    var cls = L.recovered ? 'c-good' : /Opted|Skipped|Not reachable/.test(L.status) ? 'c-bad' : /Holdout|Waiting/.test(L.status) ? 'c-wait' : 'c-nav';
+    h += '<dl class="state"><div><dt>Cart</dt><dd>' + L.id + ' · ' + inr(L.value) + '</dd></div><div><dt>Status</dt><dd><span class="chip ' + cls + '">' + L.status + '</span></dd></div><div><dt>Group</dt><dd>' + (L.group ? (L.group==='holdout'?'Holdout':'Messaged') : 'Not drawn yet') + '</dd></div><div><dt>Messages</dt><dd>' + L.msgs + ' of ' + S.set.max + '</dd></div><div><dt>Next check</dt><dd>' + (L.nextAt ? dayName(new Date(L.nextAt)) + ' ' + hhmm(new Date(L.nextAt)) : '—') + '</dd></div></dl>';
+    h += '<p class="note" style="margin:10px 0 0">' + esc(L.reason) + '</p>';
+  }
+  h += '</div></div>';
+  h += '<div class="grid2" style="margin-top:16px"><div class="card"><p class="h">Change the situation</p>';
+  h += row('Shopper already ordered by COD on another device', sw('elsewhere', S.tw.elsewhere));
+  h += row('Returning shopper (raises the intent score)', sw('returning', S.tw.returning));
+  h += row('Holdout draw', sel('holdout', S.tw.holdout, [['out','Messaged group'],['in','Control group'],['auto','Random, ' + S.set.hold + '%']]));
+  h += row('Intent', sel('intent', S.tw.intent, [['auto','Let the model score it'],['high','Will return anyway'],['mid','On the fence'],['low','Just browsing']]));
+  h += '<div class="row"><span>Stock</span><button class="pill" data-act="soldout"' + (L ? '' : ' disabled') + '>Sell out this cart</button></div>';
+  h += '<p class="note" style="margin:8px 0 0">Change these before jumping to the check. Each one maps to a pre-send rule.</p></div>';
+  h += '<div class="card"><p class="h">Engine log</p>';
+  if (!S.log.length) h += '<p class="empty">Every check, message and order appears here with its reason.</p>';
+  else { h += '<ol class="log">'; S.log.forEach(function(e){ h += '<li><span class="tm">' + (dayName(new Date(e.t)) + ' ' + hhmm(new Date(e.t))).replace(/ /g,'\u00A0') + '</span><span class="lg-' + e.k + '">' + e.k + '</span><span>' + esc(e.x) + '</span></li>'; }); h += '</ol>'; }
+  h += '</div></div>';
+  document.getElementById('console').innerHTML = h;
+}
+function row(l, c){ return '<div class="row"><span>' + l + '</span>' + c + '</div>'; }
+function sw(k, on){ return '<label class="switch"><input type="checkbox" data-tw="' + k + '"' + (on?' checked':'') + ' aria-label="' + k + '"><span></span></label>'; }
+function sel(k, v, opts, attr){ return '<select ' + (attr||'data-tw') + '="' + k + '" aria-label="' + k + '">' + opts.map(function(o){ return '<option value="' + o[0] + '"' + (String(o[0])===String(v)?' selected':'') + '>' + o[1] + '</option>'; }).join('') + '</select>'; }
+
+/* ---------- render: dashboard ---------- */
+function allRows(){
+  var rows = sample.slice(), L = S.live;
+  if (L && L.group){
+    rows.push({ id:L.id, day:29, at:L.idleSince, value:L.value, name:L.name, phone:'+91 98••••• 10', group:L.group, status:L.status, reason:L.reason, intent:L.intent||'', msgs:L.msgs, delivered:L.msgs, tapped:L.recovered, recovered:L.recovered, revenue:L.revenue, discount:L.discount, optout:L.optedOut, blocked:false, replied:L.replied, bot:L.replied, live:true });
+  }
+  return rows;
+}
+function renderDash(){
+  var rows = allRows(), tot = rows.length, reach = 0, M = [], H = [];
+  rows.forEach(function(r){ if (r.reason !== 'No phone number' && r.reason !== 'No WhatsApp opt-in') reach++; if (r.group==='messaged') M.push(r); else if (r.group==='holdout') H.push(r); });
+  function sum(a,f){ return a.reduce(function(s,r){ return s + (typeof f==='function' ? f(r) : r[f]); },0); }
+  var recM = sum(M,function(r){return r.recovered?1:0;}), recH = sum(H,function(r){return r.recovered?1:0;});
+  var revM = sum(M,'revenue'), revH = sum(H,'revenue'), perH = H.length ? revH/H.length : 0;
+  var incr = revM - perH*M.length, msgs = sum(M,'delivered'), cost = msgs*PER_MSG, disc = sum(M,'discount');
+  var opt = sum(M,function(r){return r.optout?1:0;}), blk = sum(M,function(r){return r.blocked?1:0;});
+  var rep = sum(M,function(r){return r.replied?1:0;}), bot = sum(M,function(r){return r.bot?1:0;});
+  var delivered = sum(M,function(r){return r.delivered?1:0;}), tapped = sum(M,function(r){return r.tapped?1:0;});
+  var h = '<h2 class="t">Results, last 30 days</h2><p class="lede">Sample data generated in your browser for a fictional store, so the numbers are illustrative, not real results. Your demo cart is added as soon as it is drawn into a group.</p>';
+  h += '<div class="kpis"><div class="kpi ns"><p class="h">North star</p><b>' + inr(incr) + '</b><span>Incremental recovered revenue: messaged carts minus what the holdout recovered on its own, scaled to the same size</span></div>';
+  h += '<div class="kpi"><p class="h">Recovery rate</p><b>' + pct(recM,M.length).toFixed(1) + '% vs ' + pct(recH,H.length).toFixed(1) + '%</b><span>Messaged carts vs holdout (' + M.length.toLocaleString('en-IN') + ' vs ' + H.length + ' carts)</span></div>';
+  h += '<div class="kpi"><p class="h">Reachable carts</p><b>' + pct(reach,tot).toFixed(0) + '%</b><span>Have a number and a WhatsApp opt-in. This caps everything downstream.</span></div>';
+  h += '<div class="kpi"><p class="h">Message cost per recovered order</p><b>' + inr2(recM ? cost/recM : 0) + '</b><span>' + msgs.toLocaleString('en-IN') + ' marketing templates at ' + inr2(PER_MSG) + ' incl. GST</span></div></div>';
+  // chart
+  var days = []; for (var d=0; d<30; d++) days.push({m:0,n:0});
+  M.forEach(function(r){ days[Math.min(29,r.day)].m += r.revenue; days[Math.min(29,r.day)].n++; });
+  var max = 1; days.forEach(function(x){ x.e = perH*x.n; max = Math.max(max, x.m, x.e); });
+  var W=720, Hh=200, L0=62, T0=14, bw=(W-L0)/30, svg='<svg viewBox="0 0 '+W+' '+(Hh+T0+22)+'" role="img" aria-label="Daily recovered revenue from messaged carts against the revenue expected without messages">';
+  for (var g=0; g<=3; g++){ var y=T0+Hh-Hh*g/3; svg += '<line x1="'+L0+'" x2="'+W+'" y1="'+y+'" y2="'+y+'" stroke="var(--line)"/>'; svg += '<text x="'+(L0-8)+'" y="'+(y+3)+'" text-anchor="end" font-size="10" fill="var(--muted)" font-family="var(--mono)">'+inr(max*g/3)+'</text>'; }
+  days.forEach(function(x,i){ var x0=L0+i*bw+2, h1=Hh*x.m/max, h2=Hh*x.e/max;
+    svg += '<rect x="'+x0+'" y="'+(T0+Hh-h1)+'" width="'+(bw*0.55)+'" height="'+h1+'" rx="2" fill="var(--accent)"><title>Day '+(i+1)+': '+inr(x.m)+' recovered</title></rect>';
+    svg += '<rect x="'+(x0+bw*0.55)+'" y="'+(T0+Hh-h2)+'" width="'+(bw*0.3)+'" height="'+h2+'" rx="2" fill="var(--muted)" opacity=".45"><title>Day '+(i+1)+': '+inr(x.e)+' expected anyway</title></rect>'; });
+  svg += '<text x="'+L0+'" y="'+(T0+Hh+16)+'" font-size="10" fill="var(--muted)" font-family="var(--mono)">30 days ago</text><text x="'+(W-2)+'" y="'+(T0+Hh+16)+'" font-size="10" text-anchor="end" fill="var(--muted)" font-family="var(--mono)">today</text></svg>';
+  h += '<div class="grid2"><div class="card chart"><p class="h">Recovered revenue per day</p>' + svg + '<div class="legend"><span><i style="background:var(--accent)"></i>Recovered from messaged carts</span><span><i style="background:var(--muted);opacity:.45"></i>Expected anyway, from the holdout rate</span></div></div>';
+  h += '<div class="card"><p class="h">Funnel, messaged carts</p><div class="funnel">';
+  [['Messaged',M.length,M.length],['Delivered',delivered,M.length],['Tapped the link',tapped,M.length],['Recovered',recM,M.length]].forEach(function(f){ h += '<div class="fb"><span>'+f[0]+'</span><span class="tr"><i style="width:'+pct(f[1],f[2]).toFixed(1)+'%"></i></span><b>'+f[1].toLocaleString('en-IN')+'</b></div>'; });
+  h += '</div><p class="note" style="margin:12px 0 0">Undelivered messages are mostly WhatsApp’s cap on marketing messages per person across all brands, treated as an expected outcome.</p></div></div>';
+  h += '<div class="grid2" style="margin-top:16px"><div class="card"><p class="h">Efficiency</p>';
+  h += mrow('Discount spend per recovered order', inr(recM ? disc/recM : 0));
+  h += mrow('Offers sent (only to persuadable carts)', sum(M,function(r){return r.msgs>1?1:0;}).toLocaleString('en-IN'));
+  h += mrow('Replies answered without staff', pct(bot,rep).toFixed(0) + '% of ' + rep);
+  h += '</div><div class="card"><p class="h">Guardrails</p>';
+  h += mrow('Opt-outs per 1,000 messages', (msgs ? 1000*opt/msgs : 0).toFixed(1));
+  h += mrow('Block rate', pct(blk,msgs).toFixed(2) + '%');
+  h += mrow('Sending status', '<span class="chip c-good">Active</span>');
+  h += '<p class="note" style="margin:10px 0 0">Sending pauses on its own if blocks pass 0.5% of a day’s messages.</p></div></div>';
+  document.getElementById('v-dashboard').innerHTML = h;
+}
+function mrow(a,b){ return '<div class="mrow"><span>'+a+'</span><b>'+b+'</b></div>'; }
+
+/* ---------- render: carts ---------- */
+function renderCarts(){
+  var rows = allRows().sort(function(a,b){ return (b.live?1:0)-(a.live?1:0) || b.at - a.at; });
+  var F = { all:function(){return true;}, recovered:function(r){return r.recovered;}, holdout:function(r){return r.group==='holdout';}, skipped:function(r){return /Skipped|Not reachable|Not delivered/.test(r.status);}, optout:function(r){return r.optout;} };
+  var list = rows.filter(F[S.filter]).slice(0,40);
+  var h = '<h2 class="t">Carts</h2><p class="lede">Every abandoned cart gets a decision and a reason. Latest 40 shown' + (S.live && S.live.group ? '; your demo cart is pinned at the top.' : '.') + '</p><div class="filters">';
+  [['all','All'],['recovered','Recovered'],['holdout','Holdout'],['skipped','Skipped'],['optout','Opted out']].forEach(function(f){ h += '<button data-act="filter" data-f="'+f[0]+'" aria-pressed="'+(S.filter===f[0])+'">'+f[1]+'</button>'; });
+  h += '</div><div class="card" style="padding:6px 8px"><table class="tbl"><thead><tr><th>Cart</th><th>Shopper</th><th class="r">Value</th><th>Group</th><th>Status</th><th>Why</th></tr></thead><tbody>';
+  if (!list.length) h += '<tr><td colspan="6" class="empty">No carts in this filter.</td></tr>';
+  list.forEach(function(r){
+    var cls = r.recovered ? 'c-good' : /Opted|Skipped|Not reachable|Not delivered/.test(r.status) ? 'c-bad' : r.group==='holdout' ? 'c-wait' : 'c-mut';
+    h += '<tr' + (r.live?' class="live"':'') + '><td data-l="Cart" class="mono">' + r.id + (r.live ? ' · demo' : '') + '</td><td data-l="Shopper"><span>' + esc(r.name) + ' <span class="note mono">' + r.phone + '</span></span></td><td data-l="Value" class="r mono">' + inr(r.value) + '</td><td data-l="Group">' + (r.group==='messaged'?'Messaged':r.group==='holdout'?'Holdout':'—') + '</td><td data-l="Status"><span class="chip ' + cls + '">' + esc(r.status) + '</span></td><td data-l="Why">' + esc(r.reason) + '</td></tr>';
+  });
+  h += '</tbody></table></div>';
+  document.getElementById('v-carts').innerHTML = h;
+}
+
+/* ---------- render: setup ---------- */
+function renderSetup(){
+  var st = S.set, h = '<h2 class="t">Rules and templates</h2><p class="lede">Changes apply to the simulator straight away.</p><div class="grid2"><div class="card"><p class="h">Sending rules</p>';
+  h += row('Cart counts as abandoned after', sel('delay', st.delay, [[30,'30 minutes'],[45,'45 minutes'],[60,'60 minutes']], 'data-set'));
+  h += row('Quiet hours start', sel('qs', st.qs, [[20,'8 pm'],[21,'9 pm'],[22,'10 pm']], 'data-set'));
+  h += row('Quiet hours end', sel('qe', st.qe, [[8,'8 am'],[9,'9 am'],[10,'10 am']], 'data-set'));
+  h += row('Messages per cart, at most', sel('max', st.max, [[1,'1'],[2,'2']], 'data-set'));
+  h += row('Wait before the offer', sel('follow', st.follow, [[12,'12 hours'],[24,'24 hours']], 'data-set'));
+  h += row('Offer size', sel('offer', st.offer, [[5,'5% off'],[10,'10% off'],[15,'15% off']], 'data-set'));
+  h += row('Holdout group', sel('hold', st.hold, [[0,'None'],[10,'10% of carts'],[20,'20% of carts']], 'data-set'));
+  h += row('Intent model decides who gets an offer', '<label class="switch"><input type="checkbox" data-set="model"' + (st.model?' checked':'') + ' aria-label="Intent model"><span></span></label>');
+  if (+st.hold === 0) h += '<div class="warn" style="margin-top:10px">With no holdout there is nothing to compare against, so incremental revenue cannot be measured.</div>';
+  if (!st.model) h += '<div class="warn" style="margin-top:10px">Model off: every cart gets the offer in its first message. Try it to see discount spend climb.</div>';
+  h += '</div><div class="card stack"><p class="h" style="margin:0">WhatsApp templates</p>';
+  [['cart_reminder_v2','Marketing','Approved','English','Hi {{1}}, your {{2}} is still in your cart at Ivy & Loom, and your size is in stock. Tap below to finish your order.','Button: Finish my order (signed link)'],
+   ['cart_offer_' + st.offer,'Marketing','Approved','English','Hi {{1}}, still thinking it over? Your {{2}} is waiting, and we have added ' + st.offer + '% off with code {{3}} if you finish your order today.','Sent only to persuadable carts with no reply'],
+   ['cart_reminder_hi','Marketing','In review','Hindi','{{1}} जी, आपके कार्ट में {{2}} अभी भी रखा है। ऑर्डर पूरा करने के लिए नीचे टैप करें।','Not used until approved'],
+   ['order_confirmed','Utility','Approved','English','Your order {{1}} is confirmed and will arrive by {{2}}.','Never used for promotion, so it stays a utility template']
+  ].forEach(function(t){ h += '<div class="tpl"><div class="top"><code>' + t[0] + '</code><span><span class="chip c-nav">' + t[1] + '</span> <span class="chip ' + (t[2]==='Approved'?'c-good':'c-wait') + '">' + t[2] + '</span> <span class="chip c-mut">' + t[3] + '</span></span></div><p>' + esc(t[4]) + '</p><span class="note">' + t[5] + '</span></div>'; });
+  h += '<p class="note" style="margin:0">Outside the 24-hour chat window only approved templates can be sent. Inside it, the assistant replies in free text.</p></div></div>';
+  document.getElementById('v-setup').innerHTML = h;
+}
+
+/* ---------- views ---------- */
+function isDesk(){ return window.matchMedia('(min-width:1000px)').matches; }
+function setView(v){
+  if (v === 'sim') v = 'shopper';
+  S.view = v;
+  if (v === 'shopper' && S.shop.screen === 'chat'){ S.unread = 0; }
+  render();
+  try { window.scrollTo({ top:0 }); } catch(e){}
+}
+function render(){
+  var v = S.view, sim = v==='shopper' || v==='console';
+  document.body.className = sim ? 'v-sim v-' + v : 'v-' + v;
+  ['dashboard','carts','setup'].forEach(function(k){ document.getElementById('v-'+k).classList.toggle('on', v===k); });
+  document.querySelectorAll('.tab').forEach(function(b){ var t=b.getAttribute('data-view'); b.setAttribute('aria-selected', String(t===v || (t==='sim' && sim))); });
+  document.querySelectorAll('.bnav button').forEach(function(b){ b.setAttribute('aria-selected', String(b.getAttribute('data-view')===v)); });
+  var bu = document.getElementById('b-unread'); bu.hidden = !S.unread; bu.textContent = S.unread;
+  var now = new Date(S.clock); document.getElementById('clock').textContent = dayName(now) + ' ' + hhmm(now);
+  if (sim || isDesk()){ renderPhone(); renderConsole(); }
+  if (v==='dashboard') renderDash();
+  if (v==='carts') renderCarts();
+  if (v==='setup') renderSetup();
+}
+
+/* ---------- events ---------- */
+var firstTouch = true;
+function track(n,p){ try{ if (typeof window.gtag==='function') window.gtag('event', n, p||{}); }catch(e){} }
+document.addEventListener('click', function(e){
+  var t = e.target.closest('[data-act],[data-view]'); if (!t) return;
+  if (t.hasAttribute('data-view') && !t.hasAttribute('data-act')){ setView(t.getAttribute('data-view')); return; }
+  var a = t.getAttribute('data-act'), sh = S.shop;
+  if (firstTouch){ firstTouch=false; track('demo_interact', { item_id:'wapsi' }); }
+  switch (a){
+    case 'size': sh.pick[t.getAttribute('data-p')] = t.getAttribute('data-z'); break;
+    case 'add': var p=t.getAttribute('data-p'), z=sh.pick[p]; if (!z) return; var ex=sh.cart.filter(function(i){return i.pid===p&&i.size===z;})[0]; if (ex) ex.qty++; else sh.cart.push({pid:p,size:z,qty:1}); sh.pick[p]=null; break;
+    case 'rm': sh.cart.splice(+t.getAttribute('data-i'),1); break;
+    case 'go-cart': sh.screen='cart'; break;
+    case 'go-store': sh.screen='store'; break;
+    case 'go-checkout': sh.screen='checkout'; sh.reached=true; break;
+    case 'leave': leaveSite(); break;
+    case 'order-now': placeOrder(false); track('demo_order',{item_id:'wapsi',via:'direct'}); break;
+    case 'back-store':
+      var B = S.live; sh.screen = B && !B.recovered ? 'cart' : 'store';
+      if (B && !B.recovered){
+        if (B.reminders === 0 && B.nextAt){ B.nextAt = null; B.status = 'Active'; B.reason = 'Shopper is back on the site, so no reminder is due'; log('INFO','Shopper opened the store again on their own. The idle timer stops; nothing is sent while they browse.'); }
+        else log('INFO','Shopper opened the store again on their own');
+      }
+      break;
+    case 'open-chat': sh.screen='chat'; S.unread=0; break;
+    case 'close-chat': sh.screen='home'; break;
+    case 'tap-link': if (S.live){ sh.cart = clone(S.live.items).filter(function(i){ return stockOf(i)>0; }); sh.screen='restored'; log('INFO','Shopper tapped the signed link: the cart is rebuilt on this device'); } break;
+    case 'order-link': placeOrder(true); track('demo_order',{item_id:'wapsi',via:'whatsapp'}); break;
+    case 'qr': reply(t.getAttribute('data-q')); break;
+    case 'next': jumpToNext(); break;
+    case 'adv': advance(+t.getAttribute('data-m')); break;
+    case 'night':
+      var d=new Date(S.clock); if (d.getHours()===23 && d.getMinutes()>=30) d.setDate(d.getDate()+1); d.setHours(23,30,0,0); S.clock = d.getTime();
+      if (S.live && S.live.nextAt && !S.live.recovered && S.live.reminders===0){ S.live.idleSince = S.clock; S.live.nextAt = S.clock + S.set.delay*6e4; log('INFO','Clock moved to 11:30 pm. The cart is treated as left at that time.'); }
+      else log('INFO','Clock moved to 11:30 pm');
+      break;
+    case 'soldout': if (S.live){ S.live.items.forEach(function(i){ S.stock[i.pid][i.size]=0; }); log('INFO','Every item in this cart is now sold out'); } break;
+    case 'filter': S.filter = t.getAttribute('data-f'); break;
+    case 'reset': var v=S.view; S = fresh(); S.view = v; document.getElementById('toast').classList.remove('on'); break;
+    case 'open-shopper': document.getElementById('toast').classList.remove('on'); sh.screen = sh.screen==='home' ? 'chat' : sh.screen; if (sh.screen==='chat') S.unread=0; setView('shopper'); return;
+  }
+  render();
+});
+document.addEventListener('change', function(e){
+  var t = e.target;
+  if (t.id === 'f-opt'){ S.shop.optIn = t.checked; return; }
+  if (t.hasAttribute('data-tw')){ var k=t.getAttribute('data-tw'); S.tw[k] = t.type==='checkbox' ? t.checked : t.value; render(); return; }
+  if (t.hasAttribute('data-set')){ var s=t.getAttribute('data-set'); S.set[s] = t.type==='checkbox' ? t.checked : +t.value; render(); }
+});
+document.addEventListener('input', function(e){
+  if (e.target.id === 'f-name') S.shop.name = e.target.value.replace(/[^\p{L} '-]/gu,'').slice(0,24) || 'Shopper';
+  if (e.target.id === 'f-phone') S.shop.phone = e.target.value.slice(0,16);
+});
+document.addEventListener('submit', function(e){
+  if (e.target.getAttribute('data-form') !== 'chat') return;
+  e.preventDefault(); var v = e.target.m.value; reply(v); render();
+  var inp = document.querySelector('.compose input'); if (inp && isDesk()) inp.focus();
+});
+window.matchMedia('(min-width:1000px)').addEventListener('change', render);
+
+sample = makeSample();
+S = fresh(); S.view = 'shopper';
+render();
+})();
+</script>
+
+  </body>
+</html>
