@@ -79,4 +79,28 @@
     if (hit[90]) window.removeEventListener('scroll', onScroll);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Human check. Email and ATS link scanners load the page for a second and never touch it.
+  // A visit counts as human after 10 seconds with the tab in view AND one real tap, click,
+  // key press or wheel/touch scroll (browser-trusted events only). Sent once per session:
+  // human_visit for everyone, plus ref_engaged when the visit came from a tracked application link.
+  (function () {
+    var KEY = 'pw-human', NEED = 10, secs = 0, acted = false, done = false, tick = null;
+    try { if (sessionStorage.getItem(KEY) === '1') return; } catch (e) {}
+    var kinds = ['pointerdown', 'keydown', 'wheel', 'touchstart'];
+    function act(e) { if (e.isTrusted) { acted = true; check(); } }
+    function check() {
+      if (done || !acted || secs < NEED) return;
+      done = true;
+      clearInterval(tick);
+      kinds.forEach(function (k) { window.removeEventListener(k, act, true); });
+      try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+      track('human_visit', { seconds: secs });
+      if (window.PW_REF) track('ref_engaged', { seconds: secs });
+    }
+    kinds.forEach(function (k) { window.addEventListener(k, act, { capture: true, passive: true }); });
+    tick = setInterval(function () {
+      if (document.visibilityState === 'visible') { secs++; check(); }
+    }, 1000);
+  })();
 })();
