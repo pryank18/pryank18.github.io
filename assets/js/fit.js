@@ -34,7 +34,7 @@
           ev: 'Shown in personal builds rather than at work so far: Msafara, a multi-agent prototype where LLM agents decide through tool calls inside price limits enforced in code, with LangGraph, RAG and a human approval gate; on 100 synthetic trips it completed 100% vs 86% for a rules baseline, with 0 price-limit breaches. Also ARA, an AI assistant inside Bolt & Bahi. MBA in AI for Business (expected Dec 2026).',
           ask: 'how I bound an AI agent\'s autonomy and designed its escalation rules' },
         { id: 'growth', label: 'Growth PM', link: '#shipped', fit: 'adjacent',
-          ev: 'Transferable rather than a growth title: A/B-tested onboarding flows, delivery time cut from 60 to 55 minutes with A/B-tested fixes, funnel metrics in Amplitude and Tableau, and 50+ enterprise and regional clients won from a 400+ network.',
+          ev: 'Transferable rather than a growth title: A/B-tested onboarding flows, delivery time cut from 60 to 55 minutes with A/B-tested fixes, funnel metrics in Amplitude and Tableau, and 50+ enterprise and regional clients won from a 400+ network. In a personal build, Wapsi, cart-recovery lift is measured against a holdout group rather than counting every order that follows a message.',
           ask: 'how I turned a 400+ network into 50+ enterprise and regional clients' },
         { id: 'proj', label: 'Project Manager', link: '#path', fit: 'direct',
           ev: 'Took a web and mobile MVP from Figma wireframes to launch within 8 months, ran the six-month IoT pilot from 100+ requirements, and launched a business in a new country under written SOPs. Certified Agile Scrum Master; backlog and sprints in Jira.',
@@ -67,7 +67,7 @@
         { id: 'b2c', label: 'Consumer app', link: '#builds', fit: 'adjacent',
           ev: 'B2C products at FuelBuddy alongside B2B, plus personal builds: Pravesh, a live exam-prep app with a free model and voluntary UPI support, and FitNexx, a subscription fitness app.' },
         { id: 'retail', label: 'E-commerce, retail or distribution', link: '#builds', fit: 'adjacent',
-          ev: 'Secured FuelBuddy\'s first Indian Oil (IOCL) retail station lease; a Shopify app integrated with 3+ merchant stores for freelance clients; and Dispatch OS for FMCG distributors.' },
+          ev: 'Secured FuelBuddy\'s first Indian Oil (IOCL) retail station lease; a Shopify app integrated with 3+ merchant stores for freelance clients; Dispatch OS for FMCG distributors; and Wapsi, a WhatsApp cart-recovery concept for D2C stores with a working demo that measures lift against a holdout group.' },
         { id: 'energy', label: 'Energy, mobility or EV', link: '#path', fit: 'direct',
           ev: 'Fuel-tech from vendor platform to IoT tank monitoring to a bulk-fuel business run end to end, plus EV and oil & gas retail infrastructure mapping from 100+ fleet and EV operator interviews.' }
       ]
