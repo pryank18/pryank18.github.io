@@ -71,6 +71,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="/assets/css/share.css?v=20261015">
+    <script src="/assets/js/share.js?v=20261015" defer></script>
     <script src="/assets/js/insights.js?v=20261027a" defer></script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Wapsi live demo","url":"https://pryank18.github.io/wapsi/demo/","applicationCategory":"BusinessApplication","operatingSystem":"Web browser","description":"Live demo of Wapsi: abandon a cart, watch the pre-send checks run, get the WhatsApp reminder, recover the order and see it measured against a holdout. Sample data.","author":{"@type":"Person","@id":"https://pryank18.github.io/#person","name":"Pryank Wadhera"},"isPartOf":{"@id":"https://pryank18.github.io/#website"}}</script>
   </head>
@@ -122,6 +124,10 @@ a{color:var(--accent)}
 .pill{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:38px;padding:0 13px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:14px;font-weight:500;text-decoration:none;color:var(--ink);white-space:nowrap}
 .pill:hover{border-color:var(--muted)}
 .pill.solid{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pill .share-ico{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.wa-fab{position:fixed;z-index:44;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;height:56px;min-width:56px;padding:0 16px;border-radius:999px;background:#0f8443;color:#fff;text-decoration:none;font:700 15.5px/1 var(--body);box-shadow:0 6px 18px -4px rgba(0,0,0,.35),0 2px 4px rgba(0,0,0,.12)}
+.wa-fab svg{width:28px;height:28px;flex:none;fill:currentColor}
+.wa-fab:hover{background:#0c7139}
 .pill.acc{background:var(--accent);border-color:var(--accent);color:#fff}
 .pill:disabled{opacity:.45;cursor:not-allowed}
 .tabs{max-width:1320px;margin:0 auto;display:flex;gap:4px;padding:0 max(16px,env(safe-area-inset-right,0px)) 8px max(16px,env(safe-area-inset-left,0px))}
@@ -129,7 +135,7 @@ a{color:var(--accent)}
 .tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
 
 /* layout */
-main{max-width:1320px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px))}
+main{max-width:1320px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-right,0px)) 96px max(16px,env(safe-area-inset-left,0px))}
 .view{display:none}
 .view.on{display:block}
 .sim{display:none;gap:22px;align-items:flex-start}
@@ -289,6 +295,9 @@ footer{max-width:1320px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-
   .bnav button[aria-selected="true"]{color:var(--accent);background:var(--accent-soft)}
   .bnav em{position:absolute;top:2px;right:calc(50% - 20px);background:#E0352B;color:#fff;font-style:normal;font-size:10px;border-radius:999px;min-width:16px;height:16px;display:grid;place-items:center;padding:0 4px}
   .hide-m{display:none}
+  .wa-fab{bottom:calc(80px + env(safe-area-inset-bottom,0px));right:16px;width:52px;height:52px;min-width:52px;padding:0;justify-content:center}
+  .wa-fab .wa-lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  body.v-shopper .wa-fab{display:none}
   .mguide{display:flex;gap:10px;align-items:flex-start;background:var(--accent-soft);border-radius:12px;padding:10px 12px;margin:0 auto 12px;max-width:400px;font-size:14px}
   .mguide .n{font-family:var(--mono);font-size:11.5px;background:var(--accent);color:#fff;border-radius:999px;padding:2px 8px;white-space:nowrap}
   .mguide p{margin:0}
@@ -306,7 +315,7 @@ footer{max-width:1320px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-
   .screen{border-radius:20px}
   .status{display:none}
 }
-@media (max-width:420px){.bar .badge{display:none}.bar-in{gap:8px}.clock{font-size:12px;padding:5px 9px}}
+@media (max-width:420px){.bar .badge{display:none}.hide-s{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.share-btn{padding:0;width:38px}.bar-in{gap:8px}.clock{font-size:12px;padding:5px 9px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -317,7 +326,9 @@ footer{max-width:1320px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-
     <span class="sp"></span>
     <span class="clock" id="clock" aria-live="polite"></span>
     <button class="pill" type="button" data-act="reset" title="Start the demo again">Reset</button>
+    <button class="pill share-btn" type="button" data-share data-share-url="https://pryank18.github.io/wapsi/demo/" data-share-title="Wapsi live demo: WhatsApp cart recovery" data-share-text="Wapsi, a WhatsApp cart-recovery product you can try end to end, built by Pryank Wadhera." data-share-type="product" data-share-id="wapsi_demo" aria-label="Share this demo"><svg class="share-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span class="hide-s">Share</span></button>
     <a class="pill hide-m" href="/wapsi/">Case study</a>
+    <a class="pill solid hide-m" href="/Pryank_Wadhera_Senior_Product_Manager_Resume.pdf" download>Resume</a>
   </div>
   <div class="tabs" role="tablist" aria-label="Demo sections">
     <button class="tab" role="tab" data-view="sim">Simulator</button>
@@ -339,7 +350,7 @@ footer{max-width:1320px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-
 
 <footer>
   <span>Wapsi is a concept product by Pryank Wadhera. Everything here runs in your browser on sample data; no messages are sent and nothing is stored.</span>
-  <span><a href="/wapsi/">Case study</a> · <a href="/">Portfolio</a></span>
+  <span><a href="/wapsi/">Case study</a> · <a href="/#fit-check">Check my fit</a> · <a href="/">Portfolio</a></span>
 </footer>
 
 <nav class="bnav" aria-label="Demo sections">
@@ -349,12 +360,12 @@ footer{max-width:1320px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-
   <button data-view="carts"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg>Carts</button>
   <button data-view="setup"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Rules</button>
 </nav>
+<a class="wa-fab" id="wa-fab" href="https://wa.me/917397829282?text=Hi%20Pryank%2C%20I%20tried%20your%20Wapsi%20demo%20and%20would%20like%20to%20talk%20about%20a%20role." target="_blank" rel="noopener" aria-label="Chat with Pryank on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span class="wa-lbl">Chat</span></a>
 <div class="toast" id="toast" role="status"><span id="toast-t"></span><button type="button" data-act="open-shopper">Open phone</button></div>
 
 <script>
 (function(){
 'use strict';
-var RATE = 0.8631, GST = 0.18, PER_MSG = RATE * (1 + GST);
 var PRODUCTS = [
   { id:'linen', name:'Linen shirt', colour:'Sage', price:1499, sw:'linear-gradient(135deg,#9DB59A,#6F8C6C)', sizes:{S:4,M:2,L:0} },
   { id:'oxford', name:'Oxford shirt', colour:'Sky blue', price:1799, sw:'linear-gradient(135deg,#A9C4E2,#6E8FB8)', sizes:{S:3,M:5,L:1} },
@@ -410,7 +421,7 @@ function makeSample(){
       }
       row.group='messaged'; row.msgs=1; row.delivered = r()<0.95 ? 1 : 0;
       if (!row.delivered){ row.status='Not delivered'; row.reason='Marketing message cap reached'; rows.push(row); continue; }
-      if (r() < 0.005){ row.optout=true; row.status='Opted out'; row.reason='Replied STOP'; rows.push(row); continue; }
+      if (r() < 0.003){ row.optout=true; row.status='Opted out'; row.reason='Replied STOP'; rows.push(row); continue; }
       if (r() < 0.002){ row.blocked=true; }
       row.replied = r() < 0.09; row.bot = row.replied && r() < 0.78;
       var pm = {high:0.27, mid:0.10, low:0.025}[row.intent];
@@ -487,7 +498,7 @@ function sendTemplate(kind){
   }
   chatIn({ from:'biz', kind:'tpl', tpl:tpl, text:text, cta:true });
   L.reminders++; L.msgs++; S.unread++;
-  log('SENT', 'Template ' + tpl + ' delivered. Charged as marketing: ' + inr2(PER_MSG) + ' incl. GST.');
+  log('SENT', 'Template ' + tpl + ' delivered (marketing category).');
   notify('New WhatsApp message on the shopper’s phone');
 }
 
@@ -718,7 +729,7 @@ function renderDash(){
   function sum(a,f){ return a.reduce(function(s,r){ return s + (typeof f==='function' ? f(r) : r[f]); },0); }
   var recM = sum(M,function(r){return r.recovered?1:0;}), recH = sum(H,function(r){return r.recovered?1:0;});
   var revM = sum(M,'revenue'), revH = sum(H,'revenue'), perH = H.length ? revH/H.length : 0;
-  var incr = revM - perH*M.length, msgs = sum(M,'delivered'), cost = msgs*PER_MSG, disc = sum(M,'discount');
+  var incr = revM - perH*M.length, msgs = sum(M,'delivered'), disc = sum(M,'discount');
   var opt = sum(M,function(r){return r.optout?1:0;}), blk = sum(M,function(r){return r.blocked?1:0;});
   var rep = sum(M,function(r){return r.replied?1:0;}), bot = sum(M,function(r){return r.bot?1:0;});
   var delivered = sum(M,function(r){return r.delivered?1:0;}), tapped = sum(M,function(r){return r.tapped?1:0;});
@@ -726,7 +737,7 @@ function renderDash(){
   h += '<div class="kpis"><div class="kpi ns"><p class="h">North star</p><b>' + inr(incr) + '</b><span>Incremental recovered revenue: messaged carts minus what the holdout recovered on its own, scaled to the same size</span></div>';
   h += '<div class="kpi"><p class="h">Recovery rate</p><b>' + pct(recM,M.length).toFixed(1) + '% vs ' + pct(recH,H.length).toFixed(1) + '%</b><span>Messaged carts vs holdout (' + M.length.toLocaleString('en-IN') + ' vs ' + H.length + ' carts)</span></div>';
   h += '<div class="kpi"><p class="h">Reachable carts</p><b>' + pct(reach,tot).toFixed(0) + '%</b><span>Have a number and a WhatsApp opt-in. This caps everything downstream.</span></div>';
-  h += '<div class="kpi"><p class="h">Message cost per recovered order</p><b>' + inr2(recM ? cost/recM : 0) + '</b><span>' + msgs.toLocaleString('en-IN') + ' marketing templates at ' + inr2(PER_MSG) + ' incl. GST</span></div></div>';
+  h += '<div class="kpi"><p class="h">Discount spend per recovered order</p><b>' + inr(recM ? disc/recM : 0) + '</b><span>Offers go only to persuadable carts, so most recoveries carry no discount</span></div></div>';
   // chart
   var days = []; for (var d=0; d<30; d++) days.push({m:0,n:0});
   M.forEach(function(r){ days[Math.min(29,r.day)].m += r.revenue; days[Math.min(29,r.day)].n++; });
@@ -742,7 +753,7 @@ function renderDash(){
   [['Messaged',M.length,M.length],['Delivered',delivered,M.length],['Tapped the link',tapped,M.length],['Recovered',recM,M.length]].forEach(function(f){ h += '<div class="fb"><span>'+f[0]+'</span><span class="tr"><i style="width:'+pct(f[1],f[2]).toFixed(1)+'%"></i></span><b>'+f[1].toLocaleString('en-IN')+'</b></div>'; });
   h += '</div><p class="note" style="margin:12px 0 0">Undelivered messages are mostly WhatsApp’s cap on marketing messages per person across all brands, treated as an expected outcome.</p></div></div>';
   h += '<div class="grid2" style="margin-top:16px"><div class="card"><p class="h">Efficiency</p>';
-  h += mrow('Discount spend per recovered order', inr(recM ? disc/recM : 0));
+  h += mrow('Recovered orders that needed no discount', pct(sum(M,function(r){return r.recovered && !r.discount ? 1 : 0;}), recM).toFixed(0) + '%');
   h += mrow('Offers sent (only to persuadable carts)', sum(M,function(r){return r.msgs>1?1:0;}).toLocaleString('en-IN'));
   h += mrow('Replies answered without staff', pct(bot,rep).toFixed(0) + '% of ' + rep);
   h += '</div><div class="card"><p class="h">Guardrails</p>';
@@ -819,6 +830,7 @@ function render(){
 
 /* ---------- events ---------- */
 var firstTouch = true;
+document.addEventListener('click',function(e){ var w=e.target.closest&&e.target.closest('#wa-fab'); if(w) track('whatsapp_click',{link_location:'demo_wapsi'}); });
 function track(n,p){ try{ if (typeof window.gtag==='function') window.gtag('event', n, p||{}); }catch(e){} }
 document.addEventListener('click', function(e){
   var t = e.target.closest('[data-act],[data-view]'); if (!t) return;
