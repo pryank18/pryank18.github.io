@@ -20,7 +20,7 @@ Ordered by relevance to my product focus (operations, workflow and B2B platform 
 | 4 | Pravesh | Family-first competitive-exam prep for Indian aspirants, with guardian sharing | [Open app](https://pryank18.github.io/pravesh/) | [PRD](https://github.com/pryank18/pryank18.github.io/blob/main/pravesh/docs/PRD.md) |
 | 5 | Dispatch OS | Ordering, credit limits, and stock platform for FMCG distributors and wholesalers | [Open app](https://pryank18.github.io/dispatch-os/) | [Notion](https://pryank18.github.io/docs/dispatch-os/) |
 | 6 | FitNexx | Strength training where every logged set adjusts the next session | [Open app](https://pryank18.github.io/fitnexx/) | [Notion](https://pryank18.github.io/docs/fitnexx/) |
-| 7 | Wapsi | WhatsApp cart recovery for D2C stores: a decision engine that checks consent, stock and quiet hours, and measures lift against a holdout | [Open app](https://pryank18.github.io/wapsi/demo/) | [Case study](https://pryank18.github.io/wapsi/) |
+| 7 | Wapsi | WhatsApp cart recovery for D2C stores: a decision engine that checks consent, stock and quiet hours, and measures lift against a holdout | [Open app](https://pryank18.github.io/wapsi/demo/) | [Notion](https://pryank18.github.io/docs/wapsi/) |
 
 ## Tech
 
