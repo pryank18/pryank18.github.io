@@ -97,12 +97,12 @@
       l: [['See the full path', '/#path']], n: ['zimbabwe', 'education'] },
 
     { id: 'education', chip: 'Education and certifications',
-      k: ['!education', '!degree', '!degrees', '!mba', '!college', '!university', '!qualification', '!qualifications', '!certification', '!certifications', '!certified', '!certificate', '!certificates', 'studied', 'study', 'archaeology', 'history', 'languages', 'language', 'speak', 'speaks'],
+      k: ['!education', '!degree', '!degrees', '!mba', '!college', '!university', '!qualification', '!qualifications', '!certification', '!certifications', '!certified', '!certificate', '!certificates', 'studied', 'study', 'archaeology', 'history', 'languages', 'language', 'speak', 'speaks', '!hindi', '!english'],
       a: 'He is completing an MBA in AI for Business at O.P. Jindal Global University (expected Dec 2026). He holds a Master\'s in AIHC & Archaeology from Deccan College, Pune (2019) and a BA (Hons) in History from the University of Delhi (2017). Certifications: Certified Product Manager (micro1), Technical Product Management, Agile Scrum Master, Becoming an AI-First Product Leader, and a Professional Diploma in International Business Management. He speaks English, Hindi, Punjabi and Marathi.',
       n: ['style', 'summary'] },
 
     { id: 'style', chip: 'How he works',
-      k: ['how does he work', 'how he works', 'working style', 'approach', 'philosophy', 'process', 'discovery', 'customer interviews', 'user research', 'strengths', 'strength', 'why hire', 'why should', 'why him', 'what makes', 'stand out', 'different', 'historian', 'archaeologist'],
+      k: ['how does he work', 'how he works', 'working style', 'approach', 'philosophy', 'process', 'discovery', 'customer interviews', 'user research', 'strengths', 'strength', 'why hire', 'is he good', 'any good', 'good fit', 'strong candidate', 'why should', 'why him', 'what makes', 'stand out', 'different', 'historian', 'archaeologist'],
       a: 'He starts in the field. His products begin at the depot, the pump and the plant, and the numbers show it: 300+ pump-owner interviews behind the vendor platform, and 40+ discovery interviews in Zimbabwe. He prices on value a buyer can verify, and he writes down what the team will not build. Archaeology taught him to trust what people do over what they say.',
       l: [['How he leads', '/#leadership']], n: ['wins', 'team'] },
 
@@ -178,6 +178,12 @@
 
   /* Asked before the topics above, so these never get a guessed answer. */
   var G = [
+    { id: 'hello', k: [], r: /^\W*((hi+|hello+|hey+|hiya|namaste|good (morning|afternoon|evening)|there|pryank|how are you)\W*)+$/i,
+      a: 'Hello, lovely to hear from you. What would you like to know about Pryank\'s work?' },
+    { id: 'thanks', r: /^\W*((thanks?|thank you|thx|cheers|great|perfect|nice|cool|awesome|ok|okay|got it|noted|bye|goodbye|so much|very much|a lot)\W*)+$/i,
+      a: 'My pleasure. If you\'d like to take things further, Pryank is one message away on WhatsApp or email.' },
+    { id: 'blank', k: [], r: /^[^a-z0-9]*$/i,
+      a: 'Sorry, I didn\'t quite catch that. Try asking about his AI work, his results or when he can start.' },
     { id: 'pay', r: /\b(salary|salaries|ctc|lpa|compensation|package|pay|paid|expectations?|earn|earns|earning|income|stipend|remuneration|lakhs? (per|a) (year|annum))\b/i,
       a: 'Pryank prefers to talk compensation directly, once he knows a little about the role. Drop him a line on WhatsApp or email and he\'ll take it from there.' },
     { id: 'exit', r: /\b(why (did|has|is) (he|pryank) (leave|left|leaving|quit)|why (he|pryank) left|reason for leaving|left fuelbuddy|leave fuelbuddy|quit|resign|resigned|resignation|fired|laid off|terminated|sacked|employment gap|career gap)\b/i,
@@ -192,7 +198,7 @@
       a: 'That\'s a little outside what I know. I\'m here for Pryank\'s work and experience, so try me on his AI products, his results or when he can start.' }
   ];
 
-  var FALLBACK = 'Good question, and one that deserves a proper answer from Pryank himself. Send him a quick note on WhatsApp or email and he\'ll reply personally. Meanwhile, I\'m happy to tell you more about his work.';
+  var FALLBACK = 'That one deserves a proper answer from Pryank himself. Send him a quick note on WhatsApp or email and he\'ll reply personally. Meanwhile, I\'m happy to tell you more about his work.';
   var HINDI = 'Sorry, I can only answer in English here. Pryank speaks Hindi though, so WhatsApp him and he\'ll be glad to reply himself.';
 
   function stem(w) {
