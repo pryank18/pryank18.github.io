@@ -179,21 +179,21 @@
   /* Asked before the topics above, so these never get a guessed answer. */
   var G = [
     { id: 'pay', r: /\b(salary|salaries|ctc|lpa|compensation|package|pay|paid|expectations?|earn|earns|earning|income|stipend|remuneration|lakhs? (per|a) (year|annum))\b/i,
-      a: 'Pryank discusses compensation directly, so I won\'t quote a figure. WhatsApp or email him and he will reply himself.' },
+      a: 'Pryank prefers to talk compensation directly, once he knows a little about the role. Drop him a line on WhatsApp or email and he\'ll take it from there.' },
     { id: 'exit', r: /\b(why (did|has|is) (he|pryank) (leave|left|leaving|quit)|why (he|pryank) left|reason for leaving|left fuelbuddy|leave fuelbuddy|quit|resign|resigned|resignation|fired|laid off|terminated|sacked|employment gap|career gap)\b/i,
-      a: 'His role at FuelBuddy ended in October 2026, and he can join immediately. He is the right person to talk through the rest, so please ask him directly.' },
+      a: 'His time at FuelBuddy ended in October 2026, and he can join immediately. The rest of that story is best heard from him, so do ask when you speak.' },
     { id: 'personal', r: /\b(age|old|born|birthday|date of birth|dob|married|marriage|wife|husband|girlfriend|boyfriend|single|kids(?! wallet)|children|family|parents|religion|caste|politics|political|address|lives? at|passport|aadhaar|pan card|health|disability|gender|race|nationality|visa|work permit|citizenship)\b/i,
-      a: 'I only cover Pryank\'s professional work, so I can\'t answer that. For anything else, please ask him directly.' },
+      a: 'I keep to Pryank\'s professional side here, so that one\'s best asked of him directly. He\'s only a message away.' },
     { id: 'secret', r: /\b(client names?|which clients?|who (are|were) (his|the) clients?|customer names?|confidential|internal figures?|commercial terms|contract value|exact revenue|gross margin|profit figures?)\b/i,
-      a: 'Clients stay unnamed and commercial terms stay private. The figures Pryank can share are on this site.' },
+      a: 'Client names and commercial terms stay private, out of respect for the people he\'s worked with. Every figure he can share is here on the site, and he\'s glad to talk through the work itself.' },
     { id: 'self', r: /\b(are you (a )?(human|real|person|bot|ai|robot|pryank)|who (are|built|made) you|what are you|which model|your (instructions|prompt|rules))\b/i,
-      a: 'I\'m an automated assistant on Pryank\'s portfolio, not Pryank. My answers come from his resume and this site. To reach him, use WhatsApp or email.' },
+      a: 'I\'m Pryank\'s automated assistant, not Pryank himself. Everything I tell you comes from his resume and this site. If you\'d like to speak to the man himself, he\'s on WhatsApp and email.' },
     { id: 'offtopic', r: /^(please )?(write|generate|draft|create|make|translate|solve|code|calculate)\b|\b(joke|weather|recipe|poem|capital of|prime minister|president of|stock price|ignore (all|your|previous))\b/i,
-      a: 'I can only help with Pryank\'s work and experience. Try asking about his AI work, his results or his availability.' }
+      a: 'That\'s a little outside what I know. I\'m here for Pryank\'s work and experience, so try me on his AI products, his results or when he can start.' }
   ];
 
-  var FALLBACK = 'I don\'t have a checked answer for that, and I won\'t guess. Pryank can answer it himself on WhatsApp or by email.';
-  var HINDI = 'I answer in English here. Pryank speaks Hindi, so please WhatsApp him and he will reply himself.';
+  var FALLBACK = 'Good question, and one that deserves a proper answer from Pryank himself. Send him a quick note on WhatsApp or email and he\'ll reply personally. Meanwhile, I\'m happy to tell you more about his work.';
+  var HINDI = 'Sorry, I can only answer in English here. Pryank speaks Hindi though, so WhatsApp him and he\'ll be glad to reply himself.';
 
   function stem(w) {
     if (w.length > 4 && /ies$/.test(w)) return w.slice(0, -3) + 'y';
@@ -328,7 +328,7 @@
   btn.addEventListener('click', function () {
     if (!started) {
       started = true;
-      reply('Hello. I can tell you about Pryank\'s work, results and availability. Pick a topic or type a question.');
+      reply('Hello, and thanks for stopping by. I can tell you about Pryank\'s work, his results and when he can start. Pick a topic below or ask in your own words.');
       showChips(CHIPS);
     }
     dlg.showModal();
