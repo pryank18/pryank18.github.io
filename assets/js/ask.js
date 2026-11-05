@@ -227,7 +227,7 @@
     for (var i = 0; i < G.length; i++) if (G[i].r.test(q)) return G[i];
     if (/^\W*(is|would) (he|pryank)( be)?( any| really| a)? (good|strong|good fit|strong candidate|right fit)\W*$/i.test(q)) return A.filter(function (t) { return t.id === 'style'; })[0];
     var raw = words(q).map(stem);
-    var best = null, top = 0;
+    var best = null, top = 0, weak = [];
     A.forEach(function (t) {
       var score = 0;
       t.k.forEach(function (kw) {
@@ -237,8 +237,12 @@
         score += strong ? 3 : (parts.length > 1 ? 2 + parts.length : 1);
       });
       if (score > top) { top = score; best = t; }
+      if (score === 1) weak.push(t);
     });
-    return top >= 2 ? best : null;
+    if (top >= 2) return best;
+    /* One weak word is enough when it points to a single topic. "Experience" gives way to a named skill. */
+    if (weak.length > 1) weak = weak.filter(function (t) { return t.id !== 'career'; });
+    return weak.length === 1 ? weak[0] : null;
   }
 
   /* Node tests load this file directly. */
