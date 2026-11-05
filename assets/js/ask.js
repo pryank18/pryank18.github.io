@@ -187,7 +187,7 @@
     { id: 'secret', r: /\b(client names?|which clients?|who (are|were) (his|the) clients?|customer names?|confidential|internal figures?|commercial terms|contract value|exact revenue|gross margin|profit figures?)\b/i,
       a: 'Client names and commercial terms stay private, out of respect for the people he\'s worked with. Every figure he can share is here on the site, and he\'s glad to talk through the work itself.' },
     { id: 'self', r: /\b(are you (a )?(human|real|person|bot|ai|robot|pryank)|who (are|built|made) you|what are you|which model|your (instructions|prompt|rules))\b/i,
-      a: 'I\'m Pryank\'s automated assistant, not Pryank himself. Everything I tell you comes from his resume and this site. If you\'d like to speak to the man himself, he\'s on WhatsApp and email.' },
+      a: 'I\'m Pryank\'s automated assistant, not Pryank himself. Everything I tell you comes from his resume and this site. If you\'d rather speak to him, he\'s on WhatsApp and email.' },
     { id: 'offtopic', r: /^(please )?(write|generate|draft|create|make|translate|solve|code|calculate)\b|\b(joke|weather|recipe|poem|capital of|prime minister|president of|stock price|ignore (all|your|previous))\b/i,
       a: 'That\'s a little outside what I know. I\'m here for Pryank\'s work and experience, so try me on his AI products, his results or when he can start.' }
   ];
