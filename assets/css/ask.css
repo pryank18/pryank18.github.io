@@ -1,0 +1,59 @@
+/* "Ask about me": button above the WhatsApp button, panel in the corner, sheet on phones. */
+.ask-fab{position:fixed;z-index:44;right:max(20px, env(safe-area-inset-right));bottom:calc(88px + env(safe-area-inset-bottom));
+  display:inline-flex;align-items:center;gap:8px;height:52px;padding:0 18px 0 14px;border:1px solid var(--line);border-radius:999px;
+  background:var(--btn);color:var(--btn-ink);font:600 15px var(--sans);cursor:pointer;
+  box-shadow:0 10px 24px -8px rgba(0,0,0,.4);transition:transform .25s ease, opacity .25s ease}
+.ask-fab svg{width:24px;height:24px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ask-fab:hover{transform:translateY(-2px)}
+.ask-fab:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.ask-fab.fab-aside,.ask-fab.fab-scrolling{opacity:0;transform:translateY(16px) scale(.9);pointer-events:none}
+
+.ask-dlg{position:fixed;inset:auto max(20px, env(safe-area-inset-right)) 20px auto;margin:0;padding:0;width:400px;max-width:calc(100vw - 32px);
+  height:min(620px, calc(100dvh - 40px));border:1px solid var(--line);border-radius:18px;background:var(--bg-2);color:var(--ink);font-family:var(--sans);
+  box-shadow:0 24px 60px -12px rgba(0,0,0,.45);overflow:hidden}
+.ask-dlg[open]{display:flex;flex-direction:column}
+.ask-dlg::backdrop{background:rgba(10,16,24,.32)}
+html.ask-open{overflow:hidden}
+
+.ask-head{display:flex;align-items:center;gap:10px;padding:12px 10px 12px 14px;border-bottom:1px solid var(--line)}
+.ask-head img{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:50% 0;background:var(--bg-3);flex:none}
+.ask-head div{min-width:0;flex:1}
+.ask-head strong{display:block;font-size:16px;line-height:1.25}
+.ask-head span{display:block;font-size:13px;color:var(--ink-3)}
+.ask-x{width:44px;height:44px;flex:none;border:0;background:none;color:var(--ink-2);font-size:26px;line-height:1;cursor:pointer;border-radius:10px}
+.ask-x:focus-visible,.ask-chip:focus-visible,.ask-form button:focus-visible,.ask-links a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.ask-log{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:14px;display:flex;flex-direction:column;gap:10px}
+.ask-log:focus{outline:none}
+.ask-msg{max-width:90%;padding:10px 13px;border-radius:14px;font-size:15.5px;line-height:1.45;overflow-wrap:anywhere}
+.ask-bot{align-self:flex-start;background:var(--bg-3);border-bottom-left-radius:4px}
+.ask-me{align-self:flex-end;background:var(--btn);color:var(--btn-ink);border-bottom-right-radius:4px}
+.ask-wait{color:var(--ink-3)}
+.ask-links{display:flex;flex-wrap:wrap;gap:2px 14px;margin-top:6px}
+.ask-links a{display:inline-flex;align-items:center;min-height:36px;color:var(--accent);font-weight:600;font-size:14.5px;text-underline-offset:3px}
+
+.ask-chips{display:flex;gap:8px;padding:8px 14px;overflow-x:auto;scrollbar-width:none;border-top:1px solid var(--line)}
+.ask-chips::-webkit-scrollbar{display:none}
+.ask-chip{flex:none;min-height:40px;padding:0 13px;border:1px solid var(--line-strong);border-radius:999px;background:none;color:var(--ink);font:500 14px var(--sans);cursor:pointer;white-space:nowrap}
+.ask-chip:hover{background:var(--accent-soft)}
+
+.ask-form{display:flex;gap:8px;padding:10px 14px calc(12px + env(safe-area-inset-bottom))}
+.ask-form input{flex:1;min-width:0;height:46px;padding:0 13px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:16px var(--sans)}
+.ask-form input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.ask-form input::placeholder{color:var(--ink-3)}
+.ask-form button{width:46px;height:46px;flex:none;border:0;border-radius:12px;background:var(--btn);color:var(--btn-ink);cursor:pointer;display:grid;place-items:center}
+.ask-form svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ask-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media (max-width:1040px){
+  .ask-fab{bottom:calc(144px + env(safe-area-inset-bottom));width:56px;height:56px;padding:0;justify-content:center}
+  .ask-fab .ask-lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+}
+@media (min-width:761px) and (max-width:1040px) and (pointer:fine){ .ask-fab{bottom:calc(88px + env(safe-area-inset-bottom))} }
+@media (max-width:1040px) and (orientation:landscape) and (max-height:520px){ .ask-fab{bottom:calc(120px + env(safe-area-inset-bottom));width:48px;height:48px} }
+@media (max-width:760px){
+  .ask-fab.fab-hero{opacity:0;transform:translateY(16px) scale(.9);pointer-events:none}
+  .ask-dlg{inset:auto 0 0 0;width:100%;max-width:100%;height:min(82dvh, 640px);max-height:100dvh;border-radius:18px 18px 0 0;border-width:1px 0 0}
+}
+@media (prefers-reduced-motion: reduce){ .ask-fab{transition:none} }
+@media print{ .ask-fab,.ask-dlg{display:none!important} }
