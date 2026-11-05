@@ -102,7 +102,7 @@
       n: ['style', 'summary'] },
 
     { id: 'style', chip: 'How he works',
-      k: ['how does he work', 'how he works', 'working style', 'approach', 'philosophy', 'process', 'discovery', 'customer interviews', 'user research', 'strengths', 'strength', 'why hire', 'is he good', 'any good', 'good fit', 'strong candidate', 'why should', 'why him', 'what makes', 'stand out', 'different', 'historian', 'archaeologist'],
+      k: ['how does he work', 'how he works', 'working style', 'approach', 'philosophy', 'process', 'discovery', 'customer interviews', 'user research', 'strengths', 'strength', 'why hire', 'why should', 'why him', 'what makes', 'stand out', 'different', 'historian', 'archaeologist'],
       a: 'He starts in the field. His products begin at the depot, the pump and the plant, and the numbers show it: 300+ pump-owner interviews behind the vendor platform, and 40+ discovery interviews in Zimbabwe. He prices on value a buyer can verify, and he writes down what the team will not build. Archaeology taught him to trust what people do over what they say.',
       l: [['How he leads', '/#leadership']], n: ['wins', 'team'] },
 
@@ -181,7 +181,7 @@
     { id: 'hello', k: [], r: /^\W*((hi+|hello+|hey+|hiya|namaste|good (morning|afternoon|evening)|there|pryank|how are you)\W*)+$/i,
       a: 'Hello, lovely to hear from you. What would you like to know about Pryank\'s work?' },
     { id: 'thanks', r: /^\W*((thanks?|thank you|thx|cheers|great|perfect|nice|cool|awesome|ok|okay|got it|noted|bye|goodbye|so much|very much|a lot)\W*)+$/i,
-      a: 'My pleasure. If you\'d like to take things further, Pryank is one message away on WhatsApp or email.' },
+      a: 'Glad I could help. If you\'d like to take things further, Pryank is one message away on WhatsApp or email.' },
     { id: 'blank', k: [], r: /^[^a-z0-9]*$/i,
       a: 'Sorry, I didn\'t quite catch that. Try asking about his AI work, his results or when he can start.' },
     { id: 'pay', r: /\b(salary|salaries|ctc|lpa|compensation|package|pay|paid|expectations?|earn|earns|earning|income|stipend|remuneration|lakhs? (per|a) (year|annum))\b/i,
@@ -225,6 +225,7 @@
     q = (q || '').trim();
     if (/[ऀ-ॿ]/.test(q)) return { id: 'hindi', a: HINDI };
     for (var i = 0; i < G.length; i++) if (G[i].r.test(q)) return G[i];
+    if (/^\W*(is|would) (he|pryank)( be)?( any| really| a)? (good|strong|good fit|strong candidate|right fit)\W*$/i.test(q)) return A.filter(function (t) { return t.id === 'style'; })[0];
     var raw = words(q).map(stem);
     var best = null, top = 0;
     A.forEach(function (t) {
