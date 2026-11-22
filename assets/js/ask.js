@@ -33,7 +33,7 @@
 
     { id: 'ai', chip: 'AI product experience',
       k: ['!ai', '!ml', 'artificial intelligence', 'machine learning', '!llm', '!llms', 'generative', '!genai', '!rag', '!agents', '!agentic', '!evals', 'forecasting', 'langgraph', 'prompt', 'guardrails'],
-      a: 'At work, he built AI demand forecasting into the FMS, live today: it predicts supplier booking volumes from 3 months of daily data, with a planner reviewing each cycle. On his own time, he built Msafara, a multi-agent system using LangGraph, tool calling and RAG. It completed 100% of 100 synthetic test trips, against 86% for a rules baseline, with 0 price-limit breaches. Bolt & Bahi also has a built-in AI assistant, and he is finishing an MBA in AI for Business.',
+      a: 'At work, he built AI demand forecasting into the FMS and took it live: it predicts supplier booking volumes from 3 months of daily data, with a planner reviewing each cycle. On his own time, he built Msafara, a multi-agent system using LangGraph, tool calling and RAG. It completed 100% of 100 synthetic test trips, against 86% for a rules baseline, with 0 price-limit breaches. Bolt & Bahi also has a built-in AI assistant, and he is finishing an MBA in AI for Business.',
       l: [['Msafara evals', 'https://pryank18.github.io/Msafara/#evals']], n: ['projects', 'tech', 'education'] },
 
     { id: 'payments', chip: 'Payments and fintech',
