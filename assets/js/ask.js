@@ -155,7 +155,7 @@
       a: 'He was Associate Product Manager at Legal Suvidha from Sep 2021 to Dec 2022. He launched the web and mobile MVP within 8 months, introduced Agile, which cut time-to-market by 25%, and A/B-tested onboarding flows as website visitors grew from about 120 to 1,000+.',
       l: [['Read the PRD', '/docs/legaltech-compliance-prd/']], n: ['career', 'b2b'] },
     { id: 'arjun', chip: 'Project Arjun', k: ['project arjun', '!arjun', '!ev', 'ev charging', 'electric vehicles'],
-      a: 'He partnered with the GM and CEO on Project Arjun, an EV and oil & gas retail infrastructure plan built on 100+ fleet and EV operator interviews. Leadership approved the plan.',
+      a: 'He partnered with the GM and CEO on Project Arjun: he mapped EV and oil & gas retail infrastructure from 100+ fleet and EV operator interviews and designed a consumer commerce app for fuel and station products. Leadership approved the plan, and it was piloted in Delhi NCR and Bengaluru.',
       l: [['See the full record', '/work/everything/']], n: ['iocl', 'career'] },
     { id: 'iocl', chip: 'The IOCL lease', k: ['!iocl', 'indian oil', 'retail station', 'lease'],
       a: 'He secured FuelBuddy\'s first Indian Oil (IOCL) retail station lease.',

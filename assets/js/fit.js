@@ -46,7 +46,7 @@
           ev: 'I ran a country P&L across pricing, procurement, logistics and sales, plus customer credit and collections, within ZERA and ZIMRA rules. I took the market from zero to 8 active depots and 50+ enterprise and regional clients, with zero stock-outs.',
           ask: 'how I built the operating model before the product in a new market' },
         { id: 'strat', label: 'Strategy, founder\'s office or chief of staff', link: '#cases', fit: 'direct',
-          ev: 'I led the market and competitive evaluation of Zimbabwe, Zambia and Nigeria, and partnered with the GM and CEO on Project Arjun, mapping EV and oil & gas retail infrastructure from 100+ fleet and EV operator interviews (plan approved by leadership).',
+          ev: 'I led the market and competitive evaluation of Zimbabwe, Zambia and Nigeria, and partnered with the GM and CEO on Project Arjun, mapping EV and oil & gas retail infrastructure from 100+ fleet and EV operator interviews and designing a consumer commerce app for fuel and station products (plan approved by leadership; piloted in Delhi NCR and Bengaluru).',
           ask: 'how I evaluated three countries and picked the one we launched in' }
       ]
     },
